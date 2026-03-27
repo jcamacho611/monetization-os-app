@@ -308,6 +308,10 @@ const industrySegments = [
     body: 'Missed calls, estimate follow-up, review requests, and recurring service reactivation.'
   },
   {
+    label: 'Med Spas',
+    body: 'Permission-based website improvements, booking-flow cleanup, higher-trust content, and safer approval-first publishing.'
+  },
+  {
     label: 'Agencies',
     body: 'Discovery and qualification for inbound demand, outbound lists, and reactivation opportunities.'
   },
@@ -350,6 +354,123 @@ const sourceConnectorScaffolds = [
     label: 'Communication Channels',
     body: 'Email, SMS, and messaging channels used after an opportunity is verified and activated.'
   }
+];
+const medSpaConnectorMatrix = [
+  {
+    connector: 'WordPress',
+    auth: 'Application Passwords, OAuth, or JWT plugin',
+    scopes: 'Posts, pages, media, and content updates',
+    complexity: '2/5',
+    notes: 'Use revisions and draft-first publishing instead of editing live pages directly.'
+  },
+  {
+    connector: 'Webflow',
+    auth: 'OAuth or site API token',
+    scopes: 'CMS items, pages, assets, and publish-ready updates',
+    complexity: '3/5',
+    notes: 'Treat Designer and publish access carefully, and stage changes before the owner pushes live.'
+  },
+  {
+    connector: 'Shopify',
+    auth: 'Shopify app OAuth',
+    scopes: 'Theme, content, scripts, and store content APIs',
+    complexity: '4/5',
+    notes: 'Best handled through unpublished themes or branch-like preview flows.'
+  },
+  {
+    connector: 'Instagram + Facebook',
+    auth: 'Meta OAuth',
+    scopes: 'Business profile, content publishing, and page permissions',
+    complexity: '3/5',
+    notes: 'Requires business accounts, clear consent UX, and likely App Review.'
+  },
+  {
+    connector: 'Google Business Profile',
+    auth: 'Google OAuth',
+    scopes: 'Business profile management and review access',
+    complexity: '3/5',
+    notes: 'Use narrow scopes and explain exactly what is being read or updated.'
+  },
+  {
+    connector: 'Calendly / Booking',
+    auth: 'OAuth or personal token',
+    scopes: 'Scheduling read-write and webhook access',
+    complexity: '2/5',
+    notes: 'Useful for no-show reminders, follow-up timing, and booking flow visibility.'
+  }
+];
+const medSpaPublishingSafeguards = [
+  {
+    name: 'Permissioned Access',
+    headline: 'Every connector should be explicit, revocable, and least-privilege by default.',
+    body: 'Only ask for the exact scopes needed for scanning, drafting, or publishing. Owners should always know what Zumi can touch.'
+  },
+  {
+    name: 'Preview Before Publish',
+    headline: 'Never push changes live blindly.',
+    body: 'Use drafts, staging modes, preview themes, or unpublished changesets before anything reaches a public med spa site.'
+  },
+  {
+    name: 'Audit + Rollback',
+    headline: 'Every action should be logged and reversible.',
+    body: 'Store change history, record what connector made the update, and keep a rollback path through revisions, themes, or snapshots.'
+  }
+];
+const medSpaAiModules = [
+  {
+    name: 'Site Scanner',
+    headline: 'Crawl the site, map the structure, and extract content, media, and SEO signals.',
+    body: 'This is the intake layer for everything else. It should use platform APIs when available and public crawling when allowed.'
+  },
+  {
+    name: 'Brand Brain',
+    headline: 'Learn the spa’s voice, offers, visual tone, and customer positioning.',
+    body: 'Use site content, social context, and structured notes so copy and design recommendations still feel on-brand.'
+  },
+  {
+    name: 'Copy Agent',
+    headline: 'Rewrite service pages, CTAs, and conversion copy with a stronger booking focus.',
+    body: 'Treat all AI output as draft material until a human approves it, especially in a health-adjacent vertical.'
+  },
+  {
+    name: 'Design Agent',
+    headline: 'Suggest cleaner layouts, higher-trust sections, and premium med-spa visual upgrades.',
+    body: 'The best practical output is often structured component changes, not uncontrolled full-site redesigns.'
+  },
+  {
+    name: 'Conversion Agent',
+    headline: 'Find friction in booking flows, weak CTAs, missing trust signals, and offer gaps.',
+    body: 'This is where booking intent gets protected instead of leaking through weak forms or poor page structure.'
+  },
+  {
+    name: 'Patch Agent',
+    headline: 'Turn approved decisions into safe platform-specific updates.',
+    body: 'The final step should publish through guarded workflows, not unreviewed direct edits.'
+  }
+];
+const medSpaComplianceBlocks = [
+  {
+    name: 'Privacy',
+    headline: 'Handle business, visitor, and appointment-related data under clear privacy policies.',
+    body: 'Support deletion rights, data retention limits, and consent language aligned with GDPR and CCPA expectations.'
+  },
+  {
+    name: 'HIPAA Risk',
+    headline: 'Assume health-adjacent data can trigger a higher compliance bar.',
+    body: 'If inquiries or appointments contain treatment information, storage, analytics, vendors, and staff access all need tighter controls.'
+  },
+  {
+    name: 'Legal Consent',
+    headline: 'The owner must explicitly authorize account access and change authority.',
+    body: 'Use clickwrap or equivalent consent flows for connectors, terms, privacy, and any future automated publishing actions.'
+  }
+];
+const medSpaOnboardingSteps = [
+  'Create the operator account, accept terms, and define the brand owner.',
+  'Connect the website platform with a scoped connector or application password.',
+  'Connect social, profile, analytics, and booking systems with permission.',
+  'Run the first scan and show a no-risk report before asking for deeper activation.',
+  'Approve changes in preview mode, then publish through a tracked workflow.'
 ];
 
 app.disable('x-powered-by');
@@ -1213,6 +1334,30 @@ function homePage(clients) {
 
     <section class="section">
       <div class="detail-grid">
+        <article class="card">
+          <p class="kicker">New Vertical</p>
+          <h3>AI Website Operator for med spas.</h3>
+          <p class="muted">The next expansion turns Zumi into a permission-based website operator for med spas: connect the site and marketing stack, run a first scan, draft improvements, and route every change through preview and approval before publishing.</p>
+          <div class="mini-proof">
+            <span class="pill">Connector-first</span>
+            <span class="pill">Approval-first</span>
+            <span class="pill">Health-adjacent compliance aware</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="/med-spas">Open Med Spa Page</a>
+            <a class="btn secondary" href="/operator-architecture">See Architecture</a>
+          </div>
+        </article>
+        <article class="card">
+          <p class="kicker">Why it works</p>
+          <h3>Same premium shell, higher-trust use case.</h3>
+          <p class="muted">This keeps the silver-black product language you already like while showing that the system can support a more sophisticated vertical with connectors, consent flows, audit logs, rollback, and modular AI agents.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
         ${renderZumiBlueprintCard({
           ...seededClient,
           businessSize: 'small-team',
@@ -1752,9 +1897,216 @@ function industriesPage() {
       <p class="muted">Zumi should not be trapped inside one vertical. The same discovery, verification, and conversion layer can be packaged differently across multiple business types.</p>
     </section>
     <section class="grid-3">${industrySegments.map(renderIndustryCard).join('')}</section>
+    <section class="section">
+      <div class="detail-grid">
+        <article class="card">
+          <p class="kicker">Featured Vertical</p>
+          <h3>AI Website Operator for med spas</h3>
+          <p class="muted">This is the most compliance-sensitive version of the product: permissioned connectors, preview-first publishing, brand-safe AI modules, and a stronger legal/security layer around every site change.</p>
+          <div class="actions">
+            <a class="btn" href="/med-spas">Open Med Spa Page</a>
+            <a class="btn secondary" href="/operator-architecture">See Architecture</a>
+          </div>
+        </article>
+        <article class="card">
+          <p class="kicker">Why it fits</p>
+          <h3>The same Zumi shell can sell higher-trust vertical plays.</h3>
+          <p class="muted">Instead of replacing the current product, this route shows how Zumi can expand into a premium med-spa operator layer with safer connectors, approvals, and compliance messaging.</p>
+        </article>
+      </div>
+    </section>
   `;
 
   return layout('Industries', content, '/industries');
+}
+
+function medSpaPage() {
+  const tableRows = medSpaConnectorMatrix.map((item) => `
+    <tr>
+      <td><div class="table-title">${escapeHtml(item.connector)}</div></td>
+      <td>${escapeHtml(item.auth)}</td>
+      <td>${escapeHtml(item.scopes)}</td>
+      <td>${escapeHtml(item.complexity)}</td>
+      <td>${escapeHtml(item.notes)}</td>
+    </tr>
+  `).join('');
+
+  const content = `
+    <section class="solution-hero">
+      <article class="card art-panel">
+        <p class="section-label">Med Spas</p>
+        <h2>AI Website Operator for med spas, built around consent, previews, and safer publishing.</h2>
+        <p class="muted">This version of Zumi acts less like a general dashboard and more like a permission-based website operator. It connects to the spa’s site and marketing stack, scans what exists, drafts stronger content and design improvements, then routes everything through owner approval before publishing.</p>
+        <div class="mini-proof">
+          <span class="pill">Connect with permission</span>
+          <span class="pill">Preview before publish</span>
+          <span class="pill">Audit + rollback</span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="/operator-architecture">See Operator Architecture</a>
+          <a class="btn secondary" href="/intake">Start Intake</a>
+        </div>
+      </article>
+      <article class="card art-panel">
+        <div class="story-visual-wrap story-visual-large">
+          <img class="story-visual" src="/opportunity-engine.svg" alt="Silver-black operator architecture for a med spa AI website workflow." />
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Onboarding</p>
+          <h2>The first run should feel safe, premium, and obvious.</h2>
+        </div>
+        <p class="muted">The product flow is simple: connect accounts, run the first scan, see a report, approve the right changes, then publish through a tracked workflow.</p>
+      </div>
+      <div class="card">
+        <div class="timeline-list">
+          ${medSpaOnboardingSteps.map((step, index) => `
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Step ${index + 1}</strong>
+                <div class="table-subtitle">${escapeHtml(step)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Connectors</p>
+          <h2>Platform access should be clear, scoped, and revocable.</h2>
+        </div>
+        <p class="muted">Different systems need different auth models, but they should all follow the same rule: only request what the operator actually needs.</p>
+      </div>
+      <article class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Connector</th>
+                <th>Auth</th>
+                <th>Permissions</th>
+                <th>Complexity</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Publishing Safeguards</p>
+          <h2>The system must protect the live site from bad automation.</h2>
+        </div>
+        <p class="muted">This is the non-negotiable layer: least privilege, preview mode, logs, and rollback.</p>
+      </div>
+      <div class="feature-grid">${medSpaPublishingSafeguards.map(renderPillarCard).join('')}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Compliance</p>
+          <h2>Privacy and health-adjacent risk shape the product decisions.</h2>
+        </div>
+        <p class="muted">Med spas can cross into sensitive territory fast, especially around booking and inquiry data. That means clearer policies, tighter controls, and more disciplined connector behavior.</p>
+      </div>
+      <div class="feature-grid">${medSpaComplianceBlocks.map(renderPillarCard).join('')}</div>
+    </section>
+  `;
+
+  return layout('Med Spas', content, '/med-spas');
+}
+
+function operatorArchitecturePage() {
+  const content = `
+    <section class="solution-hero">
+      <article class="card art-panel">
+        <p class="section-label">Operator Architecture</p>
+        <h2>How the AI Website Operator should work under the hood.</h2>
+        <p class="muted">The practical architecture is a modular pipeline: scan the site, learn the brand, generate safer drafts, identify conversion and SEO issues, then push only approved changes through platform-specific patch flows.</p>
+        <div class="mini-proof">
+          <span class="pill">Scanner</span>
+          <span class="pill">Brand Brain</span>
+          <span class="pill">Draft-first publishing</span>
+        </div>
+      </article>
+      <article class="card art-panel">
+        <div class="story-visual-wrap story-visual-large">
+          <img class="story-visual" src="/hero-success-owners.svg" alt="Premium silver workflow montage for AI operator modules." />
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Modules</p>
+          <h2>Separate AI responsibilities so the product stays believable.</h2>
+        </div>
+        <p class="muted">Each agent should own a clear part of the workflow rather than pretending one model can safely do everything in a single jump.</p>
+      </div>
+      <div class="feature-grid">${medSpaAiModules.map(renderPillarCard).join('')}</div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="card">
+          <p class="kicker">Human Review</p>
+          <h3>Draft-first publishing is the product safety valve.</h3>
+          <p class="muted">Large models can hallucinate, miss nuance, or overreach. The system should always make it easy for the owner or operator to inspect copy, design changes, connector actions, and publish intent before anything goes live.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Technical Limits</p>
+          <h3>Chunking, source limits, and platform rules still matter.</h3>
+          <p class="muted">Whole-site context can exceed model limits, social and booking APIs have rate limits, and some platforms need formal app review. The architecture should be honest about those constraints from day one.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Go To Market</p>
+          <h2>Sell it as a premium booking-growth operator, not just a CMS plugin.</h2>
+        </div>
+        <p class="muted">The strongest med-spa positioning is outcome-first: connect the stack, surface what is weak, tighten the site, and protect trust while driving more bookings.</p>
+      </div>
+      <div class="detail-grid">
+        <article class="card">
+          <p class="kicker">Monetization</p>
+          <h3>Subscription with a guided setup layer.</h3>
+          <ul class="list-clean">
+            <li>Free audit or first scan as a top-of-funnel offer.</li>
+            <li>Core plan for one site and basic scans.</li>
+            <li>Premium plan for multiple connectors, approvals, and operator workflows.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <p class="kicker">Distribution</p>
+          <h3>App Store-ready means privacy, disclosures, and restraint.</h3>
+          <ul class="list-clean">
+            <li>Declare data usage clearly.</li>
+            <li>Avoid unsupported scraping or deceptive health-related claims.</li>
+            <li>Keep consent, privacy, and publishing authority explicit.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  `;
+
+  return layout('Operator Architecture', content, '/operator-architecture');
 }
 
 function intakePage(selectedPlan = 'Starter') {
@@ -2172,6 +2524,14 @@ app.get('/convert', (req, res) => {
 
 app.get('/industries', (req, res) => {
   sendHtml(res, industriesPage());
+});
+
+app.get('/med-spas', (req, res) => {
+  sendHtml(res, medSpaPage());
+});
+
+app.get('/operator-architecture', (req, res) => {
+  sendHtml(res, operatorArchitecturePage());
 });
 
 app.get('/solutions/:slug', (req, res) => {
