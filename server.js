@@ -20,12 +20,12 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 const brand = {
   name: 'Zumi',
   category: 'AI website operator',
-  audience: 'med spas, creator-led brands, and booking-led businesses',
+  audience: 'med spas and premium booking-led brands',
   slogan: 'Nothing slips. Everything closes.',
-  headline: 'Nothing slips. Everything closes.',
-  subhead: 'Zumi gets approved access to your website and marketing stack, scans what is weak, rewrites what is unclear, redesigns what feels dated, and prepares cleaner booking-first upgrades before anything goes live.',
-  supportingLine: 'Connect with permission. Scan the whole site. Approve every fix.',
-  metaDescription: 'Zumi is an AI website operator for med spas, creator-led brands, and booking-led businesses. It connects with permission, scans the site, drafts cleaner copy and design upgrades, and routes every change through approval-first publishing.',
+  headline: 'Scan. Fix. Improve. Publish.',
+  subhead: 'Zumi scans your site, finds what is hurting bookings, and prepares cleaner updates you can approve first.',
+  supportingLine: 'Built first for med spas. Designed to feel simple.',
+  metaDescription: 'Zumi is an AI website operator built first for med spas. It connects with permission, scans the site, prepares cleaner updates, and keeps every change approval-first.',
   proofNote: 'Illustrative launch scenarios built to show how Zumi can improve bookings, trust, and conversion before a full live customer dataset exists.',
   algorithmName: 'Zumi Adapt Engine'
 };
@@ -114,19 +114,19 @@ const caseStudies = [
 const faqItems = [
   {
     question: 'Who is Zumi best for?',
-    answer: 'Zumi is best for med spas, creator-led brands, clothing businesses, and other booking-led businesses that already have traffic or inquiries but still lose money through weak sites, slow follow-up, and unclear conversion paths.'
+    answer: 'Med spas, creator brands, clothing businesses, and other businesses that already have attention but need a cleaner path to sales.'
   },
   {
     question: 'What problem does it solve first?',
-    answer: 'The first win is clarity. Zumi finds what is hurting trust, bookings, and speed on the site, then helps the business fix those issues before trying to buy more traffic.'
+    answer: 'It finds what is making the site feel confusing, weak, or hard to buy from.'
   },
   {
     question: 'Does it publish changes automatically?',
-    answer: 'Not by default. Zumi is built around preview-first publishing, approval flows, and rollback so the owner stays in control of what goes live.'
+    answer: 'No. The owner reviews the changes first.'
   },
   {
     question: 'What access does it need?',
-    answer: 'Only the access required for the job. That can mean a website connector, social login, Google Business access, or a booking-system token, all with explicit owner consent.'
+    answer: 'Only the access needed for the job, and only with explicit permission.'
   }
 ];
 const solutionPages = [
@@ -1143,12 +1143,9 @@ function layout(title, content, currentPath = '/') {
             <nav class="nav-links">
               ${navLink('/', 'Home', currentPath)}
               ${navLink('/how-it-works', 'How It Works', currentPath)}
-              ${navLink('/solutions', 'Solutions', currentPath)}
               ${navLink('/med-spas', 'Med Spas', currentPath)}
               ${navLink('/about', 'About', currentPath)}
-              ${navLink('/pricing', 'Pricing', currentPath)}
-              ${navLink('/case-studies', 'Proof', currentPath)}
-              ${navLink('/admin', 'Admin', currentPath)}
+              ${navLink('/intake', 'Intake', currentPath)}
             </nav>
           </div>
         </div>
@@ -1163,7 +1160,6 @@ function layout(title, content, currentPath = '/') {
             <span>${brand.slogan}</span>
           </div>
           <nav class="footer-links">
-            <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
             <a href="/authorization">Authorization</a>
@@ -1360,58 +1356,28 @@ function renderZumiCadenceCard(client) {
 }
 
 function homePage(clients) {
-  const seededClient = clients[0] || {
-    owner: 'Jordan',
-    businessName: 'Luxe-Medi Aesthetics',
-    goal: 'booking more high-intent consultations'
-  };
-  const categoryCount = new Set(clients.map((client) => client.category).filter(Boolean)).size || 4;
-  const sampleMessage = buildTemplateFollowup(seededClient, 'sms');
-  const faqPreview = faqItems.map(renderFaqCard).join('');
-  const caseStudyPreview = caseStudies.map(renderCaseStudyPreview).join('');
-  const solutionPreview = solutionPages.map(renderSolutionPreview).join('');
-  const pricingPreview = pricingPlans.map(renderPricingCard).join('');
-  const pillarPreview = operatorJourney.map(renderPillarCard).join('');
-  const trustPreview = trustHighlights.map(renderPillarCard).join('');
-  const operatorFixPreview = operatorFixes.map((item) => `
-    <article class="card">
-      <p class="kicker">Operator Fix</p>
-      <h3>${escapeHtml(item.label)}</h3>
-      <p class="muted">${escapeHtml(item.body)}</p>
-    </article>
-  `).join('');
-  const sampleBlueprint = buildZumiBlueprint({
-    ...seededClient,
-    businessSize: 'small-team',
-    leadVolume: 'steady',
-    salesMotion: 'high-ticket',
-    preferredChannel: 'sms'
-  });
-
   const content = `
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">${escapeHtml(brand.category)} for ${escapeHtml(brand.audience)}</p>
+        <p class="eyebrow">${escapeHtml(brand.category)}</p>
         <h1>${escapeHtml(brand.headline)}</h1>
         <p class="lede">${escapeHtml(brand.subhead)}</p>
-        <p class="supporting-line">${escapeHtml(brand.supportingLine)}</p>
         <div class="actions">
-          <a class="btn" href="#opportunity-preview">Start Site Scan</a>
+          <a class="btn" href="/intake">Start Intake</a>
           <a class="btn secondary" href="/how-it-works">See How It Works</a>
-          <a class="btn ghost" href="/demo">Book Demo</a>
         </div>
         <div class="live-metrics">
           <div class="signal-chip">
-            <span class="signal-value">12</span>
-            <span class="signal-label">pages flagged</span>
+            <span class="signal-value">Built first</span>
+            <span class="signal-label">for med spas</span>
           </div>
           <div class="signal-chip">
-            <span class="signal-value">3</span>
-            <span class="signal-label">approvals today</span>
+            <span class="signal-value">Fast</span>
+            <span class="signal-label">first scan</span>
           </div>
           <div class="signal-chip">
-            <span class="signal-value">+11</span>
-            <span class="signal-label">bookings recovered</span>
+            <span class="signal-value">Safe</span>
+            <span class="signal-label">approval first</span>
           </div>
         </div>
       </div>
@@ -1420,48 +1386,35 @@ function homePage(clients) {
           <img class="spotlight-image" src="/hero-success-owners.svg" alt="Stylized montage of successful med spa and service business owners using Zumi to improve sites and bookings." />
         </div>
         <div>
-          <p class="section-label">Operator Snapshot</p>
-          <h3>What Zumi sees on a site like Luxe-Medi.</h3>
-          <p class="muted">Weak headline hierarchy, a wordy about page, cluttered service flow, and too much friction between interest and the actual booking. Zumi turns that into a cleaner premium system before the owner approves anything.</p>
+          <p class="section-label">What Zumi Does</p>
+          <h3>A cleaner site without the chaos.</h3>
+          <p class="muted">Zumi reviews the site, shows what is hurting trust or bookings, and prepares cleaner updates before anything goes live.</p>
         </div>
-        <div class="metric-grid">
-          <div class="metric">
-            <span class="metric-value">6</span>
-            <span class="metric-label">Core lanes scored: copy, design, trust, booking, SEO, accessibility.</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Safe</span>
-            <span class="metric-label">Approval-first publishing instead of blind live edits.</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">${categoryCount}</span>
-            <span class="metric-label">Industry patterns already modeled into the product shell.</span>
-          </div>
-          <div class="metric">
-            <span class="metric-copy">${escapeHtml(sampleBlueprint.engineName)}</span>
-            <span class="metric-label">Follow-up still works after the site and booking path are cleaned up.</span>
-          </div>
-        </div>
+        <ul class="list-clean">
+          <li>Scans the site with permission</li>
+          <li>Finds what feels weak or outdated</li>
+          <li>Prepares cleaner updates for approval</li>
+        </ul>
         <div class="timeline-list">
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Step 1: Connect with permission</strong>
-              <div class="table-subtitle">The business owner approves website, social, profile, and booking access before Zumi scans or drafts anything.</div>
+              <strong>Connect</strong>
+              <div class="table-subtitle">Give Zumi the right access.</div>
             </div>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Step 2: Scan the whole brand</strong>
-              <div class="table-subtitle">Zumi reads the homepage, about page, services, proof, booking flow, and trust signals to find what feels weak.</div>
+              <strong>Scan</strong>
+              <div class="table-subtitle">See what needs to improve.</div>
             </div>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Step 3: Preview cleaner fixes</strong>
-              <div class="table-subtitle">Copy, layout, CTA, and booking improvements show up in preview mode so the owner stays in control.</div>
+              <strong>Approve</strong>
+              <div class="table-subtitle">Review the updates before they go live.</div>
             </div>
           </div>
         </div>
@@ -1471,150 +1424,31 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What Zumi Fixes</p>
-          <h2>The site problems that quietly kill revenue.</h2>
+          <p class="section-label">What Zumi Does</p>
+          <h2>Four things, clearly.</h2>
         </div>
-        <p class="muted">This is the first promise of the product: cleaner pages, simpler booking flow, stronger trust, and less clutter between attention and money.</p>
+        <p class="muted">The front-end stays simple. The deeper system stays underneath.</p>
       </div>
-      <div class="feature-grid">${operatorFixPreview}</div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">How It Works</p>
-          <h2>One calm operator flow instead of a cluttered dashboard.</h2>
-        </div>
-        <p class="muted">Zumi should feel like Apple in the way it explains itself: clear input, clear diagnosis, clear preview, clear approval.</p>
-      </div>
-      <div class="feature-grid">${pillarPreview}</div>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid">
+      <div class="feature-grid">
         <article class="card">
-          <p class="kicker">Initial Focus</p>
-          <h3>Built first for med spas, Instagram-led brands, and booking-heavy businesses.</h3>
-          <p class="muted">That gives Zumi a sharper launch story: improve the site, tighten booking or storefront conversion, protect the brand, and keep every connector permission-based from day one.</p>
-          <div class="mini-proof">
-            <span class="pill">Med spa ready</span>
-            <span class="pill">Creator brand ready</span>
-            <span class="pill">Luxury site cleanup</span>
-            <span class="pill">Sales-first</span>
-          </div>
-          <div class="actions">
-            <a class="btn" href="/med-spas">Open Med Spa Page</a>
-            <a class="btn secondary" href="/about">Read the About Page</a>
-          </div>
+          <p class="kicker">Scan</p>
+          <h3>Scans your site</h3>
+          <p class="muted">Reads the pages, structure, and flow.</p>
         </article>
-        ${renderZumiBlueprintCard({
-          ...seededClient,
-          businessSize: 'small-team',
-          leadVolume: 'steady',
-          salesMotion: 'high-ticket',
-          preferredChannel: 'sms'
-        })}
-        ${renderZumiCadenceCard({
-          ...seededClient,
-          businessSize: 'small-team',
-          leadVolume: 'steady',
-          salesMotion: 'high-ticket',
-          preferredChannel: 'sms'
-        })}
-      </div>
-    </section>
-
-    <section class="section" id="opportunity-preview">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Instant Preview</p>
-          <h2>Preview the operator before the account gate.</h2>
-        </div>
-        <p class="muted">Type the site goal, market, and business type. Zumi returns a polished preview state so the product proves value before asking for full activation.</p>
-      </div>
-      <div class="detail-grid">
         <article class="card">
-          <form data-opportunity-preview-form>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="searchGoal">Site or revenue goal</label>
-                <input id="searchGoal" name="searchGoal" placeholder="Tighten Luxe-Medi's booking flow and rewrite weak service pages" />
-              </div>
-              <div class="field">
-                <label for="previewBusinessType">Business type</label>
-                <input id="previewBusinessType" name="businessType" placeholder="Med spa, clinic, agency..." />
-              </div>
-              <div class="field">
-                <label for="previewLocation">Location</label>
-                <input id="previewLocation" name="location" placeholder="Miami, FL" />
-              </div>
-              <div class="field">
-                <label for="previewBusinessSize">Business size</label>
-                <select id="previewBusinessSize" name="businessSize">
-                  <option value="solo">Solo Operator</option>
-                  <option value="small-team" selected>Small Team</option>
-                  <option value="growing-team">Growing Team</option>
-                  <option value="multi-location">Multi-Location</option>
-                  <option value="enterprise">Enterprise</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="previewLeadVolume">Lead volume</label>
-                <select id="previewLeadVolume" name="leadVolume">
-                  <option value="light">Light</option>
-                  <option value="steady" selected>Steady</option>
-                  <option value="high">High</option>
-                  <option value="surging">Surging</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="previewSalesMotion">Sales motion</label>
-                <select id="previewSalesMotion" name="salesMotion">
-                  <option value="high-ticket" selected>Consult / treatment booking</option>
-                  <option value="estimate">Estimate / quote</option>
-                  <option value="emergency">Emergency</option>
-                  <option value="recurring">Recurring</option>
-                  <option value="mixed">Mixed</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="previewTargetType">Target type</label>
-                <select id="previewTargetType" name="targetType">
-                  <option value="opportunities" selected>Opportunities</option>
-                  <option value="businesses">Businesses</option>
-                  <option value="leads">Leads</option>
-                  <option value="listings">Listings</option>
-                  <option value="buyers">Buyers</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="previewUrgency">Response urgency</label>
-                <select id="previewUrgency" name="responseUrgency">
-                  <option value="standard">Standard</option>
-                  <option value="fast" selected>Fast</option>
-                  <option value="immediate">Immediate</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-            </div>
-            <div class="actions">
-              <button class="btn" type="submit" data-preview-submit>Run Instant Preview</button>
-              <a class="btn secondary" href="/pricing">See Pricing</a>
-            </div>
-            <p class="form-hint">No signup is required to preview. Account creation happens when saving scans, connector access, or approval workflows.</p>
-          </form>
+          <p class="kicker">Find</p>
+          <h3>Finds what is hurting bookings</h3>
+          <p class="muted">Weak copy, clutter, friction, and trust gaps.</p>
         </article>
-        <article class="card preview-panel">
-          <p class="section-label">Preview Workspace</p>
-          <h3 data-preview-title>Find value before the account gate.</h3>
-          <p class="muted" data-preview-summary>Zumi can show a polished preview state first, then ask for signup only when the user wants to save the scan, connect accounts, or activate the workflow.</p>
-          <div class="preview-stack" data-preview-results>
-            <article class="preview-empty">
-              <strong>Preview instantly.</strong>
-              <p class="muted">Run a preview to see the operator layer, verification posture, connector mix, and example opportunities.</p>
-            </article>
-          </div>
-          <p class="inline-note" data-preview-notice>Saving, exporting, and activating workflows stay gated until later. Previewing value comes first.</p>
+        <article class="card">
+          <p class="kicker">Fix</p>
+          <h3>Rewrites and reorganizes pages</h3>
+          <p class="muted">Cleaner copy, stronger sections, better flow.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Approve</p>
+          <h3>Previews changes before publish</h3>
+          <p class="muted">The owner stays in control.</p>
         </article>
       </div>
     </section>
@@ -1622,59 +1456,114 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Proof</p>
-          <h2>Use believable positioning before full client data exists.</h2>
+          <p class="section-label">Why It Matters</p>
+          <h2>Built first for med spas.</h2>
         </div>
-        <p class="muted">${escapeHtml(brand.proofNote)}</p>
+        <p class="muted">The first version focuses on the places med spa websites usually lose trust and bookings.</p>
       </div>
-      <div class="grid-3">${caseStudyPreview}</div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Problem</p>
+          <h3>Cluttered treatment pages</h3>
+          <p class="muted">Too much information, not enough clarity.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Problem</p>
+          <h3>Weak trust</h3>
+          <p class="muted">Proof, reviews, and before-and-after stories are not placed well.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Problem</p>
+          <h3>Missed inquiries</h3>
+          <p class="muted">Interest comes in, but the site and flow do not help it convert.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Problem</p>
+          <h3>Booking friction</h3>
+          <p class="muted">People want to book, but the next step feels harder than it should.</p>
+        </article>
+      </div>
     </section>
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Trust Layer</p>
-          <h2>Policies, permissions, and approval rules are part of the product.</h2>
+          <p class="section-label">Before / After</p>
+          <h2>What changes when Zumi does its job.</h2>
         </div>
-        <p class="muted">If Zumi is going to touch live websites, social accounts, or booking systems, the trust stack has to be visible immediately, not buried in the roadmap.</p>
+        <p class="muted">The goal is a site that feels easier to trust and easier to book from.</p>
       </div>
-      <div class="feature-grid">${trustPreview}</div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Before</p>
+          <h3>Cluttered homepage</h3>
+          <p class="muted">Too much copy and not enough direction.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">After</p>
+          <h3>Clearer homepage</h3>
+          <p class="muted">Stronger hierarchy and simpler messaging.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">After</p>
+          <h3>Cleaner treatment pages</h3>
+          <p class="muted">Better organization, trust, and flow.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">After</p>
+          <h3>Stronger booking path</h3>
+          <p class="muted">Less friction between interest and action.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">After</p>
+          <h3>More trust</h3>
+          <p class="muted">Reviews, proof, and story placed where they matter.</p>
+        </article>
+      </div>
     </section>
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Modules</p>
-          <h2>Growth workflows still sit underneath the operator layer.</h2>
+          <p class="section-label">Safe Access</p>
+          <h2>Simple safeguards.</h2>
         </div>
-        <p class="muted">Once the site is cleaner and the booking path is stronger, Zumi still helps with follow-up, review generation, reactivation, and premium operator setup.</p>
+        <p class="muted">The owner stays in control.</p>
       </div>
-      <div class="grid-3">${solutionPreview}</div>
-      <div class="actions">
-        <a class="btn" href="/solutions">View All Modules</a>
-        <a class="btn secondary" href="/pricing">See Pricing</a>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Access</p>
+          <h3>Permission based</h3>
+          <p class="muted">Zumi only works with approved access.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Publishing</p>
+          <h3>Preview before publish</h3>
+          <p class="muted">Changes are reviewed first.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Control</p>
+          <h3>Approval required</h3>
+          <p class="muted">The owner decides what goes live.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">History</p>
+          <h3>Rollback ready</h3>
+          <p class="muted">Changes should always be traceable.</p>
+        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Pricing</p>
-          <h2>Sell it as software, operator support, or concierge cleanup.</h2>
+      <article class="card">
+        <p class="section-label">Next Step</p>
+        <h2>Start with the site you already have.</h2>
+        <p class="muted">Tell Zumi about the business, connect the right systems, and review the first scan.</p>
+        <div class="actions">
+          <a class="btn" href="/intake">Start Intake</a>
+          <a class="btn secondary" href="/med-spas">See the Med Spa Flow</a>
         </div>
-        <p class="muted">The stack can be sold as software, a guided launch, or a hybrid service offer depending on how hands-on you want the rollout to feel.</p>
-      </div>
-      <div class="grid-3">${pricingPreview}</div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">FAQ</p>
-          <h2>Answer the objections before the prospect asks.</h2>
-        </div>
-      </div>
-      <div class="detail-grid">${faqPreview}</div>
+      </article>
     </section>
   `;
 
@@ -1682,57 +1571,24 @@ function homePage(clients) {
 }
 
 function caseStudiesPage() {
-  const sections = caseStudies.map((study) => `
-    <section class="card" id="${escapeHtml(study.slug)}" style="margin-top: 18px;">
-      <div class="page-head" style="margin-top: 0;">
-        <div>
-          <p class="section-label">${escapeHtml(study.category)}</p>
-          <h3>${escapeHtml(study.businessName)}</h3>
-        </div>
-        <span class="proof-tag">Illustrative scenario</span>
-      </div>
-      <div class="story-visual-wrap story-visual-large">
-        <img class="story-visual" src="${escapeHtml(study.image)}" alt="${escapeHtml(study.imageAlt)}" loading="lazy" />
-      </div>
-      <h2 style="font-size: clamp(1.7rem, 4vw, 2.4rem);">${escapeHtml(study.headline)}</h2>
-      <p class="muted">${escapeHtml(study.summary)}</p>
-      <div class="detail-grid" style="margin-top: 18px;">
-        <div>
-          <p class="kicker">Challenge</p>
-          <p class="muted">${escapeHtml(study.challenge)}</p>
-          <p class="kicker" style="margin-top: 18px;">System installed</p>
-          <ul class="list-clean">${study.system.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
-        </div>
-        <div>
-          <p class="kicker">Modeled outcomes</p>
-          <div class="metric-grid">
-            ${study.metrics.map((metric) => `
-              <div class="metric">
-                <span class="metric-value">${escapeHtml(metric.value)}</span>
-                <span class="metric-label">${escapeHtml(metric.label)}</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    </section>
-  `).join('');
-
   const content = `
     <section class="page-head">
       <div>
         <p class="section-label">Proof</p>
-        <h2>Illustrative case studies for launch positioning.</h2>
+        <h2>Short proof, shown clearly.</h2>
       </div>
-      <p class="muted">${escapeHtml(brand.proofNote)}</p>
+      <p class="muted">Use illustrative scenarios to show the result before deeper live case studies are ready.</p>
     </section>
-    ${sections}
-    <section class="card" style="margin-top: 18px;">
+    <section class="grid-3">
+      ${caseStudies.map(renderCaseStudyPreview).join('')}
+    </section>
+    <section class="card" style="margin-top: 24px;">
       <p class="kicker">Next Move</p>
-      <h3>Use these scenarios to sell the outcome while the real pipeline gets installed.</h3>
+      <h3>Start with one clean before-and-after story.</h3>
+      <p class="muted">That is usually enough to explain the product without overwhelming the buyer.</p>
       <div class="actions">
-        <a class="btn" href="/intake">Launch My System</a>
-        <a class="btn secondary" href="/demo">Book Demo</a>
+        <a class="btn" href="/intake">Start Intake</a>
+        <a class="btn secondary" href="/med-spas">See Med Spas</a>
       </div>
     </section>
   `;
@@ -1745,9 +1601,9 @@ function solutionsPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Solutions</p>
-        <h2>Offer-specific pages for every part of the Zumi system.</h2>
+        <h2>What Zumi can improve.</h2>
       </div>
-      <p class="muted">This makes the product feel more like a real operating system. Each route can sell one outcome clearly while still rolling up into the larger Zumi story.</p>
+      <p class="muted">Each module solves a clear problem without turning the site into a feature dump.</p>
     </section>
     <section class="grid-3">
       ${solutionPages.map(renderSolutionPreview).join('')}
@@ -1755,16 +1611,16 @@ function solutionsPage() {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Why it matters</p>
-          <h3>Different businesses buy different promises.</h3>
-          <p class="muted">Some buyers care about missed calls. Some care about quote follow-up. Some only care about reviews. Dedicated pages let each offer stand on its own without confusing the sale.</p>
+          <p class="kicker">Simple</p>
+          <h3>Lead with the problem that hurts first.</h3>
+          <p class="muted">Some buyers care about booking flow. Others care about proof or follow-up. Zumi can meet them where they are.</p>
         </article>
         <article class="card">
           <p class="kicker">Next Move</p>
-          <h3>Use modules to package the same product in multiple ways.</h3>
+          <h3>Start with one clean use case.</h3>
           <div class="actions">
-            <a class="btn" href="/pricing">See Pricing</a>
-            <a class="btn secondary" href="/intake">Launch My System</a>
+            <a class="btn" href="/intake">Start Intake</a>
+            <a class="btn secondary" href="/pricing">See Pricing</a>
           </div>
         </article>
       </div>
@@ -1814,13 +1670,13 @@ function solutionPage(item) {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Included</p>
-          <h3>What this module actually delivers</h3>
+          <p class="kicker">What it does</p>
+          <h3>The core pieces.</h3>
           <ul class="list-clean">${item.deliverables.map((entry) => `<li>${escapeHtml(entry)}</li>`).join('')}</ul>
         </article>
         <article class="card">
           <p class="kicker">Outcome</p>
-          <h3>Why businesses buy this part first</h3>
+          <h3>Why it matters.</h3>
           <ul class="list-clean">${item.outcomes.map((entry) => `<li>${escapeHtml(entry)}</li>`).join('')}</ul>
         </article>
       </div>
@@ -1830,9 +1686,9 @@ function solutionPage(item) {
       <div class="section-heading">
         <div>
           <p class="section-label">Related Modules</p>
-          <h2>Other pages in the same system.</h2>
+          <h2>Related modules.</h2>
         </div>
-        <p class="muted">Each route sells a different angle, but they all feed back into the same Zumi operating layer.</p>
+        <p class="muted">Keep the story simple and open the next module only when it helps the sale.</p>
       </div>
       <div class="grid-3">${related}</div>
     </section>
@@ -1846,9 +1702,9 @@ function pricingPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Pricing</p>
-        <h2>Choose the layer that fits how you want to sell Zumi.</h2>
+        <h2>Choose how much help you want.</h2>
       </div>
-      <p class="muted">You can position it as software, premium guided setup, or a hybrid done-with-you offer. The page below makes each option feel intentional instead of improvised.</p>
+      <p class="muted">Start simple or get more hands-on help.</p>
     </section>
     <section class="grid-3">
       ${pricingPlans.map(renderPricingCard).join('')}
@@ -1856,20 +1712,21 @@ function pricingPage() {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Packaging</p>
-          <h3>How to keep the offer feeling premium</h3>
+          <p class="kicker">Simple</p>
+          <h3>Start with the level that fits right now.</h3>
           <ul class="list-clean">
-            <li>Sell outcomes first: clearer pages, easier booking, and cleaner follow-up.</li>
-            <li>Use Concierge when the buyer wants white-glove guidance and site cleanup.</li>
-            <li>Use Operator when the team already has traffic and needs a stronger operating layer.</li>
+            <li>Starter for the first scan and simple fixes.</li>
+            <li>Operator for a stronger ongoing system.</li>
+            <li>Concierge for hands-on help.</li>
           </ul>
         </article>
         <article class="card">
-          <p class="kicker">Launch</p>
-          <h3>Start with the route that creates the least friction</h3>
+          <p class="kicker">Next Step</p>
+          <h3>Start with the first scan.</h3>
+          <p class="muted">You do not need to map everything before you begin.</p>
           <div class="actions">
-            <a class="btn" href="/intake">Launch My System</a>
-            <a class="btn secondary" href="/demo">Book Demo</a>
+            <a class="btn" href="/intake">Start Intake</a>
+            <a class="btn secondary" href="/how-it-works">How It Works</a>
           </div>
         </article>
       </div>
@@ -1885,10 +1742,10 @@ function howItWorksPage() {
       <article class="card art-panel">
         <p class="section-label">How It Works</p>
         <h2>One clear flow: connect, scan, improve, approve.</h2>
-        <p class="muted">Zumi works best when it feels calm and obvious. A business connects what it wants reviewed, Zumi scans the site and brand stack, drafts better pages and workflows, then routes every meaningful change through preview and approval.</p>
+        <p class="muted">The front-end is simple. The deeper operator system stays in the background.</p>
         <div class="actions">
-          <a class="btn" href="/#opportunity-preview">Run Instant Preview</a>
-          <a class="btn secondary" href="/authorization">See Authorization Pack</a>
+          <a class="btn" href="/intake">Start Intake</a>
+          <a class="btn secondary" href="/authorization">See Trust</a>
         </div>
       </article>
       <article class="card art-panel">
@@ -1898,17 +1755,21 @@ function howItWorksPage() {
       </article>
     </section>
     <section class="feature-grid">
-      ${platformPillars.map(renderPillarCard).join('')}
-    </section>
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Connected Systems</p>
-          <h2>Prepared for websites, socials, profiles, and booking tools.</h2>
-        </div>
-        <p class="muted">The operator should stay believable. It can only touch systems it has permission to access, and every future connector should follow the same safety pattern.</p>
-      </div>
-      <div class="grid-3">${sourceConnectorScaffolds.map(renderSourceCard).join('')}</div>
+      <article class="card">
+        <p class="kicker">1</p>
+        <h3>Connect your site</h3>
+        <p class="muted">Give Zumi the right access.</p>
+      </article>
+      <article class="card">
+        <p class="kicker">2</p>
+        <h3>See what needs work</h3>
+        <p class="muted">Zumi finds what is hurting trust or sales.</p>
+      </article>
+      <article class="card">
+        <p class="kicker">3</p>
+        <h3>Approve the fixes</h3>
+        <p class="muted">Nothing important goes live without review.</p>
+      </article>
     </section>
   `;
 
@@ -1921,7 +1782,7 @@ function discoverPage() {
       <article class="card art-panel">
         <p class="section-label">Scan</p>
         <h2>Read the whole site before trying to fix it.</h2>
-        <p class="muted">The scanning layer should map the homepage, services, about page, booking path, trust signals, metadata, and mobile clarity so Zumi understands what needs improvement.</p>
+        <p class="muted">Zumi starts by seeing the site clearly: pages, flow, trust, booking steps, and what feels weak.</p>
         <div class="mini-proof">
           <span class="pill">Site map</span>
           <span class="pill">Brand context</span>
@@ -1970,7 +1831,7 @@ function verifyPage() {
       <article class="card art-panel">
         <p class="section-label">Review + Approve</p>
         <h2>Trust is a feature, not a footnote.</h2>
-        <p class="muted">The safest version of Zumi is not the one that publishes the fastest. It is the one that makes access, previews, approvals, and rollback feel obvious to the owner.</p>
+        <p class="muted">The safest version of Zumi is the one that makes access, previews, approvals, and rollback feel obvious.</p>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
@@ -2007,10 +1868,10 @@ function convertPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Grow</p>
-        <h2>After the site cleanup, push harder on bookings, proof, and follow-up.</h2>
-        <p class="muted">This is where the current Zumi workflow still matters: follow-up generation, action plans, review prompts, and custom cadence guidance after the site and booking path are stronger.</p>
+        <h2>After the cleanup, push harder on bookings.</h2>
+        <p class="muted">Once the site is cleaner, Zumi can support follow-up, proof, and next-step messaging.</p>
         <div class="actions">
-          <a class="btn" href="/admin">Open Admin</a>
+          <a class="btn" href="/intake">Start Intake</a>
           <a class="btn secondary" href="/case-studies">See Proof</a>
         </div>
       </article>
@@ -2031,9 +1892,9 @@ function industriesPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Industries</p>
-        <h2>Built first for med spas, then widened for other booking-led businesses.</h2>
+        <h2>Built first for med spas, then widened carefully.</h2>
       </div>
-      <p class="muted">The point is not to be random. The point is to start where trust, bookings, and premium site cleanup matter most, then extend the same operator shell to adjacent business models.</p>
+      <p class="muted">Start where trust, bookings, and premium presentation matter most, then extend the same system carefully.</p>
     </section>
     <section class="grid-3">${industrySegments.map(renderIndustryCard).join('')}</section>
     <section class="section">
@@ -2060,30 +1921,20 @@ function industriesPage() {
 }
 
 function medSpaPage() {
-  const tableRows = medSpaConnectorMatrix.map((item) => `
-    <tr>
-      <td><div class="table-title">${escapeHtml(item.connector)}</div></td>
-      <td>${escapeHtml(item.auth)}</td>
-      <td>${escapeHtml(item.scopes)}</td>
-      <td>${escapeHtml(item.complexity)}</td>
-      <td>${escapeHtml(item.notes)}</td>
-    </tr>
-  `).join('');
-
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Med Spas</p>
-        <h2>An Apple-clean operator for med spa websites, bookings, and trust.</h2>
-        <p class="muted">This version of Zumi is designed for med spas first. It connects to the site and marketing stack with permission, scans what is weak, drafts cleaner pages and booking improvements, then routes every change through preview and approval before publishing.</p>
+        <h2>Built first for med spas.</h2>
+        <p class="muted">Zumi helps med spas clean up the site, improve bookings, and present the brand in a more premium way.</p>
         <div class="mini-proof">
-          <span class="pill">Connect with permission</span>
-          <span class="pill">Preview before publish</span>
           <span class="pill">Luxury but simple</span>
+          <span class="pill">Booking focused</span>
+          <span class="pill">Approval first</span>
         </div>
         <div class="actions">
-          <a class="btn" href="/operator-architecture">See Operator Architecture</a>
-          <a class="btn secondary" href="/intake">Start Intake</a>
+          <a class="btn" href="/intake">Start Intake</a>
+          <a class="btn secondary" href="/how-it-works">See How It Works</a>
         </div>
       </article>
       <article class="card art-panel">
@@ -2096,14 +1947,14 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What It Fixes</p>
-          <h2>What Zumi should clean up on a med spa site first.</h2>
+          <p class="section-label">What Improves First</p>
+          <h2>The biggest med spa wins come from clarity.</h2>
         </div>
-        <p class="muted">The biggest wins usually come from simpler structure, clearer treatment pages, better trust signals, and less friction around inquiries and consult booking.</p>
+        <p class="muted">Cleaner pages, stronger trust, and a smoother booking path usually move the needle first.</p>
       </div>
-      <div class="feature-grid">${operatorFixes.map((item) => `
+      <div class="feature-grid">${operatorFixes.slice(0, 4).map((item) => `
         <article class="card">
-          <p class="kicker">Priority</p>
+          <p class="kicker">Fix</p>
           <h3>${escapeHtml(item.label)}</h3>
           <p class="muted">${escapeHtml(item.body)}</p>
         </article>
@@ -2113,72 +1964,67 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Onboarding</p>
-          <h2>The first run should feel safe, premium, and obvious.</h2>
+          <p class="section-label">Why It Fits</p>
+          <h2>Built for the way med spas sell.</h2>
         </div>
-        <p class="muted">The product flow is simple: connect accounts, run the first scan, see a report, approve the right changes, then publish through a tracked workflow.</p>
+        <p class="muted">The site has to feel premium, the offers have to feel clear, and the booking path cannot feel messy.</p>
       </div>
-      <div class="card">
-        <div class="timeline-list">
-          ${medSpaOnboardingSteps.map((step, index) => `
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div>
-                <strong>Step ${index + 1}</strong>
-                <div class="table-subtitle">${escapeHtml(step)}</div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Treatment Pages</p>
+          <h3>Cleaner service organization</h3>
+          <p class="muted">Help people understand what you offer fast.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Trust</p>
+          <h3>Better proof placement</h3>
+          <p class="muted">Reviews, before-and-after positioning, and story where they matter.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Bookings</p>
+          <h3>Smoother inquiry flow</h3>
+          <p class="muted">Make the next step feel obvious from the first visit.</p>
+        </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Connectors</p>
-          <h2>Platform access should be clear, scoped, and revocable.</h2>
+          <p class="section-label">Trust</p>
+          <h2>Safe by design.</h2>
         </div>
-        <p class="muted">Different systems need different auth models, but they should all follow the same rule: only request what the operator actually needs.</p>
+        <p class="muted">Zumi uses permission-based access, preview-before-publish, and owner approval.</p>
       </div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Access</p>
+          <h3>Permission based</h3>
+          <p class="muted">Zumi only works with approved access.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Review</p>
+          <h3>Preview before publish</h3>
+          <p class="muted">Changes are reviewed first.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Control</p>
+          <h3>Owner approval required</h3>
+          <p class="muted">The med spa stays in control.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
       <article class="card">
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Connector</th>
-                <th>Auth</th>
-                <th>Permissions</th>
-                <th>Complexity</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>${tableRows}</tbody>
-          </table>
+        <p class="section-label">Next Step</p>
+        <h2>Start with the current site.</h2>
+        <p class="muted">Tell Zumi about the website, booking flow, and main goal. Then review the first scan before anything changes.</p>
+        <div class="actions">
+          <a class="btn" href="/intake">Start Intake</a>
+          <a class="btn secondary" href="/authorization">See Authorization</a>
         </div>
       </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Publishing Safeguards</p>
-          <h2>The system must protect the live site from bad automation.</h2>
-        </div>
-        <p class="muted">This is the non-negotiable layer: least privilege, preview mode, logs, and rollback.</p>
-      </div>
-      <div class="feature-grid">${medSpaPublishingSafeguards.map(renderPillarCard).join('')}</div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Compliance</p>
-          <h2>Privacy and health-adjacent risk shape the product decisions.</h2>
-        </div>
-        <p class="muted">Med spas can cross into sensitive territory fast, especially around booking and inquiry data. That means clearer policies, tighter controls, and more disciplined connector behavior.</p>
-      </div>
-      <div class="feature-grid">${medSpaComplianceBlocks.map(renderPillarCard).join('')}</div>
     </section>
   `;
 
@@ -2190,8 +2036,8 @@ function operatorArchitecturePage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Operator Architecture</p>
-        <h2>How the AI Website Operator should work under the hood.</h2>
-        <p class="muted">The practical architecture is a modular pipeline: connect safely, scan the site, learn the brand, generate cleaner drafts, identify conversion and SEO issues, then push only approved changes through guarded platform workflows.</p>
+        <h2>The simple version of what happens underneath.</h2>
+        <p class="muted">Connect safely, scan the site, prepare cleaner drafts, then publish only approved changes.</p>
         <div class="mini-proof">
           <span class="pill">Scanner</span>
           <span class="pill">Brand Brain</span>
@@ -2209,54 +2055,40 @@ function operatorArchitecturePage() {
       <div class="section-heading">
         <div>
           <p class="section-label">Modules</p>
-          <h2>Separate AI responsibilities so the product stays believable.</h2>
+          <h2>Three clean layers.</h2>
         </div>
-        <p class="muted">Each agent should own a clear part of the workflow rather than pretending one model can safely do everything in a single jump.</p>
+        <p class="muted">Zumi works best when each part of the job stays focused.</p>
       </div>
-      <div class="feature-grid">${medSpaAiModules.map(renderPillarCard).join('')}</div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">1</p>
+          <h3>Scan</h3>
+          <p class="muted">Read the site, map the pages, and find what feels weak.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">2</p>
+          <h3>Prepare</h3>
+          <p class="muted">Draft cleaner copy, structure, and booking improvements.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">3</p>
+          <h3>Approve</h3>
+          <p class="muted">Keep the owner in control before anything goes live.</p>
+        </article>
+      </div>
     </section>
 
     <section class="section">
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Human Review</p>
-          <h3>Draft-first publishing is the product safety valve.</h3>
-          <p class="muted">Large models can hallucinate, miss nuance, or overreach. The system should always make it easy for the owner or operator to inspect copy, design changes, connector actions, and publish intent before anything goes live.</p>
+          <h3>Draft-first publishing keeps it safe.</h3>
+          <p class="muted">The point is not instant publishing. The point is cleaner work with safer review.</p>
         </article>
         <article class="card">
-          <p class="kicker">Technical Limits</p>
-          <h3>Chunking, source limits, and platform rules still matter.</h3>
-          <p class="muted">Whole-site context can exceed model limits, social and booking APIs have rate limits, and some platforms need formal app review. The architecture should be honest about those constraints from day one.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Go To Market</p>
-          <h2>Sell it as a premium booking-growth operator, not just a CMS plugin.</h2>
-        </div>
-        <p class="muted">The strongest med-spa positioning is outcome-first: connect the stack, surface what is weak, tighten the site, and protect trust while driving more bookings.</p>
-      </div>
-      <div class="detail-grid">
-        <article class="card">
-          <p class="kicker">Monetization</p>
-          <h3>Subscription with a guided operator setup layer.</h3>
-          <ul class="list-clean">
-            <li>Free audit or first scan as a top-of-funnel offer.</li>
-            <li>Core plan for one site and basic scans.</li>
-            <li>Premium plan for multiple connectors, approvals, and operator workflows.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <p class="kicker">Distribution</p>
-          <h3>App Store-ready means privacy, disclosures, and restraint.</h3>
-          <ul class="list-clean">
-            <li>Declare data usage clearly.</li>
-            <li>Avoid unsupported scraping or deceptive health-related claims.</li>
-            <li>Keep consent, privacy, and publishing authority explicit.</li>
-          </ul>
+          <p class="kicker">Reality</p>
+          <h3>Some parts stay under the hood.</h3>
+          <p class="muted">Permissions, source limits, and platform rules still matter, even if the front-end feels simple.</p>
         </article>
       </div>
     </section>
@@ -2270,12 +2102,12 @@ function aboutPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">About Zumi</p>
-        <h2>Plain English: Zumi is an AI website operator built to make business websites clearer, cleaner, and easier to book from.</h2>
-        <p class="muted">The idea is simple. A business gives Zumi permission to connect to its website and marketing stack. Zumi scans what is weak, drafts better copy and cleaner structure, and helps the owner approve safer improvements before anything goes live.</p>
+        <h2>Zumi is an AI Website Operator.</h2>
+        <p class="muted">It helps businesses clean up the site, improve bookings, and approve better updates without losing control of the brand.</p>
         <div class="mini-proof">
-          <span class="pill">Simple to understand</span>
+          <span class="pill">Med spas first</span>
           <span class="pill">Approval-first</span>
-          <span class="pill">Built for bookings and sales</span>
+          <span class="pill">Built for bookings</span>
         </div>
       </article>
       <article class="card art-panel">
@@ -2286,43 +2118,26 @@ function aboutPage() {
     </section>
 
     <section class="section">
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">What it does</p>
-          <h3>Scans the site and finds what hurts trust or bookings.</h3>
-          <p class="muted">That includes confusing copy, dated design, messy service pages, weak calls to action, poor mobile clarity, and missing proof.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">What it improves</p>
-          <h3>Drafts cleaner pages, better booking flow, and stronger plain-English messaging.</h3>
-          <p class="muted">Zumi should make a business feel more premium, more organized, and easier to buy from without turning the site into clutter.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">What it protects</p>
-          <h3>Keeps the owner in control with permissions, previews, logs, and rollback.</h3>
-          <p class="muted">The product is not supposed to behave like reckless automation. It is supposed to feel careful, high-trust, and operator-grade.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Who it is for</p>
-          <ul class="list-clean">
-            <li>Med spas and aesthetic businesses that live on consults, treatments, and rebooking.</li>
-            <li>Booking-led service brands that already have interest but lose money through weak websites or slow follow-up.</li>
-            <li>Creator-led, Instagram-first, and clothing brands that need cleaner product stories, stronger trust, and better conversion from content into sales.</li>
-            <li>Founders or operators who want a premium website growth layer without handing the whole brand to random automation.</li>
-          </ul>
+          <p class="kicker">What it is</p>
+          <h3>A cleaner way to improve a website.</h3>
+          <p class="muted">Zumi scans the site, finds what is hurting conversions, and prepares better updates.</p>
         </article>
         <article class="card">
-          <p class="kicker">What it is not</p>
-          <ul class="list-clean">
-            <li>Not a promise to scan the entire internet without limits.</li>
-            <li>Not a substitute for legal, medical, or compliance review.</li>
-            <li>Not a blind one-click redesign tool that publishes whatever AI invents.</li>
-          </ul>
+          <p class="kicker">Who it helps</p>
+          <h3>Med spas first.</h3>
+          <p class="muted">Then creator-led, fashion, and other booking-led brands that need a cleaner sales experience.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Why it exists</p>
+          <h3>To remove clutter and friction.</h3>
+          <p class="muted">The goal is a site that feels easier to trust and easier to book from.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">How it works</p>
+          <h3>Connect, scan, review, approve.</h3>
+          <p class="muted">Zumi prepares the work. The owner still decides what goes live.</p>
         </article>
       </div>
     </section>
@@ -2336,37 +2151,31 @@ function privacyPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Privacy</p>
-        <h2>Privacy should be readable, not buried in legal fog.</h2>
+        <h2>Simple privacy, in plain English.</h2>
       </div>
-      <p class="muted">This draft policy explains the data Zumi may collect when a business connects the product and how that data is used to run scans, previews, and operator workflows.</p>
+      <p class="muted">Zumi only needs the information required to run scans, prepare updates, and keep the approval flow clear.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What Zumi may collect</p>
         <ul class="list-clean">
-          <li>Business contact details entered during intake.</li>
-          <li>Website content, structure, and snapshots required for scans and previews.</li>
-          <li>Connector metadata from approved website, social, review, or booking integrations.</li>
-          <li>Workflow activity such as scan history, approvals, and audit logs.</li>
+          <li>Business contact details from intake.</li>
+          <li>Website content and structure needed for scans.</li>
+          <li>Connector details from approved integrations.</li>
+          <li>Approval history and workflow activity.</li>
         </ul>
       </article>
       <article class="card">
         <p class="kicker">How it is used</p>
         <ul class="list-clean">
-          <li>To generate diagnostics, cleaner copy, design recommendations, and booking improvements.</li>
-          <li>To maintain approval records, rollback trails, and safer publishing workflows.</li>
-          <li>To support customer service, security monitoring, and product improvement.</li>
+          <li>To run scans and prepare cleaner updates.</li>
+          <li>To maintain approval records and safer publishing workflows.</li>
+          <li>To support product security and customer support.</li>
         </ul>
       </article>
-    </section>
-    <section class="detail-grid" style="margin-top: 18px;">
       <article class="card">
-        <p class="kicker">User rights</p>
-        <p class="muted">Businesses should be able to request connector revocation, data access, and deletion. For privacy-sensitive regions, Zumi should support rights consistent with laws like GDPR and CCPA.</p>
-      </article>
-      <article class="card">
-        <p class="kicker">Health-adjacent caution</p>
-        <p class="muted">If an intake or booking flow includes treatment-related information, higher privacy and vendor controls may apply. Zumi should treat those flows with stricter access discipline and careful vendor review.</p>
+        <p class="kicker">Your control</p>
+        <p class="muted">Connector access should be revocable, and data requests or deletion requests should be supported when required.</p>
       </article>
     </section>
   `;
@@ -2379,9 +2188,9 @@ function termsPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Terms</p>
-        <h2>Simple rules for what Zumi does and what stays in the owner’s hands.</h2>
+        <h2>Clear rules. No surprises.</h2>
       </div>
-      <p class="muted">This draft terms page gives the product a believable legal frame before deeper billing and account infrastructure are added.</p>
+      <p class="muted">Zumi prepares scans and draft updates. The business owner still controls access and publishing decisions.</p>
     </section>
     <section class="feature-grid">
       <article class="card">
@@ -2392,12 +2201,12 @@ function termsPage() {
       <article class="card">
         <p class="kicker">Content responsibility</p>
         <h3>AI output is draft material, not unquestionable truth.</h3>
-        <p class="muted">The product is designed to assist, not replace judgment. Businesses should review claims, offers, and regulated content carefully before publishing.</p>
+        <p class="muted">Businesses should review claims, offers, and regulated content carefully before publishing.</p>
       </article>
       <article class="card">
         <p class="kicker">Service limits</p>
         <h3>Zumi should be sold honestly and used within platform rules.</h3>
-        <p class="muted">No unsupported scraping promises, no deceptive medical claims, and no pretending the product has permissions it does not actually have.</p>
+        <p class="muted">No unsupported scraping promises, no deceptive claims, and no pretending the product has permissions it does not actually have.</p>
       </article>
     </section>
   `;
@@ -2410,8 +2219,8 @@ function authorizationPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Authorization Pack</p>
-        <h2>Connector access and publishing authority should be explicit from the start.</h2>
-        <p class="muted">This is the owner-facing consent layer. It explains what Zumi may connect to, what it may read, what it may draft, and what still requires approval before changes go live.</p>
+        <h2>Access should be clear from the start.</h2>
+        <p class="muted">This is the owner-facing consent layer. It explains what Zumi may connect to, what it may draft, and what still needs approval before anything goes live.</p>
         <div class="mini-proof">
           <span class="pill">Least privilege</span>
           <span class="pill">Revocable access</span>
@@ -2427,12 +2236,12 @@ function authorizationPage() {
 
     <section class="detail-grid">
       <article class="card">
-        <p class="kicker">Owner consent language</p>
-        <p class="muted">“I authorize Zumi to access the website, profile, social, and booking systems I explicitly connect for the purpose of scanning, drafting improvements, and preparing preview-only updates. I understand I can revoke access at any time.”</p>
+        <p class="kicker">What you approve</p>
+        <p class="muted">You approve the connectors, the scan, and the right for Zumi to prepare draft updates inside the systems you choose.</p>
       </article>
       <article class="card">
-        <p class="kicker">Publishing language</p>
-        <p class="muted">“I understand that live changes should remain approval-first. Drafts, previews, and proposed updates do not become public until I or my authorized operator approve them.”</p>
+        <p class="kicker">What still needs approval</p>
+        <p class="muted">Live changes should stay approval-first. Drafts and previews do not become public until you approve them.</p>
       </article>
     </section>
 
@@ -2448,148 +2257,159 @@ function intakePage(selectedPlan = 'Starter') {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Client Intake</p>
-        <h2>Connect the operator in a few easy steps.</h2>
+        <p class="section-label">Intake</p>
+        <h2>Start with the site you already have.</h2>
       </div>
-      <p class="muted">Answer a few quick questions, define the systems Zumi should review, and confirm the approval rules before the first scan is created.</p>
+      <p class="muted">Keep it simple. Tell Zumi about the business, the site, and the booking flow. Approval stays in your hands.</p>
     </section>
-    <section class="grid-3" style="margin-bottom: 18px;">
+    <section class="detail-grid" style="margin-bottom: 18px;">
       <article class="card">
-        <p class="kicker">Step 1</p>
-        <h3>Profile the business</h3>
-        <p class="muted">Capture business type, size, and the current goal.</p>
+        <p class="kicker">What happens next</p>
+        <h3>Connect. Scan. Review.</h3>
+        <p class="muted">After intake, Zumi prepares a first operator view for the site and booking flow.</p>
       </article>
       <article class="card">
-        <p class="kicker">Step 2</p>
-        <h3>Map the revenue motion</h3>
-        <p class="muted">Tell Zumi whether the business sells on urgency, estimates, or recurring service.</p>
-      </article>
-      <article class="card">
-        <p class="kicker">Step 3</p>
-        <h3>Launch the custom sequence</h3>
-        <p class="muted">The app automatically creates the recommended engine, cadence, and response target.</p>
+        <p class="kicker">What to have ready</p>
+        <h3>The basics only.</h3>
+        <p class="muted">Website, social links, booking platform, main services, and the goal you care about most.</p>
       </article>
     </section>
-    <section class="card">
+    <section class="card intake-shell">
       <form method="POST" action="/intake">
-        <div class="form-grid">
-          <div class="field">
-            <label for="businessName">Business name</label>
-            <input id="businessName" required name="businessName" placeholder="RapidRoot Plumbing" />
+        <input type="hidden" name="plan" value="${escapeHtml(selectedPlan)}" />
+        <input type="hidden" name="businessSize" value="small-team" />
+        <input type="hidden" name="leadVolume" value="steady" />
+        <input type="hidden" name="salesMotion" value="mixed" />
+        <input type="hidden" name="preferredChannel" value="email" />
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <p class="kicker">Business</p>
+            <h3>The essentials</h3>
           </div>
-          <div class="field">
-            <label for="owner">Owner</label>
-            <input id="owner" required name="owner" placeholder="Alicia Gomez" />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" required type="email" name="email" placeholder="owner@example.com" />
-          </div>
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" placeholder="(555) 000-0000" />
-          </div>
-          <div class="field">
-            <label for="website">Website</label>
-            <input id="website" name="website" placeholder="https://example.com" />
-          </div>
-          <div class="field">
-            <label for="sitePlatform">Website platform</label>
-            <select id="sitePlatform" name="sitePlatform">
-              <option value="wordpress">WordPress</option>
-              <option value="webflow">Webflow</option>
-              <option value="shopify">Shopify</option>
-              <option value="custom">Custom / other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="category">Category</label>
-            <input id="category" name="category" placeholder="Med spa, clinic, agency..." />
-          </div>
-          <div class="field">
-            <label for="plan">Plan</label>
-            <select id="plan" name="plan">
-              <option value="Starter"${selectedPlan === 'Starter' ? ' selected' : ''}>Starter</option>
-              <option value="Pro"${selectedPlan === 'Pro' ? ' selected' : ''}>Operator</option>
-              <option value="Done-With-You"${selectedPlan === 'Done-With-You' ? ' selected' : ''}>Concierge</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="businessSize">Business size</label>
-            <select id="businessSize" name="businessSize">
-              <option value="solo">Solo Operator</option>
-              <option value="small-team" selected>Small Team</option>
-              <option value="growing-team">Growing Team</option>
-              <option value="multi-location">Multi-Location</option>
-              <option value="enterprise">Enterprise</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="preferredChannel">Preferred channel</label>
-            <select id="preferredChannel" name="preferredChannel">
-              <option value="email">Email</option>
-              <option value="sms">SMS</option>
-              <option value="whatsapp">WhatsApp</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="leadVolume">Lead flow</label>
-            <select id="leadVolume" name="leadVolume">
-              <option value="light">Light Lead Flow</option>
-              <option value="steady" selected>Steady Lead Flow</option>
-              <option value="high">High Lead Flow</option>
-              <option value="surging">Surging Lead Flow</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="salesMotion">Sales motion</label>
-            <select id="salesMotion" name="salesMotion">
-              <option value="emergency">Emergency / urgent jobs</option>
-              <option value="estimate" selected>Estimate / quote follow-up</option>
-              <option value="recurring">Recurring / membership work</option>
-              <option value="high-ticket">High-ticket projects</option>
-              <option value="mixed">Mixed service motion</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="goal">Primary growth goal</label>
-            <input id="goal" name="goal" placeholder="Improve booking flow and recover 12 more consults per month" />
-          </div>
-          <div class="field">
-            <label for="socialStack">Social accounts</label>
-            <input id="socialStack" name="socialStack" placeholder="Instagram, Facebook, Google Business..." />
-          </div>
-          <div class="field">
-            <label for="bookingSystem">Booking system</label>
-            <input id="bookingSystem" name="bookingSystem" placeholder="Calendly, Vagaro, Booker..." />
-          </div>
-          <div class="field full">
-            <label for="notes">Notes</label>
-            <textarea id="notes" name="notes" placeholder="Anything important about this business, the lead flow, or the offer?"></textarea>
-          </div>
-          <div class="field full">
-            <label class="checkbox-field">
-              <input required type="checkbox" name="scanConsent" value="yes" />
-              <span>I authorize Zumi to scan and analyze the connected website and approved business systems for draft recommendations.</span>
-            </label>
-          </div>
-          <div class="field full">
-            <label class="checkbox-field">
-              <input required type="checkbox" name="publishConsent" value="yes" />
-              <span>I understand live changes should stay approval-first and should not publish automatically without review.</span>
-            </label>
-          </div>
-          <div class="field full">
-            <label class="checkbox-field">
-              <input required type="checkbox" name="legalConsent" value="yes" />
-              <span>I agree to the <a href="/terms">Terms</a>, <a href="/privacy">Privacy Policy</a>, and <a href="/authorization">Authorization Pack</a>.</span>
-            </label>
+          <div class="form-grid">
+            <div class="field">
+              <label for="businessName">Business name</label>
+              <input id="businessName" required name="businessName" placeholder="Luxe-Medi" />
+            </div>
+            <div class="field">
+              <label for="category">Business type</label>
+              <select id="category" name="category">
+                <option value="Med Spa" selected>Med Spa</option>
+                <option value="Aesthetic Clinic">Aesthetic Clinic</option>
+                <option value="Beauty Brand">Beauty Brand</option>
+                <option value="Creator Brand">Creator Brand</option>
+                <option value="Clothing Brand">Clothing Brand</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="owner">Owner or operator</label>
+              <input id="owner" required name="owner" placeholder="Justin Camacho" />
+            </div>
+            <div class="field">
+              <label for="email">Best email</label>
+              <input id="email" required type="email" name="email" placeholder="owner@example.com" />
+            </div>
           </div>
         </div>
-        <p class="form-hint">Next step: save the record and Zumi will generate the operator blueprint, recommended cadence, and approval-safe workflow for that business.</p>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <p class="kicker">Site + Channels</p>
+            <h3>What Zumi should look at</h3>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="website">Website</label>
+              <input id="website" name="website" placeholder="https://example.com" />
+            </div>
+            <div class="field">
+              <label for="sitePlatform">Website platform</label>
+              <select id="sitePlatform" name="sitePlatform">
+                <option value="wordpress">WordPress</option>
+                <option value="webflow">Webflow</option>
+                <option value="shopify">Shopify</option>
+                <option value="custom">Custom / other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="instagram">Instagram</label>
+              <input id="instagram" name="instagram" placeholder="@luxemedi" />
+            </div>
+            <div class="field">
+              <label for="facebook">Facebook</label>
+              <input id="facebook" name="facebook" placeholder="facebook.com/luxemedi" />
+            </div>
+            <div class="field">
+              <label for="bookingSystem">Booking platform</label>
+              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." />
+            </div>
+            <div class="field">
+              <label for="phone">Best phone</label>
+              <input id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <p class="kicker">Focus</p>
+            <h3>What should improve first</h3>
+          </div>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="mainServices">Main services</label>
+              <input id="mainServices" name="mainServices" placeholder="Botox, filler, weight loss, facials..." />
+            </div>
+            <div class="field full">
+              <label for="goal">Main goal</label>
+              <input id="goal" name="goal" placeholder="Improve treatment pages and increase booked consults" />
+            </div>
+          </div>
+        </div>
+
+        <details class="advanced-panel">
+          <summary>Optional details</summary>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" placeholder="Anything important about the brand, site, or booking flow?"></textarea>
+            </div>
+          </div>
+        </details>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <p class="kicker">Approval</p>
+            <h3>Clear consent</h3>
+          </div>
+          <div class="form-grid">
+            <div class="field full">
+              <label class="checkbox-field">
+                <input required type="checkbox" name="scanConsent" value="yes" />
+                <span>I authorize Zumi to scan the site and approved systems for draft recommendations.</span>
+              </label>
+            </div>
+            <div class="field full">
+              <label class="checkbox-field">
+                <input required type="checkbox" name="publishConsent" value="yes" />
+                <span>I understand changes stay approval-first and do not publish automatically.</span>
+              </label>
+            </div>
+            <div class="field full">
+              <label class="checkbox-field">
+                <input required type="checkbox" name="legalConsent" value="yes" />
+                <span>I agree to the <a href="/terms">Terms</a>, <a href="/privacy">Privacy Policy</a>, and <a href="/authorization">Authorization</a>.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <p class="form-hint">Next step: Zumi saves the record and prepares the first operator blueprint for review.</p>
         <div class="actions">
-          <button class="btn" type="submit">Build Zumi Plan</button>
-          <a class="btn secondary" href="/admin">Open Admin Instead</a>
+          <button class="btn" type="submit">Start My Scan</button>
+          <a class="btn secondary" href="/authorization">Read Authorization</a>
         </div>
       </form>
     </section>
@@ -2715,6 +2535,10 @@ function adminClientPage(client, wasJustCreated = false) {
           <div class="key-value-item">
             <strong>Website</strong>
             <span>${escapeHtml(client.website || 'Not provided')}</span>
+          </div>
+          <div class="key-value-item">
+            <strong>Main Services</strong>
+            <span>${escapeHtml(client.mainServices || 'Not provided')}</span>
           </div>
           <div class="key-value-item">
             <strong>Platform</strong>
@@ -2852,7 +2676,7 @@ function placeholderPage(title, eyebrow, bodyCopy, primaryHref, primaryLabel, se
       <p class="muted">${escapeHtml(bodyCopy)}</p>
     </section>
     <section class="card">
-      <p class="muted">This route is intentionally staged as part of the broader roadmap. The premium shell is in place so auth, demo booking, or billing can plug in cleanly next.</p>
+      <p class="muted">This page is being staged next. For now, use the main intake flow or keep exploring the product.</p>
       <div class="actions">
         <a class="btn" href="${primaryHref}">${escapeHtml(primaryLabel)}</a>
         <a class="btn secondary" href="${secondaryHref}">${escapeHtml(secondaryLabel)}</a>
@@ -2870,10 +2694,10 @@ function notFoundPage() {
       <section class="card empty-state">
         <p class="section-label">404</p>
         <h2>That page does not exist.</h2>
-        <p class="muted">Head back to the dashboard or return to the home page.</p>
+        <p class="muted">Head back to the home page or start the intake.</p>
         <div class="actions" style="justify-content: center;">
           <a class="btn" href="/">Go Home</a>
-          <a class="btn secondary" href="/admin">Open Admin</a>
+          <a class="btn secondary" href="/intake">Start Intake</a>
         </div>
       </section>
     `,
@@ -2957,6 +2781,15 @@ app.get('/pricing', (req, res) => {
 
 app.post('/intake', (req, res) => {
   const clients = readClients();
+  const socialParts = [
+    req.body.instagram ? `Instagram: ${req.body.instagram}` : '',
+    req.body.facebook ? `Facebook: ${req.body.facebook}` : '',
+    req.body.socialStack || ''
+  ].filter(Boolean);
+  const notesParts = [
+    req.body.mainServices ? `Main services: ${req.body.mainServices}` : '',
+    req.body.notes || ''
+  ].filter(Boolean);
   const newClient = {
     id: `c${Date.now()}`,
     businessName: req.body.businessName || '',
@@ -2967,13 +2800,16 @@ app.post('/intake', (req, res) => {
     sitePlatform: req.body.sitePlatform || 'wordpress',
     category: req.body.category || '',
     goal: req.body.goal || '',
-    notes: req.body.notes || '',
+    notes: notesParts.join('\n\n'),
     plan: req.body.plan || 'Starter',
     businessSize: req.body.businessSize || 'small-team',
     leadVolume: req.body.leadVolume || 'steady',
     salesMotion: req.body.salesMotion || 'mixed',
     preferredChannel: req.body.preferredChannel || 'email',
-    socialStack: req.body.socialStack || '',
+    socialStack: socialParts.join(' · '),
+    instagram: req.body.instagram || '',
+    facebook: req.body.facebook || '',
+    mainServices: req.body.mainServices || '',
     bookingSystem: req.body.bookingSystem || '',
     scanConsent: req.body.scanConsent === 'yes',
     publishConsent: req.body.publishConsent === 'yes',
