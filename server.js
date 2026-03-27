@@ -1188,13 +1188,15 @@ function layout(title, content, currentPath = '/') {
                 <small>${escapeHtml(brand.slogan)}</small>
               </span>
             </a>
-            <nav class="nav-links">
-              ${navLink('/', 'Home', currentPath)}
-              ${navLink('/how-it-works', 'How It Works', currentPath)}
-              ${navLink('/industries', 'Industries', currentPath)}
-              ${navLink('/pricing', 'Pricing', currentPath)}
-              ${navLink('/intake', 'Free Audit', currentPath)}
-            </nav>
+            <div class="nav-main">
+              <nav class="nav-links">
+                ${navLink('/', 'Home', currentPath)}
+                ${navLink('/how-it-works', 'How It Works', currentPath)}
+                ${navLink('/industries', 'Industries', currentPath)}
+                ${navLink('/pricing', 'Pricing', currentPath)}
+              </nav>
+              <a class="btn nav-cta" href="/intake">Free Audit</a>
+            </div>
           </div>
         </div>
       </header>
@@ -1313,7 +1315,7 @@ function renderPricingCard(plan) {
     : '';
 
   return `
-    <article class="card plan-card">
+    <article class="card plan-card${plan.badge ? ' featured-plan' : ''}">
       ${plan.badge ? `<span class="plan-badge">${escapeHtml(plan.badge)}</span>` : ''}
       <p class="kicker">Plan</p>
       <h3>${escapeHtml(plan.name)}</h3>

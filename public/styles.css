@@ -76,6 +76,12 @@ a {
   padding: 14px 0;
 }
 
+.nav-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -115,6 +121,13 @@ a {
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+}
+
+.nav-cta {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 0.94rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 38, 0.12);
 }
 
 .nav-link {
@@ -316,6 +329,48 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.spotlight {
+  background:
+    radial-gradient(circle at top right, rgba(122, 90, 248, 0.16), transparent 34%),
+    linear-gradient(180deg, #101828 0%, #172033 100%);
+  border-color: rgba(17, 24, 39, 0.28);
+  box-shadow: 0 26px 72px rgba(15, 23, 38, 0.18);
+}
+
+.spotlight::before,
+.featured-plan::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 24%);
+}
+
+.spotlight h3,
+.spotlight strong,
+.spotlight .signal-value,
+.featured-plan h3,
+.featured-plan .price {
+  color: #fff;
+}
+
+.spotlight .muted,
+.spotlight .table-subtitle,
+.spotlight .section-label,
+.spotlight .kicker,
+.featured-plan .muted,
+.featured-plan .kicker,
+.featured-plan .price span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.spotlight .list-clean li,
+.featured-plan .list-clean li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.spotlight .story-visual-wrap,
+.spotlight .spotlight-visual {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(15, 23, 38, 0.24));
 }
 
 .spotlight-visual,
@@ -532,6 +587,14 @@ select {
   padding-top: 56px;
 }
 
+.featured-plan {
+  background:
+    radial-gradient(circle at top right, rgba(84, 135, 255, 0.2), transparent 38%),
+    linear-gradient(180deg, #111827 0%, #192132 100%);
+  border-color: rgba(17, 24, 39, 0.25);
+  box-shadow: 0 28px 72px rgba(15, 23, 38, 0.16);
+}
+
 .plan-badge {
   position: absolute;
   top: 22px;
@@ -547,6 +610,11 @@ select {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.featured-plan .plan-badge {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .plan-card .price {
@@ -864,12 +932,17 @@ footer {
     display: none;
   }
 
+  .nav-main,
   .nav-shell,
   .section-heading,
   .page-head,
   .footer-shell {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .nav-main {
+    width: 100%;
   }
 
   .actions {
