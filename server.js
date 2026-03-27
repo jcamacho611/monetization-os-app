@@ -17,6 +17,13 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric',
   year: 'numeric'
 });
+const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit'
+});
 const brand = {
   name: 'Zumi',
   category: 'AI website operator',
@@ -25,7 +32,7 @@ const brand = {
   headline: 'Fix your website. Get more bookings.',
   subhead: 'Zumi finds what is costing you bookings, trust, and conversions, then prepares cleaner fixes you can approve fast.',
   supportingLine: 'Free audit first. Clear fixes next. Approval first.',
-  metaDescription: 'Zumi is an AI website operator that helps med spas, service businesses, and brands fix website conversion problems, improve trust, and turn more website visitors into clients.',
+  metaDescription: 'Zumi is an AI website operator that helps businesses, service teams, clinics, and brands fix website conversion problems, improve trust, and turn more visitors into clients.',
   proofNote: 'Illustrative launch scenarios built to show how Zumi can improve bookings, trust, and conversion before a full live customer dataset exists.',
   algorithmName: 'Zumi Adapt Engine'
 };
@@ -57,26 +64,6 @@ const valueReasons = [
   }
 ];
 const caseStudies = [
-  {
-    slug: 'luxe-medi-aesthetics',
-    businessName: 'Luxe-Medi Aesthetics',
-    category: 'Med spa booking recovery',
-    image: '/hero-success-owners.svg',
-    imageAlt: 'Stylized med spa founders and staff reviewing a polished bookings dashboard.',
-    headline: 'Turned Instagram inquiries and consult drop-off into booked treatment revenue',
-    challenge: 'The med spa was getting attention, but too many inquiries stalled between the first DM, the pricing conversation, and the actual booking decision.',
-    system: [
-      'Permission-based site scan across the homepage, services, and about page',
-      'Cleaner treatment copy, stronger trust sections, and simpler booking CTAs',
-      'Follow-up and review prompts layered into the post-inquiry flow'
-    ],
-    metrics: [
-      { label: 'Recovered consults', value: '+14/mo' },
-      { label: 'DM reply speed', value: '< 10 min' },
-      { label: 'Booked treatments', value: '+26%' }
-    ],
-    summary: 'Zumi acted like a website and booking operator, cleaning up the front-end story, tightening the inquiry path, and recovering buyers who were already showing intent.'
-  },
   {
     slug: 'summit-air-hvac',
     businessName: 'Summit Air HVAC',
@@ -136,6 +123,26 @@ const caseStudies = [
       { label: 'Drop replay sales', value: '+9%' }
     ],
     summary: 'Zumi helped the brand feel more premium and easier to buy from, which made its Instagram traffic work harder instead of bouncing around the site.'
+  },
+  {
+    slug: 'northshore-aesthetics',
+    businessName: 'Northshore Aesthetics',
+    category: 'Aesthetic clinic growth',
+    image: '/hero-success-owners.svg',
+    imageAlt: 'Stylized founders and staff reviewing a polished booking and trust dashboard.',
+    headline: 'Turned consult drop-off and soft trust signals into stronger booking momentum',
+    challenge: 'The clinic was getting attention, but too many inquiries stalled between the first DM, the pricing conversation, and the actual booking decision.',
+    system: [
+      'Permission-based site scan across the homepage, services, and about page',
+      'Cleaner treatment copy, stronger trust sections, and simpler booking CTAs',
+      'Follow-up and review prompts layered into the post-inquiry flow'
+    ],
+    metrics: [
+      { label: 'Recovered consults', value: '+14/mo' },
+      { label: 'Reply speed', value: '< 10 min' },
+      { label: 'Booked treatments', value: '+26%' }
+    ],
+    summary: 'Zumi acted like a website and booking operator, cleaning up the front-end story, tightening the inquiry path, and recovering buyers who were already showing intent.'
   }
 ];
 const faqItems = [
@@ -355,12 +362,12 @@ const platformPillars = [
 ];
 const industrySegments = [
   {
-    label: 'Med Spas',
-    body: 'Booking-led sites that need cleaner trust, better service pages, safer publishing, and stronger inquiry-to-appointment flow.'
+    label: 'Service Businesses',
+    body: 'High-intent sites that need clearer trust, stronger pages, and a faster path from visit to call or quote.'
   },
   {
-    label: 'Aesthetic Clinics',
-    body: 'High-trust treatment pages, consult conversion, and better approval-first content updates.'
+    label: 'Clinics + Studios',
+    body: 'Booking-led pages that need stronger trust, cleaner service structure, and better consult conversion.'
   },
   {
     label: 'Creator-Led Brands',
@@ -385,6 +392,10 @@ const industrySegments = [
   {
     label: 'Appointment-Based Businesses',
     body: 'Studios, salons, and clinics that live on bookings and need less friction between inquiry and calendar.'
+  },
+  {
+    label: 'Med Spas',
+    body: 'Luxury service sites that need cleaner treatment pages, safer publishing, and stronger inquiry-to-appointment flow.'
   },
   {
     label: 'Growing Brands',
@@ -638,8 +649,101 @@ function formatDate(value) {
   return Number.isNaN(date.valueOf()) ? 'Unknown' : dateFormatter.format(date);
 }
 
+function formatDateTime(value) {
+  const date = new Date(value);
+  return Number.isNaN(date.valueOf()) ? 'Unknown' : dateTimeFormatter.format(date);
+}
+
 function getClientById(clientId) {
   return readClients().find((client) => client.id === clientId);
+}
+
+function getDomainFromWebsite(website = '') {
+  const raw = String(website || '').trim();
+
+  if (!raw) {
+    return '';
+  }
+
+  try {
+    const url = raw.startsWith('http://') || raw.startsWith('https://')
+      ? new URL(raw)
+      : new URL(`https://${raw}`);
+    return url.hostname.replace(/^www\./, '');
+  } catch (error) {
+    return raw.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0];
+  }
+}
+
+function getClientDisplayName(client = {}) {
+  return client.businessName || getDomainFromWebsite(client.website) || 'Website Lead';
+}
+
+function getClientContactSummary(client = {}) {
+  if (client.phone) {
+    return client.phone;
+  }
+
+  if (client.email) {
+    return client.email;
+  }
+
+  return 'Research needed';
+}
+
+function getCallLogs(client = {}) {
+  return Array.isArray(client.callLogs) ? client.callLogs : [];
+}
+
+function getLatestCallLog(client = {}) {
+  const logs = getCallLogs(client);
+  return logs.length ? logs[logs.length - 1] : null;
+}
+
+function getCallOutcomeLabel(outcome = 'new') {
+  const labels = {
+    new: 'New lead',
+    researching: 'Researching contact',
+    called: 'Called',
+    no_answer: 'No answer',
+    left_vm: 'Left voicemail',
+    texted: 'Text sent',
+    emailed: 'Email sent',
+    spoke: 'Spoke to owner',
+    booked: 'Booked call',
+    won: 'Won',
+    lost: 'Not a fit'
+  };
+
+  return labels[outcome] || 'Updated';
+}
+
+function getCallStatus(client = {}) {
+  const latest = getLatestCallLog(client);
+
+  if (!latest) {
+    return 'Needs first call';
+  }
+
+  return getCallOutcomeLabel(latest.outcome);
+}
+
+function getNextCallAction(client = {}) {
+  const latest = getLatestCallLog(client);
+
+  if (!latest) {
+    return 'Review site and call';
+  }
+
+  if (latest.nextStep) {
+    return latest.nextStep;
+  }
+
+  if (latest.nextDate) {
+    return `Follow up ${formatDate(latest.nextDate)}`;
+  }
+
+  return getCallOutcomeLabel(latest.outcome);
 }
 
 function channelLabel(channel = 'email') {
@@ -1389,6 +1493,31 @@ function renderSourceCard(item) {
   `;
 }
 
+function renderCallLogItems(client) {
+  const logs = [...getCallLogs(client)].reverse();
+
+  if (!logs.length) {
+    return '<p class="muted">No calls logged yet.</p>';
+  }
+
+  return `
+    <div class="call-log-list">
+      ${logs.map((log) => `
+        <article class="card call-log-item">
+          <p class="kicker">${escapeHtml(getCallOutcomeLabel(log.outcome))}</p>
+          <h3>${escapeHtml(log.worker || 'Worker update')}</h3>
+          <p class="muted">${escapeHtml(log.note || 'No note added.')}</p>
+          <div class="mini-proof">
+            <span class="pill">${escapeHtml(formatDateTime(log.createdAt))}</span>
+            ${log.nextStep ? `<span class="pill">${escapeHtml(log.nextStep)}</span>` : ''}
+            ${log.nextDate ? `<span class="pill">Next ${escapeHtml(formatDate(log.nextDate))}</span>` : ''}
+          </div>
+        </article>
+      `).join('')}
+    </div>
+  `;
+}
+
 function renderAutomationFocus(items) {
   return items.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join('');
 }
@@ -1465,7 +1594,7 @@ function homePage(clients) {
             <span class="signal-label">first fix starts here</span>
           </div>
         </div>
-        <p class="supporting-line">For med spas, clinics, service businesses, and brands that need more from the traffic they already have.</p>
+        <p class="supporting-line">For service businesses, clinics, brands, stores, and teams that need more from the traffic they already have.</p>
       </div>
       <div class="card spotlight">
         <div class="spotlight-visual">
@@ -1609,14 +1738,14 @@ function homePage(clients) {
       </div>
       <div class="feature-grid">
         <article class="card">
-          <p class="kicker">Med Spas + Clinics</p>
-          <h3>Cleaner service pages</h3>
-          <p class="muted">Luxury presentation, trust, and consult flow matter more than ever here.</p>
+          <p class="kicker">Service Businesses</p>
+          <h3>Cleaner path to the call</h3>
+          <p class="muted">Urgent buyers convert better when the page feels trustworthy and the next step is obvious.</p>
         </article>
         <article class="card">
-          <p class="kicker">Service Businesses</p>
-          <h3>Fewer missed leads</h3>
-          <p class="muted">A sharper site makes it easier for urgent buyers to trust and call fast.</p>
+          <p class="kicker">Clinics + Studios</p>
+          <h3>Stronger trust before the consult</h3>
+          <p class="muted">Premium presentation and cleaner service pages make higher-ticket decisions easier.</p>
         </article>
         <article class="card">
           <p class="kicker">Brands + Stores</p>
@@ -2507,9 +2636,9 @@ function intakePage(selectedPlan = 'Starter') {
         <p class="muted">After intake, Zumi prepares the first audit and the highest-priority fixes for the site.</p>
       </article>
       <article class="card">
-        <p class="kicker">Selected path</p>
-        <h3>${escapeHtml(planLabel)}</h3>
-        <p class="muted">You can start with the free audit first and decide later if you want the fixes applied.</p>
+        <p class="kicker">Low friction</p>
+        <h3>Start with the website only.</h3>
+        <p class="muted">Contact details help later, but the free audit can start from the site alone.</p>
       </article>
     </section>
     <section class="card intake-shell">
@@ -2522,52 +2651,14 @@ function intakePage(selectedPlan = 'Starter') {
 
         <div class="form-section">
           <div class="form-section-head">
-            <p class="kicker">Business</p>
-            <h3>The essentials</h3>
+            <p class="kicker">Start Here</p>
+            <h3>Website first</h3>
           </div>
           <div class="form-grid">
-            <div class="field">
-              <label for="businessName">Business name</label>
-              <input id="businessName" required name="businessName" placeholder="Luxe-Medi" />
-            </div>
             <div class="field">
               <label for="website">Website URL</label>
               <input id="website" required name="website" placeholder="https://example.com" />
             </div>
-            <div class="field">
-              <label for="category">Business type</label>
-              <select id="category" name="category">
-                <option value="General Business" selected>General Business</option>
-                <option value="Service Business">Service Business</option>
-                <option value="Med Spa">Med Spa</option>
-                <option value="Aesthetic Clinic">Aesthetic Clinic</option>
-                <option value="Beauty Brand">Beauty Brand</option>
-                <option value="Creator Brand">Creator Brand</option>
-                <option value="Clothing Brand">Clothing Brand</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="owner">Your name</label>
-              <input id="owner" required name="owner" placeholder="Justin Camacho" />
-            </div>
-            <div class="field">
-              <label for="email">Best email</label>
-              <input id="email" required type="email" name="email" placeholder="owner@example.com" />
-            </div>
-            <div class="field">
-              <label for="phone">Best phone</label>
-              <input id="phone" name="phone" placeholder="(555) 000-0000" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-head">
-            <p class="kicker">Focus</p>
-            <h3>What feels broken right now</h3>
-          </div>
-          <div class="form-grid">
             <div class="field">
               <label for="goal">Biggest problem</label>
               <select id="goal" name="goal">
@@ -2578,16 +2669,46 @@ function intakePage(selectedPlan = 'Starter') {
                 <option value="Not sure" selected>Not sure</option>
               </select>
             </div>
-            <div class="field">
-              <label for="mainServices">Main service or offer</label>
-              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." />
-            </div>
           </div>
         </div>
 
         <details class="advanced-panel">
-          <summary>Optional details</summary>
+          <summary>Add optional details</summary>
           <div class="form-grid">
+            <div class="field">
+              <label for="businessName">Business name</label>
+              <input id="businessName" name="businessName" placeholder="Your business name" />
+            </div>
+            <div class="field">
+              <label for="category">Business type</label>
+              <select id="category" name="category">
+                <option value="General Business" selected>General Business</option>
+                <option value="Service Business">Service Business</option>
+                <option value="Clinic / Studio">Clinic / Studio</option>
+                <option value="Brand / Store">Brand / Store</option>
+                <option value="Med Spa">Med Spa</option>
+                <option value="Beauty Brand">Beauty Brand</option>
+                <option value="Creator Brand">Creator Brand</option>
+                <option value="Clothing Brand">Clothing Brand</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="owner">Your name</label>
+              <input id="owner" name="owner" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label for="email">Best email</label>
+              <input id="email" type="email" name="email" placeholder="owner@example.com" />
+            </div>
+            <div class="field">
+              <label for="phone">Best phone</label>
+              <input id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+            <div class="field">
+              <label for="mainServices">Main service or offer</label>
+              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." />
+            </div>
             <div class="field">
               <label for="sitePlatform">Website platform</label>
               <select id="sitePlatform" name="sitePlatform">
@@ -2643,7 +2764,7 @@ function intakePage(selectedPlan = 'Starter') {
           </div>
         </div>
 
-        <p class="form-hint">Usually takes about two minutes. Next step: Zumi prepares the first audit view so you can see what is hurting trust or sales.</p>
+        <p class="form-hint">Usually takes about 30 seconds. Add contact details only if you want the audit sent directly.</p>
         <div class="actions">
           <button class="btn" type="submit">Get My Free Website Audit</button>
           <a class="btn secondary" href="/authorization">Read Authorization</a>
@@ -2662,18 +2783,18 @@ function intakeSuccessPage(plan = 'Starter') {
         <p class="section-label">Audit Requested</p>
         <h2>We’re scanning your site.</h2>
       </div>
-      <p class="muted">You’ll receive your audit within 24 hours. If the fit is good, the next step is a first fix plan starting at $149.</p>
+      <p class="muted">Your site is in the queue. If the fit is good, the next step is a first fix plan starting at $149.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What happens now</p>
         <h3>Your audit gets reviewed first.</h3>
-        <p class="muted">Zumi will look for the clearest problems in the site, trust, and booking or buying flow.</p>
+        <p class="muted">Zumi will look for the clearest problems in the site, trust, and booking or buying flow. Your team can also work the lead from the call list.</p>
       </article>
       <article class="card">
-        <p class="kicker">If you want more help</p>
-        <h3>${escapeHtml(getPlanLabel(normalizePlan(plan)))}</h3>
-        <p class="muted">If the audit shows a clear opportunity, you can move into the first fix plan or ongoing operator support.</p>
+        <p class="kicker">If contact is missing</p>
+        <h3>Website is enough to start.</h3>
+        <p class="muted">No problem. The website is enough to start the audit. Contact details can be added later when the team reaches out.</p>
       </article>
     </section>
     <section class="card">
@@ -2693,6 +2814,25 @@ function intakeSuccessPage(plan = 'Starter') {
 function adminPage(clients) {
   const topChannel = channelLabel(mostCommonChannel(clients));
   const newestClient = clients[0] ? formatDate([...clients].sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt))[0].createdAt) : 'None yet';
+  const callQueue = [...clients]
+    .sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt))
+    .map((client) => {
+      const latestCall = getLatestCallLog(client);
+      return `
+        <tr>
+          <td>
+            <div class="table-title">${escapeHtml(getClientDisplayName(client))}</div>
+            <div class="table-subtitle">${escapeHtml(client.website || 'No website provided')}</div>
+          </td>
+          <td>${escapeHtml(getClientContactSummary(client))}</td>
+          <td>${escapeHtml(getCallStatus(client))}</td>
+          <td>${escapeHtml(getNextCallAction(client))}</td>
+          <td>${latestCall ? escapeHtml(formatDateTime(latestCall.createdAt)) : 'No calls yet'}</td>
+          <td><a href="/admin/client/${escapeHtml(client.id)}">Open Lead</a></td>
+        </tr>
+      `;
+    })
+    .join('');
 
   const rows = clients
     .map((client) => {
@@ -2700,14 +2840,14 @@ function adminPage(clients) {
       const blueprint = buildZumiBlueprint(client);
       return `<tr>
         <td>
-          <div class="table-title">${escapeHtml(client.businessName)}</div>
+          <div class="table-title">${escapeHtml(getClientDisplayName(client))}</div>
           <div class="table-subtitle">${escapeHtml(blueprint.engineName)} · ${escapeHtml(client.goal || 'No goal set yet')}</div>
         </td>
         <td>${escapeHtml(getPlanLabel(client.plan || 'Starter'))}</td>
         <td>${escapeHtml(blueprint.sizeLabel)}</td>
         <td>${escapeHtml(channelLabel(client.preferredChannel || 'email'))}</td>
         <td>${formatDate(client.createdAt)}</td>
-        <td><span class="status">Active</span></td>
+        <td><span class="status">${escapeHtml(getCallStatus(client))}</span></td>
         <td>
           <div><a href="/admin/client/${escapeHtml(client.id)}">Open</a></div>
           <div class="table-subtitle"><a href="${portalLink}">Portal</a></div>
@@ -2726,20 +2866,49 @@ function adminPage(clients) {
     </section>
     <section class="stat-grid">
       <article class="card">
-        <p class="kicker">Active Clients</p>
+        <p class="kicker">Leads</p>
         <h3>${clients.length}</h3>
-        <p class="muted">Businesses currently in the dashboard.</p>
+        <p class="muted">Website audit requests currently in the dashboard.</p>
       </article>
       <article class="card">
-        <p class="kicker">Most Used Channel</p>
+        <p class="kicker">Preferred Channel</p>
         <h3>${escapeHtml(topChannel)}</h3>
-        <p class="muted">Helpful context when you automate the Zumi playbooks across channels.</p>
+        <p class="muted">Helpful context once the lead moves into follow-up and closing.</p>
       </article>
       <article class="card">
         <p class="kicker">Newest Intake</p>
         <h3>${escapeHtml(newestClient)}</h3>
         <p class="muted">The most recently added business record.</p>
       </article>
+    </section>
+    <section class="card" style="margin-top: 18px;">
+      <div class="page-head" style="margin: 0 0 18px;">
+        <div>
+          <p class="section-label">Call List</p>
+          <h3>Queue for your workers</h3>
+        </div>
+        <span class="pill">${clients.length} leads</span>
+      </div>
+      ${clients.length
+        ? `<div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Lead</th>
+                  <th>Best Contact</th>
+                  <th>Status</th>
+                  <th>Next Action</th>
+                  <th>Last Call</th>
+                  <th>Open</th>
+                </tr>
+              </thead>
+              <tbody>${callQueue}</tbody>
+            </table>
+          </div>`
+        : `<div class="empty-state">
+            <h3>No audit requests yet</h3>
+            <p class="muted">Once websites start coming in, your workers can use this queue for calls and follow-up.</p>
+          </div>`}
     </section>
     <section class="card" style="margin-top: 18px;">
       <div class="page-head" style="margin: 0 0 18px;">
@@ -2783,13 +2952,15 @@ function adminClientPage(client, wasJustCreated = false) {
   const actionItems = buildActionItems(client);
   const reviews = buildReviewPrompts(client);
   const blueprint = buildZumiBlueprint(client);
+  const displayName = getClientDisplayName(client);
+  const contactSummary = getClientContactSummary(client);
   const content = `
     <section class="page-head">
       <div>
         <p class="section-label">Client Detail</p>
-        <h2>${escapeHtml(client.businessName)}</h2>
+        <h2>${escapeHtml(displayName)}</h2>
       </div>
-      <p class="muted">Owner: ${escapeHtml(client.owner)} · Category: ${escapeHtml(client.category || 'Uncategorized')}</p>
+      <p class="muted">Owner: ${escapeHtml(client.owner || 'Not captured yet')} · Category: ${escapeHtml(client.category || 'General business')}</p>
     </section>
     ${wasJustCreated ? `<div class="notice">Client saved successfully. ${escapeHtml(brand.algorithmName)} already mapped the business to the <strong>${escapeHtml(blueprint.engineName)}</strong>.</div>` : ''}
     <section class="detail-grid">
@@ -2798,7 +2969,7 @@ function adminClientPage(client, wasJustCreated = false) {
         <div class="key-value">
           <div class="key-value-item">
             <strong>Email</strong>
-            <span>${escapeHtml(client.email)}</span>
+            <span>${escapeHtml(client.email || 'Not captured yet')}</span>
           </div>
           <div class="key-value-item">
             <strong>Phone</strong>
@@ -2807,6 +2978,10 @@ function adminClientPage(client, wasJustCreated = false) {
           <div class="key-value-item">
             <strong>Website</strong>
             <span>${escapeHtml(client.website || 'Not provided')}</span>
+          </div>
+          <div class="key-value-item">
+            <strong>Best Contact</strong>
+            <span>${escapeHtml(contactSummary)}</span>
           </div>
           <div class="key-value-item">
             <strong>Main Services</strong>
@@ -2861,6 +3036,56 @@ function adminClientPage(client, wasJustCreated = false) {
       ${followupComposerCard(client)}
     </section>
     <section class="detail-grid" style="margin-top: 18px;">
+      <article class="card">
+        <p class="kicker">Call Log</p>
+        <h3>Updates for your workers</h3>
+        <p class="muted">Use this to keep the lead queue clear even when the audit started from the website only.</p>
+        ${renderCallLogItems(client)}
+      </article>
+      <article class="card">
+        <p class="kicker">Log New Call</p>
+        <h3>Add the latest touchpoint</h3>
+        <form method="POST" action="/admin/client/${escapeHtml(client.id)}/calls">
+          <div class="form-grid">
+            <div class="field">
+              <label for="worker-${escapeHtml(client.id)}">Worker</label>
+              <input id="worker-${escapeHtml(client.id)}" name="worker" placeholder="Justin or team member" />
+            </div>
+            <div class="field">
+              <label for="outcome-${escapeHtml(client.id)}">Outcome</label>
+              <select id="outcome-${escapeHtml(client.id)}" name="outcome">
+                <option value="researching">Researching contact</option>
+                <option value="called" selected>Called</option>
+                <option value="no_answer">No answer</option>
+                <option value="left_vm">Left voicemail</option>
+                <option value="texted">Text sent</option>
+                <option value="emailed">Email sent</option>
+                <option value="spoke">Spoke to owner</option>
+                <option value="booked">Booked call</option>
+                <option value="won">Won</option>
+                <option value="lost">Not a fit</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="nextStep-${escapeHtml(client.id)}">Next action</label>
+              <input id="nextStep-${escapeHtml(client.id)}" name="nextStep" placeholder="Call again tomorrow" />
+            </div>
+            <div class="field">
+              <label for="nextDate-${escapeHtml(client.id)}">Next follow-up</label>
+              <input id="nextDate-${escapeHtml(client.id)}" type="datetime-local" name="nextDate" />
+            </div>
+            <div class="field full">
+              <label for="note-${escapeHtml(client.id)}">Note</label>
+              <textarea id="note-${escapeHtml(client.id)}" name="note" placeholder="What happened, what you found, and what to do next."></textarea>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn" type="submit">Save Call Update</button>
+          </div>
+        </form>
+      </article>
+    </section>
+    <section class="detail-grid" style="margin-top: 18px;">
       ${renderZumiBlueprintCard(client)}
       ${renderZumiCadenceCard(client)}
     </section>
@@ -2884,7 +3109,7 @@ function adminClientPage(client, wasJustCreated = false) {
     </section>
   `;
 
-  return layout(`${client.businessName} | Admin`, content, '/admin');
+  return layout(`${displayName} | Admin`, content, '/admin');
 }
 
 function clientPortalPage(client) {
@@ -2892,14 +3117,15 @@ function clientPortalPage(client) {
   const reviews = buildReviewPrompts(client);
   const followupPreview = buildTemplateFollowup(client, client.preferredChannel || 'email');
   const blueprint = buildZumiBlueprint(client);
+  const displayName = getClientDisplayName(client);
 
   const content = `
     <section class="page-head">
       <div>
         <p class="section-label">Private Portal</p>
-        <h2>${escapeHtml(client.businessName)} growth view</h2>
+        <h2>${escapeHtml(displayName)} growth view</h2>
       </div>
-      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner)} with the Zumi plan already customized for this business.</p>
+      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner || 'the owner')} with the Zumi plan already customized for this business.</p>
     </section>
     <section class="portal-grid">
       <article class="card">
@@ -2935,7 +3161,7 @@ function clientPortalPage(client) {
     </section>
   `;
 
-  return layout(`${client.businessName} Portal`, content, '/portal');
+  return layout(`${displayName} Portal`, content, '/portal');
 }
 
 function placeholderPage(title, eyebrow, bodyCopy, primaryHref, primaryLabel, secondaryHref, secondaryLabel, currentPath) {
@@ -3064,15 +3290,17 @@ app.post('/intake', (req, res) => {
     req.body.mainServices ? `Main services: ${req.body.mainServices}` : '',
     req.body.notes || ''
   ].filter(Boolean);
+  const website = req.body.website || '';
+  const businessName = req.body.businessName || getDomainFromWebsite(website) || 'Website Lead';
   const newClient = {
     id: `c${Date.now()}`,
-    businessName: req.body.businessName || '',
+    businessName,
     owner: req.body.owner || '',
     email: req.body.email || '',
     phone: req.body.phone || '',
-    website: req.body.website || '',
-    sitePlatform: req.body.sitePlatform || 'wordpress',
-    category: req.body.category || '',
+    website,
+    sitePlatform: req.body.sitePlatform || 'custom',
+    category: req.body.category || 'General Business',
     goal: req.body.goal || '',
     notes: notesParts.join('\n\n'),
     plan: normalizePlan(req.body.plan),
@@ -3085,6 +3313,7 @@ app.post('/intake', (req, res) => {
     facebook: req.body.facebook || '',
     mainServices: req.body.mainServices || '',
     bookingSystem: req.body.bookingSystem || '',
+    callLogs: [],
     scanConsent: req.body.scanConsent === 'yes',
     publishConsent: req.body.publishConsent === 'yes',
     legalConsent: req.body.legalConsent === 'yes',
@@ -3094,6 +3323,31 @@ app.post('/intake', (req, res) => {
   clients.push(newClient);
   writeClients(clients);
   res.redirect(`/intake/success?plan=${encodeURIComponent(newClient.plan)}`);
+});
+
+app.post('/admin/client/:id/calls', (req, res) => {
+  const clients = readClients();
+  const clientIndex = clients.findIndex((client) => client.id === req.params.id);
+
+  if (clientIndex === -1) {
+    sendHtml(res, notFoundPage(), 404);
+    return;
+  }
+
+  const client = clients[clientIndex];
+  const nextLog = {
+    worker: req.body.worker || '',
+    outcome: req.body.outcome || 'called',
+    nextStep: req.body.nextStep || '',
+    nextDate: req.body.nextDate || '',
+    note: req.body.note || '',
+    createdAt: new Date().toISOString()
+  };
+
+  client.callLogs = [...getCallLogs(client), nextLog];
+  clients[clientIndex] = client;
+  writeClients(clients);
+  res.redirect(`/admin/client/${encodeURIComponent(client.id)}`);
 });
 
 app.get('/admin', (req, res) => {
