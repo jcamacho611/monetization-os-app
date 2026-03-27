@@ -1,13 +1,16 @@
 # Zumi MVP
 
-This project is the upgraded first milestone from the executive summary: a premium dark-mode Zumi app for local service businesses with stronger positioning, an automatic customization engine, sales-ready proof assets, Express-based routing, and an AI follow-up workflow that is ready for the current OpenAI SDK.
+This project is now positioned as a cleaner Apple-style Zumi operator app: an AI website operator for med spas, creator-led brands, clothing businesses, and other booking-led companies. It combines site/operator positioning, trust pages, approval-first intake, premium proof assets, Express-based routing, and the original follow-up workflow that is ready for the current OpenAI SDK.
 
 ## What is implemented
 
-- Premium landing page with large typography, bold CTAs, launch metrics, feature cards, and pricing.
+- Premium landing page with a lighter Apple-style visual system, large typography, clear CTAs, launch metrics, feature cards, and pricing.
+- New About, Privacy, Terms, and Authorization pages to support a safer trust and consent layer.
+- Intake flow now collects website platform, social stack, booking system, and required approval/privacy acknowledgements.
 - Dedicated solutions hub plus multiple offer pages for follow-up AI, missed-call recovery, reviews, reactivation, and done-for-you setup.
 - Additional product pages for how it works, discover, verify, convert, and industries.
 - Added med-spa expansion pages for a permission-based AI Website Operator, including connector, compliance, and architecture content.
+- Broadened industry positioning to include creator-led and clothing brands alongside med spas and booking-led businesses.
 - Instant preview flow that demonstrates the opportunity engine before signup.
 - Clearer product identity and sales narrative built around missed-call recovery, estimate reactivation, and review generation.
 - Brand assets for Zumi, including SVG logo files, favicon, and a lightweight brand brief.
@@ -74,6 +77,10 @@ npm start
 
 - `http://localhost:3000/`
 - `http://localhost:3000/case-studies`
+- `http://localhost:3000/about`
+- `http://localhost:3000/privacy`
+- `http://localhost:3000/terms`
+- `http://localhost:3000/authorization`
 - `http://localhost:3000/how-it-works`
 - `http://localhost:3000/discover`
 - `http://localhost:3000/verify`
