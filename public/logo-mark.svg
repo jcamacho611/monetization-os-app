@@ -1,0 +1,25 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="outerStroke" x1="18" y1="16" x2="108" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7FAFC"/>
+      <stop offset="0.28" stop-color="#C9D1D9"/>
+      <stop offset="0.62" stop-color="#6F7A86"/>
+      <stop offset="1" stop-color="#E8EEF4"/>
+    </linearGradient>
+    <linearGradient id="innerGlow" x1="38" y1="30" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C7F7E8"/>
+      <stop offset="0.45" stop-color="#7FC6FF"/>
+      <stop offset="1" stop-color="#7E8D9F"/>
+    </linearGradient>
+    <radialGradient id="surface" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(38 24) rotate(45) scale(110 110)">
+      <stop stop-color="#20252C"/>
+      <stop offset="0.58" stop-color="#0F1217"/>
+      <stop offset="1" stop-color="#090B0F"/>
+    </radialGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="32" fill="url(#surface)"/>
+  <rect x="8.5" y="8.5" width="111" height="111" rx="31.5" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <path d="M96 64C96 81.6731 81.6731 96 64 96C46.3269 96 32 81.6731 32 64C32 46.3269 46.3269 32 64 32C72.3085 32 79.877 35.1663 85.542 40.3584" stroke="url(#outerStroke)" stroke-width="11" stroke-linecap="round"/>
+  <path d="M74 35H97V58" stroke="url(#innerGlow)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M63 44C50.2975 44 40 53.402 40 65C40 76.598 50.2975 86 63 86C70.8396 86 77.7628 82.4207 81.9164 76.9621" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

@@ -1,60 +1,99 @@
-# Local Growth Portal (No-Dependency MVP)
+# Zumi MVP
 
-A lightweight, fully local MVP web app for managing small business intake and simple growth portals.
+This project is the upgraded first milestone from the executive summary: a premium dark-mode Zumi app for local service businesses with stronger positioning, an automatic customization engine, sales-ready proof assets, Express-based routing, and an AI follow-up workflow that is ready for the current OpenAI SDK.
 
-## What this app includes
+## What is implemented
 
-- **Landing page** with headline, value proposition, pricing cards, and CTA buttons.
-- **Intake form** that saves client submissions locally to `data/clients.json`.
-- **Admin dashboard** showing all clients (including seeded demo clients).
-- **Client detail page** from admin with quick link to each portal.
-- **Client portal page** per client with static Top 5 fixes, review templates, and notes.
-- **Demo data** preloaded for plumbing, HVAC, and cleaning businesses.
+- Premium landing page with large typography, bold CTAs, launch metrics, feature cards, and pricing.
+- Dedicated solutions hub plus multiple offer pages for follow-up AI, missed-call recovery, reviews, reactivation, and done-for-you setup.
+- Additional product pages for how it works, discover, verify, convert, and industries.
+- Instant preview flow that demonstrates the opportunity engine before signup.
+- Clearer product identity and sales narrative built around missed-call recovery, estimate reactivation, and review generation.
+- Brand assets for Zumi, including SVG logo files, favicon, and a lightweight brand brief.
+- `Zumi Adapt Engine` that uses business size, lead flow, and sales motion to customize the operating playbook automatically.
+- Proof-oriented case study page with illustrative launch scenarios for selling before real customer data exists.
+- Intake flow that saves clients to `data/clients.json`.
+- Admin dashboard with summary metrics and client management entry points.
+- Client detail screen with an AI follow-up generator for email, SMS, and WhatsApp-style drafts.
+- Private client portal view with weekly focus areas, review prompts, and a custom sequence plan.
+- Graceful fallback follow-up generation when `OPENAI_API_KEY` is not configured.
+- Blueprint endpoint at `GET /api/blueprint/:id`.
+- Health endpoint at `GET /health`.
 
 ## Tech stack
 
-- Node.js built-in modules only (`http`, `fs`, `path`, `url`)
-- HTML + CSS + minimal JavaScript-free form handling
-- No frameworks and no package installs required
+- Node.js
+- Express
+- OpenAI Node SDK
+- Dotenv
+- Server-rendered HTML, CSS, and small browser-side JavaScript
 
 ## Project structure
 
 ```txt
 .
 ├── data/
-│   └── clients.json      # Local storage (includes demo clients)
+│   └── clients.json
 ├── public/
-│   └── styles.css        # App styling
-├── server.js             # HTTP server + route handlers
-└── README.md
+│   ├── app.js
+│   ├── favicon.svg
+│   ├── logo-mark.svg
+│   ├── logo.svg
+│   └── styles.css
+├── .env.example
+├── BRAND.md
+├── package.json
+├── README.md
+└── server.js
 ```
 
 ## Run locally
 
-### 1) Make sure Node.js is installed
-
-Any modern Node.js version that supports `replaceAll` (Node 16+) should work.
-
-### 2) Start the app
+1. Install dependencies:
 
 ```bash
-node server.js
+npm install
 ```
 
-### 3) Open in browser
+2. Create a local environment file:
 
-Go to:
+```bash
+cp .env.example .env
+```
 
-- `http://localhost:3000/` (Landing page)
-- `http://localhost:3000/intake` (Intake form)
-- `http://localhost:3000/admin` (Admin dashboard)
+3. Add your OpenAI API key to `.env` if you want live AI-generated follow-ups.
 
-## How data is saved
+4. Start the app:
 
-- Client submissions from the intake form are appended to `data/clients.json`.
-- The app reads/writes this file directly on each request.
-- To reset data, replace `data/clients.json` with your desired baseline.
+```bash
+npm start
+```
 
-## Fast next upgrade step
+5. Open:
 
-Add lightweight authentication for the admin area (for example, a basic password gate in front of `/admin`) and convert static portal sections into per-client editable data fields.
+- `http://localhost:3000/`
+- `http://localhost:3000/case-studies`
+- `http://localhost:3000/how-it-works`
+- `http://localhost:3000/discover`
+- `http://localhost:3000/verify`
+- `http://localhost:3000/convert`
+- `http://localhost:3000/industries`
+- `http://localhost:3000/solutions`
+- `http://localhost:3000/pricing`
+- `http://localhost:3000/intake`
+- `http://localhost:3000/admin`
+
+## AI follow-up behavior
+
+- If `OPENAI_API_KEY` is present, the app calls the OpenAI Responses API using the model in `OPENAI_MODEL`.
+- If no key is configured, the app returns a local fallback draft so the workflow still functions during development.
+
+## Current limitations
+
+This repo is still using the local JSON store from the original MVP. The broader roadmap items from the executive summary are not implemented yet, including:
+
+- PostgreSQL and Prisma migration
+- Authentication and user accounts
+- Stripe billing and webhooks
+- Twilio, SendGrid, and Google integrations
+- Production deployment setup

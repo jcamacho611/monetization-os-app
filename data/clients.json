@@ -9,6 +9,11 @@
     "category": "Plumbing",
     "goal": "Book 12 more emergency calls per month",
     "notes": "Needs faster callback workflow for missed evening calls.",
+    "plan": "Pro",
+    "businessSize": "small-team",
+    "leadVolume": "high",
+    "salesMotion": "emergency",
+    "preferredChannel": "sms",
     "createdAt": "2026-03-20T10:30:00.000Z"
   },
   {
@@ -21,6 +26,11 @@
     "category": "HVAC",
     "goal": "Increase tune-up memberships before summer",
     "notes": "Wants stronger review generation after completed installs.",
+    "plan": "Pro",
+    "businessSize": "growing-team",
+    "leadVolume": "steady",
+    "salesMotion": "estimate",
+    "preferredChannel": "email",
     "createdAt": "2026-03-21T14:15:00.000Z"
   },
   {
@@ -33,6 +43,11 @@
     "category": "Cleaning",
     "goal": "Improve repeat bookings from move-out clients",
     "notes": "Interested in automating post-service follow-up texts.",
+    "plan": "Starter",
+    "businessSize": "small-team",
+    "leadVolume": "steady",
+    "salesMotion": "recurring",
+    "preferredChannel": "whatsapp",
     "createdAt": "2026-03-22T09:45:00.000Z"
   }
 ]
