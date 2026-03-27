@@ -1,0 +1,41 @@
+[
+  {
+    "id": "c1",
+    "portalToken": "rrp-7af291c2",
+    "businessName": "RapidRoot Plumbing",
+    "owner": "Alicia Gomez",
+    "email": "alicia@rapidrootplumbing.local",
+    "phone": "(555) 201-1010",
+    "website": "https://rapidrootplumbing.example",
+    "category": "Plumbing",
+    "goal": "Book 12 more emergency calls per month",
+    "notes": "Needs faster callback workflow for missed evening calls.",
+    "createdAt": "2026-03-20T10:30:00.000Z"
+  },
+  {
+    "id": "c2",
+    "portalToken": "sah-8ec510ab",
+    "businessName": "Summit Air HVAC",
+    "owner": "Marcus Lee",
+    "email": "marcus@summitairhvac.local",
+    "phone": "(555) 202-2020",
+    "website": "https://summitairhvac.example",
+    "category": "HVAC",
+    "goal": "Increase tune-up memberships before summer",
+    "notes": "Wants stronger review generation after completed installs.",
+    "createdAt": "2026-03-21T14:15:00.000Z"
+  },
+  {
+    "id": "c3",
+    "portalToken": "bnc-2fd064ce",
+    "businessName": "BrightNest Cleaning",
+    "owner": "Tanya Brooks",
+    "email": "tanya@brightnestcleaning.local",
+    "phone": "(555) 203-3030",
+    "website": "https://brightnestcleaning.example",
+    "category": "Cleaning",
+    "goal": "Improve repeat bookings from move-out clients",
+    "notes": "Interested in automating post-service follow-up texts.",
+    "createdAt": "2026-03-22T09:45:00.000Z"
+  }
+]
