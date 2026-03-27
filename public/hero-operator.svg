@@ -1,0 +1,76 @@
+<svg width="1440" height="980" viewBox="0 0 1440 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1240" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151A2A"/>
+      <stop offset="0.55" stop-color="#0B0F19"/>
+      <stop offset="1" stop-color="#06080E"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1140 220) rotate(132.08) scale(382.836 316.45)">
+      <stop stop-color="#7C8EFF" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#7C8EFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(312 164) rotate(62.2348) scale(248.049 315.048)">
+      <stop stop-color="#55E6FF" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#55E6FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="386" y1="214" x2="1097" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2235"/>
+      <stop offset="1" stop-color="#0C1018"/>
+    </linearGradient>
+    <linearGradient id="line" x1="456" y1="318" x2="1008" y2="318" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5E72FF"/>
+      <stop offset="1" stop-color="#54D7FF"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1440" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="980" rx="48" fill="url(#bg)"/>
+  <g opacity="0.9">
+    <circle cx="1140" cy="220" r="270" fill="url(#glowA)"/>
+    <circle cx="312" cy="164" r="210" fill="url(#glowB)"/>
+  </g>
+
+  <g opacity="0.18" filter="url(#blur)">
+    <ellipse cx="858" cy="812" rx="372" ry="42" fill="#88A0FF"/>
+  </g>
+
+  <rect x="196" y="170" width="1048" height="662" rx="34" fill="url(#panel)" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="224" y="198" width="992" height="78" rx="24" fill="#0E1320" stroke="rgba(255,255,255,0.06)"/>
+  <circle cx="270" cy="237" r="10" fill="#5E72FF"/>
+  <circle cx="302" cy="237" r="10" fill="#54D7FF"/>
+  <circle cx="334" cy="237" r="10" fill="#2B3347"/>
+  <rect x="400" y="223" width="278" height="28" rx="14" fill="#171D2B"/>
+  <rect x="1004" y="219" width="164" height="36" rx="18" fill="#111827" stroke="rgba(255,255,255,0.08)"/>
+
+  <rect x="250" y="322" width="382" height="420" rx="30" fill="#0F1420" stroke="rgba(255,255,255,0.08)"/>
+  <text x="292" y="380" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="4">SCAN REPORT</text>
+  <text x="292" y="450" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Find the leak.</text>
+  <text x="292" y="522" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Fix the flow.</text>
+  <rect x="292" y="570" width="258" height="54" rx="27" fill="#151C2B" stroke="rgba(255,255,255,0.08)"/>
+  <text x="324" y="605" fill="#DEE5F6" font-family="Arial, Helvetica, sans-serif" font-size="22">WEAK TRUST</text>
+  <rect x="292" y="640" width="306" height="54" rx="27" fill="#151C2B" stroke="rgba(255,255,255,0.08)"/>
+  <text x="324" y="675" fill="#DEE5F6" font-family="Arial, Helvetica, sans-serif" font-size="22">CLUTTERED PAGES</text>
+
+  <rect x="670" y="322" width="520" height="218" rx="30" fill="#0F1420" stroke="rgba(255,255,255,0.08)"/>
+  <text x="710" y="378" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4">AFTER</text>
+  <rect x="710" y="416" width="314" height="20" rx="10" fill="url(#line)"/>
+  <rect x="710" y="462" width="430" height="16" rx="8" fill="#222B40"/>
+  <rect x="710" y="494" width="372" height="16" rx="8" fill="#222B40"/>
+  <rect x="710" y="526" width="278" height="16" rx="8" fill="#222B40"/>
+  <rect x="1026" y="410" width="114" height="46" rx="23" fill="white"/>
+  <text x="1052" y="440" fill="#0B0F19" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AUDIT</text>
+
+  <rect x="670" y="566" width="248" height="176" rx="28" fill="#0F1420" stroke="rgba(255,255,255,0.08)"/>
+  <text x="704" y="614" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3">TRUST</text>
+  <text x="704" y="680" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700">+26%</text>
+  <text x="704" y="722" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="20">Booked consult lift</text>
+
+  <rect x="942" y="566" width="248" height="176" rx="28" fill="#0F1420" stroke="rgba(255,255,255,0.08)"/>
+  <text x="976" y="614" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3">CONTROL</text>
+  <text x="976" y="680" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700">SAFE</text>
+  <text x="976" y="722" fill="#B7C0D6" font-family="Arial, Helvetica, sans-serif" font-size="20">Preview before publish</text>
+
+  <path d="M250 782C516 824 896 824 1190 782" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+</svg>

@@ -1,0 +1,52 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="286" y1="112" x2="1110" y2="788" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121827"/>
+      <stop offset="1" stop-color="#070A12"/>
+    </linearGradient>
+    <linearGradient id="before" x1="216" y1="210" x2="596" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#211E25"/>
+      <stop offset="1" stop-color="#11131C"/>
+    </linearGradient>
+    <linearGradient id="after" x1="842" y1="210" x2="1218" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171F31"/>
+      <stop offset="1" stop-color="#0D111A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="758" y1="226" x2="1184" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#76A0FF"/>
+      <stop offset="1" stop-color="#65F0FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="900" rx="42" fill="url(#bg)"/>
+  <rect x="102" y="138" width="498" height="620" rx="32" fill="url(#before)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="840" y="138" width="498" height="620" rx="32" fill="url(#after)" stroke="rgba(255,255,255,0.10)"/>
+
+  <text x="142" y="196" fill="#E8ECF8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">Before</text>
+  <text x="882" y="196" fill="#E8ECF8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">After</text>
+
+  <rect x="142" y="228" width="420" height="18" rx="9" fill="#34303B"/>
+  <rect x="142" y="272" width="356" height="14" rx="7" fill="#292732"/>
+  <rect x="142" y="302" width="392" height="14" rx="7" fill="#292732"/>
+  <rect x="142" y="332" width="228" height="14" rx="7" fill="#292732"/>
+  <rect x="142" y="386" width="420" height="200" rx="26" fill="#1A1A24"/>
+  <rect x="142" y="612" width="164" height="48" rx="24" fill="#2A2933"/>
+  <text x="182" y="644" fill="#D6D8E0" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">UNCLEAR CTA</text>
+
+  <rect x="882" y="228" width="270" height="18" rx="9" fill="url(#accent)"/>
+  <rect x="882" y="272" width="382" height="14" rx="7" fill="#2A3449"/>
+  <rect x="882" y="302" width="328" height="14" rx="7" fill="#2A3449"/>
+  <rect x="882" y="332" width="214" height="14" rx="7" fill="#2A3449"/>
+  <rect x="882" y="386" width="420" height="200" rx="26" fill="#111827" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="882" y="612" width="168" height="48" rx="24" fill="white"/>
+  <text x="920" y="644" fill="#0B0F19" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">GET AUDIT</text>
+  <rect x="1072" y="612" width="168" height="48" rx="24" fill="#1A2335" stroke="rgba(255,255,255,0.09)"/>
+  <text x="1112" y="644" fill="#E5ECFB" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">BOOK NOW</text>
+
+  <rect x="650" y="242" width="140" height="412" rx="70" fill="#0F1320" stroke="rgba(255,255,255,0.08)"/>
+  <path d="M698 354L744 399L698 444" stroke="#EAF2FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M698 562L744 517L698 472" stroke="#76A0FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="182" y="722" fill="#AEB8CC" font-family="Arial, Helvetica, sans-serif" font-size="24">Cluttered pages. Weak trust. Hidden next step.</text>
+  <text x="880" y="722" fill="#C8D2E6" font-family="Arial, Helvetica, sans-serif" font-size="24">Cleaner story. Stronger trust. Easier booking.</text>
+</svg>
