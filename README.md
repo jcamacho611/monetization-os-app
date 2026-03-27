@@ -1,12 +1,13 @@
 # Zumi MVP
 
-This project is now positioned as a cleaner Apple-style Zumi operator app: an AI website operator for med spas, creator-led brands, clothing businesses, and other booking-led companies. It combines site/operator positioning, trust pages, approval-first intake, premium proof assets, Express-based routing, and the original follow-up workflow that is ready for the current OpenAI SDK.
+This project is now positioned as a cleaner Apple-style Zumi operator app: an AI website operator for med spas, creator-led brands, clothing businesses, service businesses, and other booking-led companies. It combines site/operator positioning, trust pages, a free-audit funnel, approval-first intake, premium proof assets, Express-based routing, and the original follow-up workflow that is ready for the current OpenAI SDK.
 
 ## What is implemented
 
 - Premium landing page with a lighter Apple-style visual system, large typography, clear CTAs, launch metrics, feature cards, and pricing.
+- Clearer sales funnel: free audit, first fix plan, and monthly operator plan.
 - New About, Privacy, Terms, and Authorization pages to support a safer trust and consent layer.
-- Intake flow now collects website platform, social stack, booking system, and required approval/privacy acknowledgements.
+- Intake flow now feels lighter and easier, with a simpler public audit form and a dedicated success screen.
 - Dedicated solutions hub plus multiple offer pages for follow-up AI, missed-call recovery, reviews, reactivation, and done-for-you setup.
 - Additional product pages for how it works, discover, verify, convert, and industries.
 - Added med-spa expansion pages for a permission-based AI Website Operator, including connector, compliance, and architecture content.
@@ -17,6 +18,7 @@ This project is now positioned as a cleaner Apple-style Zumi operator app: an AI
 - `Zumi Adapt Engine` that uses business size, lead flow, and sales motion to customize the operating playbook automatically.
 - Proof-oriented case study page with illustrative launch scenarios for selling before real customer data exists.
 - Intake flow that saves clients to `data/clients.json`.
+- Optional Stripe payment-link support for Starter, Operator, and Concierge plans through environment variables.
 - Admin dashboard with summary metrics and client management entry points.
 - Client detail screen with an AI follow-up generator for email, SMS, and WhatsApp-style drafts.
 - Private client portal view with weekly focus areas, review prompts, and a custom sequence plan.
@@ -67,7 +69,15 @@ cp .env.example .env
 
 3. Add your OpenAI API key to `.env` if you want live AI-generated follow-ups.
 
-4. Start the app:
+4. Optional: add Stripe payment links if you want plan cards to show `Pay & Start` buttons:
+
+```bash
+STRIPE_STARTER_PAYMENT_LINK=https://buy.stripe.com/...
+STRIPE_OPERATOR_PAYMENT_LINK=https://buy.stripe.com/...
+STRIPE_CONCIERGE_PAYMENT_LINK=https://buy.stripe.com/...
+```
+
+5. Start the app:
 
 ```bash
 npm start
@@ -91,6 +101,7 @@ npm start
 - `http://localhost:3000/solutions`
 - `http://localhost:3000/pricing`
 - `http://localhost:3000/intake`
+- `http://localhost:3000/intake/success`
 - `http://localhost:3000/admin`
 
 ## AI follow-up behavior
@@ -104,6 +115,6 @@ This repo is still using the local JSON store from the original MVP. The broader
 
 - PostgreSQL and Prisma migration
 - Authentication and user accounts
-- Stripe billing and webhooks
+- Stripe server-side checkout and webhooks
 - Twilio, SendGrid, and Google integrations
 - Production deployment setup

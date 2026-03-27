@@ -23,12 +23,39 @@ const brand = {
   audience: 'businesses, brands, and booking-led teams',
   slogan: 'Nothing slips. Everything closes.',
   headline: 'Fix your website. Get more bookings.',
-  subhead: 'Zumi finds what feels weak, cluttered, or confusing, then prepares cleaner updates you can approve fast.',
-  supportingLine: 'Free audit first. Approval first. Built for growth.',
+  subhead: 'Zumi shows what is costing you sales, cleans up the story, and prepares safer updates you can approve fast.',
+  supportingLine: 'Free audit first. Clear fixes next. Approval first.',
   metaDescription: 'Zumi is an AI website operator for businesses, brands, and booking-led teams. It scans the site, shows what is hurting conversions, prepares cleaner updates, and keeps every change approval-first.',
   proofNote: 'Illustrative launch scenarios built to show how Zumi can improve bookings, trust, and conversion before a full live customer dataset exists.',
   algorithmName: 'Zumi Adapt Engine'
 };
+const planPaymentLinks = {
+  Starter: process.env.STRIPE_STARTER_PAYMENT_LINK || '',
+  Operator: process.env.STRIPE_OPERATOR_PAYMENT_LINK || '',
+  Concierge: process.env.STRIPE_CONCIERGE_PAYMENT_LINK || ''
+};
+const offerServices = [
+  'Free website audit and action plan',
+  'Homepage rewrite and CTA cleanup',
+  'Service, treatment, or product page cleanup',
+  'Trust, proof, review, and FAQ placement',
+  'Booking or checkout flow cleanup',
+  'Monthly optimization for pages that matter most'
+];
+const valueReasons = [
+  {
+    title: 'Easier to test',
+    body: 'Start with the audit instead of paying for a full redesign before you know what matters.'
+  },
+  {
+    title: 'More than software',
+    body: 'Zumi can recommend, package, and guide the fixes so the site improves faster.'
+  },
+  {
+    title: 'Built to protect the brand',
+    body: 'Everything stays permission-based, preview-first, and approval-first.'
+  }
+];
 const caseStudies = [
   {
     slug: 'luxe-medi-aesthetics',
@@ -266,39 +293,43 @@ const pricingPlans = [
     name: 'Starter',
     price: '$149',
     cadence: '/mo',
-    description: 'For owner-led teams that want a first scan, clearer page recommendations, and a cleaner booking path.',
+    description: 'For businesses that want a clear first fix without committing to a giant redesign.',
     href: '/intake?plan=Starter',
-    cta: 'Launch Starter',
+    cta: 'Start $149 Fix',
+    paymentLink: planPaymentLinks.Starter,
     features: [
-      'Permission-based intake and website operator blueprint.',
-      'AI-assisted page, CTA, and copy recommendations.',
-      'Client portal with next-step guidance and preview-first workflow.'
+      'Free audit, roadmap, and highest-priority fixes.',
+      'Homepage, CTA, and page-copy cleanup recommendations.',
+      'Trust and booking-flow recommendations you can approve fast.'
     ]
   },
   {
     name: 'Operator',
     price: '$299',
     cadence: '/mo',
-    description: 'For businesses that want deeper operator workflows across website, booking, reviews, and follow-up.',
+    description: 'For businesses that want ongoing website, conversion, and follow-up improvement instead of one-off fixes.',
     href: '/intake?plan=Pro',
-    cta: 'Launch Operator',
+    cta: 'Start $299 Plan',
+    badge: 'Most Popular',
+    paymentLink: planPaymentLinks.Operator,
     features: [
-      'Everything in Starter plus stronger workflow sequencing.',
-      'Cleaner conversion, reactivation, and trust-building layers.',
-      'A premium operator setup for busier teams and larger sites.'
+      'Everything in Starter plus monthly page and flow improvements.',
+      'Booking, review, inquiry, and reactivation cleanup.',
+      'Priority support for businesses that need a tighter growth system.'
     ]
   },
   {
     name: 'Concierge',
     price: '$750',
     cadence: ' setup + custom',
-    description: 'For founders who want Zumi packaged as a guided redesign and growth operator service.',
+    description: 'For founders who want Zumi packaged like a guided redesign and growth operator service.',
     href: '/intake?plan=Done-With-You',
-    cta: 'Book Concierge',
+    cta: 'Book Concierge Call',
+    paymentLink: planPaymentLinks.Concierge,
     features: [
-      'Guided onboarding, copy cleanup, and structure recommendations.',
-      'Hands-on launch support around trust, bookings, and approvals.',
-      'Best fit when the sale is part software and part premium service.'
+      'Guided site cleanup, structure work, and premium positioning help.',
+      'Hands-on support around trust, conversion, and launch decisions.',
+      'Best fit when you want service plus software, not software alone.'
     ]
   }
 ];
@@ -680,6 +711,18 @@ function getSitePlatformLabel(platform = 'wordpress') {
   return labels[platform] || 'WordPress';
 }
 
+function normalizePlan(plan = 'Starter') {
+  const labels = {
+    Starter: 'Starter',
+    Pro: 'Pro',
+    Operator: 'Pro',
+    'Done-With-You': 'Done-With-You',
+    Concierge: 'Done-With-You'
+  };
+
+  return labels[plan] || 'Starter';
+}
+
 function getPlanLabel(plan = 'Starter') {
   const labels = {
     Starter: 'Starter',
@@ -688,6 +731,11 @@ function getPlanLabel(plan = 'Starter') {
   };
 
   return labels[plan] || plan || 'Starter';
+}
+
+function getPlanPaymentLink(plan = 'Starter') {
+  const label = getPlanLabel(plan);
+  return planPaymentLinks[label] || '';
 }
 
 function inferBusinessSize(client) {
@@ -1260,8 +1308,13 @@ function renderSolutionPreview(item) {
 }
 
 function renderPricingCard(plan) {
+  const payButton = plan.paymentLink
+    ? `<a class="btn secondary" href="${escapeHtml(plan.paymentLink)}" target="_blank" rel="noreferrer">Pay & Start</a>`
+    : '';
+
   return `
     <article class="card plan-card">
+      ${plan.badge ? `<span class="plan-badge">${escapeHtml(plan.badge)}</span>` : ''}
       <p class="kicker">Plan</p>
       <h3>${escapeHtml(plan.name)}</h3>
       <p class="price">${escapeHtml(plan.price)}<span>${escapeHtml(plan.cadence)}</span></p>
@@ -1269,6 +1322,7 @@ function renderPricingCard(plan) {
       <ul class="list-clean">${plan.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join('')}</ul>
       <div class="actions">
         <a class="btn" href="${escapeHtml(plan.href)}">${escapeHtml(plan.cta)}</a>
+        ${payButton}
       </div>
     </article>
   `;
@@ -1362,7 +1416,7 @@ function homePage(clients) {
       <div class="hero-copy">
         <p class="eyebrow">${escapeHtml(brand.category)}</p>
         <h1>${escapeHtml(brand.headline)}</h1>
-        <p class="lede">${escapeHtml(brand.subhead)}</p>
+        <p class="lede">We find what is costing you customers and fix it fast.</p>
         <div class="actions">
           <a class="btn" href="/intake">Get My Free Website Audit</a>
           <a class="btn secondary" href="/how-it-works">See How It Works</a>
@@ -1373,49 +1427,50 @@ function homePage(clients) {
             <span class="signal-label">first audit</span>
           </div>
           <div class="signal-chip">
-            <span class="signal-value">$149+</span>
-            <span class="signal-label">plans start here</span>
+            <span class="signal-value">24-48h</span>
+            <span class="signal-label">first fixes after approval</span>
           </div>
           <div class="signal-chip">
             <span class="signal-value">Safe</span>
             <span class="signal-label">approval first</span>
           </div>
         </div>
+        <p class="supporting-line">No long-term contracts. Cancel anytime.</p>
       </div>
       <div class="card spotlight">
         <div class="spotlight-visual">
           <img class="spotlight-image" src="/hero-success-owners.svg" alt="Stylized montage of successful med spa and service business owners using Zumi to improve sites and bookings." />
         </div>
         <div>
-          <p class="section-label">What Zumi Does</p>
-          <h3>See what is costing you bookings.</h3>
-          <p class="muted">Zumi scans the site, shows what feels weak, and prepares cleaner updates before anything goes live.</p>
+          <p class="section-label">The Offer</p>
+          <h3>Send your site. See what is losing bookings.</h3>
+          <p class="muted">Zumi scans the site, shows what feels weak, and gives you a clean path to fix it without losing control.</p>
         </div>
         <ul class="list-clean">
-          <li>Shows what feels weak or outdated</li>
-          <li>Fixes what is hurting trust or sales</li>
-          <li>Keeps every live change approval-first</li>
+          <li>Free audit and action plan first</li>
+          <li>Fixes start at $149</li>
+          <li>Ongoing operator support starts at $299/mo</li>
         </ul>
         <div class="timeline-list">
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Connect</strong>
-              <div class="table-subtitle">Give Zumi the right access.</div>
+              <strong>Audit</strong>
+              <div class="table-subtitle">See what is hurting sales.</div>
             </div>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Scan</strong>
-              <div class="table-subtitle">See what needs to improve.</div>
+              <strong>Fix</strong>
+              <div class="table-subtitle">Clean up the site fast.</div>
             </div>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div>
-              <strong>Approve</strong>
-              <div class="table-subtitle">Review the updates before they go live.</div>
+              <strong>Keep Improving</strong>
+              <div class="table-subtitle">Stay on monthly optimization if it is working.</div>
             </div>
           </div>
         </div>
@@ -1428,18 +1483,18 @@ function homePage(clients) {
           <p class="section-label">What Zumi Does</p>
           <h2>Four things, clearly.</h2>
         </div>
-        <p class="muted">The front-end stays simple. The deeper system stays underneath.</p>
+        <p class="muted">You do not need to learn a platform. You just need to see what is broken and what to fix first.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
-          <p class="kicker">Scan</p>
+          <p class="kicker">Audit</p>
           <h3>Scans your site</h3>
-          <p class="muted">Reads the pages, structure, and flow.</p>
+          <p class="muted">Reads the pages, structure, and customer flow.</p>
         </article>
         <article class="card">
-          <p class="kicker">Find</p>
+          <p class="kicker">Diagnose</p>
           <h3>Finds what is hurting bookings</h3>
-          <p class="muted">Weak copy, clutter, friction, and trust gaps.</p>
+          <p class="muted">Weak copy, clutter, friction, and missing trust.</p>
         </article>
         <article class="card">
           <p class="kicker">Fix</p>
@@ -1457,27 +1512,19 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Who It Helps</p>
-          <h2>Built for businesses that win on trust and conversion.</h2>
+          <p class="section-label">What You Can Buy</p>
+          <h2>Simple services that make the site work harder.</h2>
         </div>
-        <p class="muted">Zumi works best anywhere a weak site is costing real money.</p>
+        <p class="muted">This is not just software access. It is a cleaner path to results.</p>
       </div>
       <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Med Spas + Clinics</p>
-          <h3>Cleaner service pages</h3>
-          <p class="muted">Better trust, clearer offers, smoother booking flow.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Service Businesses</p>
-          <h3>Fewer missed leads</h3>
-          <p class="muted">Cleaner pages, stronger proof, and faster next steps.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Brands + Stores</p>
-          <h3>Better social-to-site conversion</h3>
-          <p class="muted">Sharper pages, clearer product story, easier buying flow.</p>
-        </article>
+        ${offerServices.slice(0, 6).map((service) => `
+          <article class="card">
+            <p class="kicker">Included</p>
+            <h3>${escapeHtml(service)}</h3>
+            <p class="muted">Built to remove friction and make the next step easier.</p>
+          </article>
+        `).join('')}
       </div>
     </section>
 
@@ -1511,6 +1558,33 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
+          <p class="section-label">Who It Helps</p>
+          <h2>Built for businesses that win on trust and conversion.</h2>
+        </div>
+        <p class="muted">Zumi works whether the demand starts on Instagram, in ads, through referrals, or straight from search.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker">Med Spas + Clinics</p>
+          <h3>Cleaner service pages</h3>
+          <p class="muted">Better trust, clearer offers, smoother booking flow.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Service Businesses</p>
+          <h3>Fewer missed leads</h3>
+          <p class="muted">Cleaner pages, stronger proof, and faster next steps.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Brands + Stores</p>
+          <h3>Better social-to-site conversion</h3>
+          <p class="muted">Sharper pages, clearer product story, easier buying flow.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
           <p class="section-label">Proof</p>
           <h2>Results for different kinds of businesses.</h2>
         </div>
@@ -1524,10 +1598,10 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Safe Access</p>
+          <p class="section-label">Why It Feels Safe</p>
           <h2>Simple safeguards.</h2>
         </div>
-        <p class="muted">The owner stays in control.</p>
+        <p class="muted">Fast does not have to feel risky.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
@@ -1554,10 +1628,43 @@ function homePage(clients) {
     </section>
 
     <section class="section">
-      <article class="card">
-        <p class="section-label">Offer</p>
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Offer Stack</p>
+          <h2>Start free. Fix what matters. Keep improving if it works.</h2>
+        </div>
+        <p class="muted">A cleaner funnel gives buyers less to think about.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <p class="kicker">Free</p>
+          <h3>Website audit</h3>
+          <p class="muted">Send the site. Zumi shows what is hurting trust, sales, or bookings.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">$149</p>
+          <h3>First fix plan</h3>
+          <p class="muted">Apply the highest-impact fixes first and review them before anything goes live.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">$299/mo</p>
+          <h3>Ongoing operator</h3>
+          <p class="muted">Keep improving the site, flow, proof, and next-step conversion over time.</p>
+        </article>
+      </div>
+      <div class="detail-grid" style="margin-top: 18px;">
+        ${valueReasons.map((reason) => `
+          <article class="card">
+            <p class="kicker">Why It Works</p>
+            <h3>${escapeHtml(reason.title)}</h3>
+            <p class="muted">${escapeHtml(reason.body)}</p>
+          </article>
+        `).join('')}
+      </div>
+      <article class="card" style="margin-top: 18px;">
+        <p class="section-label">Final CTA</p>
         <h2>Get the audit first. Decide later.</h2>
-        <p class="muted">Start with a free website audit. If you want help applying the fixes, plans start at $149 per month.</p>
+        <p class="muted">Start with the free website audit. If you want help applying the fixes, plans start at $149. No long-term contracts. Cancel anytime.</p>
         <div class="actions">
           <a class="btn" href="/intake">Get My Free Website Audit</a>
           <a class="btn secondary" href="/pricing">See Pricing</a>
@@ -1701,9 +1808,9 @@ function pricingPage() {
     <section class="page-head">
       <div>
         <p class="section-label">Pricing</p>
-        <h2>Choose how much help you want.</h2>
+        <h2>Start free. Then choose the level of help you want.</h2>
       </div>
-      <p class="muted">Get the audit first. Choose the right level of help after that.</p>
+      <p class="muted">The easiest sale is simple: free audit, $149 first fixes, $299 ongoing help if it is working.</p>
     </section>
     <section class="grid-3">
       ${pricingPlans.map(renderPricingCard).join('')}
@@ -1711,23 +1818,36 @@ function pricingPage() {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Simple</p>
-          <h3>Start with the level that fits right now.</h3>
+          <p class="kicker">What you get</p>
+          <h3>Real work, not just another dashboard.</h3>
           <ul class="list-clean">
-            <li>Starter for the first scan and simple fixes.</li>
-            <li>Operator for a stronger ongoing system.</li>
-            <li>Concierge for hands-on help.</li>
+            ${offerServices.map((service) => `<li>${escapeHtml(service)}</li>`).join('')}
           </ul>
         </article>
         <article class="card">
-          <p class="kicker">Next Step</p>
-          <h3>Start with the first scan.</h3>
-          <p class="muted">The audit is the easiest way to see what is costing you sales before you commit to anything bigger.</p>
+          <p class="kicker">Risk Removal</p>
+          <h3>Easy to try. Easy to understand.</h3>
+          <ul class="list-clean">
+            <li>Free audit before you buy anything.</li>
+            <li>Approval-first changes before anything goes live.</li>
+            <li>No long-term contracts. Cancel anytime.</li>
+          </ul>
           <div class="actions">
             <a class="btn" href="/intake">Get My Free Website Audit</a>
             <a class="btn secondary" href="/how-it-works">How It Works</a>
           </div>
         </article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="detail-grid">
+        ${valueReasons.map((reason) => `
+          <article class="card">
+            <p class="kicker">Why businesses buy</p>
+            <h3>${escapeHtml(reason.title)}</h3>
+            <p class="muted">${escapeHtml(reason.body)}</p>
+          </article>
+        `).join('')}
       </div>
     </section>
   `;
@@ -1740,8 +1860,8 @@ function howItWorksPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">How It Works</p>
-        <h2>One clear flow: connect, scan, improve, approve.</h2>
-        <p class="muted">The front-end is simple. The deeper operator system stays in the background.</p>
+        <h2>One clear flow: send the site, get the audit, approve the fixes.</h2>
+        <p class="muted">The front-end stays simple so the customer always knows what happens next, whether the lead came from Instagram, a DM, a referral, or the site itself.</p>
         <div class="actions">
           <a class="btn" href="/intake">Get My Free Website Audit</a>
           <a class="btn secondary" href="/authorization">See Trust</a>
@@ -1756,16 +1876,33 @@ function howItWorksPage() {
     <section class="feature-grid">
       <article class="card">
         <p class="kicker">1</p>
-        <h3>Connect your site</h3>
-        <p class="muted">Give Zumi the right access.</p>
+        <h3>Send your site</h3>
+        <p class="muted">Start with the URL and the main problem.</p>
       </article>
       <article class="card">
         <p class="kicker">2</p>
-        <h3>See what needs work</h3>
-        <p class="muted">Zumi finds what is hurting trust or sales.</p>
+        <h3>Get the audit</h3>
+        <p class="muted">Zumi shows what is hurting trust or sales.</p>
       </article>
       <article class="card">
         <p class="kicker">3</p>
+        <h3>Approve the first fixes</h3>
+        <p class="muted">Apply the work that matters first.</p>
+      </article>
+      <article class="card">
+        <p class="kicker">4</p>
+        <h3>Keep improving</h3>
+        <p class="muted">Stay on monthly operator support if it is working.</p>
+      </article>
+    </section>
+    <section class="detail-grid" style="margin-top: 18px;">
+      <article class="card">
+        <p class="kicker">Traffic</p>
+        <h3>Works with the channels already making money.</h3>
+        <p class="muted">Instagram traffic, DMs, referrals, cold outreach, and direct visits can all feed the same free-audit funnel.</p>
+      </article>
+      <article class="card">
+        <p class="kicker">Control</p>
         <h3>Approve the fixes</h3>
         <p class="muted">Nothing important goes live without review.</p>
       </article>
@@ -1925,7 +2062,7 @@ function medSpaPage() {
       <article class="card art-panel">
         <p class="section-label">Med Spas</p>
         <h2>One powerful use case for Zumi.</h2>
-        <p class="muted">Zumi helps med spas clean up the site, improve bookings, and present the brand in a more premium way.</p>
+        <p class="muted">Zumi helps med spas clean up the site, improve bookings, and present the brand in a more premium way without making the process feel heavy.</p>
         <div class="mini-proof">
           <span class="pill">Luxury but simple</span>
           <span class="pill">Booking focused</span>
@@ -2018,7 +2155,7 @@ function medSpaPage() {
       <article class="card">
         <p class="section-label">Next Step</p>
         <h2>Start with the current site.</h2>
-        <p class="muted">Tell Zumi about the website, booking flow, and main goal. Then review the first scan before anything changes.</p>
+        <p class="muted">Send the site, get the audit, and review the first fixes before anything changes.</p>
         <div class="actions">
           <a class="btn" href="/intake">Get My Free Website Audit</a>
           <a class="btn secondary" href="/authorization">See Authorization</a>
@@ -2120,7 +2257,7 @@ function aboutPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">What it is</p>
-          <h3>A cleaner way to improve a website.</h3>
+          <h3>A cleaner way to fix a site that is underperforming.</h3>
           <p class="muted">Zumi scans the site, finds what is hurting conversions, and prepares better updates.</p>
         </article>
         <article class="card">
@@ -2130,12 +2267,12 @@ function aboutPage() {
         </article>
         <article class="card">
           <p class="kicker">Why it exists</p>
-          <h3>To remove clutter and friction.</h3>
+          <h3>To turn a weak site into a stronger sales asset.</h3>
           <p class="muted">The goal is a site that feels easier to trust and easier to book from.</p>
         </article>
         <article class="card">
           <p class="kicker">How it works</p>
-          <h3>Connect, scan, review, approve.</h3>
+          <h3>Audit, fix, review, keep improving.</h3>
           <p class="muted">Zumi prepares the work. The owner still decides what goes live.</p>
         </article>
       </div>
@@ -2253,29 +2390,30 @@ function authorizationPage() {
 }
 
 function intakePage(selectedPlan = 'Starter') {
+  const planLabel = getPlanLabel(normalizePlan(selectedPlan));
   const content = `
     <section class="page-head">
       <div>
         <p class="section-label">Intake</p>
         <h2>Get your free website audit.</h2>
       </div>
-      <p class="muted">Tell Zumi about the business, the site, and the main goal. The audit comes first. Approval stays in your hands.</p>
+      <p class="muted">Keep it simple. Send the site, tell Zumi the biggest problem, and get the first clear next step.</p>
     </section>
     <section class="detail-grid" style="margin-bottom: 18px;">
       <article class="card">
         <p class="kicker">What happens next</p>
-        <h3>Connect. Scan. Review.</h3>
-        <p class="muted">After intake, Zumi prepares a first operator view for the site and booking flow.</p>
+        <h3>Audit. Fix. Review.</h3>
+        <p class="muted">After intake, Zumi prepares the first audit and the highest-priority fixes for the site.</p>
       </article>
       <article class="card">
-        <p class="kicker">What to have ready</p>
-        <h3>The basics only.</h3>
-        <p class="muted">Website, social links, booking platform, main services, and the goal you care about most.</p>
+        <p class="kicker">Selected path</p>
+        <h3>${escapeHtml(planLabel)}</h3>
+        <p class="muted">You can start with the free audit first and decide later if you want the fixes applied.</p>
       </article>
     </section>
     <section class="card intake-shell">
       <form method="POST" action="/intake">
-        <input type="hidden" name="plan" value="${escapeHtml(selectedPlan)}" />
+        <input type="hidden" name="plan" value="${escapeHtml(normalizePlan(selectedPlan))}" />
         <input type="hidden" name="businessSize" value="small-team" />
         <input type="hidden" name="leadVolume" value="steady" />
         <input type="hidden" name="salesMotion" value="mixed" />
@@ -2292,6 +2430,10 @@ function intakePage(selectedPlan = 'Starter') {
               <input id="businessName" required name="businessName" placeholder="Luxe-Medi" />
             </div>
             <div class="field">
+              <label for="website">Website URL</label>
+              <input id="website" required name="website" placeholder="https://example.com" />
+            </div>
+            <div class="field">
               <label for="category">Business type</label>
               <select id="category" name="category">
                 <option value="General Business" selected>General Business</option>
@@ -2305,46 +2447,12 @@ function intakePage(selectedPlan = 'Starter') {
               </select>
             </div>
             <div class="field">
-              <label for="owner">Owner or operator</label>
+              <label for="owner">Your name</label>
               <input id="owner" required name="owner" placeholder="Justin Camacho" />
             </div>
             <div class="field">
               <label for="email">Best email</label>
               <input id="email" required type="email" name="email" placeholder="owner@example.com" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-head">
-            <p class="kicker">Site + Channels</p>
-            <h3>What Zumi should look at</h3>
-          </div>
-          <div class="form-grid">
-            <div class="field">
-              <label for="website">Website</label>
-              <input id="website" name="website" placeholder="https://example.com" />
-            </div>
-            <div class="field">
-              <label for="sitePlatform">Website platform</label>
-              <select id="sitePlatform" name="sitePlatform">
-                <option value="wordpress">WordPress</option>
-                <option value="webflow">Webflow</option>
-                <option value="shopify">Shopify</option>
-                <option value="custom">Custom / other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="instagram">Instagram</label>
-              <input id="instagram" name="instagram" placeholder="@luxemedi" />
-            </div>
-            <div class="field">
-              <label for="facebook">Facebook</label>
-              <input id="facebook" name="facebook" placeholder="facebook.com/luxemedi" />
-            </div>
-            <div class="field">
-              <label for="bookingSystem">Booking platform</label>
-              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." />
             </div>
             <div class="field">
               <label for="phone">Best phone</label>
@@ -2356,16 +2464,22 @@ function intakePage(selectedPlan = 'Starter') {
         <div class="form-section">
           <div class="form-section-head">
             <p class="kicker">Focus</p>
-            <h3>What should improve first</h3>
+            <h3>What feels broken right now</h3>
           </div>
           <div class="form-grid">
-            <div class="field full">
-              <label for="mainServices">Main services</label>
-              <input id="mainServices" name="mainServices" placeholder="Services, products, or offers you want Zumi to improve" />
+            <div class="field">
+              <label for="goal">Biggest problem</label>
+              <select id="goal" name="goal">
+                <option value="Not getting enough bookings">Not getting bookings</option>
+                <option value="Low traffic">Low traffic</option>
+                <option value="Bad design or clutter">Bad design</option>
+                <option value="Weak trust or proof">Weak trust</option>
+                <option value="Not sure" selected>Not sure</option>
+              </select>
             </div>
-            <div class="field full">
-              <label for="goal">Main goal</label>
-              <input id="goal" name="goal" placeholder="Get more bookings, improve conversions, or clean up the site" />
+            <div class="field">
+              <label for="mainServices">Main service or offer</label>
+              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." />
             </div>
           </div>
         </div>
@@ -2373,6 +2487,27 @@ function intakePage(selectedPlan = 'Starter') {
         <details class="advanced-panel">
           <summary>Optional details</summary>
           <div class="form-grid">
+            <div class="field">
+              <label for="sitePlatform">Website platform</label>
+              <select id="sitePlatform" name="sitePlatform">
+                <option value="wordpress">WordPress</option>
+                <option value="webflow">Webflow</option>
+                <option value="shopify">Shopify</option>
+                <option value="custom">Custom / other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="bookingSystem">Booking platform</label>
+              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." />
+            </div>
+            <div class="field">
+              <label for="instagram">Instagram</label>
+              <input id="instagram" name="instagram" placeholder="@yourbrand" />
+            </div>
+            <div class="field">
+              <label for="facebook">Facebook</label>
+              <input id="facebook" name="facebook" placeholder="facebook.com/yourbrand" />
+            </div>
             <div class="field full">
               <label for="notes">Notes</label>
               <textarea id="notes" name="notes" placeholder="Anything important about the brand, site, or booking flow?"></textarea>
@@ -2407,7 +2542,7 @@ function intakePage(selectedPlan = 'Starter') {
           </div>
         </div>
 
-        <p class="form-hint">Next step: Zumi prepares the first audit view so you can see what is hurting trust or sales.</p>
+        <p class="form-hint">Usually takes about two minutes. Next step: Zumi prepares the first audit view so you can see what is hurting trust or sales.</p>
         <div class="actions">
           <button class="btn" type="submit">Get My Free Website Audit</button>
           <a class="btn secondary" href="/authorization">Read Authorization</a>
@@ -2417,6 +2552,41 @@ function intakePage(selectedPlan = 'Starter') {
   `;
 
   return layout('Client Intake', content, '/intake');
+}
+
+function intakeSuccessPage(plan = 'Starter') {
+  const content = `
+    <section class="page-head">
+      <div>
+        <p class="section-label">Audit Requested</p>
+        <h2>We’re scanning your site.</h2>
+      </div>
+      <p class="muted">You’ll receive your audit within 24 hours. If the fit is good, the next step is a first fix plan starting at $149.</p>
+    </section>
+    <section class="detail-grid">
+      <article class="card">
+        <p class="kicker">What happens now</p>
+        <h3>Your audit gets reviewed first.</h3>
+        <p class="muted">Zumi will look for the clearest problems in the site, trust, and booking or buying flow.</p>
+      </article>
+      <article class="card">
+        <p class="kicker">If you want more help</p>
+        <h3>${escapeHtml(getPlanLabel(normalizePlan(plan)))}</h3>
+        <p class="muted">If the audit shows a clear opportunity, you can move into the first fix plan or ongoing operator support.</p>
+      </article>
+    </section>
+    <section class="card">
+      <p class="section-label">Next Step</p>
+      <h2>Clear fixes first. Approval first.</h2>
+      <p class="muted">Nothing important goes live without approval. The point is to make the next move obvious, not overwhelming.</p>
+      <div class="actions">
+        <a class="btn" href="/pricing">See Pricing</a>
+        <a class="btn secondary" href="/">Go Home</a>
+      </div>
+    </section>
+  `;
+
+  return layout('Audit Requested', content, '/intake');
 }
 
 function adminPage(clients) {
@@ -2711,10 +2881,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/intake', (req, res) => {
-  const selectedPlan = ['Starter', 'Pro', 'Done-With-You'].includes(req.query.plan)
-    ? req.query.plan
-    : 'Starter';
+  const selectedPlan = normalizePlan(req.query.plan);
   sendHtml(res, intakePage(selectedPlan));
+});
+
+app.get('/intake/success', (req, res) => {
+  sendHtml(res, intakeSuccessPage(normalizePlan(req.query.plan)));
 });
 
 app.get('/solutions', (req, res) => {
@@ -2802,7 +2974,7 @@ app.post('/intake', (req, res) => {
     category: req.body.category || '',
     goal: req.body.goal || '',
     notes: notesParts.join('\n\n'),
-    plan: req.body.plan || 'Starter',
+    plan: normalizePlan(req.body.plan),
     businessSize: req.body.businessSize || 'small-team',
     leadVolume: req.body.leadVolume || 'steady',
     salesMotion: req.body.salesMotion || 'mixed',
@@ -2820,7 +2992,7 @@ app.post('/intake', (req, res) => {
 
   clients.push(newClient);
   writeClients(clients);
-  res.redirect(`/admin/client/${newClient.id}?created=1`);
+  res.redirect(`/intake/success?plan=${encodeURIComponent(newClient.plan)}`);
 });
 
 app.get('/admin', (req, res) => {
