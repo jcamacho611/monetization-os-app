@@ -1,13 +1,14 @@
 {
   "name": "monetization-os-app",
   "version": "1.0.0",
-  "description": "A premium Growth Assistant MVP for local service businesses, powered by Express and OpenAI-ready follow-up workflows.",
+  "description": "Zumi Phase 1: a premium AI Revenue Operator for booking-based businesses, built with Express, OpenAI, and a live instant-audit flow.",
   "main": "server.js",
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
     "check": "node --check server.js",
-    "test": "npm run check"
+    "test": "npm run check",
+    "db:init": "node scripts/init-db.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,10 @@
   },
   "homepage": "https://github.com/jcamacho611/monetization-os-app#readme",
   "dependencies": {
+    "cheerio": "^1.2.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "openai": "^6.33.0"
+    "openai": "^6.33.0",
+    "pg": "^8.20.0"
   }
 }

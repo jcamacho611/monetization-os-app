@@ -1,14 +1,18 @@
 require('dotenv').config({ quiet: true });
 
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const OpenAI = require('openai');
+const storage = require('./lib/storage');
+const { queueAuditJob } = require('./lib/audit-runner');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
-const dataFile = path.join(__dirname, 'data', 'clients.json');
 const followupModel = process.env.OPENAI_MODEL || 'gpt-5.4-mini';
+const auditModel = process.env.OPENAI_AUDIT_MODEL || 'gpt-4.1';
+const auditMaxPages = Number(process.env.AUDIT_MAX_PAGES || 5);
+const auditFetchTimeoutMs = Number(process.env.AUDIT_FETCH_TIMEOUT_MS || 10000);
 const openaiClient = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
@@ -26,13 +30,13 @@ const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
 });
 const brand = {
   name: 'Zumi',
-  category: 'AI website operator',
+  category: 'AI revenue operator',
   audience: 'businesses, brands, and booking-led teams',
   slogan: 'Nothing slips. Everything closes.',
   headline: 'Fix your website. Get more bookings.',
   subhead: 'Zumi finds what is costing you bookings, trust, and conversions, then prepares cleaner fixes you can approve fast.',
   supportingLine: 'Free audit first. Clear fixes next. Approval first.',
-  metaDescription: 'Zumi is an AI website operator that helps businesses, service teams, clinics, and brands fix website conversion problems, improve trust, and turn more visitors into clients.',
+  metaDescription: 'Zumi is an AI revenue operator for booking-based businesses. It scans websites, finds conversion leaks, improves trust and booking flow, and prepares approval-first fixes.',
   proofNote: 'Illustrative launch scenarios built to show how Zumi can improve bookings, trust, and conversion before a full live customer dataset exists.',
   algorithmName: 'Zumi Adapt Engine'
 };
@@ -622,17 +626,12 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
-function readClients() {
-  try {
-    const raw = fs.readFileSync(dataFile, 'utf8');
-    return JSON.parse(raw);
-  } catch (error) {
-    return [];
-  }
+async function readClients() {
+  return storage.listClients();
 }
 
-function writeClients(clients) {
-  fs.writeFileSync(dataFile, JSON.stringify(clients, null, 2));
+async function writeClients() {
+  throw new Error('writeClients is no longer used directly. Use storage methods instead.');
 }
 
 function escapeHtml(value = '') {
@@ -654,8 +653,8 @@ function formatDateTime(value) {
   return Number.isNaN(date.valueOf()) ? 'Unknown' : dateTimeFormatter.format(date);
 }
 
-function getClientById(clientId) {
-  return readClients().find((client) => client.id === clientId);
+async function getClientById(clientId) {
+  return storage.getClientById(clientId);
 }
 
 function getDomainFromWebsite(website = '') {
@@ -1168,11 +1167,103 @@ function buildReviewPrompts(client) {
   ];
 }
 
-function buildTemplateFollowup(client, channel = 'email') {
+function getMessageTypeLabel(messageType = 'inquiry_followup') {
+  const labels = {
+    inquiry_followup: 'Inquiry Follow-up',
+    missed_call: 'Missed-Call Recovery',
+    reactivation: 'Reactivation',
+    review_request: 'Review Request',
+    consult_nudge: 'Consult Nudge',
+    booking_reminder: 'Booking Reminder'
+  };
+
+  return labels[messageType] || 'Inquiry Follow-up';
+}
+
+function getMessageTypeSummary(messageType = 'inquiry_followup') {
+  const summaries = {
+    inquiry_followup: 'For fresh inquiries that need a fast, confident next step.',
+    missed_call: 'For leads that called and never reached the business.',
+    reactivation: 'For older leads or clients that went quiet.',
+    review_request: 'For happy customers who should leave public proof.',
+    consult_nudge: 'For high-intent consult prospects that need a gentle push.',
+    booking_reminder: 'For scheduled prospects who should still show up and convert.'
+  };
+
+  return summaries[messageType] || summaries.inquiry_followup;
+}
+
+function buildTemplateFollowup(client, channel = 'email', messageType = 'inquiry_followup') {
   const owner = client.owner || 'there';
   const businessName = client.businessName || 'your business';
   const goal = client.goal || 'bringing in more qualified leads';
   const blueprint = buildZumiBlueprint(client);
+  const serviceHint = client.mainServices || client.category || 'your offer';
+
+  if (messageType === 'missed_call') {
+    if (channel === 'sms' || channel === 'whatsapp') {
+      return `Hi ${owner}, we saw the missed call for ${businessName}. If you still want help with ${serviceHint}, reply here and we can get you the fastest next step today.`;
+    }
+
+    return `Hi ${owner},
+
+We noticed a missed call for ${businessName} and did not want the opportunity to go cold. If help is still needed around ${serviceHint}, reply here and we can get the next step moving quickly.
+
+Best,
+${brand.name}`;
+  }
+
+  if (messageType === 'reactivation') {
+    if (channel === 'sms' || channel === 'whatsapp') {
+      return `Hi ${owner}, quick check-in from ${businessName}. If ${serviceHint} is still on your mind, we can help you pick the next best step this week.`;
+    }
+
+    return `Hi ${owner},
+
+Quick check-in from ${businessName}. If ${serviceHint} is still something you want to move on, we can help you take the cleanest next step this week without making the process feel complicated.
+
+Best,
+${brand.name}`;
+  }
+
+  if (messageType === 'review_request') {
+    if (channel === 'sms' || channel === 'whatsapp') {
+      return `Hi ${owner}, thanks again for choosing ${businessName}. If the experience felt smooth, would you mind leaving a quick review? It helps more people trust us faster.`;
+    }
+
+    return `Hi ${owner},
+
+Thank you again for choosing ${businessName}. If the experience felt smooth and helpful, would you mind leaving a quick review? It makes it easier for the next customer to trust the business faster.
+
+Best,
+${brand.name}`;
+  }
+
+  if (messageType === 'consult_nudge') {
+    if (channel === 'sms' || channel === 'whatsapp') {
+      return `Hi ${owner}, just checking in on ${businessName}. If you still want to move forward with ${serviceHint}, we can help you lock in the next step today.`;
+    }
+
+    return `Hi ${owner},
+
+Just checking in on ${businessName}. If you still want to move forward with ${serviceHint}, we can help you lock in the next step today while the momentum is still there.
+
+Best,
+${brand.name}`;
+  }
+
+  if (messageType === 'booking_reminder') {
+    if (channel === 'sms' || channel === 'whatsapp') {
+      return `Hi ${owner}, friendly reminder from ${businessName}. Your next step around ${serviceHint} is coming up soon. Reply here if you need anything before then.`;
+    }
+
+    return `Hi ${owner},
+
+Friendly reminder from ${businessName}. Your next step around ${serviceHint} is coming up soon. If anything needs to be adjusted before then, reply here and we can help quickly.
+
+Best,
+${brand.name}`;
+  }
 
   if (channel === 'sms') {
     return `Hi ${owner}, quick check-in on ${businessName}. Based on your ${blueprint.motionLabel.toLowerCase()}, the fastest win is to ${blueprint.offerAngle}. If you want, I can map out the next ${blueprint.primaryChannel === 'sms' ? 'text-first' : 'follow-up'} steps for you this week.`;
@@ -1192,17 +1283,19 @@ Best,
 ${brand.name}`;
 }
 
-function buildFollowupPrompt(client, channel = 'email') {
+function buildFollowupPrompt(client, channel = 'email', messageType = 'inquiry_followup') {
   const owner = client.owner || 'the business owner';
   const businessName = client.businessName || 'the business';
   const goal = client.goal || 'book more jobs';
   const notes = client.notes || 'No additional notes provided.';
   const maxLength = channel === 'email' ? '120 words' : '320 characters';
   const blueprint = buildZumiBlueprint(client);
+  const messageLabel = getMessageTypeLabel(messageType);
 
   return [
-    `You write premium, human follow-up messages for ${brand.name}, an AI follow-up system for local service businesses.`,
+    `You write premium, human follow-up messages for ${brand.name}, an AI revenue operator for booking-based businesses.`,
     `Channel: ${channelLabel(channel)}.`,
+    `Message type: ${messageLabel}.`,
     `Business: ${businessName}.`,
     `Owner: ${owner}.`,
     `Goal: ${goal}.`,
@@ -1223,13 +1316,14 @@ function buildFollowupPrompt(client, channel = 'email') {
   ].join('\n');
 }
 
-async function generateFollowup(client, channel) {
-  const fallback = buildTemplateFollowup(client, channel);
+async function generateFollowup(client, channel, messageType = 'inquiry_followup') {
+  const fallback = buildTemplateFollowup(client, channel, messageType);
 
   if (!openaiClient) {
     return {
       followup: fallback,
       source: 'template',
+      messageType,
       warning: 'OPENAI_API_KEY is not set, so this draft came from the built-in local template.'
     };
   }
@@ -1237,7 +1331,7 @@ async function generateFollowup(client, channel) {
   try {
     const response = await openaiClient.responses.create({
       model: followupModel,
-      input: buildFollowupPrompt(client, channel)
+      input: buildFollowupPrompt(client, channel, messageType)
     });
     const followup = response.output_text ? response.output_text.trim() : '';
 
@@ -1248,6 +1342,7 @@ async function generateFollowup(client, channel) {
     return {
       followup,
       source: 'openai',
+      messageType,
       model: followupModel
     };
   } catch (error) {
@@ -1255,6 +1350,7 @@ async function generateFollowup(client, channel) {
     return {
       followup: fallback,
       source: 'template',
+      messageType,
       warning: `OpenAI request failed, so the app used the local fallback draft instead. ${error.message}`
     };
   }
@@ -1276,7 +1372,7 @@ function layout(title, content, currentPath = '/') {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: brand.name,
-    serviceType: 'AI website operator',
+    serviceType: 'AI revenue operator',
     description: brand.metaDescription,
     areaServed: 'US',
     audience: {
@@ -1358,10 +1454,21 @@ function followupComposerCard(client) {
 
   return `
     <section class="card" data-followup-panel data-client-id="${escapeHtml(client.id)}">
-      <p class="section-label">AI Follow-Up Studio</p>
-      <h3>Generate a personalized message</h3>
-      <p class="muted">Choose a channel, create a draft, and copy it into your workflow. When no API key is configured, the app still returns a smart local fallback message.</p>
+      <p class="section-label">Messaging Center</p>
+      <h3>Generate the next message with intent.</h3>
+      <p class="muted">Use Zumi for inquiry follow-up, missed-call recovery, reactivation, review requests, consult nudges, and booking reminders without losing the premium tone.</p>
       <div class="form-grid" style="margin-top: 18px;">
+        <div class="field">
+          <label for="message-type-${escapeHtml(client.id)}">Message type</label>
+          <select id="message-type-${escapeHtml(client.id)}" data-message-type>
+            <option value="inquiry_followup">Inquiry Follow-up</option>
+            <option value="missed_call">Missed-Call Recovery</option>
+            <option value="reactivation">Reactivation</option>
+            <option value="review_request">Review Request</option>
+            <option value="consult_nudge">Consult Nudge</option>
+            <option value="booking_reminder">Booking Reminder</option>
+          </select>
+        </div>
         <div class="field">
           <label for="channel-${escapeHtml(client.id)}">Channel</label>
           <select id="channel-${escapeHtml(client.id)}" data-channel>
@@ -1371,11 +1478,16 @@ function followupComposerCard(client) {
           </select>
         </div>
       </div>
+      <article class="message-context">
+        <p class="kicker">Context</p>
+        <p class="muted" data-message-context>${escapeHtml(getMessageTypeSummary('inquiry_followup'))}</p>
+      </article>
       <div class="actions">
-        <button class="btn" type="button" data-generate-followup>Generate Follow-up</button>
+        <button class="btn" type="button" data-generate-followup>Generate Message</button>
+        <button class="btn secondary" type="button" data-regenerate-followup disabled>Regenerate</button>
         <button class="btn secondary" type="button" data-copy-followup disabled>Copy Message</button>
       </div>
-      <p class="inline-note" data-followup-error>Draft a message that feels personal before it ever reaches Twilio or SendGrid.</p>
+      <p class="inline-note" data-followup-error>Draft a message that feels personal before it reaches SMS, email, or your booking workflow.</p>
       <article class="ai-result" data-followup-result hidden>
         <p class="result-kicker">Draft</p>
         <pre data-followup-output></pre>
@@ -1571,57 +1683,71 @@ function renderZumiCadenceCard(client) {
 
 function homePage(clients) {
   const content = `
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">${escapeHtml(brand.slogan)}</p>
-        <h1>Fix what’s costing you customers.</h1>
-        <p class="lede">Zumi finds the weak copy, cluttered flow, missing trust, and broken next steps that make visitors leave before they book or buy.</p>
-        <div class="actions">
-          <a class="btn" href="/intake">Scan My Website</a>
-          <a class="btn secondary" href="/how-it-works">See How It Works</a>
+    <section class="entry-hero">
+      <div class="entry-shell">
+        <p class="section-label">AI Revenue Operator</p>
+        <h1>Search for the revenue hiding inside your website.</h1>
+        <p class="lede">Zumi reads the site like an operator: trust, clarity, booking flow, follow-up pressure, and the weak spots quietly costing you clients.</p>
+        <form class="entry-search" method="GET" action="/intake">
+          <input name="website" type="url" placeholder="Enter your website to begin" aria-label="Website URL" required />
+          <button class="btn" type="submit">Begin Audit</button>
+        </form>
+        <p class="supporting-line">Nothing slips. Everything closes.</p>
+        <div class="entry-proof">
+          <span class="pill">Free audit first</span>
+          <span class="pill">Approval-first fixes</span>
+          <span class="pill">$149 first fix</span>
+          <span class="pill">${escapeHtml(String(Math.max(clients.length, 3)))} active operator records</span>
         </div>
-        <div class="live-metrics">
-          <div class="signal-chip">
-            <span class="signal-value">Audit first</span>
-            <span class="signal-label">low-friction start</span>
-          </div>
-          <div class="signal-chip">
-            <span class="signal-value">24-48h</span>
-            <span class="signal-label">first fixes after approval</span>
-          </div>
-          <div class="signal-chip">
-            <span class="signal-value">$149</span>
-            <span class="signal-label">first fix starts here</span>
-          </div>
-        </div>
-        <p class="supporting-line">For service businesses, clinics, brands, stores, and teams that need more from the traffic they already have.</p>
       </div>
-      <div class="card spotlight">
-        <div class="spotlight-visual">
-          <img class="spotlight-image" src="/hero-operator.svg" alt="Cinematic AI website scan scene showing leaks, trust, and booking improvements." />
-        </div>
-        <div>
-          <p class="section-label">AI Website Operator</p>
-          <h3>Your website should close. Not confuse.</h3>
-          <p class="muted">Zumi scans the site, prepares a sharper version, and keeps every live change approval-first.</p>
-        </div>
-        <ul class="list-clean">
-          <li>Find the leak</li>
-          <li>Fix the flow</li>
-          <li>Close more clients</li>
-        </ul>
-        <div class="mini-proof">
-          <span class="pill">Approval first</span>
-          <span class="pill">No long-term contracts</span>
-          <span class="pill">Built for conversion</span>
-        </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="card spotlight">
+          <div class="spotlight-visual">
+            <img class="spotlight-image" src="/hero-operator.svg" alt="Cinematic AI website scan scene showing revenue leaks, trust signals, and conversion improvements." />
+          </div>
+          <p class="section-label">Your website should close.</p>
+          <h3>From traffic to trust to bookings.</h3>
+          <p class="muted">Zumi starts with the site, but it thinks like a revenue operator. It finds where attention drops, trust breaks, and next steps get missed.</p>
+          <div class="mini-proof">
+            <span class="pill">Instant audit</span>
+            <span class="pill">Messaging center</span>
+            <span class="pill">Fix center</span>
+          </div>
+        </article>
+        <article class="card">
+          <p class="section-label">Why owners buy</p>
+          <h3>Clearer revenue recovery. Less agency drag.</h3>
+          <ul class="list-clean">
+            <li>See what is hurting bookings before paying for a rebuild.</li>
+            <li>Fix the homepage, trust layer, booking flow, and follow-up pressure first.</li>
+            <li>Keep every change approval-first so the brand stays protected.</li>
+            <li>Use Zumi like an operator, not another passive dashboard.</li>
+          </ul>
+          <div class="live-metrics">
+            <div class="signal-chip">
+              <span class="signal-value">Instant</span>
+              <span class="signal-label">audit start</span>
+            </div>
+            <div class="signal-chip">
+              <span class="signal-value">24-48h</span>
+              <span class="signal-label">first fixes after approval</span>
+            </div>
+            <div class="signal-chip">
+              <span class="signal-value">$299/mo</span>
+              <span class="signal-label">operator plan</span>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What’s Usually Broken</p>
+          <p class="section-label">Revenue Leaks</p>
           <h2>Most websites lose money in the same four places.</h2>
         </div>
         <p class="muted">The site looks fine on the surface, but conversion drops when the message, trust, and next step are weak.</p>
@@ -1685,19 +1811,32 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What Gets Fixed</p>
-          <h2>The pages and flows that actually change revenue.</h2>
+          <p class="section-label">Operator Surface</p>
+          <h2>Phase 1 is already more than an audit.</h2>
         </div>
-        <p class="muted">Zumi is built to clean up the parts of the site that most directly affect trust, bookings, and buying decisions.</p>
+        <p class="muted">The product starts with the website, then expands into messaging, fixes, and operator visibility around the clearest next move.</p>
       </div>
       <div class="feature-grid">
-        ${offerServices.map((service, index) => `
-          <article class="card">
-            <p class="kicker">Fix 0${index + 1}</p>
-            <h3>${escapeHtml(service)}</h3>
-            <p class="muted">Sharper structure, clearer copy, and a cleaner next step for the buyer.</p>
-          </article>
-        `).join('')}
+        <article class="card">
+          <p class="kicker">Instant Audit</p>
+          <h3>See the leaks first.</h3>
+          <p class="muted">Overall score, clarity, trust, booking friction, quick wins, and rewrite-ready direction in one premium deliverable.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Messaging Center</p>
+          <h3>Recover the conversation.</h3>
+          <p class="muted">Generate inquiry follow-up, missed-call recovery, consult nudges, reactivation, review asks, and reminders without losing tone.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Fix Center</p>
+          <h3>Draft the better version.</h3>
+          <p class="muted">Hero rewrites, CTA rewrites, trust recommendations, booking-flow changes, and approval-first fixes all live together.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Operator Queue</p>
+          <h3>Work the best next move.</h3>
+          <p class="muted">See lead status, contact priority, call notes, audit links, and what should happen next without digging through clutter.</p>
+        </article>
       </div>
     </section>
 
@@ -2619,8 +2758,7 @@ function authorizationPage() {
   return layout('Authorization', content, '/authorization');
 }
 
-function intakePage(selectedPlan = 'Starter') {
-  const planLabel = getPlanLabel(normalizePlan(selectedPlan));
+function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
   const content = `
     <section class="page-head">
       <div>
@@ -2642,7 +2780,7 @@ function intakePage(selectedPlan = 'Starter') {
       </article>
     </section>
     <section class="card intake-shell">
-      <form method="POST" action="/intake">
+      <form method="POST" action="/intake" data-intake-form>
         <input type="hidden" name="plan" value="${escapeHtml(normalizePlan(selectedPlan))}" />
         <input type="hidden" name="businessSize" value="small-team" />
         <input type="hidden" name="leadVolume" value="steady" />
@@ -2657,16 +2795,16 @@ function intakePage(selectedPlan = 'Starter') {
           <div class="form-grid">
             <div class="field">
               <label for="website">Website URL</label>
-              <input id="website" required name="website" placeholder="https://example.com" />
+              <input id="website" required name="website" placeholder="https://example.com" value="${escapeHtml(values.website || '')}" />
             </div>
             <div class="field">
               <label for="goal">Biggest problem</label>
               <select id="goal" name="goal">
-                <option value="Not getting enough bookings">Not getting bookings</option>
-                <option value="Low traffic">Low traffic</option>
-                <option value="Bad design or clutter">Bad design</option>
-                <option value="Weak trust or proof">Weak trust</option>
-                <option value="Not sure" selected>Not sure</option>
+                <option value="Not getting enough bookings"${values.goal === 'Not getting enough bookings' ? ' selected' : ''}>Not getting bookings</option>
+                <option value="Low traffic"${values.goal === 'Low traffic' ? ' selected' : ''}>Low traffic</option>
+                <option value="Bad design or clutter"${values.goal === 'Bad design or clutter' ? ' selected' : ''}>Bad design</option>
+                <option value="Weak trust or proof"${values.goal === 'Weak trust or proof' ? ' selected' : ''}>Weak trust</option>
+                <option value="Not sure"${!values.goal || values.goal === 'Not sure' ? ' selected' : ''}>Not sure</option>
               </select>
             </div>
           </div>
@@ -2677,62 +2815,62 @@ function intakePage(selectedPlan = 'Starter') {
           <div class="form-grid">
             <div class="field">
               <label for="businessName">Business name</label>
-              <input id="businessName" name="businessName" placeholder="Your business name" />
+              <input id="businessName" name="businessName" placeholder="Your business name" value="${escapeHtml(values.businessName || '')}" />
             </div>
             <div class="field">
               <label for="category">Business type</label>
               <select id="category" name="category">
-                <option value="General Business" selected>General Business</option>
-                <option value="Service Business">Service Business</option>
-                <option value="Clinic / Studio">Clinic / Studio</option>
-                <option value="Brand / Store">Brand / Store</option>
-                <option value="Med Spa">Med Spa</option>
-                <option value="Beauty Brand">Beauty Brand</option>
-                <option value="Creator Brand">Creator Brand</option>
-                <option value="Clothing Brand">Clothing Brand</option>
-                <option value="Other">Other</option>
+                <option value="General Business"${!values.category || values.category === 'General Business' ? ' selected' : ''}>General Business</option>
+                <option value="Service Business"${values.category === 'Service Business' ? ' selected' : ''}>Service Business</option>
+                <option value="Clinic / Studio"${values.category === 'Clinic / Studio' ? ' selected' : ''}>Clinic / Studio</option>
+                <option value="Brand / Store"${values.category === 'Brand / Store' ? ' selected' : ''}>Brand / Store</option>
+                <option value="Med Spa"${values.category === 'Med Spa' ? ' selected' : ''}>Med Spa</option>
+                <option value="Beauty Brand"${values.category === 'Beauty Brand' ? ' selected' : ''}>Beauty Brand</option>
+                <option value="Creator Brand"${values.category === 'Creator Brand' ? ' selected' : ''}>Creator Brand</option>
+                <option value="Clothing Brand"${values.category === 'Clothing Brand' ? ' selected' : ''}>Clothing Brand</option>
+                <option value="Other"${values.category === 'Other' ? ' selected' : ''}>Other</option>
               </select>
             </div>
             <div class="field">
               <label for="owner">Your name</label>
-              <input id="owner" name="owner" placeholder="Your name" />
+              <input id="owner" name="owner" placeholder="Your name" value="${escapeHtml(values.owner || '')}" />
             </div>
             <div class="field">
               <label for="email">Best email</label>
-              <input id="email" type="email" name="email" placeholder="owner@example.com" />
+              <input id="email" type="email" name="email" placeholder="owner@example.com" value="${escapeHtml(values.email || '')}" />
             </div>
             <div class="field">
               <label for="phone">Best phone</label>
-              <input id="phone" name="phone" placeholder="(555) 000-0000" />
+              <input id="phone" name="phone" placeholder="(555) 000-0000" value="${escapeHtml(values.phone || '')}" />
             </div>
             <div class="field">
               <label for="mainServices">Main service or offer</label>
-              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." />
+              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." value="${escapeHtml(values.mainServices || '')}" />
             </div>
             <div class="field">
               <label for="sitePlatform">Website platform</label>
               <select id="sitePlatform" name="sitePlatform">
-                <option value="wordpress">WordPress</option>
-                <option value="webflow">Webflow</option>
-                <option value="shopify">Shopify</option>
-                <option value="custom">Custom / other</option>
+                <option value="wordpress"${values.sitePlatform === 'wordpress' ? ' selected' : ''}>WordPress</option>
+                <option value="webflow"${values.sitePlatform === 'webflow' ? ' selected' : ''}>Webflow</option>
+                <option value="shopify"${values.sitePlatform === 'shopify' ? ' selected' : ''}>Shopify</option>
+                <option value="custom"${!values.sitePlatform || values.sitePlatform === 'custom' ? ' selected' : ''}>Custom / other</option>
               </select>
             </div>
             <div class="field">
               <label for="bookingSystem">Booking platform</label>
-              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." />
+              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." value="${escapeHtml(values.bookingSystem || '')}" />
             </div>
             <div class="field">
               <label for="instagram">Instagram</label>
-              <input id="instagram" name="instagram" placeholder="@yourbrand" />
+              <input id="instagram" name="instagram" placeholder="@yourbrand" value="${escapeHtml(values.instagram || '')}" />
             </div>
             <div class="field">
               <label for="facebook">Facebook</label>
-              <input id="facebook" name="facebook" placeholder="facebook.com/yourbrand" />
+              <input id="facebook" name="facebook" placeholder="facebook.com/yourbrand" value="${escapeHtml(values.facebook || '')}" />
             </div>
             <div class="field full">
               <label for="notes">Notes</label>
-              <textarea id="notes" name="notes" placeholder="Anything important about the brand, site, or booking flow?"></textarea>
+              <textarea id="notes" name="notes" placeholder="Anything important about the brand, site, or booking flow?">${escapeHtml(values.notes || '')}</textarea>
             </div>
           </div>
         </details>
@@ -2745,19 +2883,19 @@ function intakePage(selectedPlan = 'Starter') {
           <div class="form-grid">
             <div class="field full">
               <label class="checkbox-field">
-                <input required type="checkbox" name="scanConsent" value="yes" />
+                <input required type="checkbox" name="scanConsent" value="yes"${values.scanConsent === 'yes' ? ' checked' : ''} />
                 <span>I authorize Zumi to scan the site and approved systems for draft recommendations.</span>
               </label>
             </div>
             <div class="field full">
               <label class="checkbox-field">
-                <input required type="checkbox" name="publishConsent" value="yes" />
+                <input required type="checkbox" name="publishConsent" value="yes"${values.publishConsent === 'yes' ? ' checked' : ''} />
                 <span>I understand changes stay approval-first and do not publish automatically.</span>
               </label>
             </div>
             <div class="field full">
               <label class="checkbox-field">
-                <input required type="checkbox" name="legalConsent" value="yes" />
+                <input required type="checkbox" name="legalConsent" value="yes"${values.legalConsent === 'yes' ? ' checked' : ''} />
                 <span>I agree to the <a href="/terms">Terms</a>, <a href="/privacy">Privacy Policy</a>, and <a href="/authorization">Authorization</a>.</span>
               </label>
             </div>
@@ -2765,8 +2903,9 @@ function intakePage(selectedPlan = 'Starter') {
         </div>
 
         <p class="form-hint">Usually takes about 30 seconds. Add contact details only if you want the audit sent directly.</p>
+        <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'We’ll start the audit as soon as you submit the site.')}</p>
         <div class="actions">
-          <button class="btn" type="submit">Get My Free Website Audit</button>
+          <button class="btn" type="submit" data-intake-submit>Get My Free Website Audit</button>
           <a class="btn secondary" href="/authorization">Read Authorization</a>
         </div>
       </form>
@@ -2811,18 +2950,314 @@ function intakeSuccessPage(plan = 'Starter') {
   return layout('Audit Requested', content, '/intake');
 }
 
-function adminPage(clients) {
+function getAuditStatusLabel(status = 'queued') {
+  const labels = {
+    queued: 'Queued',
+    scanning: 'Scanning',
+    analyzing: 'Analyzing',
+    completed: 'Completed',
+    failed: 'Failed'
+  };
+
+  return labels[status] || 'Queued';
+}
+
+function getAuditProgressCopy(job) {
+  if (!job) {
+    return 'Preparing your audit.';
+  }
+
+  return job.progressLabel || {
+    queued: 'Reading your website.',
+    scanning: 'Mapping trust and conversion signals.',
+    analyzing: 'Building your Zumi audit.',
+    completed: 'Your audit is ready.',
+    failed: 'We could not finish the audit.'
+  }[job.status] || 'Preparing your audit.';
+}
+
+function createClientFromIntake(form = {}) {
+  const socialParts = [
+    form.instagram ? `Instagram: ${form.instagram}` : '',
+    form.facebook ? `Facebook: ${form.facebook}` : '',
+    form.socialStack || ''
+  ].filter(Boolean);
+  const notesParts = [
+    form.mainServices ? `Main services: ${form.mainServices}` : '',
+    form.notes || ''
+  ].filter(Boolean);
+  const website = form.website || '';
+  const businessName = form.businessName || getDomainFromWebsite(website) || 'Website Lead';
+
+  return {
+    id: `c_${crypto.randomUUID().slice(0, 10)}`,
+    businessName,
+    owner: form.owner || '',
+    email: form.email || '',
+    phone: form.phone || '',
+    website,
+    sitePlatform: form.sitePlatform || 'custom',
+    category: form.category || 'General Business',
+    goal: form.goal || '',
+    notes: notesParts.join('\n\n'),
+    plan: normalizePlan(form.plan),
+    businessSize: form.businessSize || 'small-team',
+    leadVolume: form.leadVolume || 'steady',
+    salesMotion: form.salesMotion || 'mixed',
+    preferredChannel: form.preferredChannel || 'email',
+    socialStack: socialParts.join(' · '),
+    instagram: form.instagram || '',
+    facebook: form.facebook || '',
+    mainServices: form.mainServices || '',
+    bookingSystem: form.bookingSystem || '',
+    callLogs: [],
+    scanConsent: form.scanConsent === 'yes',
+    publishConsent: form.publishConsent === 'yes',
+    legalConsent: form.legalConsent === 'yes',
+    createdAt: new Date().toISOString()
+  };
+}
+
+function createAuditJobRecord(clientId) {
+  return {
+    id: `audit_${crypto.randomUUID().slice(0, 12)}`,
+    clientId,
+    status: 'queued',
+    progressLabel: 'Reading your website.',
+    startedAt: '',
+    completedAt: '',
+    errorMessage: '',
+    source: '',
+    createdAt: new Date().toISOString()
+  };
+}
+
+async function createLeadAndAudit(form = {}) {
+  const client = await storage.createClient(createClientFromIntake(form));
+  const auditJob = await storage.createAuditJob(createAuditJobRecord(client.id));
+
+  queueAuditJob(auditJob.id, {
+    storage,
+    openaiClient,
+    model: auditModel,
+    maxPages: auditMaxPages,
+    fetchTimeoutMs: auditFetchTimeoutMs
+  });
+
+  return {
+    client,
+    auditJob,
+    redirectUrl: `/audit/${auditJob.id}`
+  };
+}
+
+function renderAuditIssueCards(result) {
+  if (!result || !Array.isArray(result.topIssues) || !result.topIssues.length) {
+    return `
+      <article class="card audit-issue-card">
+        <p class="kicker">No issues yet</p>
+        <h3>Your audit is still loading.</h3>
+        <p class="muted">Zumi will fill this with the biggest leaks as soon as the scan is finished.</p>
+      </article>
+    `;
+  }
+
+  return result.topIssues.map((issue) => `
+    <article class="card audit-issue-card">
+      <p class="kicker">${escapeHtml(issue.category || 'Issue')}</p>
+      <h3>${escapeHtml(issue.issue || 'Needs attention')}</h3>
+      <p class="muted">${escapeHtml(issue.whyItHurts || 'This issue is making the site harder to trust or act on.')}</p>
+      <span class="pill">${escapeHtml(issue.severity || 'medium')}</span>
+    </article>
+  `).join('');
+}
+
+function auditPage(auditJob, client, auditResult) {
+  const completed = auditJob?.status === 'completed' && auditResult;
+  const scores = auditResult?.scores || {};
+  const strongestPage = auditResult?.strongestPageFound || client?.website || 'Homepage';
+  const sourceMode = auditResult?.sourceMode || auditResult?.source || auditJob?.source || 'pending';
+
+  const content = `
+    <section class="page-head">
+      <div>
+        <p class="section-label">Instant Audit</p>
+        <h2>${escapeHtml(getClientDisplayName(client || {}))}</h2>
+      </div>
+      <p class="muted">Zumi is checking where this site is leaking trust, bookings, and sales.</p>
+    </section>
+
+    <section class="card audit-shell" data-audit-page data-audit-id="${escapeHtml(auditJob.id)}">
+      <div class="audit-loading">
+        <p class="section-label">Live Audit</p>
+        <h3 data-audit-progress>${escapeHtml(getAuditProgressCopy(auditJob))}</h3>
+        <p class="muted">Searching your website for hidden conversion gold...</p>
+        <div class="mini-proof">
+          <span class="pill" data-audit-status-pill>${escapeHtml(getAuditStatusLabel(auditJob.status))}</span>
+          <span class="pill">${escapeHtml(client?.website || 'Website pending')}</span>
+          <span class="pill" data-audit-source-mode>${escapeHtml(sourceMode)}</span>
+        </div>
+      </div>
+
+      <div class="audit-grid" data-audit-results${completed ? '' : ' hidden'}>
+        <article class="card audit-score-card">
+          <p class="kicker">Overall Score</p>
+          <div class="audit-score" data-audit-overall-score>${completed ? escapeHtml(String(auditResult.overallScore || '--')) : '--'}</div>
+          <p class="muted" data-audit-summary>${completed ? escapeHtml(auditResult.summary || '') : 'Your summary will appear here as soon as the audit finishes.'}</p>
+        </article>
+          <article class="card">
+            <p class="kicker">Five-Second Impression</p>
+            <h3 data-audit-five-second>${completed ? escapeHtml(auditResult.fiveSecondImpression || '') : 'Loading first-impression analysis...'}</h3>
+            <div class="audit-mini-scores">
+            ${['clarity', 'trust', 'cta', 'booking', 'seo', 'mobile'].map((key) => `
+              <div class="audit-mini-score">
+                <strong data-audit-score-${key}>${completed ? escapeHtml(String(scores[key] ?? '--')) : '--'}</strong>
+                <span>${escapeHtml(key)}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="mini-proof" style="margin-top: 18px;">
+            <span class="pill">Strongest page</span>
+            <span class="pill" data-audit-strongest-page>${escapeHtml(strongestPage)}</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="audit-sections" data-audit-detail-sections${completed ? '' : ' hidden'}>
+        <section>
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Top Leaks</p>
+              <h2>What is hurting revenue first.</h2>
+            </div>
+          </div>
+          <div class="feature-grid" data-audit-issues>${renderAuditIssueCards(auditResult)}</div>
+        </section>
+
+        <section class="detail-grid" style="margin-top: 18px;">
+          <article class="card">
+            <p class="kicker">Quick Wins</p>
+            <ul class="list-clean" data-audit-quick-wins>
+              ${(completed ? auditResult.quickWins : ['Zumi is building your quick wins now.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+            </ul>
+          </article>
+          <article class="card">
+            <p class="kicker">Best Next Step</p>
+            <ul class="list-clean" data-audit-recommended-fixes>
+              ${(completed ? auditResult.recommendedFixes : ['Your recommended fixes will appear here when the scan finishes.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+            </ul>
+          </article>
+        </section>
+
+        <section class="detail-grid" style="margin-top: 18px;">
+          <article class="card">
+            <p class="kicker">Rewritten Hero</p>
+            <div class="rewrite-preview">
+              <strong data-audit-hero-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading headline...'}</strong>
+              <p class="muted" data-audit-hero-subheadline>${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading subheadline...'}</p>
+              <span class="pill" data-audit-hero-cta>${completed ? escapeHtml(auditResult.heroRewrite?.cta || '') : 'Loading CTA...'}</span>
+            </div>
+          </article>
+          <article class="card">
+            <p class="kicker">Operator View</p>
+            <ul class="list-clean" data-audit-conversion-leaks>
+              ${(completed ? auditResult.conversionLeaks : ['Your conversion leaks will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+            </ul>
+          </article>
+        </section>
+
+        <section style="margin-top: 18px;">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Fix Center</p>
+              <h2>Drafts, recommendations, and approval-first moves.</h2>
+            </div>
+            <p class="muted">Phase 1 prepares the better version before any live publish layer exists.</p>
+          </div>
+          <div class="feature-grid">
+            <article class="card fix-card">
+              <p class="kicker">Draft</p>
+              <h3>Hero + CTA rewrite</h3>
+              <div class="rewrite-preview">
+                <strong data-audit-fix-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading rewrite...'}</strong>
+                <p class="muted">${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading supporting copy...'}</p>
+                <span class="pill" data-audit-fix-cta>${completed ? escapeHtml(auditResult.heroRewrite?.cta || '') : 'Loading CTA...'}</span>
+              </div>
+              <div class="mini-proof">
+                <span class="pill">draft</span>
+                <span class="pill">approval-first</span>
+              </div>
+            </article>
+            <article class="card fix-card">
+              <p class="kicker">Trust Layer</p>
+              <h3>What should make the site feel safer.</h3>
+              <ul class="list-clean" data-audit-trust-recommendations>
+                ${(completed ? auditResult.trustRecommendations : ['Trust recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+            </article>
+            <article class="card fix-card">
+              <p class="kicker">Booking Flow</p>
+              <h3>Where the next step should get easier.</h3>
+              <ul class="list-clean" data-audit-booking-recommendations>
+                ${(completed ? auditResult.bookingFlowRecommendations : ['Booking-flow recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+            </article>
+            <article class="card fix-card">
+              <p class="kicker">SEO + Structure</p>
+              <h3>Quiet wins for search and clarity.</h3>
+              <ul class="list-clean" data-audit-seo-recommendations>
+                ${(completed ? auditResult.seoRecommendations : ['SEO recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+            </article>
+            <article class="card fix-card">
+              <p class="kicker">Missing Elements</p>
+              <h3>What the current experience still lacks.</h3>
+              <ul class="list-clean" data-audit-missing-elements>
+                ${(completed ? auditResult.missingElements : ['Missing elements will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+            </article>
+            <article class="card fix-card">
+              <p class="kicker">Approval Workflow</p>
+              <h3>How Zumi handles changes.</h3>
+              <ul class="list-clean">
+                <li>Draft created from the audit.</li>
+                <li>Owner reviews before anything changes live.</li>
+                <li>Approved items move forward. Rejected items return for revision.</li>
+              </ul>
+              <div class="mini-proof">
+                <span class="pill">draft</span>
+                <span class="pill">approved</span>
+                <span class="pill">needs revision</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <article class="card audit-error" data-audit-error${auditJob.status === 'failed' ? '' : ' hidden'}>
+        <p class="kicker">Audit Error</p>
+        <h3>We could not finish the scan.</h3>
+        <p class="muted" data-audit-error-message>${escapeHtml(auditJob.errorMessage || 'Try again with a reachable website URL.')}</p>
+      </article>
+    </section>
+  `;
+
+  return layout('Instant Audit', content, `/audit/${auditJob.id}`);
+}
+
+function adminPage(clients, latestAudits = {}) {
   const topChannel = channelLabel(mostCommonChannel(clients));
   const newestClient = clients[0] ? formatDate([...clients].sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt))[0].createdAt) : 'None yet';
   const callQueue = [...clients]
     .sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt))
     .map((client) => {
       const latestCall = getLatestCallLog(client);
+      const latestAudit = latestAudits[client.id]?.job;
       return `
         <tr>
           <td>
             <div class="table-title">${escapeHtml(getClientDisplayName(client))}</div>
-            <div class="table-subtitle">${escapeHtml(client.website || 'No website provided')}</div>
+            <div class="table-subtitle">${escapeHtml(client.website || 'No website provided')} · Audit ${escapeHtml(getAuditStatusLabel(latestAudit?.status || 'queued'))}</div>
           </td>
           <td>${escapeHtml(getClientContactSummary(client))}</td>
           <td>${escapeHtml(getCallStatus(client))}</td>
@@ -2838,6 +3273,8 @@ function adminPage(clients) {
     .map((client) => {
       const portalLink = `/portal/${client.id}`;
       const blueprint = buildZumiBlueprint(client);
+      const latestAudit = latestAudits[client.id]?.job;
+      const latestResult = latestAudits[client.id]?.result;
       return `<tr>
         <td>
           <div class="table-title">${escapeHtml(getClientDisplayName(client))}</div>
@@ -2847,9 +3284,10 @@ function adminPage(clients) {
         <td>${escapeHtml(blueprint.sizeLabel)}</td>
         <td>${escapeHtml(channelLabel(client.preferredChannel || 'email'))}</td>
         <td>${formatDate(client.createdAt)}</td>
-        <td><span class="status">${escapeHtml(getCallStatus(client))}</span></td>
+        <td><span class="status">${escapeHtml(latestAudit ? `${getAuditStatusLabel(latestAudit.status)}${latestResult?.overallScore ? ` · ${latestResult.overallScore}` : ''}` : getCallStatus(client))}</span></td>
         <td>
           <div><a href="/admin/client/${escapeHtml(client.id)}">Open</a></div>
+          ${latestAudit ? `<div class="table-subtitle"><a href="/audit/${escapeHtml(latestAudit.id)}">Audit</a></div>` : ''}
           <div class="table-subtitle"><a href="${portalLink}">Portal</a></div>
         </td>
       </tr>`;
@@ -2948,7 +3386,7 @@ function adminPage(clients) {
   return layout('Admin Dashboard', content, '/admin');
 }
 
-function adminClientPage(client, wasJustCreated = false) {
+function adminClientPage(client, wasJustCreated = false, latestAuditJob = null, latestAuditResult = null) {
   const actionItems = buildActionItems(client);
   const reviews = buildReviewPrompts(client);
   const blueprint = buildZumiBlueprint(client);
@@ -3034,6 +3472,47 @@ function adminClientPage(client, wasJustCreated = false) {
         </div>
       </article>
       ${followupComposerCard(client)}
+    </section>
+    <section class="detail-grid" style="margin-top: 18px;">
+      <article class="card">
+        <p class="kicker">Audit Status</p>
+        <h3>${escapeHtml(getAuditStatusLabel(latestAuditJob?.status || 'queued'))}</h3>
+        <p class="muted">${escapeHtml(getAuditProgressCopy(latestAuditJob))}</p>
+        <div class="mini-proof">
+          ${latestAuditResult?.overallScore ? `<span class="pill">Score ${escapeHtml(String(latestAuditResult.overallScore))}</span>` : ''}
+          ${latestAuditJob ? `<span class="pill">${escapeHtml(latestAuditJob.id)}</span>` : '<span class="pill">No audit yet</span>'}
+        </div>
+        <div class="actions">
+          ${latestAuditJob ? `<a class="btn" href="/audit/${escapeHtml(latestAuditJob.id)}">Open Audit</a>` : '<a class="btn" href="/intake">Create Audit</a>'}
+        </div>
+      </article>
+      <article class="card">
+        <p class="kicker">Audit Summary</p>
+        <h3>${escapeHtml(latestAuditResult?.summary || 'Audit results will appear here once the scan is complete.')}</h3>
+        <ul class="list-clean">
+          ${(latestAuditResult?.quickWins || ['No quick wins yet.', 'Audit still in progress.']).slice(0, 3).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+      </article>
+    </section>
+    <section class="detail-grid" style="margin-top: 18px;">
+      <article class="card">
+        <p class="kicker">Fix Center</p>
+        <h3>Draft improvements waiting for approval.</h3>
+        <ul class="list-clean">
+          ${(latestAuditResult?.recommendedFixes || ['Draft fixes will appear here after the audit completes.', 'Approval-first workflow stays ready for the next phase.']).slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+        <div class="mini-proof">
+          <span class="pill">draft</span>
+          <span class="pill">approval-first</span>
+        </div>
+      </article>
+      <article class="card">
+        <p class="kicker">Trust + Booking Layer</p>
+        <h3>What Zumi wants to strengthen next.</h3>
+        <ul class="list-clean">
+          ${(latestAuditResult?.trustRecommendations || latestAuditResult?.bookingFlowRecommendations || ['Trust and booking recommendations will appear here once the audit is ready.']).slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+      </article>
     </section>
     <section class="detail-grid" style="margin-top: 18px;">
       <article class="card">
@@ -3203,68 +3682,68 @@ function notFoundPage() {
   );
 }
 
-app.get('/', (req, res) => {
-  sendHtml(res, homePage(readClients()));
+app.get('/', async (req, res) => {
+  sendHtml(res, homePage(await readClients()));
 });
 
-app.get('/intake', (req, res) => {
+app.get('/intake', async (req, res) => {
   const selectedPlan = normalizePlan(req.query.plan);
-  sendHtml(res, intakePage(selectedPlan));
+  sendHtml(res, intakePage(selectedPlan, req.query));
 });
 
-app.get('/intake/success', (req, res) => {
+app.get('/intake/success', async (req, res) => {
   sendHtml(res, intakeSuccessPage(normalizePlan(req.query.plan)));
 });
 
-app.get('/solutions', (req, res) => {
+app.get('/solutions', async (req, res) => {
   sendHtml(res, solutionsPage());
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', async (req, res) => {
   sendHtml(res, aboutPage());
 });
 
-app.get('/privacy', (req, res) => {
+app.get('/privacy', async (req, res) => {
   sendHtml(res, privacyPage());
 });
 
-app.get('/terms', (req, res) => {
+app.get('/terms', async (req, res) => {
   sendHtml(res, termsPage());
 });
 
-app.get('/authorization', (req, res) => {
+app.get('/authorization', async (req, res) => {
   sendHtml(res, authorizationPage());
 });
 
-app.get('/how-it-works', (req, res) => {
+app.get('/how-it-works', async (req, res) => {
   sendHtml(res, howItWorksPage());
 });
 
-app.get('/discover', (req, res) => {
+app.get('/discover', async (req, res) => {
   sendHtml(res, discoverPage());
 });
 
-app.get('/verify', (req, res) => {
+app.get('/verify', async (req, res) => {
   sendHtml(res, verifyPage());
 });
 
-app.get('/convert', (req, res) => {
+app.get('/convert', async (req, res) => {
   sendHtml(res, convertPage());
 });
 
-app.get('/industries', (req, res) => {
+app.get('/industries', async (req, res) => {
   sendHtml(res, industriesPage());
 });
 
-app.get('/med-spas', (req, res) => {
+app.get('/med-spas', async (req, res) => {
   sendHtml(res, medSpaPage());
 });
 
-app.get('/operator-architecture', (req, res) => {
+app.get('/operator-architecture', async (req, res) => {
   sendHtml(res, operatorArchitecturePage());
 });
 
-app.get('/solutions/:slug', (req, res) => {
+app.get('/solutions/:slug', async (req, res) => {
   const page = solutionPages.find((item) => item.slug === req.params.slug);
 
   if (!page) {
@@ -3275,66 +3754,97 @@ app.get('/solutions/:slug', (req, res) => {
   sendHtml(res, solutionPage(page));
 });
 
-app.get('/pricing', (req, res) => {
+app.get('/pricing', async (req, res) => {
   sendHtml(res, pricingPage());
 });
 
-app.post('/intake', (req, res) => {
-  const clients = readClients();
-  const socialParts = [
-    req.body.instagram ? `Instagram: ${req.body.instagram}` : '',
-    req.body.facebook ? `Facebook: ${req.body.facebook}` : '',
-    req.body.socialStack || ''
-  ].filter(Boolean);
-  const notesParts = [
-    req.body.mainServices ? `Main services: ${req.body.mainServices}` : '',
-    req.body.notes || ''
-  ].filter(Boolean);
-  const website = req.body.website || '';
-  const businessName = req.body.businessName || getDomainFromWebsite(website) || 'Website Lead';
-  const newClient = {
-    id: `c${Date.now()}`,
-    businessName,
-    owner: req.body.owner || '',
-    email: req.body.email || '',
-    phone: req.body.phone || '',
-    website,
-    sitePlatform: req.body.sitePlatform || 'custom',
-    category: req.body.category || 'General Business',
-    goal: req.body.goal || '',
-    notes: notesParts.join('\n\n'),
-    plan: normalizePlan(req.body.plan),
-    businessSize: req.body.businessSize || 'small-team',
-    leadVolume: req.body.leadVolume || 'steady',
-    salesMotion: req.body.salesMotion || 'mixed',
-    preferredChannel: req.body.preferredChannel || 'email',
-    socialStack: socialParts.join(' · '),
-    instagram: req.body.instagram || '',
-    facebook: req.body.facebook || '',
-    mainServices: req.body.mainServices || '',
-    bookingSystem: req.body.bookingSystem || '',
-    callLogs: [],
-    scanConsent: req.body.scanConsent === 'yes',
-    publishConsent: req.body.publishConsent === 'yes',
-    legalConsent: req.body.legalConsent === 'yes',
-    createdAt: new Date().toISOString()
-  };
+app.post('/api/intake', async (req, res) => {
+  if (!req.body.website) {
+    res.status(400).json({ error: 'Website URL is required.' });
+    return;
+  }
 
-  clients.push(newClient);
-  writeClients(clients);
-  res.redirect(`/intake/success?plan=${encodeURIComponent(newClient.plan)}`);
+  if (!(req.body.scanConsent === 'yes' && req.body.publishConsent === 'yes' && req.body.legalConsent === 'yes')) {
+    res.status(400).json({ error: 'All approval checkboxes are required.' });
+    return;
+  }
+
+  try {
+    const session = await createLeadAndAudit(req.body);
+    res.json({
+      clientId: session.client.id,
+      auditId: session.auditJob.id,
+      redirectUrl: session.redirectUrl
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Could not start the audit right now.' });
+  }
 });
 
-app.post('/admin/client/:id/calls', (req, res) => {
-  const clients = readClients();
-  const clientIndex = clients.findIndex((client) => client.id === req.params.id);
+app.post('/intake', async (req, res) => {
+  if (!req.body.website) {
+    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Website URL is required.'), 400);
+    return;
+  }
 
-  if (clientIndex === -1) {
+  if (!(req.body.scanConsent === 'yes' && req.body.publishConsent === 'yes' && req.body.legalConsent === 'yes')) {
+    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'All approval checkboxes are required.'), 400);
+    return;
+  }
+
+  try {
+    const session = await createLeadAndAudit(req.body);
+    res.redirect(session.redirectUrl);
+  } catch (error) {
+    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Could not start the audit right now.'), 500);
+  }
+});
+
+app.get('/audit/:id', async (req, res) => {
+  const auditJob = await storage.getAuditJobById(req.params.id);
+
+  if (!auditJob) {
     sendHtml(res, notFoundPage(), 404);
     return;
   }
 
-  const client = clients[clientIndex];
+  const client = await storage.getClientById(auditJob.clientId);
+  const auditResult = await storage.getAuditResult(auditJob.id);
+  sendHtml(res, auditPage(auditJob, client, auditResult));
+});
+
+app.get('/api/audit/:id', async (req, res) => {
+  const auditJob = await storage.getAuditJobById(req.params.id);
+
+  if (!auditJob) {
+    res.status(404).json({ error: 'Audit not found.' });
+    return;
+  }
+
+  const client = await storage.getClientById(auditJob.clientId);
+  const auditResult = await storage.getAuditResult(auditJob.id);
+
+  res.json({
+    auditId: auditJob.id,
+    clientId: auditJob.clientId,
+    businessName: getClientDisplayName(client || {}),
+    website: client?.website || '',
+    status: auditJob.status,
+    progress: getAuditProgressCopy(auditJob),
+    source: auditResult?.sourceMode || auditJob.source || auditResult?.source || '',
+    errorMessage: auditJob.errorMessage || '',
+    result: auditResult || null
+  });
+});
+
+app.post('/admin/client/:id/calls', async (req, res) => {
+  const client = await storage.getClientById(req.params.id);
+
+  if (!client) {
+    sendHtml(res, notFoundPage(), 404);
+    return;
+  }
+
   const nextLog = {
     worker: req.body.worker || '',
     outcome: req.body.outcome || 'called',
@@ -3344,29 +3854,37 @@ app.post('/admin/client/:id/calls', (req, res) => {
     createdAt: new Date().toISOString()
   };
 
-  client.callLogs = [...getCallLogs(client), nextLog];
-  clients[clientIndex] = client;
-  writeClients(clients);
+  await storage.appendCallLog(client.id, nextLog);
   res.redirect(`/admin/client/${encodeURIComponent(client.id)}`);
 });
 
-app.get('/admin', (req, res) => {
-  sendHtml(res, adminPage(readClients()));
+app.get('/admin', async (req, res) => {
+  const clients = await storage.listClients();
+  const latestAudits = {};
+
+  await Promise.all(clients.map(async (client) => {
+    latestAudits[client.id] = await storage.getLatestAuditForClient(client.id);
+  }));
+
+  sendHtml(res, adminPage(clients, latestAudits));
 });
 
-app.get('/admin/client/:id', (req, res) => {
-  const client = getClientById(req.params.id);
+app.get('/admin/client/:id', async (req, res) => {
+  const client = await getClientById(req.params.id);
 
   if (!client) {
     sendHtml(res, notFoundPage(), 404);
     return;
   }
 
-  sendHtml(res, adminClientPage(client, req.query.created === '1'));
+  const latestAudit = await storage.getLatestAuditForClient(client.id);
+  const latestAuditJob = latestAudit.job;
+  const latestAuditResult = latestAudit.result;
+  sendHtml(res, adminClientPage(client, req.query.created === '1', latestAuditJob, latestAuditResult));
 });
 
-app.get('/portal/:id', (req, res) => {
-  const client = getClientById(req.params.id);
+app.get('/portal/:id', async (req, res) => {
+  const client = await getClientById(req.params.id);
 
   if (!client) {
     sendHtml(res, notFoundPage(), 404);
@@ -3376,7 +3894,7 @@ app.get('/portal/:id', (req, res) => {
   sendHtml(res, clientPortalPage(client));
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', async (req, res) => {
   sendHtml(
     res,
     placeholderPage(
@@ -3392,11 +3910,11 @@ app.get('/login', (req, res) => {
   );
 });
 
-app.get('/case-studies', (req, res) => {
+app.get('/case-studies', async (req, res) => {
   sendHtml(res, caseStudiesPage());
 });
 
-app.get('/demo', (req, res) => {
+app.get('/demo', async (req, res) => {
   sendHtml(
     res,
     placeholderPage(
@@ -3412,11 +3930,13 @@ app.get('/demo', (req, res) => {
   );
 });
 
-app.get('/health', (req, res) => {
+app.get('/health', async (req, res) => {
+  const clients = await storage.listClients();
   res.json({
     status: 'ok',
     openaiConfigured: Boolean(openaiClient),
-    clientCount: readClients().length
+    storageMode: storage.mode,
+    clientCount: clients.length
   });
 });
 
@@ -3444,7 +3964,7 @@ app.post('/api/opportunity-preview', (req, res) => {
 });
 
 app.post('/api/followup/:id', async (req, res) => {
-  const client = getClientById(req.params.id);
+  const client = await getClientById(req.params.id);
 
   if (!client) {
     res.status(404).json({ error: 'Client not found.' });
@@ -3454,13 +3974,23 @@ app.post('/api/followup/:id', async (req, res) => {
   const channel = ['email', 'sms', 'whatsapp'].includes(req.body.channel)
     ? req.body.channel
     : client.preferredChannel || 'email';
+  const messageType = [
+    'inquiry_followup',
+    'missed_call',
+    'reactivation',
+    'review_request',
+    'consult_nudge',
+    'booking_reminder'
+  ].includes(req.body.messageType)
+    ? req.body.messageType
+    : 'inquiry_followup';
 
-  const payload = await generateFollowup(client, channel);
+  const payload = await generateFollowup(client, channel, messageType);
   res.json(payload);
 });
 
-app.get('/api/blueprint/:id', (req, res) => {
-  const client = getClientById(req.params.id);
+app.get('/api/blueprint/:id', async (req, res) => {
+  const client = await getClientById(req.params.id);
 
   if (!client) {
     res.status(404).json({ error: 'Client not found.' });
