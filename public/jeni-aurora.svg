@@ -1,0 +1,39 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="204" y1="112" x2="1184" y2="866" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0F19"/>
+      <stop offset="1" stop-color="#04070D"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(426 242) rotate(30) scale(372 248)">
+      <stop stop-color="#8EA2FF" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#8EA2FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1024 286) rotate(90) scale(286 372)">
+      <stop stop-color="#64E9FF" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#64E9FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="400" y1="212" x2="1050" y2="726" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.04)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="960" rx="40" fill="url(#bg)"/>
+  <ellipse cx="426" cy="242" rx="372" ry="248" fill="url(#glowA)"/>
+  <ellipse cx="1024" cy="286" rx="286" ry="372" fill="url(#glowB)"/>
+  <rect x="294" y="184" width="852" height="592" rx="40" fill="#0B111D" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <rect x="326" y="216" width="788" height="528" rx="28" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)"/>
+  <rect x="378" y="290" width="684" height="90" rx="45" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+  <circle cx="430" cy="335" r="12" fill="#8EA2FF"/>
+  <rect x="460" y="319" width="370" height="14" rx="7" fill="rgba(255,255,255,0.76)"/>
+  <rect x="460" y="344" width="264" height="12" rx="6" fill="rgba(255,255,255,0.28)"/>
+  <rect x="894" y="306" width="128" height="56" rx="28" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="378" y="430" width="260" height="234" rx="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="666" y="430" width="396" height="234" rx="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="414" y="470" width="112" height="112" rx="56" fill="rgba(142,162,255,0.16)" stroke="rgba(142,162,255,0.45)"/>
+  <path d="M442 526L470 554L526 498" stroke="#EFF3FF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="706" y="472" width="196" height="14" rx="7" fill="rgba(255,255,255,0.78)"/>
+  <rect x="706" y="502" width="274" height="12" rx="6" fill="rgba(255,255,255,0.28)"/>
+  <rect x="706" y="538" width="308" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
+  <rect x="706" y="590" width="136" height="40" rx="20" fill="rgba(100,233,255,0.16)" stroke="rgba(100,233,255,0.36)"/>
+  <text x="376" y="152" fill="rgba(255,255,255,0.78)" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" letter-spacing="4">JENI TRUST LAYER</text>
+</svg>

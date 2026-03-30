@@ -29,196 +29,200 @@ const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
   minute: '2-digit'
 });
 const brand = {
-  name: 'NA Kit',
-  category: 'future app operator',
-  audience: 'founders, operators, and people building necessary products',
-  slogan: 'Necessary apps. Future doors.',
-  headline: 'Ten necessary apps. One extraordinary launch surface.',
-  subhead: 'NA Kit is a premium concept lab for viral, monetizable apps built around fear, savings, care, work, home, trust, and social proof.',
-  supportingLine: 'Urgent pain. Shareable proof. Platform doors.',
-  metaDescription: 'NA Kit is a premium future-app studio exploring necessary, viral, monetizable products across safety, money, care, work, home, commerce, and trust.',
-  proofNote: 'These are Phase 1 venture concepts designed to create shareable proof, recurring budgets, and real platform expansion doors.',
-  algorithmName: 'NA Signal Engine'
+  name: 'Jeni',
+  category: 'AI trust platform',
+  audience: 'families, creators, operators, and teams navigating the AI trust era',
+  slogan: 'Trust, signed.',
+  headline: 'The trust layer for the AI era.',
+  subhead: 'Jeni turns identity, media, actions, and outcomes into verifiable receipts so people can move faster with less doubt.',
+  supportingLine: 'Receipts for scams, truth, care, money, home, work, and proof.',
+  metaDescription: 'Jeni is a premium AI trust platform that turns media, identity, actions, and outcomes into verifiable receipts across scams, money, care, home, work, commerce, dating, and civic life.',
+  proofNote: 'Phase 1 launches Jeni Shield first, then expands into ten trust surfaces powered by shared receipts, provenance, and identity.',
+  algorithmName: 'Jeni Trust Engine'
 };
-const nakitConcepts = [
+const jeniFeatures = [
   {
-    slug: 'scamsentry',
-    letter: 'A',
-    title: 'ScamSentry',
-    category: 'Safety + family protection',
-    pitch: 'A family firewall that catches scams across calls, texts, DMs, emails, and payments.',
-    viralHook: 'Shareable Scam Receipts that warn other people without exposing private data.',
-    monetization: '$9–$19/mo family plan plus B2B bank and fintech partnerships.',
-    door: 'Identity, verified communications, payment-risk infrastructure.',
-    whyNow: 'Impersonation scams already cost billions and keep rising.'
+    slug: 'shield',
+    letter: '01',
+    title: 'Jeni Shield',
+    category: 'Safety + scams',
+    pitch: 'A family firewall for impersonation scams across calls, texts, DMs, email, and payments.',
+    viralHook: 'Scam Receipts that explain the tell, redact the risk, and are built to share.',
+    monetization: '$8.99 Plus, $14.99 Family, and business fraud protection tiers.',
+    door: 'Verified calling, identity trust, and payments-risk infrastructure.',
+    whyNow: 'Fraud losses are huge, the pain is emotional, and the warning wants to travel.'
   },
   {
-    slug: 'billbuster',
-    letter: 'B',
-    title: 'BillBuster',
+    slug: 'wallet',
+    letter: '02',
+    title: 'Jeni Wallet',
     category: 'Money + recurring spend',
-    pitch: 'A one-button bill optimizer that cancels junk, negotiates spend, and turns savings into proof.',
-    viralHook: 'Savings cards and monthly savings streaks people flex to friends.',
-    monetization: 'Share-of-savings plus a $5–$15/mo automation tier.',
-    door: 'Consumer finance autopilot, switching agent, spending permissions.',
-    whyNow: 'Recurring spend creep is universal and under-managed.'
+    pitch: 'Find recurring bills, cancel junk, negotiate spend, and turn the win into signed savings proof.',
+    viralHook: 'Savings Receipts and streak cards that make financial cleanup social.',
+    monetization: 'Share-of-savings plus a recurring automation subscription.',
+    door: 'Consumer finance autopilot, switching, and permissioned spending agents.',
+    whyNow: 'Recurring spend keeps leaking because almost nobody manages it cleanly.'
   },
   {
-    slug: 'carecircle',
-    letter: 'C',
-    title: 'CareCircle',
-    category: 'Family + health logistics',
-    pitch: 'The shared operating layer for meds, appointments, transport, and aging-parent coordination.',
-    viralHook: 'Privacy-safe care wins, streaks, and family accountability receipts.',
-    monetization: '$12–$25/mo family plans plus employer and care-agency distribution.',
-    door: 'Healthcare logistics, telehealth workflows, pharmacy coordination.',
-    whyNow: 'Caregiving is rising, but coordination is still chaos.'
+    slug: 'truth',
+    letter: '03',
+    title: 'Jeni Truth',
+    category: 'Media + reality',
+    pitch: 'Upload a clip or screenshot and get a Reality Card with provenance, manipulation signals, and plain-English verification steps.',
+    viralHook: 'Comment-ready clarity cards built for stories, threads, and group chats.',
+    monetization: 'Freemium plus power-user and newsroom/API licenses.',
+    door: 'Trust APIs for media, marketplaces, brands, and enterprise comms.',
+    whyNow: 'Synthetic media is cheap, social feeds are crowded, and people need usable certainty.'
   },
   {
-    slug: 'skillstack',
-    letter: 'D',
-    title: 'SkillStack',
-    category: 'Work + learning reputation',
-    pitch: 'A proof-of-skill network where weekly shipped output becomes the resume.',
-    viralHook: 'Ship clips and proof cards that travel in short-form feeds.',
-    monetization: '$10–$30/mo pro, recruiting SaaS, mentor marketplace take-rates.',
-    door: 'Credential graph, apprenticeship market, reputation infrastructure.',
-    whyNow: 'Resumes are weak signals; shipped work wins.'
+    slug: 'clipshop',
+    letter: '04',
+    title: 'Jeni ClipShop',
+    category: 'Commerce + creators',
+    pitch: 'Turn short-form video into trusted commerce with verified claims, price history, and cleaner returns.',
+    viralHook: 'Verified dupe cards, claim badges, and creator storefront overlays.',
+    monetization: 'Affiliate revenue, take-rate, and creator/brand SaaS.',
+    door: 'Commerce infrastructure for creator video and verified product graphs.',
+    whyNow: 'Clip-led buying is growing fast while trust still lags behind the conversion.'
+  },
+  {
+    slug: 'skilldrop',
+    letter: '05',
+    title: 'Jeni SkillDrop',
+    category: 'Work + proof',
+    pitch: 'Weekly shipped work becomes a signed proof-of-skill graph instead of another forgettable resume.',
+    viralHook: 'Ship clips and Skill Credentials designed for short-form feeds.',
+    monetization: 'Pro subscriptions, recruiting SaaS, mentorship and apprenticeship take-rates.',
+    door: 'Portable reputation graphs and hiring trust infrastructure.',
+    whyNow: 'Resumes are weak signals and AI makes fake portfolios easier than ever.'
+  },
+  {
+    slug: 'careops',
+    letter: '06',
+    title: 'Jeni CareOps',
+    category: 'Care + family',
+    pitch: 'Coordinate medications, appointments, transport, and caregiving handoffs with verified logs and secure records.',
+    viralHook: 'Care receipts, protected family dashboards, and calm handoff proof.',
+    monetization: 'Family plans, employer benefits, and care-agency partnerships.',
+    door: 'Health-adjacent logistics, remote coordination, and secure care workflows.',
+    whyNow: 'Caregiving is exploding and the coordination burden is brutal.'
   },
   {
     slug: 'homeledger',
-    letter: 'E',
-    title: 'HomeLedger',
+    letter: '07',
+    title: 'Jeni HomeLedger',
     category: 'Home + property ops',
-    pitch: 'Turn the home into a managed asset with maintenance, documentation, claims, and resale readiness.',
-    viralHook: 'Before-and-after maintenance stories and home-value lift proof.',
-    monetization: '$8–$20/mo household plans plus contractor and insurer partnerships.',
-    door: 'Property ops, underwriting-grade home data, multi-home expansion.',
-    whyNow: 'Homes are expensive; documentation and upkeep are fragmented.'
+    pitch: 'Turn home maintenance, receipts, warranties, and claims into a verified asset history.',
+    viralHook: 'Repair receipts, claim packs, and “value saved” home stories.',
+    monetization: 'Household plans plus contractor, warranty, and insurer partnerships.',
+    door: 'Property ops, underwriting-grade condition data, and multi-home expansion.',
+    whyNow: 'Homes are expensive and documentation is still scattered everywhere.'
   },
   {
     slug: 'civiccopilot',
-    letter: 'F',
-    title: 'CivicCopilot',
-    category: 'Life admin + bureaucracy',
-    pitch: 'An assistant for forms, deadlines, disputes, appointments, and appeal trails.',
-    viralHook: 'Shareable wins against bureaucracy: reduced fees, recovered money, faster appointments.',
-    monetization: '$15–$99 per case plus $9–$25/mo admin subscription.',
-    door: 'Life admin API for any repetitive paperwork process.',
-    whyNow: 'The coordination tax of bureaucracy is still enormous.'
+    letter: '08',
+    title: 'Jeni CivicCopilot',
+    category: 'Civic + bureaucracy',
+    pitch: 'Automate filings, deadlines, appointments, and disputes with clean receipts and audit trails.',
+    viralHook: 'Shareable “I beat the system” wins with proof of what changed.',
+    monetization: 'Pay-per-case and subscription admin tiers.',
+    door: 'Life-admin APIs for every repetitive paperwork workflow.',
+    whyNow: 'Bureaucracy still burns time, money, and attention at scale.'
   },
   {
     slug: 'dateguard',
-    letter: 'G',
-    title: 'DateGuard',
+    letter: '09',
+    title: 'Jeni DateGuard',
     category: 'Dating + safety',
-    pitch: 'A safety-first dating layer with identity checks, meetup plans, and panic-proof infrastructure.',
-    viralHook: 'Green-flag badges and safety streaks among friends.',
-    monetization: '$6–$15/mo, pay-per-verify, safety partnerships.',
+    pitch: 'A safety-first dating layer with identity checks, panic-proof tooling, and private proof by default.',
+    viralHook: 'Green-flag badges and safety streaks friends actually talk about.',
+    monetization: 'Monthly safety plans, pay-per-verify, and partner integrations.',
     door: 'Portable trust primitives for dating, roommates, and P2P commerce.',
-    whyNow: 'AI-fueled impersonation risk is colliding with online dating at scale.'
-  },
-  {
-    slug: 'clipcommerce',
-    letter: 'H',
-    title: 'ClipCommerce',
-    category: 'Commerce + creator video',
-    pitch: 'A shop-the-clip layer that makes short-form video instantly shoppable and easier to trust.',
-    viralHook: 'Shareable carts, dupe finds, and creator overlays that travel like content.',
-    monetization: 'Affiliate + take-rate + creator and brand SaaS.',
-    door: 'Social-video commerce infrastructure, creator payouts, product graphs.',
-    whyNow: 'Short-form commerce keeps growing, but trust and logistics lag.'
+    whyNow: 'AI impersonation risk is colliding with dating trust in a very public way.'
   },
   {
     slug: 'movepilot',
-    letter: 'I',
-    title: 'MovePilot',
-    category: 'Relocation + life transitions',
-    pitch: 'A relocation OS that coordinates moves, switching, paperwork, and service setup end to end.',
-    viralHook: 'Move scorecards, survival templates, and city swap guides people share.',
-    monetization: 'Referral economics plus $10–$25 concierge tier.',
-    door: 'Transition OS for newborns, job changes, marriage, divorce, and more.',
-    whyNow: 'Life transitions are still chaotic and expensive.'
-  },
-  {
-    slug: 'realitycheck',
-    letter: 'J',
-    title: 'RealityCheck',
-    category: 'Information + trust',
-    pitch: 'A social-first “is this real?” product that turns confusing content into clarity cards.',
-    viralHook: 'Reality Cards built for reposts in stories, comments, and group chats.',
-    monetization: '$5–$10/mo power user tier plus newsroom/community licenses.',
-    door: 'Trust and verification API for media, marketplaces, and brands.',
-    whyNow: 'Feeds are saturated and confusion has become the default.'
+    letter: '10',
+    title: 'Jeni MovePilot',
+    category: 'Relocation + transitions',
+    pitch: 'An operating system for moving, switching services, verifying providers, and keeping every life-transition receipt.',
+    viralHook: 'Move scorecards, city guides, and proof-rich relocation templates.',
+    monetization: 'Referral revenue plus premium concierge and employer plans.',
+    door: 'A larger transition OS for moves, newborns, job changes, and marriage shifts.',
+    whyNow: 'Life transitions are still chaotic, expensive, and scam-prone.'
   }
 ];
-const nakitMoats = [
+const jeniPrimitives = [
   {
-    title: 'Share artifact moat',
-    body: 'The output becomes distribution: Scam Receipts, Savings Cards, Care Dashboards, Proof-of-Skill clips, and Reality Cards.'
+    title: 'Jeni Receipts',
+    body: 'Every important action should become a signed receipt: scam flags, savings wins, claim packs, care handoffs, and public proof.'
   },
   {
-    title: 'Workflow lock-in',
-    body: 'Once a family, homeowner, or operator runs the workflow inside the app, switching becomes painful.'
+    title: 'Media credentials',
+    body: 'When media is involved, Jeni treats provenance as a product surface with manifests, hashes, and verification states.'
   },
   {
-    title: 'Platform door',
-    body: 'Each idea can graduate from app to infrastructure once it owns a real layer of trust, payments, care, or logistics.'
+    title: 'Identity and device trust',
+    body: 'Passkeys, step-up verification, and device confidence sit underneath the highest-risk flows.'
+  },
+  {
+    title: 'Forensics + uncertainty',
+    body: 'Jeni explains signals, confidence, and limits clearly instead of pretending detectors are magic truth machines.'
   }
 ];
-const nakitRankings = [
+const jeniRankings = [
   {
-    title: 'Fastest to cash',
-    winner: 'ScamSentry',
-    body: 'Urgent fear + obvious family subscription + natural social warning loop.'
+    title: 'Best first product',
+    winner: 'Jeni Shield',
+    body: 'The pain is urgent, the family subscription is obvious, and the Scam Receipt wants to spread.'
   },
   {
-    title: 'Most defensible',
-    winner: 'CareCircle',
-    body: 'Families do not rip out coordination layers once habits and history are there.'
+    title: 'Most durable workflow',
+    winner: 'Jeni CareOps',
+    body: 'Once a family runs care coordination in one place, the history and roles become sticky.'
   },
   {
-    title: 'Highest ceiling',
-    winner: 'ClipCommerce',
-    body: 'It can sit directly in the transaction path of creator attention and product buying.'
+    title: 'Largest eventual platform',
+    winner: 'Jeni Passport',
+    body: 'Identity, consent, and signed proof can eventually power every other surface on the stack.'
   }
 ];
-const nakitPaths = [
-  'Urgent fear or urgent savings first.',
-  'Turn the outcome into a shareable object.',
-  'Charge where the budget already exists.',
-  'Expand into the platform door once trust is earned.'
+const jeniLaunchPath = [
+  'Catch the trust failure people already fear.',
+  'Turn the outcome into a signed, shareable receipt.',
+  'Charge where protection or savings already earn a budget.',
+  'Grow into identity, verification, or workflow infrastructure.'
 ];
-const nakitRevenueBuckets = [
+const jeniRevenueModels = [
   {
-    title: 'Recurring protection',
-    body: 'Subscription businesses win when the app protects people from constant loss, risk, or chaos.',
-    examples: 'ScamSentry, CareCircle, HomeLedger'
+    title: 'Protection subscription',
+    body: 'Use recurring plans when the app prevents loss, fear, impersonation, or constant coordination failure.',
+    examples: 'Shield, CareOps, HomeLedger'
   },
   {
-    title: 'Performance fee',
-    body: 'Pay-on-win models work when the result is measurable: savings recovered, fees reduced, or bureaucracy beaten.',
-    examples: 'BillBuster, CivicCopilot'
+    title: 'Pay-on-win',
+    body: 'Use measurable wins when savings, bureaucracy, or money recovered can be proven immediately.',
+    examples: 'Wallet, CivicCopilot'
   },
   {
-    title: 'Throughput take-rate',
-    body: 'The biggest upside appears when the app sits directly inside shopping, services, hiring, or transitions.',
-    examples: 'ClipCommerce, MovePilot, SkillStack'
+    title: 'Transaction rail',
+    body: 'Use take-rates when the product lives inside shopping, hiring, dating, or relocation throughput.',
+    examples: 'ClipShop, SkillDrop, MovePilot'
   }
 ];
-const nakitAcquisitionChannels = [
-  'Short-form creators with a native warning, flex, or transformation angle.',
-  'Search intent around urgent pain like scams, bills, moving, or care.',
-  'Community loops where people naturally forward help to friends or family.',
-  'Institutional distribution once the first consumer wedge proves itself.'
+const jeniChannels = [
+  'Short-form social built around warning cards, savings flexes, and story-sized receipts.',
+  'Communities that naturally forward help to parents, partners, clients, and friends.',
+  'App-store intent around scams, truth, identity, savings, and safety.',
+  'Institutional distribution once the first trust artifact proves itself.'
 ];
-const nakitScoreLabels = {
-  clarity: 'Urgency',
-  trust: 'Shareability',
-  cta: 'Monetization',
-  booking: 'Defensibility',
-  seo: 'Platform Door',
-  mobile: 'Build Speed'
+const jeniScoreLabels = {
+  clarity: 'Need',
+  trust: 'Trust Layer',
+  cta: 'Revenue',
+  booking: 'Receipt Depth',
+  seo: 'Platform Potential',
+  mobile: 'Launch Speed'
 };
 const planPaymentLinks = {
   Starter: process.env.STRIPE_STARTER_PAYMENT_LINK || '',
@@ -854,6 +858,86 @@ function getDomainFromWebsite(website = '') {
   }
 }
 
+function looksLikeUrlCandidate(value = '') {
+  const raw = String(value || '').trim();
+
+  if (!raw) {
+    return false;
+  }
+
+  return /^https?:\/\//i.test(raw)
+    || /^www\./i.test(raw)
+    || /^[a-z0-9-]+(\.[a-z0-9-]+)+([/:?#].*)?$/i.test(raw);
+}
+
+function extractFirstUrlCandidate(value = '') {
+  const raw = String(value || '').trim();
+
+  if (!raw) {
+    return '';
+  }
+
+  const direct = raw.match(/https?:\/\/[^\s]+/i);
+  if (direct) {
+    return direct[0];
+  }
+
+  const www = raw.match(/www\.[^\s]+/i);
+  if (www) {
+    return www[0];
+  }
+
+  const domain = raw.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)+(?:\/[^\s]*)?/i);
+  return domain ? domain[0] : '';
+}
+
+function normalizeLooseUrl(value = '') {
+  const raw = String(value || '').trim();
+
+  if (!raw || !looksLikeUrlCandidate(raw)) {
+    return raw;
+  }
+
+  try {
+    const next = new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`);
+    next.hash = '';
+    return next.toString();
+  } catch (error) {
+    return raw;
+  }
+}
+
+function buildIntakePrefill(input = {}) {
+  const values = { ...input };
+  const prompt = String(values.q || values.query || '').trim();
+
+  if (prompt) {
+    values.query = prompt;
+  }
+
+  if (!values.website && prompt) {
+    const extracted = extractFirstUrlCandidate(prompt);
+    if (extracted) {
+      values.website = extracted;
+    } else if (!values.notes) {
+      values.notes = prompt;
+    }
+  }
+
+  values.website = normalizeLooseUrl(values.website || '');
+  values.facebook = normalizeLooseUrl(values.facebook || '');
+
+  if (values.bookingSystem && looksLikeUrlCandidate(values.bookingSystem)) {
+    values.bookingSystem = normalizeLooseUrl(values.bookingSystem);
+  }
+
+  return values;
+}
+
+function prepareIntakeSubmission(input = {}) {
+  return buildIntakePrefill(input);
+}
+
 function getClientDisplayName(client = {}) {
   return client.businessName || getDomainFromWebsite(client.website) || 'Website Lead';
 }
@@ -985,40 +1069,54 @@ function getSalesMotionLabel(motion = 'mixed') {
 
 function getSitePlatformLabel(platform = 'wordpress') {
   const labels = {
-    wordpress: 'WordPress',
-    webflow: 'Webflow',
-    shopify: 'Shopify',
-    custom: 'Custom / Other'
+    'category-site': 'Category site',
+    competitor: 'Competitor',
+    'creator-brand': 'Creator brand',
+    'market-article': 'Market article',
+    custom: 'Other signal'
   };
 
-  return labels[platform] || 'WordPress';
+  return labels[platform] || 'Other signal';
 }
 
-function normalizePlan(plan = 'Starter') {
+function normalizePlan(plan = 'Free') {
   const labels = {
-    Starter: 'Starter',
-    Pro: 'Pro',
-    Operator: 'Pro',
-    'Done-With-You': 'Done-With-You',
-    Concierge: 'Done-With-You'
+    Free: 'Free',
+    Plus: 'Plus',
+    Family: 'Family',
+    Business: 'Business',
+    Starter: 'Free',
+    Pro: 'Family',
+    Operator: 'Family',
+    'Done-With-You': 'Business',
+    Concierge: 'Business'
   };
 
-  return labels[plan] || 'Starter';
+  return labels[plan] || 'Free';
 }
 
-function getPlanLabel(plan = 'Starter') {
+function getPlanLabel(plan = 'Free') {
   const labels = {
-    Starter: 'Starter',
-    Pro: 'Operator',
-    'Done-With-You': 'Concierge'
+    Free: 'Free',
+    Plus: 'Plus',
+    Family: 'Family',
+    Business: 'Business',
+    Starter: 'Free',
+    Pro: 'Family',
+    'Done-With-You': 'Business'
   };
 
-  return labels[plan] || plan || 'Starter';
+  return labels[plan] || plan || 'Free';
 }
 
-function getPlanPaymentLink(plan = 'Starter') {
+function getPlanPaymentLink(plan = 'Free') {
   const label = getPlanLabel(plan);
-  return planPaymentLinks[label] || '';
+  const map = {
+    Plus: planPaymentLinks.Starter || '',
+    Family: planPaymentLinks.Operator || '',
+    Business: planPaymentLinks.Concierge || ''
+  };
+  return map[label] || '';
 }
 
 function inferBusinessSize(client) {
@@ -1079,100 +1177,139 @@ function buildZumiBlueprint(client) {
   const leadVolume = inferLeadVolume(client);
   const salesMotion = inferSalesMotion(client);
   const preferredChannel = client.preferredChannel || 'email';
-  const goal = client.goal || 'book more qualified jobs';
-  const category = client.category || 'Local Service';
+  const goal = client.goal || 'turn a trust problem into a verifiable product surface';
+  const category = client.category || 'General trust surface';
   const sizeLabel = getBusinessSizeLabel(businessSize);
   const volumeLabel = getLeadVolumeLabel(leadVolume);
   const motionLabel = getSalesMotionLabel(salesMotion);
+  const context = `${category} ${goal} ${client.notes || ''} ${client.mainServices || ''}`.toLowerCase();
 
-  let engineName = 'Lead Lift Engine';
-  let responseTarget = 'Respond within 15 minutes';
-  let offerAngle = `show how ${client.businessName || 'the business'} can win more jobs without adding admin work`;
-  let reviewTiming = 'Request a review right after the job is completed';
+  let engineName = 'Jeni Shield Surface';
+  let responseTarget = 'Ship the first shareable receipt in 14 days';
+  let offerAngle = 'turn trust failure into a signed artifact people naturally forward';
+  let reviewTiming = 'Capture the first proof object right after the first clear user win';
   let primaryChannel = preferredChannel;
   let secondaryChannel = preferredChannel === 'email' ? 'sms' : 'email';
   let cadence = [
-    'Immediate acknowledgment',
-    'Same-day value follow-up',
-    '24-hour reactivation',
-    'Post-job review prompt'
+    'Capture the riskiest trust moment',
+    'Explain it in plain English',
+    'Generate the receipt',
+    'Route it into a share loop'
   ];
   let launchSteps = [
-    `Map ${sizeLabel.toLowerCase()} operating constraints and the main goal around ${goal}.`,
-    `Launch a ${motionLabel.toLowerCase()} sequence through ${channelLabel(primaryChannel)} first, then support it with ${channelLabel(secondaryChannel)}.`,
-    'Close the loop with a review or rebooking request so every completed job creates more momentum.'
+    `Map the highest-stakes trust failure inside this ${sizeLabel.toLowerCase()} launch context.`,
+    `Design the first artifact and move it through ${channelLabel(primaryChannel)} first, then support it with ${channelLabel(secondaryChannel)}.`,
+    'Keep every action anchored to a signed receipt, verifier page, or proof object.'
   ];
 
-  if (salesMotion === 'emergency') {
-    engineName = 'Rapid Response Engine';
-    responseTarget = businessSize === 'solo' ? 'Respond within 5 minutes' : 'Respond within 3 minutes';
-    offerAngle = 'recover urgent jobs before they call the next provider';
-    reviewTiming = 'Send a review ask within 2 hours of the completed visit';
-    primaryChannel = preferredChannel === 'email' ? 'sms' : preferredChannel;
-    secondaryChannel = primaryChannel === 'sms' ? 'email' : 'sms';
+  if (/(scam|fraud|impersonation|spoof|phish|shield|risk)/.test(context)) {
+    engineName = 'Jeni Shield Surface';
+    responseTarget = 'Flag the risk and issue a Scam Receipt in under 60 seconds';
+    offerAngle = 'catch impersonation fast and turn the warning into something families can share';
+    reviewTiming = 'Convert every saved incident into a clean learning loop and share artifact';
+    primaryChannel = 'sms';
+    secondaryChannel = 'email';
     cadence = [
-      '90-second missed-call text',
-      '10-minute reassurance follow-up',
-      '2-hour quote or booking reminder',
-      'Same-day review request'
+      'Capture the suspicious message or caller',
+      'Score the risk with explainable signals',
+      'Generate a redacted Scam Receipt',
+      'Share it with the family or team circle'
     ];
-  } else if (salesMotion === 'recurring') {
-    engineName = 'Retention Flywheel';
-    responseTarget = 'Respond within 30 minutes';
-    offerAngle = 'turn one-time jobs into repeat bookings and referrals';
-    reviewTiming = 'Ask for the review after the service win, then follow with a rebooking prompt at 30 days';
-    primaryChannel = preferredChannel;
-    secondaryChannel = preferredChannel === 'email' ? 'sms' : 'email';
+  } else if (/(bill|saving|subscription|wallet|spend|merchant|price)/.test(context)) {
+    engineName = 'Jeni Wallet Surface';
+    responseTarget = 'Turn the first savings win into a signed receipt this week';
+    offerAngle = 'make recurring spend cleanup measurable, social, and hard to ignore';
+    reviewTiming = 'Publish the monthly savings delta as proof, not just a chart';
     cadence = [
-      'Welcome and expectation-setting message',
-      'Post-service thank-you',
-      'Review request within 24 hours',
-      '30-day reactivation offer'
+      'Detect the recurring spend pattern',
+      'Propose the strongest cancellation or negotiation move',
+      'Generate a Savings Receipt',
+      'Stack the next monthly savings streak'
     ];
-  } else if (salesMotion === 'estimate') {
-    engineName = 'Quote Revival Engine';
-    responseTarget = businessSize === 'enterprise' ? 'Respond within 2 business hours' : 'Respond within 1 business hour';
-    offerAngle = 'bring stalled proposals back into active conversations';
-    reviewTiming = 'Ask for the review once the project is signed off and the customer sees the finished result';
-    primaryChannel = preferredChannel === 'sms' ? 'email' : preferredChannel;
-    secondaryChannel = primaryChannel === 'email' ? 'sms' : 'email';
+  } else if (/(truth|real|media|deepfake|provenance|clip|reality|verify)/.test(context)) {
+    engineName = 'Jeni Truth Surface';
+    responseTarget = 'Produce the first Reality Card in one pass';
+    offerAngle = 'turn confusing media into clear, repostable trust evidence';
+    reviewTiming = 'Reuse each verified Reality Card as a credibility flywheel';
     cadence = [
-      'Estimate recap within 1 hour',
-      'Value-based follow-up at 24 hours',
-      'Objection-handling nudge at 72 hours',
-      'Final check-in before the opportunity goes cold'
+      'Ingest the clip, screenshot, or link',
+      'Read provenance and manipulation signals',
+      'Explain the confidence and limitations',
+      'Publish a comment-ready Reality Card'
     ];
-  } else if (salesMotion === 'high-ticket') {
-    engineName = 'Consult Conversion Engine';
-    responseTarget = 'Respond within 30 minutes';
-    offerAngle = 'turn high-intent consult interest into booked revenue without losing the premium feel';
-    reviewTiming = 'Request a review after the treatment outcome is visible and the client feels confident sharing it';
-    primaryChannel = preferredChannel === 'email' ? 'sms' : preferredChannel;
-    secondaryChannel = primaryChannel === 'sms' ? 'email' : 'sms';
+  } else if (/(care|med|appointment|family|health|medication|careops)/.test(context)) {
+    engineName = 'Jeni CareOps Surface';
+    responseTarget = 'Make the first handoff visible and auditable this week';
+    offerAngle = 'replace chaotic coordination with signed care receipts and calmer family trust';
+    reviewTiming = 'Use every completed task as proof that the system reduces conflict';
     cadence = [
-      'Fast consult acknowledgment',
-      'Same-day clarity follow-up',
-      '24-hour booking nudge',
-      'Post-visit review and rebooking prompt'
+      'Capture the schedule or medication event',
+      'Log the handoff and completion',
+      'Generate the care receipt',
+      'Keep the family timeline clean and current'
+    ];
+  } else if (/(home|property|repair|claim|contractor|warranty)/.test(context)) {
+    engineName = 'Jeni HomeLedger Surface';
+    responseTarget = 'Make the first repair or claim pack verifier-ready';
+    offerAngle = 'turn messy home history into a verified asset record';
+    reviewTiming = 'Use every maintenance win as future claim and resale leverage';
+    cadence = [
+      'Capture the invoice, media, or warranty',
+      'Bind it to the home timeline',
+      'Generate the repair receipt',
+      'Keep the claim pack ready'
+    ];
+  } else if (/(date|dating|profile|catfish|panic)/.test(context)) {
+    engineName = 'Jeni DateGuard Surface';
+    responseTarget = 'Make the first safety check feel effortless before the date happens';
+    offerAngle = 'give people proof, identity confidence, and panic-safe control without killing the vibe';
+    reviewTiming = 'Use each verified interaction as the start of a safer trust graph';
+    cadence = [
+      'Check profile consistency',
+      'Set the safety plan and trusted circle',
+      'Create the private date receipt',
+      'Keep emergency proof ready'
+    ];
+  } else if (/(move|moving|relocation|utility|address)/.test(context)) {
+    engineName = 'Jeni MovePilot Surface';
+    responseTarget = 'Finish the first switch or verification task this week';
+    offerAngle = 'make every move step verifiable, cleaner, and less scam-prone';
+    reviewTiming = 'Let each move receipt shrink the next moving decision';
+    cadence = [
+      'Capture the move timeline',
+      'Verify providers and quotes',
+      'Generate move receipts',
+      'Close the transition with a ready archive'
+    ];
+  } else if (/(skill|work|portfolio|hire|mentor|apprentice)/.test(context)) {
+    engineName = 'Jeni SkillDrop Surface';
+    responseTarget = 'Ship one proof-of-skill card every week';
+    offerAngle = 'turn shipped work into verifiable reputation instead of another resume bullet';
+    reviewTiming = 'Use every shipped proof as a new compounding credential';
+    cadence = [
+      'Capture the shipped work',
+      'Bind reviews or mentor proof',
+      'Issue the Skill Credential',
+      'Push the clip into the portfolio graph'
     ];
   }
 
   if (leadVolume === 'surging' || leadVolume === 'high') {
-    launchSteps[0] = `Score incoming ${category.toLowerCase()} leads by speed, deal value, and close likelihood for a ${volumeLabel.toLowerCase()} environment.`;
+    launchSteps[0] = `Design the first Jeni surface for a ${volumeLabel.toLowerCase()} environment where proof has to move fast.`;
   }
 
   if (businessSize === 'multi-location' || businessSize === 'enterprise') {
-    launchSteps[1] = `Standardize the ${engineName.toLowerCase()} across teams, while routing hot leads to the right location or operator automatically.`;
+    launchSteps[1] = `Standardize the ${engineName.toLowerCase()} across teams, devices, and approvers without losing chain-of-custody.`;
   }
 
   const automationFocus = [
     `${sizeLabel} profile`,
-    motionLabel,
+    engineName,
     volumeLabel,
-    `${channelLabel(primaryChannel)}-first sequence`
+    `${channelLabel(primaryChannel)}-first artifact`
   ];
 
-  const summary = `${brand.algorithmName} read this business as a ${sizeLabel.toLowerCase()} running a ${motionLabel.toLowerCase()} model with ${volumeLabel.toLowerCase()}. That means the first priority is to ${offerAngle}.`;
+  const summary = `${brand.algorithmName} read this signal as a ${sizeLabel.toLowerCase()} launch context with ${volumeLabel.toLowerCase()}. That means the first priority is to ${offerAngle}.`;
 
   return {
     engineName,
@@ -1231,7 +1368,7 @@ function getUrgencyLabel(urgency = 'fast') {
 
 function buildOpportunityBlueprint(input = {}) {
   const pseudoClient = {
-    businessName: input.businessName || 'NA Kit Preview',
+    businessName: input.businessName || 'Jeni Preview',
     category: input.businessType || 'General Business',
     goal: input.searchGoal || 'surface real opportunities and convert them faster',
     notes: `Location: ${input.location || 'target market'}. Target: ${input.targetType || 'opportunities'}. Urgency: ${input.responseUrgency || 'fast'}.`,
@@ -1292,7 +1429,7 @@ function buildOpportunityBlueprint(input = {}) {
     outreachChannelMix: [channelLabel(base.primaryChannel), channelLabel(base.secondaryChannel), 'Operator review'],
     workflowRecommendation,
     launchPlan,
-    previewSummary: `NA Kit would search ${location}, verify ${targetLabel.toLowerCase()} quality automatically, then move the strongest results into a ${base.engineName.toLowerCase()} workflow.`
+    previewSummary: `Jeni would search ${location}, verify ${targetLabel.toLowerCase()} quality automatically, then move the strongest results into a ${base.engineName.toLowerCase()} workflow.`
   };
 }
 
@@ -1450,12 +1587,12 @@ ${brand.name}`;
   }
 
   if (channel === 'whatsapp') {
-    return `Hi ${owner}, quick follow-up for ${businessName}. NA Kit mapped your business to the ${blueprint.engineName}, which means the biggest win is to ${blueprint.offerAngle}. If you want, I can send the recommended next steps today.`;
+    return `Hi ${owner}, quick follow-up for ${businessName}. Jeni mapped your business to the ${blueprint.engineName}, which means the biggest win is to ${blueprint.offerAngle}. If you want, I can send the recommended next steps today.`;
   }
 
   return `Hi ${owner},
 
-I wanted to follow up on ${businessName} and the goal around ${goal}. NA Kit mapped the business to a ${blueprint.motionLabel.toLowerCase()} workflow, and the biggest opportunity right now is to ${blueprint.offerAngle}.
+I wanted to follow up on ${businessName} and the goal around ${goal}. Jeni mapped the business to a ${blueprint.motionLabel.toLowerCase()} workflow, and the biggest opportunity right now is to ${blueprint.offerAngle}.
 
 If you want, I can put together a simple next-step plan for this week around ${blueprint.responseTarget.toLowerCase()} and send it over for review.
 
@@ -1480,7 +1617,7 @@ function buildFollowupPrompt(client, channel = 'email', messageType = 'inquiry_f
     `Owner: ${owner}.`,
     `Goal: ${goal}.`,
     `Notes: ${notes}.`,
-    `Detected NA Kit engine: ${blueprint.engineName}.`,
+    `Detected Jeni engine: ${blueprint.engineName}.`,
     `Business size: ${blueprint.sizeLabel}.`,
     `Sales motion: ${blueprint.motionLabel}.`,
     `Lead flow: ${blueprint.volumeLabel}.`,
@@ -1552,7 +1689,7 @@ function layout(title, content, currentPath = '/') {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: brand.name,
-    serviceType: 'venture concept studio',
+    serviceType: 'AI trust platform',
     description: brand.metaDescription,
     areaServed: 'US',
     audience: {
@@ -1571,7 +1708,7 @@ function layout(title, content, currentPath = '/') {
       <meta property="og:description" content="${escapeHtml(brand.metaDescription)}" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="${escapeHtml(pageUrl)}" />
-      <meta property="og:image" content="https://zumi.onrender.com/nakit-cosmos.svg" />
+      <meta property="og:image" content="https://zumi.onrender.com/jeni-aurora.svg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="${safeTitle}" />
       <meta name="twitter:description" content="${escapeHtml(brand.metaDescription)}" />
@@ -1595,12 +1732,12 @@ function layout(title, content, currentPath = '/') {
             <div class="nav-main">
               <nav class="nav-links">
                 ${navLink('/', 'Home', currentPath)}
-                ${navLink('/how-it-works', 'Flywheel', currentPath)}
-                ${navLink('/case-studies', 'Concepts', currentPath)}
-                ${navLink('/pricing', 'Business Model', currentPath)}
+                ${navLink('/how-it-works', 'Trust Layer', currentPath)}
+                ${navLink('/case-studies', 'Features', currentPath)}
+                ${navLink('/shield', 'Shield', currentPath)}
                 ${navLink('/about', 'About', currentPath)}
               </nav>
-              <a class="btn nav-cta" href="/intake">Build Queue</a>
+              <a class="btn nav-cta" href="/intake">Start Trust Scan</a>
             </div>
           </div>
         </div>
@@ -1615,11 +1752,12 @@ function layout(title, content, currentPath = '/') {
             <span>${brand.slogan}</span>
           </div>
           <nav class="footer-links">
-            <a href="/case-studies">Concepts</a>
-            <a href="/how-it-works">Flywheel</a>
+            <a href="/case-studies">Features</a>
+            <a href="/how-it-works">Trust Layer</a>
+            <a href="/shield">Shield</a>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="/intake">Build Queue</a>
+            <a href="/intake">Trust Scan</a>
           </nav>
         </div>
       </footer>
@@ -1638,7 +1776,7 @@ function followupComposerCard(client) {
     <section class="card" data-followup-panel data-client-id="${escapeHtml(client.id)}">
       <p class="section-label">Messaging Center</p>
       <h3>Generate the next message with intent.</h3>
-      <p class="muted">Use NA Kit for inquiry follow-up, missed-call recovery, reactivation, review requests, consult nudges, and booking reminders without losing the premium tone.</p>
+      <p class="muted">Use Jeni for inquiry follow-up, missed-call recovery, reactivation, review requests, consult nudges, and booking reminders without losing the premium tone.</p>
       <div class="form-grid" style="margin-top: 18px;">
         <div class="field">
           <label for="message-type-${escapeHtml(client.id)}">Message type</label>
@@ -1865,193 +2003,46 @@ function renderZumiCadenceCard(client) {
 
 function homePage(clients) {
   const content = `
-    <section class="entry-hero">
-      <div class="entry-shell">
-        <p class="section-label">Necessary apps. Future doors.</p>
-        <h1>What should the next inevitable app be?</h1>
-        <p class="lede">NA Kit is a launch surface for products that spread because they solve something urgent, create shareable proof, and sit on top of budgets or risk people already live with.</p>
+    <section class="entry-hero entry-hero-minimal">
+      <div class="entry-shell entry-shell-minimal">
+        <p class="section-label">Jeni // Trust Layer</p>
+        <h1>Search for the trust hiding inside the signal.</h1>
+        <p class="lede">Write anything. Paste a link. Ask Jeni what to verify, protect, or turn into proof.</p>
         <form class="entry-search" method="GET" action="/intake">
-          <input name="website" type="url" placeholder="Drop a market signal, category site, or competitor URL" aria-label="Market signal URL" required />
-          <button class="btn" type="submit">Start Venture Scan</button>
+          <input name="q" type="text" placeholder="Write anything. Paste a link. Ask Jeni what to verify." aria-label="Trust prompt" autocomplete="off" />
+          <button class="btn" type="submit">Start Trust Scan</button>
         </form>
-        <p class="supporting-line">Urgent pain. Shareable proof. Platform doors.</p>
-        <div class="entry-proof">
-          <span class="pill">10 concept lanes</span>
-          <span class="pill">Safety to commerce</span>
-          <span class="pill">Built for recurring budgets</span>
-          <span class="pill">${escapeHtml(String(Math.max(clients.length, 10)))} tracked signals</span>
+        <div class="entry-suggestions">
+          <span class="pill">is this a scam?</span>
+          <span class="pill">read this article</span>
+          <span class="pill">check this brand</span>
+          <span class="pill">find the trust gap</span>
         </div>
+        <p class="supporting-line">Scams. Media. Money. Care. Identity.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="detail-grid">
-        <article class="card spotlight">
-          <div class="spotlight-visual">
-            <img class="spotlight-image" src="/nakit-cosmos.svg" alt="Cinematic future-app map showing safety, money, care, home, trust, work, and commerce as connected opportunity systems." />
-          </div>
-          <p class="section-label">The lens</p>
-          <h3>Great apps spread when the output wants to be shared.</h3>
-          <p class="muted">The best categories come with their own native artifact: a warning, a savings flex, a care dashboard, a proof-of-skill card, or a clarity card that naturally travels through feeds and group chats.</p>
-          <div class="mini-proof">
-            <span class="pill">Scam receipts</span>
-            <span class="pill">Savings cards</span>
-            <span class="pill">Reality cards</span>
-          </div>
+    <section class="section compact-section">
+      <div class="feature-grid feature-grid-tight">
+        <article class="card concept-card">
+          <p class="kicker">First surface</p>
+          <h3>Jeni Shield</h3>
+          <p class="muted">Catch impersonation, spoofing, and scam pressure early, then turn the warning into a signed receipt people can safely forward.</p>
         </article>
-        <article class="card">
-          <p class="section-label">Why now</p>
-          <h3>Necessary beats trendy when the budget is already there.</h3>
-          <ul class="list-clean">
-            <li>Protection products win because failure is expensive.</li>
-            <li>Operations products win because the chaos is constant.</li>
-            <li>Throughput products win because they sit in the money flow.</li>
-            <li>The first version only needs one painfully obvious promise.</li>
-          </ul>
-          <div class="live-metrics">
-            <div class="signal-chip">
-              <span class="signal-value">Fear</span>
-              <span class="signal-label">fastest urgency driver</span>
-            </div>
-            <div class="signal-chip">
-              <span class="signal-value">Proof</span>
-              <span class="signal-label">distribution in the product</span>
-            </div>
-            <div class="signal-chip">
-              <span class="signal-value">Door</span>
-              <span class="signal-label">platform hidden underneath</span>
-            </div>
-          </div>
+        <article class="card concept-card">
+          <p class="kicker">Core primitive</p>
+          <h3>Receipts, not guesses.</h3>
+          <p class="muted">Jeni turns actions, claims, and media into proof objects that feel calm, useful, and verifiable.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">Live system</p>
+          <h3>${escapeHtml(String(Math.max(clients.length, 10)))} trust scans run</h3>
+          <p class="muted">Start with one frighteningly obvious trust problem, then expand only after the first receipt lands.</p>
         </article>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">The Ten</p>
-          <h2>Ten app concepts with obvious need and real money logic.</h2>
-        </div>
-        <p class="muted">Each one is designed around a daily pain point, a shareable outcome, a monetization path that already makes sense, and a bigger future layer it can open.</p>
+      <div class="actions" style="justify-content: center; margin-top: 18px;">
+        <a class="btn secondary" href="/case-studies">See the Ten Surfaces</a>
       </div>
-      <div class="feature-grid">
-        ${nakitConcepts.map((concept) => `
-          <article class="card concept-card">
-            <p class="kicker">Concept ${escapeHtml(concept.letter)}</p>
-            <h3>${escapeHtml(concept.title)}</h3>
-            <p class="muted">${escapeHtml(concept.pitch)}</p>
-            <div class="mini-proof">
-              <span class="pill">${escapeHtml(concept.category)}</span>
-            </div>
-          </article>
-        `).join('')}
-      </div>
-      <div class="actions" style="margin-top: 18px;">
-        <a class="btn" href="/case-studies">See Full Breakdown</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">The Flywheel</p>
-          <h2>The best categories usually follow the same four steps.</h2>
-        </div>
-        <p class="muted">NA Kit is built around first-principles category logic instead of random idea theater.</p>
-      </div>
-      <div class="feature-grid">
-        ${nakitPaths.map((item, index) => `
-          <article class="card">
-            <p class="kicker">Step 0${index + 1}</p>
-            <h3>${escapeHtml(item)}</h3>
-            <p class="muted">If the app cannot do this cleanly, it probably is not the right first build.</p>
-          </article>
-        `).join('')}
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Best First Pick</p>
-          <h2>If you build one now, build the one with fear, family, and proof.</h2>
-        </div>
-        <p class="muted">ScamSentry is the sharpest first move because the pain is obvious, the family subscription is natural, and the warning artifact wants to be shared.</p>
-      </div>
-      <div class="detail-grid">
-        <article class="card spotlight">
-          <p class="section-label">ScamSentry</p>
-          <h3>The category with the cleanest first-year path.</h3>
-          <ul class="list-clean">
-            <li>Protects across calls, texts, DMs, email, and payments.</li>
-            <li>Creates Scam Receipts that teach and spread at the same time.</li>
-            <li>Expands naturally into verified calling and payment-risk infrastructure.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <p class="kicker">Why it wins first</p>
-          <ul class="list-clean">
-            <li>Fear creates immediate urgency.</li>
-            <li>Family plans create recurring revenue.</li>
-            <li>Institutions can later buy the same protection layer.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Moats</p>
-          <h2>The strongest products already contain their own defense.</h2>
-        </div>
-        <p class="muted">These ideas are attractive because they can generate distribution, workflow lock-in, and infrastructure adjacency at the same time.</p>
-      </div>
-      <div class="solution-hero">
-        <article class="card art-panel">
-          <div class="story-visual-wrap story-visual-large">
-            <img class="story-visual" src="/nakit-signals.svg" alt="Futuristic signal board showing categories like fear, savings, trust, care, and throughput as monetization and moat layers." />
-          </div>
-        </article>
-        ${nakitMoats.map((item) => `
-          <article class="card art-panel">
-            <p class="kicker">Moat</p>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p class="muted">${escapeHtml(item.body)}</p>
-          </article>
-        `).join('')}
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Ranking</p>
-          <h2>Three ways to judge what deserves to get built first.</h2>
-        </div>
-        <p class="muted">The right first product depends on whether you want speed to cash, category defensibility, or a larger eventual ceiling.</p>
-      </div>
-      <div class="grid-3">
-        ${nakitRankings.map((item) => `
-          <article class="card">
-            <p class="kicker">Ranking</p>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p class="muted"><strong>${escapeHtml(item.winner)}</strong> — ${escapeHtml(item.body)}</p>
-          </article>
-        `).join('')}
-      </div>
-    </section>
-
-    <section class="section">
-      <article class="card">
-        <p class="section-label">Build Queue</p>
-        <h2>Bring a market signal. NA Kit will tell you where the money is hiding.</h2>
-        <p class="muted">Start with a category site, a competitor, or any signal-rich URL. The first pass is about sharpening the opportunity until the product and business logic become obvious.</p>
-        <div class="actions">
-          <a class="btn" href="/intake">Enter the Build Queue</a>
-          <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
-        </div>
-      </article>
     </section>
   `;
 
@@ -2062,15 +2053,15 @@ function caseStudiesPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">The Ten</p>
-        <h2>Ten necessary apps with obvious pain and real platform doors.</h2>
+        <p class="section-label">Features</p>
+        <h2>Ten Jeni surfaces built on one trust layer.</h2>
       </div>
-      <p class="muted">Each concept starts with a painful daily problem, a native share artifact, a believable money model, and a future layer that can become infrastructure.</p>
+      <p class="muted">Five of these are built to move natively inside American social platforms. All of them create receipts, proof objects, or verifier-ready claims.</p>
     </section>
     <section class="grid-3">
-      ${nakitConcepts.map((concept) => `
+      ${jeniFeatures.map((concept) => `
         <article class="card concept-card" id="${escapeHtml(concept.slug)}">
-          <p class="kicker">Concept ${escapeHtml(concept.letter)}</p>
+          <p class="kicker">Surface ${escapeHtml(concept.letter)}</p>
           <h3>${escapeHtml(concept.title)}</h3>
           <p class="muted">${escapeHtml(concept.pitch)}</p>
           <div class="mini-proof">
@@ -2086,49 +2077,49 @@ function caseStudiesPage() {
       `).join('')}
     </section>
     <section class="card" style="margin-top: 24px;">
-      <p class="kicker">First move</p>
-      <h3>Build the category with the cleanest urgency loop first.</h3>
-      <p class="muted">ScamSentry is the sharpest first build because the fear is obvious, the family plan is natural, and the Scam Receipt becomes free distribution inside messages and feeds.</p>
+      <p class="kicker">Trust primitive underneath it all</p>
+      <h3>Jeni Passport is the spine, not another surface.</h3>
+      <p class="muted">Passkeys, consent receipts, device confidence, and verifier endpoints are what make the other ten products feel credible instead of ornamental.</p>
       <div class="actions">
-        <a class="btn" href="/intake">Start Venture Scan</a>
-        <a class="btn secondary" href="/pricing">See Business Models</a>
+        <a class="btn" href="/shield">Open Jeni Shield</a>
+        <a class="btn secondary" href="/how-it-works">See the Trust Layer</a>
       </div>
     </section>
   `;
 
-  return layout('Concepts', content, '/case-studies');
+  return layout('Features', content, '/case-studies');
 }
 
 function solutionsPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Build Surfaces</p>
-        <h2>Four layers that turn an interesting signal into a real company.</h2>
+        <p class="section-label">System Surfaces</p>
+        <h2>Four things Jeni has to do well before the platform feels real.</h2>
       </div>
-      <p class="muted">NA Kit stays sharp by focusing on the pressure, the artifact, the money model, and the platform door instead of spraying features everywhere.</p>
+      <p class="muted">Jeni is strongest when the technology disappears and the trust artifact feels obvious, useful, and beautiful.</p>
     </section>
     <section class="grid-3">
       ${[
         {
           kicker: '01',
-          title: 'Signal scan',
-          body: 'Read a market, category site, competitor, or social clue and pull out the strongest pressure points.'
+          title: 'Ingestion',
+          body: 'Accept links, screenshots, clips, claims, and forwarded evidence with almost no ceremony.'
         },
         {
           kicker: '02',
-          title: 'Share artifact',
-          body: 'Define the native card, receipt, dashboard, badge, or clip the product wants people to pass around.'
+          title: 'Forensics',
+          body: 'Score the risk, provenance, integrity, and confidence without pretending uncertainty does not exist.'
         },
         {
           kicker: '03',
-          title: 'Money model',
-          body: 'Match the idea to recurring protection, performance pricing, or a take-rate living in the flow.'
+          title: 'Receipt',
+          body: 'Turn the analysis into a signed object the user can store, share, or verify later.'
         },
         {
           kicker: '04',
-          title: 'Platform door',
-          body: 'Map the infrastructure layer waiting underneath: identity, trust, logistics, payments, or reputation.'
+          title: 'Verifier',
+          body: 'Back every important claim with a verifier link, audit trail, or consent record.'
         }
       ].map((item) => `
         <article class="card">
@@ -2142,22 +2133,22 @@ function solutionsPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Rule</p>
-          <h3>The first promise has to sound painfully obvious.</h3>
-          <p class="muted">If it needs too much explanation, the market signal is not strong enough yet.</p>
+          <h3>The receipt has to feel more useful than the raw evidence.</h3>
+          <p class="muted">If the signed output is not calmer, clearer, and easier to share, the product is not doing enough yet.</p>
         </article>
         <article class="card">
           <p class="kicker">Next Move</p>
-          <h3>Feed the engine one URL with signal density.</h3>
+          <h3>Feed the engine one signal-rich URL first.</h3>
           <div class="actions">
-            <a class="btn" href="/intake">Start Venture Scan</a>
-            <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
+            <a class="btn" href="/intake">Start Trust Scan</a>
+            <a class="btn secondary" href="/how-it-works">See the Trust Layer</a>
           </div>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Build Surfaces', content, '/solutions');
+  return layout('System Surfaces', content, '/solutions');
 }
 
 function solutionPage(item) {
@@ -2165,9 +2156,9 @@ function solutionPage(item) {
     <section class="card empty-state">
       <p class="section-label">Module</p>
       <h2>${escapeHtml(item.label)}</h2>
-      <p class="muted">This legacy route is now secondary to the NA Kit venture-scan flow. Use the build queue to generate a fresh opportunity thesis from a signal-rich URL.</p>
+      <p class="muted">This legacy route is now secondary to the Jeni trust-scan flow. Use the intake to generate a fresh trust blueprint from a signal-rich source.</p>
       <div class="actions" style="justify-content: center;">
-        <a class="btn" href="/intake">Start Venture Scan</a>
+        <a class="btn" href="/intake">Start Trust Scan</a>
         <a class="btn secondary" href="/solutions">Back to Build Surfaces</a>
       </div>
     </section>
@@ -2180,304 +2171,314 @@ function pricingPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Business Model</p>
-        <h2>How necessary apps make money without feeling flimsy.</h2>
-        <p class="muted">The strongest products charge into an existing budget or transaction path. The revenue model should feel as native as the problem itself.</p>
+        <p class="section-label">Pricing</p>
+        <h2>Start with Jeni Shield. Let the trust layer expand from there.</h2>
+        <p class="muted">The first paid surface should feel obvious: protect the family, catch the scam, keep the receipt, and share the warning when it matters.</p>
         <div class="mini-proof">
-          <span class="pill">Protection</span>
-          <span class="pill">Savings</span>
-          <span class="pill">Throughput</span>
+          <span class="pill">Consumer first</span>
+          <span class="pill">Family plans</span>
+          <span class="pill">B2B later</span>
         </div>
       </article>
       <article class="card art-panel">
-        <p class="kicker">Money logic</p>
-        <h3>Pick the model the user already expects to pay for.</h3>
-        <p class="muted">Subscriptions fit protection. Performance fees fit measurable wins. Take-rates fit shopping, hiring, services, and logistics.</p>
+        <p class="kicker">Flagship pricing</p>
+        <h3>Jeni Shield should feel easy to try and easy to keep.</h3>
+        <p class="muted">The first payment should buy calm, family protection, and a clearer trust workflow immediately.</p>
         <div class="metric-grid">
-          <div class="metric"><span class="metric-copy">Recurring</span><span class="metric-label">best for fear and protection</span></div>
-          <div class="metric"><span class="metric-copy">Take-rate</span><span class="metric-label">best for high ceiling</span></div>
+          <div class="metric"><span class="metric-copy">$8.99</span><span class="metric-label">Plus</span></div>
+          <div class="metric"><span class="metric-copy">$14.99</span><span class="metric-label">Family</span></div>
         </div>
       </article>
     </section>
     <section class="grid-3">
-      ${nakitRevenueBuckets.map((bucket) => `
-        <article class="card plan-card${bucket.title === 'Recurring protection' ? ' featured-plan' : ''}">
-          <p class="kicker">Model</p>
-          <h3>${escapeHtml(bucket.title)}</h3>
-          <p class="muted">${escapeHtml(bucket.body)}</p>
-          <div class="mini-proof">
-            <span class="pill">${escapeHtml(bucket.examples)}</span>
-          </div>
+      ${[
+        { title: 'Free', body: 'Basic checks, limited receipts, and one public verifier link so people can feel the product fast.' },
+        { title: 'Plus', body: 'Unlimited trust checks, safer sharing, richer explanations, and stronger fraud signals for one person.' },
+        { title: 'Family', body: 'Up to six people, shared blocklists, elder-care protection, and the strongest Shield loop.' },
+        { title: 'Business', body: 'Incident reports, team policies, fraud surfaces, and exportable receipts for ops teams.' }
+      ].map((plan, index) => `
+        <article class="card plan-card${index === 2 ? ' featured-plan' : ''}">
+          <p class="kicker">Plan</p>
+          <h3>${escapeHtml(plan.title)}</h3>
+          <p class="muted">${escapeHtml(plan.body)}</p>
         </article>
       `).join('')}
     </section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Acquisition</p>
-          <h3>The product should already know how it wants to spread.</h3>
+          <p class="kicker">How the platform makes money</p>
+          <h3>Each Jeni surface maps to a revenue model the user already understands.</h3>
           <ul class="list-clean">
-            ${nakitAcquisitionChannels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+            ${jeniRevenueModels.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.body)}</li>`).join('')}
           </ul>
         </article>
         <article class="card">
-          <p class="kicker">Build discipline</p>
-          <h3>One obvious promise beats a thousand optional features.</h3>
+          <p class="kicker">Acquisition</p>
+          <h3>Every great Jeni surface already knows how it wants to spread.</h3>
           <ul class="list-clean">
-            <li>Find the urgent behavior first.</li>
-            <li>Attach a native share artifact.</li>
-            <li>Choose the money model that fits the behavior.</li>
-            <li>Use the platform door as the long game.</li>
+            ${jeniChannels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
           <div class="actions">
-            <a class="btn" href="/intake">Run a Venture Scan</a>
-            <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
+            <a class="btn" href="/shield">Open Jeni Shield</a>
+            <a class="btn secondary" href="/intake">Start Trust Scan</a>
           </div>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Business Model', content, '/pricing');
+  return layout('Pricing', content, '/pricing');
 }
 
 function howItWorksPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Flywheel</p>
-        <h2>Read the signal. Find the artifact. Map the money. Open the door.</h2>
-        <p class="muted">NA Kit is not a random idea generator. It is a premium venture-scan surface for products that can spread, monetize, and grow into infrastructure.</p>
+        <p class="section-label">Trust Layer</p>
+        <h2>Ingest. Analyze. Sign. Verify.</h2>
+        <p class="muted">Jeni is built around one quiet promise: every important interaction should leave a verifiable trail instead of a fuzzy memory.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Start Venture Scan</a>
-          <a class="btn secondary" href="/operator-architecture">See the Signal Engine</a>
+          <a class="btn" href="/intake">Start Trust Scan</a>
+          <a class="btn secondary" href="/operator-architecture">See the Trust Engine</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit signal engine showing urgency, shareability, monetization, and platform door layers." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni trust pipeline showing ingestion, scoring, receipts, and verifier surfaces." />
         </div>
       </article>
     </section>
     <section class="feature-grid">
-      ${nakitPaths.map((item, index) => `
+      ${[
+        {
+          title: 'Ingest the signal',
+          body: 'A link, screenshot, clip, document, or forwarded message enters the system with hashes and traceability.'
+        },
+        {
+          title: 'Score the trust signals',
+          body: 'Jeni reads risk, provenance, metadata, and behavioral clues without pretending uncertainty does not exist.'
+        },
+        {
+          title: 'Generate the receipt',
+          body: 'The output becomes a signed, useful object: a warning, proof card, claim pack, care log, or verifier-ready export.'
+        },
+        {
+          title: 'Let it compound',
+          body: 'The more receipts, identity checks, and verifier links Jeni owns, the stronger every new surface becomes.'
+        }
+      ].map((item, index) => `
         <article class="card">
           <p class="kicker">0${index + 1}</p>
-          <h3>${escapeHtml(item)}</h3>
-          <p class="muted">${index === 0
-            ? 'If the user is already afraid, annoyed, losing money, or coordinating chaos, the category starts strong.'
-            : index === 1
-              ? 'The share artifact is the built-in distribution layer.'
-              : index === 2
-                ? 'The money model should already exist in the user’s life.'
-                : 'The best apps grow into a platform once they own trust or workflow.'}</p>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p class="muted">${escapeHtml(item.body)}</p>
         </article>
       `).join('')}
     </section>
     <section class="detail-grid" style="margin-top: 18px;">
       <article class="card">
-        <p class="kicker">Input</p>
-        <h3>Bring a category site, competitor, article, or market clue.</h3>
-        <p class="muted">The best input is rich with signal density: urgency, recurring cost, social conversation, manual work, or obvious trust failure.</p>
+        <p class="kicker">What enters</p>
+        <h3>Media, identity, actions, claims, and workflow events.</h3>
+        <p class="muted">Jeni is not limited to one category because the trust primitive stays the same even when the surface changes.</p>
       </article>
       <article class="card">
         <p class="kicker">Output</p>
-        <h3>Leave with a sharper thesis, not vague inspiration.</h3>
-        <p class="muted">The final scan should tell you what to build, why it spreads, how it makes money, and where the bigger infrastructure door sits.</p>
+        <h3>Receipts, verifier links, and decisions people can act on.</h3>
+        <p class="muted">The goal is not just detection. It is calmer action, cleaner evidence, and a trust object worth keeping.</p>
       </article>
     </section>
   `;
 
-  return layout('Flywheel', content, '/how-it-works');
+  return layout('Trust Layer', content, '/how-it-works');
 }
 
 function discoverPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Discover</p>
-        <h2>Start where life already hurts, leaks, or wastes time.</h2>
-        <p class="muted">The first pass is about finding the pressure zones where users already lose money, safety, trust, or coordination energy every week.</p>
+        <p class="section-label">Signal Map</p>
+        <h2>Jeni starts where doubt is already expensive.</h2>
+        <p class="muted">The highest-value surfaces show up where people already forward screenshots, ask “is this real?”, or need proof after the fact.</p>
         <div class="mini-proof">
-          <span class="pill">Fear</span>
-          <span class="pill">Savings</span>
-          <span class="pill">Chaos</span>
+          <span class="pill">Risk</span>
+          <span class="pill">Proof</span>
+          <span class="pill">Receipts</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit concept field showing safety, money, care, home, work, commerce, and trust opportunity zones." />
+          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni opportunity field showing scams, media, money, family care, home, work, civic, and dating trust zones." />
         </div>
       </article>
     </section>
     <section class="grid-3">${[
-      'Scams, impersonation, and communication trust.',
-      'Bills, recurring spend, and savings recovery.',
-      'Caregiving, appointments, medications, and coordination.',
-      'Proof of skill, hiring, and reputation portability.',
-      'Home maintenance, documentation, claims, and property operations.',
-      'Bureaucracy, appeals, forms, and deadline chaos.'
+      'Scams, impersonation, spoofed voices, and payment pressure.',
+      'Bills, subscriptions, recurring spend, and provable savings.',
+      'Media provenance, clips, screenshots, and comment-ready clarity.',
+      'Caregiving, appointments, medications, and handoff proof.',
+      'Home maintenance, claims, contractor identity, and repair receipts.',
+      'Dating, profile trust, safe meetup plans, and emergency proof.'
     ].map((item) => `
       <article class="card">
         <p class="kicker">Pressure zone</p>
         <h3>${escapeHtml(item)}</h3>
-        <p class="muted">If the problem is frequent, emotional, and expensive, it deserves a serious product pass.</p>
+        <p class="muted">If the trust failure is repeated, emotional, and expensive, Jeni has room to become infrastructure.</p>
       </article>
     `).join('')}</section>
   `;
 
-  return layout('Discover', content, '/discover');
+  return layout('Signal Map', content, '/discover');
 }
 
 function verifyPage() {
   const cards = [
     {
-      name: 'Market truth',
-      headline: 'Make sure the pain is truly painful before you romanticize the idea.',
-      body: 'A great venture thesis should feel obvious in real life, not only inside a brainstorm document.'
+      name: 'Provenance',
+      headline: 'Read what the source can actually prove, not what you wish it proved.',
+      body: 'A manifest, signature, or metadata trail can raise confidence without becoming magical certainty.'
     },
     {
-      name: 'Artifact fit',
-      headline: 'The product should naturally generate something people want to repost or forward.',
-      body: 'Warnings, savings proofs, clarity cards, and dashboards create stronger loops than generic referral asks.'
+      name: 'Forensics',
+      headline: 'Use risk signals and uncertainty with unusual care.',
+      body: 'Jeni should explain why a result feels risky without collapsing into fake-vs-real theater.'
     },
     {
-      name: 'Budget realism',
-      headline: 'Charge where the user already expects money to move.',
-      body: 'Recurring protection, measurable savings, and transaction throughput are cleaner than inventing a fake budget.'
+      name: 'Receipt design',
+      headline: 'The signed output should be more useful than the raw evidence.',
+      body: 'If the receipt is not calmer, clearer, and easier to share, the product still has work to do.'
     }
   ];
 
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Stress Test</p>
-        <h2>Great ideas survive contact with behavior, money, and distribution.</h2>
-        <p class="muted">NA Kit is built to pressure-test whether the category deserves build time, not just to make the concept sound pretty.</p>
+        <p class="section-label">Verification</p>
+        <h2>Trust products fail when they overclaim.</h2>
+        <p class="muted">Jeni is strongest when it shows the evidence, the confidence, the limits, and the next best move without sounding evasive or absolute.</p>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit venture scan board showing weighted opportunity signals." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni verification board showing provenance, risk scoring, and signed receipt states." />
         </div>
       </article>
     </section>
     <section class="feature-grid">${cards.map(renderPillarCard).join('')}</section>
   `;
 
-  return layout('Verify', content, '/verify');
+  return layout('Verification', content, '/verify');
 }
 
 function convertPage() {
   const cards = [
     {
-      name: 'Subscriptions',
-      headline: 'Use continuous fear, protection, or coordination as the base for recurring revenue.',
-      body: 'This is the cleanest path when failure is expensive and the user wants ongoing calm.'
+      name: 'Protection',
+      headline: 'Use subscriptions when the user wants continuous calm against recurring risk.',
+      body: 'Shield, CareOps, and HomeLedger all work because failure is expensive and ongoing.'
     },
     {
-      name: 'Performance fees',
-      headline: 'Charge on measurable wins when the outcome is visible and immediate.',
-      body: 'Recovered savings, reduced fees, or solved admin pain often justify pay-on-win better than software alone.'
+      name: 'Measurable wins',
+      headline: 'Use pay-on-win when the receipt can prove savings or resolution.',
+      body: 'Wallet and CivicCopilot can get paid because the result is visible and emotionally legible.'
     },
     {
-      name: 'Take-rates',
-      headline: 'Step into the transaction when the product sits in shopping, hiring, services, or logistics.',
-      body: 'This is where the highest ceilings usually appear.'
+      name: 'Throughput',
+      headline: 'Use take-rates when Jeni sits inside a transaction or reputation flow.',
+      body: 'ClipShop, SkillDrop, and MovePilot get stronger as they move closer to the money path.'
     }
   ];
 
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Monetize</p>
-        <h2>The idea only matters if the revenue logic feels native.</h2>
-        <p class="muted">NA Kit looks for products that can step into budgets or transactions already moving through a user’s life.</p>
+        <p class="section-label">Revenue Logic</p>
+        <h2>Trust becomes a business when the money model fits the fear, savings, or workflow.</h2>
+        <p class="muted">Jeni does not need one revenue model. It needs the right revenue model for each surface.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Run a Venture Scan</a>
-          <a class="btn secondary" href="/pricing">See Model Patterns</a>
+          <a class="btn" href="/intake">Start Trust Scan</a>
+          <a class="btn secondary" href="/pricing">See Pricing</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit monetization field showing protection, savings, and throughput as revenue paths." />
+          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni revenue field showing protection, savings, and transaction layers." />
         </div>
       </article>
     </section>
     <section class="feature-grid">${cards.map(renderPillarCard).join('')}</section>
   `;
 
-  return layout('Convert', content, '/convert');
+  return layout('Revenue Logic', content, '/convert');
 }
 
 function industriesPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Opportunity Map</p>
-        <h2>Where necessary apps already have pain, budgets, and daily behavior.</h2>
-        <p class="muted">The best categories are hiding in the parts of life where people already lose money, time, trust, safety, or coordination energy.</p>
+        <p class="section-label">Use Cases</p>
+        <h2>Jeni moves through the parts of life where proof actually matters.</h2>
+        <p class="muted">The strongest Jeni surfaces live where screenshots get forwarded, receipts settle disputes, and verification changes behavior.</p>
       </article>
       <article class="card art-panel">
         <p class="kicker">Common thread</p>
-        <h3>Necessary beats trendy when the money is already there.</h3>
-        <p class="muted">If the user is already paying, worrying, coordinating, or recovering around the problem, the app has a much better shot at becoming infrastructure.</p>
+        <h3>Trust is the product, but the use case decides the form.</h3>
+        <p class="muted">Every surface changes shape, yet the core promise stays the same: better evidence, calmer action, and a verifier-ready trail.</p>
       </article>
     </section>
     <section class="grid-3">${[
-      { label: 'Money + bills', body: 'Subscriptions, recurring spend, negotiation, cancellations, and savings recovery.' },
-      { label: 'Safety + scams', body: 'Impersonation, family protection, trusted calling, and payment-risk prevention.' },
-      { label: 'Care + family logistics', body: 'Appointments, meds, transport, handoffs, and emergency coordination.' },
-      { label: 'Work + skill proof', body: 'Shipped work, mentor graphs, hiring trust, and portable reputation.' },
-      { label: 'Home + property ops', body: 'Maintenance, warranties, claim packs, contractor flows, and resale readiness.' },
-      { label: 'Civic + bureaucracy', body: 'Forms, disputes, deadlines, appointments, and clean audit trails.' },
-      { label: 'Dating + trust', body: 'Verification, safety plans, identity confidence, and emergency proof.' },
-      { label: 'Commerce + creators', body: 'Shop-the-clip behavior, price history, returns, and verified claims.' },
-      { label: 'Relocation + transitions', body: 'Moves, utility switching, mail updates, checklists, and city setup.' },
-      { label: 'Information + reality', body: 'Context cards, provenance clues, repostable clarity, and trust signals.' }
+      { label: 'Safety + scams', body: 'Impersonation, spoofing, family protection, and payment-risk prevention.' },
+      { label: 'Money + bills', body: 'Subscriptions, recurring spend, savings recovery, and signed financial wins.' },
+      { label: 'Truth + media', body: 'Clips, screenshots, provenance, manipulation signals, and comment-ready clarity.' },
+      { label: 'Care + family logistics', body: 'Appointments, meds, check-ins, emergency plans, and handoff receipts.' },
+      { label: 'Home + property', body: 'Repairs, claims, contractor proof, and verified home history.' },
+      { label: 'Civic + paperwork', body: 'Forms, deadlines, appointment proof, disputes, and audit trails.' },
+      { label: 'Dating + safety', body: 'Identity confidence, profile consistency, safe meetup plans, and panic-proof logs.' },
+      { label: 'Commerce + creators', body: 'Verified claims, product receipts, price history, and creator storefront trust.' },
+      { label: 'Work + skill proof', body: 'Shipped work, mentor endorsements, and signed reputation artifacts.' },
+      { label: 'Moving + transitions', body: 'Provider verification, quote receipts, and cleaner life-event workflows.' }
     ].map(renderIndustryCard).join('')}</section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Launch wedge</p>
-          <h3>Booking businesses still make a strong first customer wedge.</h3>
-          <p class="muted">Med spas, clinics, studios, and high-trust operators are still useful because the pain, trust, and revenue loop show up immediately.</p>
+          <p class="kicker">Flagship wedge</p>
+          <h3>Shield gives Jeni the cleanest first motion.</h3>
+          <p class="muted">Scams are social, emotional, measurable, and expensive. That makes the value obvious without shrinking the platform ambition.</p>
           <div class="actions">
-            <a class="btn" href="/med-spas">See the Wedge</a>
-            <a class="btn secondary" href="/pricing">See Business Models</a>
+            <a class="btn" href="/shield">See Jeni Shield</a>
+            <a class="btn secondary" href="/pricing">See Pricing</a>
           </div>
         </article>
         <article class="card">
-          <p class="kicker">Signal</p>
-          <h3>The right category usually comes with its own share object.</h3>
-          <p class="muted">Warnings, scorecards, proofs, receipts, and clarity cards are stronger than generic referral mechanics.</p>
+          <p class="kicker">Share loop</p>
+          <h3>The strongest use cases come with their own receipt format.</h3>
+          <p class="muted">Warnings, savings cards, care logs, reality cards, claim packs, and credentials travel better than generic referral asks.</p>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Opportunity Map', content, '/industries');
+  return layout('Use Cases', content, '/industries');
 }
 
 function medSpaPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Launch Wedge</p>
-        <h2>Why booking-based businesses still make a smart first wedge.</h2>
-        <p class="muted">Med spas, clinics, and premium service businesses compress trust, follow-up, and revenue into one obvious problem, which makes them a sharp place to prove a broader operator concept.</p>
+        <p class="section-label">Jeni Shield</p>
+        <h2>The first Jeni surface: a family firewall for the AI scam era.</h2>
+        <p class="muted">Shield reads texts, links, screenshots, emails, and scam-like voice moments, then turns them into signed Scam Receipts that calm the user and warn the circle.</p>
         <div class="mini-proof">
-          <span class="pill">High trust</span>
-          <span class="pill">High ticket</span>
-          <span class="pill">Visible ROI</span>
+          <span class="pill">Urgent pain</span>
+          <span class="pill">Family subscription</span>
+          <span class="pill">Native viral loop</span>
         </div>
         <div class="actions">
-          <a class="btn" href="/intake">Start Venture Scan</a>
-          <a class="btn secondary" href="/how-it-works">See How It Works</a>
+          <a class="btn" href="/intake">Run a Shield Scan</a>
+          <a class="btn secondary" href="/how-it-works">See the Trust Layer</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/hero-success-owners.svg" alt="Premium booking businesses shown as a strong first launch wedge for NA Kit." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni Shield premium interface with high-risk scam detection, family circles, and a verifier-ready receipt." />
         </div>
       </article>
     </section>
@@ -2485,21 +2486,21 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Why this wedge works</p>
-          <h2>It gives you pain, trust, conversion, and proof in one shot.</h2>
+          <p class="section-label">Why Shield first</p>
+          <h2>The first product should solve a trust failure people are already scared of.</h2>
         </div>
-        <p class="muted">That makes it easier to sell, easier to prove, and easier to expand later into other premium operators.</p>
+        <p class="muted">Shield is strong because it is useful in the exact moment fear spikes, and the output is naturally worth sharing with family and friends.</p>
       </div>
       <div class="feature-grid">${[
-        'Every lost consult is expensive enough to matter.',
-        'Premium presentation changes trust faster than people think.',
-        'Follow-up and booking friction are visible almost immediately.',
-        'Before-and-after proof makes the improvement story easy to sell.'
+        'Impersonation fear is immediate and measurable.',
+        'Scam Receipts create the product loop and the growth loop at the same time.',
+        'Family plans create clean recurring revenue early.',
+        'Banks and support teams can later buy the same trust layer.'
       ].map((item) => `
         <article class="card">
-          <p class="kicker">Wedge logic</p>
+          <p class="kicker">Shield logic</p>
           <h3>${escapeHtml(item)}</h3>
-          <p class="muted">That clarity is exactly what makes a first customer market useful.</p>
+          <p class="muted">That makes the first product emotionally legible and commercially clean.</p>
         </article>
       `).join('')}</div>
     </section>
@@ -2507,62 +2508,67 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">The translation</p>
-          <h2>Use the wedge to learn. Do not let it shrink the platform vision.</h2>
+          <p class="section-label">What Shield includes</p>
+          <h2>A premium Phase 1 feature set that already feels useful.</h2>
         </div>
-        <p class="muted">NA Kit is broader than med spas. This route exists to show how a focused launch wedge can prove a much bigger category ambition.</p>
+        <p class="muted">Even as a first surface, Shield should already feel like a category-defining consumer trust product.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
-          <p class="kicker">Wedge</p>
-          <h3>Clear pain</h3>
-          <p class="muted">Revenue leakage and trust decay are obvious.</p>
+          <p class="kicker">Capture</p>
+          <h3>Forward anything suspicious</h3>
+          <p class="muted">Links, screenshots, emails, messages, and clips should all flow into the same trust system.</p>
         </article>
         <article class="card">
-          <p class="kicker">Wedge</p>
-          <h3>Proof-rich outcome</h3>
-          <p class="muted">The before-and-after improvement story is easy to communicate.</p>
+          <p class="kicker">Explain</p>
+          <h3>Show the signals in plain English</h3>
+          <p class="muted">Users should understand why the risk feels high without reading technical nonsense.</p>
         </article>
         <article class="card">
-          <p class="kicker">Wedge</p>
-          <h3>Expandable later</h3>
-          <p class="muted">Once the model works here, it can widen into other high-trust operators.</p>
+          <p class="kicker">Share</p>
+          <h3>Generate a Scam Receipt</h3>
+          <p class="muted">The receipt is redacted, signed, and ready for a family circle, story, or support workflow.</p>
+        </article>
+        <article class="card">
+          <p class="kicker">Protect</p>
+          <h3>Run family circles and allowlists</h3>
+          <p class="muted">Protection gets stronger when the people around the user are part of the loop too.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
       <article class="card">
-        <p class="section-label">Next Step</p>
-        <h2>Start with one sharp market and keep the real ambition intact.</h2>
-        <p class="muted">The wedge is there to prove the product, not to trap the company inside a niche forever.</p>
+        <p class="section-label">Expansion door</p>
+        <h2>Shield is not the whole company. It is the first proof that the trust layer works.</h2>
+        <p class="muted">Once people trust Jeni with scams and warnings, the same primitives can expand into Wallet, Truth, CareOps, HomeLedger, and Passport-level identity flows.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Run a Venture Scan</a>
-          <a class="btn secondary" href="/industries">See More Domains</a>
+          <a class="btn" href="/intake">Start Trust Scan</a>
+          <a class="btn secondary" href="/case-studies">See All Surfaces</a>
         </div>
       </article>
     </section>
   `;
 
-  return layout('Launch Wedge', content, '/med-spas');
+  return layout('Jeni Shield', content, '/shield');
 }
 
 function operatorArchitecturePage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Signal Engine</p>
-        <h2>The simple version of how NA Kit thinks.</h2>
-        <p class="muted">Read a signal-rich URL, compress the strongest clues, score the category, and return a launch thesis sharp enough to build from.</p>
+        <p class="section-label">Trust Engine</p>
+        <h2>The simple version of how Jeni thinks.</h2>
+        <p class="muted">Read a signal-rich source, compress the strongest clues, score the risk and proof layer, then return a trust blueprint sharp enough to act on.</p>
         <div class="mini-proof">
           <span class="pill">Reader</span>
           <span class="pill">Score model</span>
-          <span class="pill">Launch thesis</span>
+          <span class="pill">Receipt logic</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit venture architecture showing signal scan, scoring, and opportunity output." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni trust architecture showing signal intake, scoring, receipts, and verifier output." />
         </div>
       </article>
     </section>
@@ -2579,17 +2585,17 @@ function operatorArchitecturePage() {
         <article class="card">
           <p class="kicker">1</p>
           <h3>Read</h3>
-          <p class="muted">Fetch the URL, keep only the useful pages, and extract the strongest clues.</p>
+          <p class="muted">Fetch the source, keep only the useful pages, and extract the strongest trust clues.</p>
         </article>
         <article class="card">
           <p class="kicker">2</p>
           <h3>Score</h3>
-          <p class="muted">Judge urgency, shareability, monetization, defensibility, platform door, and speed to build.</p>
+          <p class="muted">Judge need, trust, revenue, receipt depth, platform potential, and speed to launch.</p>
         </article>
         <article class="card">
           <p class="kicker">3</p>
-          <h3>Position</h3>
-          <p class="muted">Return a sharper product promise, a share artifact, and the next obvious prototype move.</p>
+          <h3>Return</h3>
+          <p class="muted">Return a sharper promise, a receipt design, and the next obvious product move.</p>
         </article>
       </div>
     </section>
@@ -2598,37 +2604,37 @@ function operatorArchitecturePage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Output standard</p>
-          <h3>It should feel like a serious venture memo, not a brainstorm dump.</h3>
-          <p class="muted">The finished output needs to be useful to a founder immediately, with enough clarity to drive a real build decision.</p>
+          <h3>It should feel like a serious trust brief, not a brainstorm dump.</h3>
+          <p class="muted">The finished output needs to be useful immediately, with enough clarity to guide a real product or risk decision.</p>
         </article>
         <article class="card">
           <p class="kicker">Reality</p>
-          <h3>A good interface cannot save a weak category.</h3>
-          <p class="muted">The pain, artifact, money model, and platform door still have to survive real-world pressure.</p>
+          <h3>A beautiful interface cannot save a weak trust story.</h3>
+          <p class="muted">The pain, receipt, money path, and verifier layer still have to survive real-world pressure.</p>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Signal Engine', content, '/operator-architecture');
+  return layout('Trust Engine', content, '/operator-architecture');
 }
 
 function aboutPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">About NA Kit</p>
-        <h2>NA Kit is a premium concept engine for necessary apps that can actually spread and make money.</h2>
-        <p class="muted">It exists for founders and operators who want sharper product theses than the average “idea list” can deliver. The goal is to surface categories that feel inevitable because they plug into real fear, savings, care, trust, or throughput.</p>
+        <p class="section-label">About Jeni</p>
+        <h2>Jeni is a premium trust platform for the AI era.</h2>
+        <p class="muted">It exists for people who need calmer proof in a world full of synthetic media, cheap manipulation, and rising doubt. The product turns trust into receipts people can actually use.</p>
         <div class="mini-proof">
-          <span class="pill">Necessary products</span>
-          <span class="pill">Native distribution</span>
-          <span class="pill">Platform ambition</span>
+          <span class="pill">Receipts</span>
+          <span class="pill">Verification</span>
+          <span class="pill">Identity</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit opportunity universe connecting safety, money, care, work, home, commerce, and trust." />
+          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni trust universe connecting scams, media, money, care, home, work, and identity." />
         </div>
       </article>
     </section>
@@ -2637,33 +2643,33 @@ function aboutPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">What it is</p>
-          <h3>A launch surface for finding the next inevitable app.</h3>
-          <p class="muted">NA Kit reads a signal-rich URL and returns a clearer venture thesis around urgency, virality, monetization, and platform expansion.</p>
+          <h3>A life OS built on a trust layer.</h3>
+          <p class="muted">Jeni reads a signal-rich source and returns a sharper view of the risk, proof object, money path, and verifier layer underneath it.</p>
         </article>
         <article class="card">
           <p class="kicker">Who it helps</p>
-          <h3>Founders, operators, and builders looking for conviction.</h3>
-          <p class="muted">Especially people who care about category quality more than trend-chasing and want outputs strong enough to actually build from.</p>
+          <h3>Families, creators, founders, and operators looking for confidence.</h3>
+          <p class="muted">Especially people who need to know whether to trust, ignore, share, buy, or act.</p>
         </article>
         <article class="card">
           <p class="kicker">Why it exists</p>
-          <h3>Because most idea lists stop before the hard part.</h3>
-          <p class="muted">The hard part is finding the pain, the share artifact, the money path, and the platform door all at once.</p>
+          <h3>Because proof is becoming more valuable than polish.</h3>
+          <p class="muted">The hard part is not generating content. The hard part is trusting what is real, what is safe, and what deserves to move forward.</p>
         </article>
         <article class="card">
           <p class="kicker">How it works</p>
-          <h3>Scan, score, position, move.</h3>
-          <p class="muted">The engine reads the signal, scores the market, and returns a launch-ready direction with a stronger opening move.</p>
+          <h3>Read, score, sign, verify.</h3>
+          <p class="muted">The engine reads the source, scores the trust layer, and returns a receipt-ready direction with a stronger opening move.</p>
         </article>
         <article class="card">
           <p class="kicker">What makes it different</p>
-          <h3>It treats distribution and monetization as product design, not afterthoughts.</h3>
-          <p class="muted">A concept only counts if it can travel, get paid, and become harder to replace over time.</p>
+          <h3>It treats proof as a product primitive, not a legal afterthought.</h3>
+          <p class="muted">A Jeni surface only counts if it can calm doubt, create a shareable proof object, and grow into a deeper trust layer over time.</p>
         </article>
         <article class="card">
           <p class="kicker">The standard</p>
-          <h3>It should feel calm, expensive, and inevitable.</h3>
-          <p class="muted">That is the bar for the design, the copy, and the actual quality of the opportunities it surfaces.</p>
+          <h3>It should feel calm, expensive, and quietly important.</h3>
+          <p class="muted">That is the bar for the design, the copy, and the actual quality of the proof it produces.</p>
         </article>
       </div>
     </section>
@@ -2679,14 +2685,14 @@ function privacyPage() {
         <p class="section-label">Privacy</p>
         <h2>Simple privacy, in plain English.</h2>
       </div>
-      <p class="muted">NA Kit only needs the information required to read submitted URLs, generate venture scans, and support product operations clearly.</p>
+      <p class="muted">Jeni only needs the information required to read submitted sources, generate trust scans, and support the product safely.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
-        <p class="kicker">What NA Kit may collect</p>
+        <p class="kicker">What Jeni may collect</p>
         <ul class="list-clean">
           <li>Business contact details from intake.</li>
-          <li>Public page content and structure needed for venture scans.</li>
+          <li>Public page content and structure needed for trust scans.</li>
           <li>Scan output, operator notes, and queue history.</li>
           <li>Operational data required to support the app safely.</li>
         </ul>
@@ -2694,7 +2700,7 @@ function privacyPage() {
       <article class="card">
         <p class="kicker">How it is used</p>
         <ul class="list-clean">
-          <li>To run venture scans and generate structured outputs.</li>
+          <li>To run trust scans and generate structured outputs.</li>
           <li>To improve product quality, queue handling, and support.</li>
           <li>To maintain product security and reasonable operational logs.</li>
         </ul>
@@ -2716,13 +2722,13 @@ function termsPage() {
         <p class="section-label">Terms</p>
         <h2>Clear rules. No surprises.</h2>
       </div>
-      <p class="muted">NA Kit prepares venture scans and product outputs. The user still controls how those outputs get used in the real world.</p>
+      <p class="muted">Jeni prepares trust scans and product outputs. The user still controls how those outputs get used in the real world.</p>
     </section>
     <section class="feature-grid">
       <article class="card">
         <p class="kicker">User responsibility</p>
         <h3>You are responsible for how you use the output.</h3>
-        <p class="muted">NA Kit can generate scans, concepts, and recommendations, but it does not assume legal or commercial responsibility for a user’s final decisions.</p>
+        <p class="muted">Jeni can generate scans, trust receipts, and recommendations, but it does not assume legal or commercial responsibility for a user’s final decisions.</p>
       </article>
       <article class="card">
         <p class="kicker">Content responsibility</p>
@@ -2731,7 +2737,7 @@ function termsPage() {
       </article>
       <article class="card">
         <p class="kicker">Service limits</p>
-        <h3>NA Kit should be used honestly and within platform rules.</h3>
+        <h3>Jeni should be used honestly and within platform rules.</h3>
         <p class="muted">No unsupported scraping promises, no deceptive claims, and no pretending the product has permissions it does not actually have.</p>
       </article>
     </section>
@@ -2745,8 +2751,8 @@ function authorizationPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Authorization</p>
-        <h2>Submitted URLs should be intentional and permission-safe.</h2>
-        <p class="muted">NA Kit is designed to work from public, signal-rich URLs and lightweight user-submitted context. If deeper access ever arrives later, it should stay explicit and narrow.</p>
+        <h2>Submitted sources should be intentional and permission-safe.</h2>
+        <p class="muted">Jeni is designed to work from public, signal-rich sources and lightweight user-submitted context. If deeper access ever arrives later, it should stay explicit and narrow.</p>
         <div class="mini-proof">
           <span class="pill">Signal-first</span>
           <span class="pill">Public-data lean</span>
@@ -2755,7 +2761,7 @@ function authorizationPage() {
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit authorization layer showing signal-first, public-data-first scanning." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni authorization layer showing signal-first, public-data-first scanning." />
         </div>
       </article>
     </section>
@@ -2763,11 +2769,11 @@ function authorizationPage() {
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What you approve</p>
-        <p class="muted">You confirm that you can share the URL or market signal and that NA Kit may analyze public information from it to produce a venture scan.</p>
+        <p class="muted">You confirm that you can share the source or market signal and that Jeni may analyze public information from it to produce a trust scan.</p>
       </article>
       <article class="card">
         <p class="kicker">What does not happen</p>
-        <p class="muted">NA Kit does not claim hidden access, silent integrations, or unsupported permissions. If future deeper connectors appear, they should be explicit and revocable.</p>
+        <p class="muted">Jeni does not claim hidden access, silent integrations, or unsupported permissions. If future deeper connectors appear, they should be explicit and revocable.</p>
       </article>
     </section>
 
@@ -2795,25 +2801,25 @@ function authorizationPage() {
   return layout('Authorization', content, '/authorization');
 }
 
-function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
+function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Build Queue</p>
-        <h2>Drop in one signal-rich URL.</h2>
+        <p class="section-label">Trust Scan</p>
+        <h2>Give Jeni one clean source.</h2>
       </div>
-      <p class="muted">A category site, competitor, article, or market signal is enough. NA Kit will scan it, score the opportunity, and return the clearest next build move.</p>
+      <p class="muted">You can arrive with a thought, a link, or a loose domain. Jeni will normalize the source, read the signal, and return the clearest trust, proof, and revenue direction.</p>
     </section>
     <section class="detail-grid" style="margin-bottom: 18px;">
       <article class="card">
         <p class="kicker">What happens next</p>
-        <h3>Scan. Score. Position.</h3>
-        <p class="muted">NA Kit reads the signal, looks for urgency and shareability, and returns a venture scan that feels like a serious opening memo.</p>
+        <h3>Read. Score. Return the trust blueprint.</h3>
+        <p class="muted">Jeni reads the source, maps the risk and proof signals, then shows the clearest next move without making the flow feel heavy.</p>
       </article>
       <article class="card">
         <p class="kicker">Low friction</p>
-        <h3>The URL is the only required field.</h3>
-        <p class="muted">Everything else is optional. Add more context only if you want the scan to aim harder at a specific lane.</p>
+        <h3>The source is the only required field.</h3>
+        <p class="muted">Domain-only works. <code>brand.com</code> is enough. Everything else is optional unless you want the scan to lean harder into a specific lane.</p>
       </article>
     </section>
     <section class="card intake-shell">
@@ -2829,21 +2835,25 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
         <div class="form-section">
           <div class="form-section-head">
             <p class="kicker">Start Here</p>
-            <h3>Signal first</h3>
+            <h3>Prompt first</h3>
           </div>
           <div class="form-grid">
             <div class="field">
-              <label for="website">Signal URL</label>
-              <input id="website" required name="website" placeholder="https://example.com/article, brand, competitor, or category page" value="${escapeHtml(values.website || '')}" />
+              <label for="query">What do you want Jeni to figure out?</label>
+              <input id="query" name="query" placeholder="Write anything. Example: is this a scam, what trust is missing, or where does the money live?" value="${escapeHtml(values.query || '')}" />
             </div>
             <div class="field">
-              <label for="goal">What are you hunting?</label>
+              <label for="website">Link or domain</label>
+              <input id="website" required name="website" data-url-normalize placeholder="example.com, article, product page, scam link, or brand site" value="${escapeHtml(values.website || '')}" />
+            </div>
+            <div class="field">
+              <label for="goal">What are you looking for?</label>
               <select id="goal" name="goal">
-                <option value="Find the hidden pain"${values.goal === 'Find the hidden pain' ? ' selected' : ''}>Find the hidden pain</option>
-                <option value="Stress-test a category"${values.goal === 'Stress-test a category' ? ' selected' : ''}>Stress-test a category</option>
-                <option value="Map the share artifact"${values.goal === 'Map the share artifact' ? ' selected' : ''}>Map the share artifact</option>
-                <option value="Find the money model"${values.goal === 'Find the money model' ? ' selected' : ''}>Find the money model</option>
-                <option value="Find the platform door"${values.goal === 'Find the platform door' ? ' selected' : ''}>Find the platform door</option>
+                <option value="Understand the trust risk"${values.goal === 'Understand the trust risk' ? ' selected' : ''}>Understand the trust risk</option>
+                <option value="Read the product opportunity"${values.goal === 'Read the product opportunity' ? ' selected' : ''}>Read the product opportunity</option>
+                <option value="Find the receipt or share artifact"${values.goal === 'Find the receipt or share artifact' ? ' selected' : ''}>Find the receipt or share artifact</option>
+                <option value="Find the money path"${values.goal === 'Find the money path' ? ' selected' : ''}>Find the money path</option>
+                <option value="See what feels weak"${values.goal === 'See what feels weak' ? ' selected' : ''}>See what feels weak</option>
                 <option value="Not sure"${!values.goal || values.goal === 'Not sure' ? ' selected' : ''}>Not sure</option>
               </select>
             </div>
@@ -2855,13 +2865,14 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
           <div class="form-grid">
             <div class="field">
               <label for="businessName">Project name</label>
-              <input id="businessName" name="businessName" placeholder="What do you want to call this thesis?" value="${escapeHtml(values.businessName || '')}" />
+              <input id="businessName" name="businessName" placeholder="Optional project or brand name" value="${escapeHtml(values.businessName || '')}" />
             </div>
             <div class="field">
               <label for="category">Lane</label>
               <select id="category" name="category">
-                <option value="General opportunity"${!values.category || values.category === 'General opportunity' ? ' selected' : ''}>General opportunity</option>
+                <option value="General trust signal"${!values.category || values.category === 'General trust signal' ? ' selected' : ''}>General trust signal</option>
                 <option value="Safety + scams"${values.category === 'Safety + scams' ? ' selected' : ''}>Safety + scams</option>
+                <option value="Media + truth"${values.category === 'Media + truth' ? ' selected' : ''}>Media + truth</option>
                 <option value="Bills + savings"${values.category === 'Bills + savings' ? ' selected' : ''}>Bills + savings</option>
                 <option value="Care + family"${values.category === 'Care + family' ? ' selected' : ''}>Care + family</option>
                 <option value="Work + skill"${values.category === 'Work + skill' ? ' selected' : ''}>Work + skill</option>
@@ -2870,7 +2881,6 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
                 <option value="Dating + trust"${values.category === 'Dating + trust' ? ' selected' : ''}>Dating + trust</option>
                 <option value="Commerce + creators"${values.category === 'Commerce + creators' ? ' selected' : ''}>Commerce + creators</option>
                 <option value="Transitions + moving"${values.category === 'Transitions + moving' ? ' selected' : ''}>Transitions + moving</option>
-                <option value="Information + trust"${values.category === 'Information + trust' ? ' selected' : ''}>Information + trust</option>
                 <option value="Other"${values.category === 'Other' ? ' selected' : ''}>Other</option>
               </select>
             </div>
@@ -2910,11 +2920,11 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
             </div>
             <div class="field">
               <label for="facebook">Facebook</label>
-              <input id="facebook" name="facebook" placeholder="facebook.com/yourbrand" value="${escapeHtml(values.facebook || '')}" />
+              <input id="facebook" name="facebook" data-url-normalize placeholder="facebook.com/yourbrand" value="${escapeHtml(values.facebook || '')}" />
             </div>
             <div class="field full">
               <label for="notes">Notes</label>
-              <textarea id="notes" name="notes" placeholder="Any theory, market intuition, or constraint you want the scan to consider?">${escapeHtml(values.notes || '')}</textarea>
+              <textarea id="notes" name="notes" placeholder="Anything else you want Jeni to keep in mind?">${escapeHtml(values.notes || '')}</textarea>
             </div>
           </div>
         </details>
@@ -2928,52 +2938,52 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
             <div class="field full">
               <label class="checkbox-field">
                 <input required type="checkbox" name="scanConsent" value="yes"${values.scanConsent === 'yes' ? ' checked' : ''} />
-                <span>I can share this URL, and I understand NA Kit will generate a venture scan from public signal data. By submitting, I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</span>
+                <span>I can share this source, and I understand Jeni will read public signal data to generate a trust scan. By submitting, I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</span>
               </label>
             </div>
           </div>
         </div>
 
-        <p class="form-hint">Usually takes about 20 seconds. Optional details simply help the scan lean harder into the right lane.</p>
-        <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'NA Kit starts reading the signal the moment you submit it.')}</p>
+        <p class="form-hint">Usually takes about 20 seconds. Optional details just help the scan lean harder into the right lane.</p>
+        <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'Jeni starts reading the signal the moment you submit it.')}</p>
         <div class="actions">
-          <button class="btn" type="submit" data-intake-submit>Start Venture Scan</button>
-          <a class="btn secondary" href="/case-studies">See the Ten Concepts</a>
+          <button class="btn" type="submit" data-intake-submit>Start Trust Scan</button>
+          <a class="btn secondary" href="/case-studies">See the Ten Surfaces</a>
         </div>
       </form>
     </section>
   `;
 
-  return layout('Build Queue', content, '/intake');
+  return layout('Trust Scan', content, '/intake');
 }
 
-function intakeSuccessPage(plan = 'Starter') {
+function intakeSuccessPage(plan = 'Free') {
   const content = `
     <section class="page-head">
       <div>
         <p class="section-label">Signal Received</p>
-        <h2>We’re scanning the opportunity.</h2>
+        <h2>We’re scanning the trust signal.</h2>
       </div>
-      <p class="muted">The engine is reading the signal now. The next step is a sharper product thesis, not a generic queue page.</p>
+      <p class="muted">The engine is reading the source now. The next step is a cleaner trust blueprint, not a dead queue page.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What happens now</p>
-        <h3>The venture scan starts immediately.</h3>
-        <p class="muted">NA Kit will look for urgency, shareability, money logic, and the platform door hiding underneath the signal.</p>
+        <h3>The trust scan starts immediately.</h3>
+        <p class="muted">Jeni is looking for risk, proof, revenue logic, and the strongest receipt hiding inside the source.</p>
       </article>
       <article class="card">
         <p class="kicker">If contact is missing</p>
-        <h3>The URL was enough.</h3>
-        <p class="muted">You can always add more context later. The first pass only needs a signal-rich starting point.</p>
+        <h3>The source was enough.</h3>
+        <p class="muted">You can always add more context later. The first pass only needs a strong starting point.</p>
       </article>
     </section>
     <section class="card">
       <p class="section-label">Next Step</p>
-      <h2>Clear opportunity first. Cleaner build move next.</h2>
-      <p class="muted">The point is to surface the inevitable angle quickly, not bury the product in extra ceremony.</p>
+      <h2>Find the trust break first. Move from proof after.</h2>
+      <p class="muted">The point is to surface the clearest trust read quickly, not bury the product in extra ceremony.</p>
       <div class="actions">
-        <a class="btn" href="/pricing">See Business Models</a>
+        <a class="btn" href="/pricing">See Pricing</a>
         <a class="btn secondary" href="/">Go Home</a>
       </div>
     </section>
@@ -2996,56 +3006,58 @@ function getAuditStatusLabel(status = 'queued') {
 
 function getAuditProgressCopy(job) {
   if (!job) {
-    return 'Preparing your audit.';
+    return 'Preparing your trust scan.';
   }
 
   return job.progressLabel || {
-    queued: 'Reading your signal.',
-    scanning: 'Pulling the strongest market clues.',
-    analyzing: 'Scoring urgency, spread, and money logic.',
-    completed: 'Your venture scan is ready.',
-    failed: 'We could not finish the venture scan.'
-  }[job.status] || 'Preparing your venture scan.';
+    queued: 'Reading your source.',
+    scanning: 'Mapping trust and provenance signals.',
+    analyzing: 'Scoring risk, proof, and revenue direction.',
+    completed: 'Your trust scan is ready.',
+    failed: 'We could not finish the trust scan.'
+  }[job.status] || 'Preparing your trust scan.';
 }
 
 function createClientFromIntake(form = {}) {
+  const prepared = prepareIntakeSubmission(form);
   const socialParts = [
-    form.instagram ? `Instagram: ${form.instagram}` : '',
-    form.facebook ? `Facebook: ${form.facebook}` : '',
-    form.socialStack || ''
+    prepared.instagram ? `Instagram: ${prepared.instagram}` : '',
+    prepared.facebook ? `Facebook: ${prepared.facebook}` : '',
+    prepared.socialStack || ''
   ].filter(Boolean);
   const notesParts = [
-    form.mainServices ? `Main services: ${form.mainServices}` : '',
-    form.notes || ''
+    prepared.query ? `Prompt: ${prepared.query}` : '',
+    prepared.mainServices ? `Main services: ${prepared.mainServices}` : '',
+    prepared.notes || ''
   ].filter(Boolean);
-  const website = form.website || '';
-  const businessName = form.businessName || getDomainFromWebsite(website) || 'Signal Lead';
+  const website = prepared.website || '';
+  const businessName = prepared.businessName || getDomainFromWebsite(website) || 'Signal Lead';
 
   return {
     id: `c_${crypto.randomUUID().slice(0, 10)}`,
     businessName,
-    owner: form.owner || '',
-    email: form.email || '',
-    phone: form.phone || '',
+    owner: prepared.owner || '',
+    email: prepared.email || '',
+    phone: prepared.phone || '',
     website,
-    sitePlatform: form.sitePlatform || 'custom',
-    category: form.category || 'General opportunity',
-    goal: form.goal || '',
+    sitePlatform: prepared.sitePlatform || 'custom',
+    category: prepared.category || 'General trust signal',
+    goal: prepared.goal || '',
     notes: notesParts.join('\n\n'),
-    plan: normalizePlan(form.plan),
-    businessSize: form.businessSize || 'small-team',
-    leadVolume: form.leadVolume || 'steady',
-    salesMotion: form.salesMotion || 'mixed',
-    preferredChannel: form.preferredChannel || 'email',
+    plan: normalizePlan(prepared.plan),
+    businessSize: prepared.businessSize || 'small-team',
+    leadVolume: prepared.leadVolume || 'steady',
+    salesMotion: prepared.salesMotion || 'mixed',
+    preferredChannel: prepared.preferredChannel || 'email',
     socialStack: socialParts.join(' · '),
-    instagram: form.instagram || '',
-    facebook: form.facebook || '',
-    mainServices: form.mainServices || '',
-    bookingSystem: form.bookingSystem || '',
+    instagram: prepared.instagram || '',
+    facebook: prepared.facebook || '',
+    mainServices: prepared.mainServices || '',
+    bookingSystem: prepared.bookingSystem || '',
     callLogs: [],
-    scanConsent: form.scanConsent === 'yes',
-    publishConsent: form.publishConsent === 'yes' || form.scanConsent === 'yes',
-    legalConsent: form.legalConsent === 'yes' || form.scanConsent === 'yes',
+    scanConsent: prepared.scanConsent === 'yes',
+    publishConsent: prepared.publishConsent === 'yes' || prepared.scanConsent === 'yes',
+    legalConsent: prepared.legalConsent === 'yes' || prepared.scanConsent === 'yes',
     createdAt: new Date().toISOString()
   };
 }
@@ -3055,7 +3067,7 @@ function createAuditJobRecord(clientId) {
     id: `audit_${crypto.randomUUID().slice(0, 12)}`,
     clientId,
     status: 'queued',
-    progressLabel: 'Reading your signal.',
+    progressLabel: 'Reading your source.',
     startedAt: '',
     completedAt: '',
     errorMessage: '',
@@ -3087,9 +3099,9 @@ function renderAuditIssueCards(result) {
   if (!result || !Array.isArray(result.topIssues) || !result.topIssues.length) {
     return `
       <article class="card audit-issue-card">
-        <p class="kicker">No issues yet</p>
-        <h3>Your venture scan is still loading.</h3>
-        <p class="muted">NA Kit will fill this with the hottest openings as soon as the scan is finished.</p>
+        <p class="kicker">No findings yet</p>
+        <h3>Your trust scan is still loading.</h3>
+        <p class="muted">Jeni will fill this with the strongest breaks and fastest wins as soon as the scan is finished.</p>
       </article>
     `;
   }
@@ -3113,17 +3125,17 @@ function auditPage(auditJob, client, auditResult) {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Venture Scan</p>
+        <p class="section-label">Trust Scan</p>
         <h2>${escapeHtml(getClientDisplayName(client || {}))}</h2>
       </div>
-      <p class="muted">NA Kit is checking this signal for urgency, shareability, business model fit, defensibility, and the bigger platform door.</p>
+      <p class="muted">Jeni is reading this source for trust breaks, receipt potential, revenue logic, and the larger verification layer underneath it.</p>
     </section>
 
     <section class="card audit-shell" data-audit-page data-audit-id="${escapeHtml(auditJob.id)}">
       <div class="audit-loading">
         <p class="section-label">Live Scan</p>
         <h3 data-audit-progress>${escapeHtml(getAuditProgressCopy(auditJob))}</h3>
-        <p class="muted">Searching the signal for hidden inevitability...</p>
+        <p class="muted">Searching the source for risk, proof, and the clearest next move...</p>
         <div class="mini-proof">
           <span class="pill" data-audit-status-pill>${escapeHtml(getAuditStatusLabel(auditJob.status))}</span>
           <span class="pill">${escapeHtml(client?.website || 'Signal pending')}</span>
@@ -3133,7 +3145,7 @@ function auditPage(auditJob, client, auditResult) {
 
       <div class="audit-grid" data-audit-results${completed ? '' : ' hidden'}>
         <article class="card audit-score-card">
-          <p class="kicker">Inevitability Score</p>
+          <p class="kicker">Trust Surface Score</p>
           <div class="audit-score" data-audit-overall-score>${completed ? escapeHtml(String(auditResult.overallScore || '--')) : '--'}</div>
           <p class="muted" data-audit-summary>${completed ? escapeHtml(auditResult.summary || '') : 'Your summary will appear here as soon as the audit finishes.'}</p>
         </article>
@@ -3141,7 +3153,7 @@ function auditPage(auditJob, client, auditResult) {
             <p class="kicker">Five-Second Read</p>
             <h3 data-audit-five-second>${completed ? escapeHtml(auditResult.fiveSecondImpression || '') : 'Loading first-impression analysis...'}</h3>
             <div class="audit-mini-scores">
-            ${Object.entries(nakitScoreLabels).map(([key, label]) => `
+            ${Object.entries(jeniScoreLabels).map(([key, label]) => `
               <div class="audit-mini-score">
                 <strong data-audit-score-${key}>${completed ? escapeHtml(String(scores[key] ?? '--')) : '--'}</strong>
                 <span>${escapeHtml(label)}</span>
@@ -3159,8 +3171,8 @@ function auditPage(auditJob, client, auditResult) {
         <section>
           <div class="section-heading">
             <div>
-              <p class="section-label">Top Openings</p>
-              <h2>Where the opportunity feels hottest first.</h2>
+              <p class="section-label">Top Findings</p>
+              <h2>Where trust breaks or compounds first.</h2>
             </div>
           </div>
           <div class="feature-grid" data-audit-issues>${renderAuditIssueCards(auditResult)}</div>
@@ -3170,11 +3182,11 @@ function auditPage(auditJob, client, auditResult) {
           <article class="card">
             <p class="kicker">Quick Wins</p>
             <ul class="list-clean" data-audit-quick-wins>
-              ${(completed ? auditResult.quickWins : ['NA Kit is building your quick wins now.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              ${(completed ? auditResult.quickWins : ['Jeni is building your quick wins now.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
           <article class="card">
-            <p class="kicker">Best Next Move</p>
+            <p class="kicker">Recommended Next Move</p>
             <ul class="list-clean" data-audit-recommended-fixes>
               ${(completed ? auditResult.recommendedFixes : ['Your recommended moves will appear here when the scan finishes.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
@@ -3183,7 +3195,7 @@ function auditPage(auditJob, client, auditResult) {
 
         <section class="detail-grid" style="margin-top: 18px;">
           <article class="card">
-            <p class="kicker">Launch Positioning</p>
+            <p class="kicker">Trust Positioning</p>
             <div class="rewrite-preview">
               <strong data-audit-hero-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading headline...'}</strong>
               <p class="muted" data-audit-hero-subheadline>${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading subheadline...'}</p>
@@ -3191,9 +3203,9 @@ function auditPage(auditJob, client, auditResult) {
             </div>
           </article>
           <article class="card">
-            <p class="kicker">Spread Logic</p>
+            <p class="kicker">Share Logic</p>
             <ul class="list-clean" data-audit-conversion-leaks>
-              ${(completed ? auditResult.conversionLeaks : ['Your spread angles will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              ${(completed ? auditResult.conversionLeaks : ['Your share and spread angles will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
         </section>
@@ -3201,15 +3213,15 @@ function auditPage(auditJob, client, auditResult) {
         <section style="margin-top: 18px;">
           <div class="section-heading">
             <div>
-              <p class="section-label">Build Kit</p>
-              <h2>The pieces that make the concept launchable.</h2>
+              <p class="section-label">Trust Kit</p>
+              <h2>The pieces that make the trust surface real.</h2>
             </div>
-            <p class="muted">This is where the output shifts from “interesting” to “worth prototyping.”</p>
+            <p class="muted">This is where the output shifts from “interesting” to “worth using.”</p>
           </div>
           <div class="feature-grid">
             <article class="card fix-card">
-              <p class="kicker">Blueprint</p>
-              <h3>Core promise + launch CTA</h3>
+              <p class="kicker">Core promise</p>
+              <h3>Headline, subheadline, and first CTA</h3>
               <div class="rewrite-preview">
                 <strong data-audit-fix-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading rewrite...'}</strong>
                 <p class="muted">${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading supporting copy...'}</p>
@@ -3221,28 +3233,28 @@ function auditPage(auditJob, client, auditResult) {
               </div>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Share Artifact</p>
+              <p class="kicker">Receipt design</p>
               <h3>What people would naturally repost or forward.</h3>
               <ul class="list-clean" data-audit-trust-recommendations>
                 ${(completed ? auditResult.trustRecommendations : ['Share-artifact directions will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Money Path</p>
+              <p class="kicker">Revenue path</p>
               <h3>How this concept most naturally gets paid.</h3>
               <ul class="list-clean" data-audit-booking-recommendations>
                 ${(completed ? auditResult.bookingFlowRecommendations : ['Revenue-path recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Platform Door</p>
+              <p class="kicker">Verifier layer</p>
               <h3>What larger layer this could become.</h3>
               <ul class="list-clean" data-audit-seo-recommendations>
                 ${(completed ? auditResult.seoRecommendations : ['Platform-door recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Missing Ingredients</p>
+              <p class="kicker">Missing protections</p>
               <h3>What the current thesis still needs.</h3>
               <ul class="list-clean" data-audit-missing-elements>
                 ${(completed ? auditResult.missingElements : ['Missing ingredients will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
@@ -3250,11 +3262,11 @@ function auditPage(auditJob, client, auditResult) {
             </article>
             <article class="card fix-card">
               <p class="kicker">Phase Plan</p>
-              <h3>How NA Kit would move next.</h3>
+              <h3>How Jeni would move next.</h3>
               <ul class="list-clean">
-                <li>Validate the pain in a tighter wedge.</li>
-                <li>Prototype the artifact users will naturally share.</li>
-                <li>Charge through the most native money path first.</li>
+                <li>Tighten the first use case until the trust break feels obvious.</li>
+                <li>Prototype the receipt people naturally keep or forward.</li>
+                <li>Charge through the money path that already feels native.</li>
               </ul>
               <div class="mini-proof">
                 <span class="pill">validate</span>
@@ -3268,13 +3280,13 @@ function auditPage(auditJob, client, auditResult) {
 
       <article class="card audit-error" data-audit-error${auditJob.status === 'failed' ? '' : ' hidden'}>
         <p class="kicker">Scan Error</p>
-        <h3>We could not finish the venture scan.</h3>
+        <h3>We could not finish the trust scan.</h3>
         <p class="muted" data-audit-error-message>${escapeHtml(auditJob.errorMessage || 'Try again with a reachable signal URL.')}</p>
       </article>
     </section>
   `;
 
-  return layout('Venture Scan', content, `/audit/${auditJob.id}`);
+  return layout('Trust Scan', content, `/audit/${auditJob.id}`);
 }
 
 function adminPage(clients, latestAudits = {}) {
@@ -3540,7 +3552,7 @@ function adminClientPage(client, wasJustCreated = false, latestAuditJob = null, 
       </article>
       <article class="card">
         <p class="kicker">Trust + Booking Layer</p>
-        <h3>What NA Kit wants to strengthen next.</h3>
+        <h3>What Jeni wants to strengthen next.</h3>
         <ul class="list-clean">
           ${(latestAuditResult?.trustRecommendations || latestAuditResult?.bookingFlowRecommendations || ['Trust and booking recommendations will appear here once the audit is ready.']).slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
         </ul>
@@ -3636,7 +3648,7 @@ function clientPortalPage(client) {
         <p class="section-label">Private Portal</p>
         <h2>${escapeHtml(displayName)} growth view</h2>
       </div>
-      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner || 'the owner')} with the NA Kit plan already customized for this business.</p>
+      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner || 'the owner')} with the Jeni plan already customized for this business.</p>
     </section>
     <section class="portal-grid">
       <article class="card">
@@ -3703,10 +3715,10 @@ function notFoundPage() {
       <section class="card empty-state">
         <p class="section-label">404</p>
         <h2>That page does not exist.</h2>
-        <p class="muted">Head back to the home page or drop a new signal into the build queue.</p>
+        <p class="muted">Head back to the home page or start a new trust scan.</p>
         <div class="actions" style="justify-content: center;">
           <a class="btn" href="/">Go Home</a>
-          <a class="btn secondary" href="/intake">Start Venture Scan</a>
+          <a class="btn secondary" href="/intake">Start Trust Scan</a>
         </div>
       </section>
     `,
@@ -3720,7 +3732,7 @@ app.get('/', async (req, res) => {
 
 app.get('/intake', async (req, res) => {
   const selectedPlan = normalizePlan(req.query.plan);
-  sendHtml(res, intakePage(selectedPlan, req.query));
+  sendHtml(res, intakePage(selectedPlan, buildIntakePrefill(req.query)));
 });
 
 app.get('/intake/success', async (req, res) => {
@@ -3771,6 +3783,10 @@ app.get('/med-spas', async (req, res) => {
   sendHtml(res, medSpaPage());
 });
 
+app.get('/shield', async (req, res) => {
+  sendHtml(res, medSpaPage());
+});
+
 app.get('/operator-architecture', async (req, res) => {
   sendHtml(res, operatorArchitecturePage());
 });
@@ -3791,18 +3807,20 @@ app.get('/pricing', async (req, res) => {
 });
 
 app.post('/api/intake', async (req, res) => {
-  if (!req.body.website) {
-    res.status(400).json({ error: 'A signal URL is required.' });
+  const preparedBody = prepareIntakeSubmission(req.body);
+
+  if (!preparedBody.website) {
+    res.status(400).json({ error: 'Add a link or domain so Jeni has a source to read.' });
     return;
   }
 
-  if (req.body.scanConsent !== 'yes') {
-    res.status(400).json({ error: 'Please confirm you can share this URL for the scan.' });
+  if (preparedBody.scanConsent !== 'yes') {
+    res.status(400).json({ error: 'Please confirm you can share this source for the scan.' });
     return;
   }
 
   try {
-    const session = await createLeadAndAudit(req.body);
+    const session = await createLeadAndAudit(preparedBody);
     res.json({
       clientId: session.client.id,
       auditId: session.auditJob.id,
@@ -3814,21 +3832,23 @@ app.post('/api/intake', async (req, res) => {
 });
 
 app.post('/intake', async (req, res) => {
-  if (!req.body.website) {
-    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'A signal URL is required.'), 400);
+  const preparedBody = prepareIntakeSubmission(req.body);
+
+  if (!preparedBody.website) {
+    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Add a link or domain so Jeni has a source to read.'), 400);
     return;
   }
 
-  if (req.body.scanConsent !== 'yes') {
-    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Please confirm you can share this URL for the scan.'), 400);
+  if (preparedBody.scanConsent !== 'yes') {
+    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Please confirm you can share this source for the scan.'), 400);
     return;
   }
 
   try {
-    const session = await createLeadAndAudit(req.body);
+    const session = await createLeadAndAudit(preparedBody);
     res.redirect(session.redirectUrl);
   } catch (error) {
-    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Could not start the audit right now.'), 500);
+    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Could not start the trust scan right now.'), 500);
   }
 });
 
@@ -3936,7 +3956,7 @@ app.get('/login', async (req, res) => {
       '/admin',
       'Open Admin',
       '/case-studies',
-      'See Concepts',
+      'See Surfaces',
       '/login'
     )
   );
@@ -3954,9 +3974,9 @@ app.get('/demo', async (req, res) => {
       'Sales Motion',
       'Use this route as the future handoff for founder calls, venture reviews, or partnership conversations once the product is fully live.',
       '/intake',
-      'Start Venture Scan',
+      'Start Trust Scan',
       '/case-studies',
-      'See Concepts',
+      'See Surfaces',
       '/demo'
     )
   );
