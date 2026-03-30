@@ -1,0 +1,102 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1360" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#05070D"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 280) rotate(48) scale(620 420)">
+      <stop stop-color="#6B7BFF" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#6B7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1160 210) rotate(90) scale(300 300)">
+      <stop stop-color="#55E6FF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#55E6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1000 760) rotate(90) scale(360 360)">
+      <stop stop-color="#B780FF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#B780FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="306" y1="182" x2="1294" y2="818" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6B7BFF" stop-opacity="0.58"/>
+      <stop offset="0.45" stop-color="#55E6FF" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#F5F7FB" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F5F7FB"/>
+      <stop offset="1" stop-color="#B8C4DE"/>
+    </linearGradient>
+    <filter id="shadow" x="-80" y="-80" width="1760" height="1160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="30" stdDeviation="40" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" rx="56" fill="url(#bg)"/>
+  <rect width="1600" height="1000" rx="56" fill="url(#glowA)"/>
+  <rect width="1600" height="1000" rx="56" fill="url(#glowB)"/>
+  <rect width="1600" height="1000" rx="56" fill="url(#glowC)"/>
+
+  <g opacity="0.22">
+    <path d="M180 180H1420" stroke="white" stroke-opacity="0.08"/>
+    <path d="M180 500H1420" stroke="white" stroke-opacity="0.08"/>
+    <path d="M180 820H1420" stroke="white" stroke-opacity="0.08"/>
+    <path d="M180 180V820" stroke="white" stroke-opacity="0.08"/>
+    <path d="M800 180V820" stroke="white" stroke-opacity="0.08"/>
+    <path d="M1420 180V820" stroke="white" stroke-opacity="0.08"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="532" y="348" width="536" height="304" rx="34" fill="#0C1019" fill-opacity="0.78"/>
+    <rect x="532.5" y="348.5" width="535" height="303" rx="33.5" stroke="white" stroke-opacity="0.10"/>
+    <text x="592" y="430" fill="#7B8FFF" font-family="SF Pro Display, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="5.28">NA KIT</text>
+    <text x="592" y="500" fill="#F5F7FB" font-family="SF Pro Display, Arial, sans-serif" font-size="54" font-weight="700">Necessary apps.</text>
+    <text x="592" y="562" fill="#F5F7FB" font-family="SF Pro Display, Arial, sans-serif" font-size="54" font-weight="700">Future doors.</text>
+    <text x="592" y="620" fill="#9DA9BF" font-family="SF Pro Display, Arial, sans-serif" font-size="26">Fear, savings, care, work, home, commerce, trust.</text>
+  </g>
+
+  <g stroke="url(#line)" stroke-width="2">
+    <path d="M366 264L668 430"/>
+    <path d="M1232 250L940 430"/>
+    <path d="M342 710L656 570"/>
+    <path d="M1260 734L944 570"/>
+    <path d="M800 146L800 348"/>
+    <path d="M800 652L800 860"/>
+  </g>
+
+  <g>
+    <circle cx="366" cy="264" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="1232" cy="250" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="342" cy="710" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="1260" cy="734" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="800" cy="146" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="800" cy="860" r="72" fill="#0E1420" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  </g>
+
+  <g fill="url(#node)">
+    <circle cx="366" cy="264" r="8"/>
+    <circle cx="1232" cy="250" r="8"/>
+    <circle cx="342" cy="710" r="8"/>
+    <circle cx="1260" cy="734" r="8"/>
+    <circle cx="800" cy="146" r="8"/>
+    <circle cx="800" cy="860" r="8"/>
+  </g>
+
+  <g font-family="SF Pro Display, Arial, sans-serif" text-anchor="middle">
+    <text x="366" y="254" fill="#F5F7FB" font-size="26" font-weight="700">Safety</text>
+    <text x="366" y="288" fill="#9DA9BF" font-size="20">Scams • identity</text>
+
+    <text x="1232" y="240" fill="#F5F7FB" font-size="26" font-weight="700">Commerce</text>
+    <text x="1232" y="274" fill="#9DA9BF" font-size="20">Creators • carts</text>
+
+    <text x="342" y="700" fill="#F5F7FB" font-size="26" font-weight="700">Work</text>
+    <text x="342" y="734" fill="#9DA9BF" font-size="20">Proof • reputation</text>
+
+    <text x="1260" y="724" fill="#F5F7FB" font-size="26" font-weight="700">Home</text>
+    <text x="1260" y="758" fill="#9DA9BF" font-size="20">Claims • upkeep</text>
+
+    <text x="800" y="136" fill="#F5F7FB" font-size="26" font-weight="700">Money</text>
+    <text x="800" y="170" fill="#9DA9BF" font-size="20">Bills • savings</text>
+
+    <text x="800" y="850" fill="#F5F7FB" font-size="26" font-weight="700">Trust</text>
+    <text x="800" y="884" fill="#9DA9BF" font-size="20">Reality • verification</text>
+  </g>
+</svg>

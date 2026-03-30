@@ -1,0 +1,62 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="210" y1="80" x2="1414" y2="892" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101625"/>
+      <stop offset="1" stop-color="#05070D"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 500) rotate(90) scale(420 420)">
+      <stop stop-color="#6B7BFF" stop-opacity="0.26"/>
+      <stop offset="0.55" stop-color="#55E6FF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#55E6FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="800" y1="158" x2="800" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55E6FF"/>
+      <stop offset="1" stop-color="#6B7BFF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" rx="56" fill="url(#bg2)"/>
+  <rect width="1600" height="1000" rx="56" fill="url(#halo)"/>
+
+  <g opacity="0.28" stroke="white" stroke-opacity="0.08">
+    <circle cx="800" cy="500" r="290"/>
+    <circle cx="800" cy="500" r="220"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="80"/>
+  </g>
+
+  <g opacity="0.26" stroke="white" stroke-opacity="0.08">
+    <path d="M800 130V870"/>
+    <path d="M430 500H1170"/>
+    <path d="M540 240L1060 760"/>
+    <path d="M540 760L1060 240"/>
+  </g>
+
+  <path d="M800 216L984 348L1036 560L878 744L650 712L534 528L602 310L800 216Z" fill="#55E6FF" fill-opacity="0.10" stroke="url(#stroke)" stroke-width="4"/>
+
+  <g fill="#F5F7FB" font-family="SF Pro Display, Arial, sans-serif">
+    <text x="800" y="98" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="4.84" fill="#7B8FFF">NA KIT SIGNAL MODEL</text>
+    <text x="800" y="154" text-anchor="middle" font-size="38" font-weight="700">Urgency · Spread · Money · Moat · Door · Speed</text>
+  </g>
+
+  <g font-family="SF Pro Display, Arial, sans-serif" text-anchor="middle">
+    <text x="800" y="196" fill="#F5F7FB" font-size="24" font-weight="700">Urgency</text>
+    <text x="1116" y="358" fill="#F5F7FB" font-size="24" font-weight="700">Monetization</text>
+    <text x="1108" y="736" fill="#F5F7FB" font-size="24" font-weight="700">Platform Door</text>
+    <text x="800" y="854" fill="#F5F7FB" font-size="24" font-weight="700">Build Speed</text>
+    <text x="482" y="734" fill="#F5F7FB" font-size="24" font-weight="700">Defensibility</text>
+    <text x="476" y="358" fill="#F5F7FB" font-size="24" font-weight="700">Shareability</text>
+  </g>
+
+  <g font-family="SF Pro Display, Arial, sans-serif">
+    <rect x="1160" y="234" width="250" height="134" rx="26" fill="#0C1019" fill-opacity="0.78" stroke="#FFFFFF" stroke-opacity="0.10"/>
+    <text x="1204" y="284" fill="#7B8FFF" font-size="18" font-weight="700" letter-spacing="3.96">CHECKLIST</text>
+    <text x="1204" y="324" fill="#F5F7FB" font-size="22" font-weight="700">Pain already costs money</text>
+    <text x="1204" y="354" fill="#9DA9BF" font-size="18">Artifact wants to travel</text>
+
+    <rect x="190" y="666" width="284" height="134" rx="26" fill="#0C1019" fill-opacity="0.78" stroke="#FFFFFF" stroke-opacity="0.10"/>
+    <text x="234" y="716" fill="#55E6FF" font-size="18" font-weight="700" letter-spacing="3.96">RESULT</text>
+    <text x="234" y="756" fill="#F5F7FB" font-size="22" font-weight="700">Prototype the wedge first</text>
+    <text x="234" y="786" fill="#9DA9BF" font-size="18">Expand into the door later</text>
+  </g>
+</svg>

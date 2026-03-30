@@ -22,6 +22,6 @@
   <rect x="16.5" y="16.5" width="127" height="127" rx="31.5" fill="#090B0F" stroke="#FFFFFF" stroke-opacity="0.08"/>
   <path d="M114 80C114 98.7777 98.7777 114 80 114C61.2223 114 46 98.7777 46 80C46 61.2223 61.2223 46 80 46C88.8285 46 96.8721 49.3642 102.8901 54.8808" stroke="url(#outerStroke)" stroke-width="11" stroke-linecap="round"/>
   <path d="M90 49H114V73" stroke="url(#innerGlow)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="176" y="96" fill="url(#wordChrome)" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">Zumi</text>
-  <text x="179" y="139" fill="#A9B2BB" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2">NOTHING SLIPS. EVERYTHING CLOSES.</text>
+  <text x="176" y="96" fill="url(#wordChrome)" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="-2">NA Kit</text>
+  <text x="179" y="139" fill="#A9B2BB" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="2">NECESSARY APPS. FUTURE DOORS.</text>
 </svg>

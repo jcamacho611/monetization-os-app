@@ -29,16 +29,196 @@ const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
   minute: '2-digit'
 });
 const brand = {
-  name: 'Zumi',
-  category: 'AI revenue operator',
-  audience: 'businesses, brands, and booking-led teams',
-  slogan: 'Nothing slips. Everything closes.',
-  headline: 'Fix your website. Get more bookings.',
-  subhead: 'Zumi finds what is costing you bookings, trust, and conversions, then prepares cleaner fixes you can approve fast.',
-  supportingLine: 'Free audit first. Clear fixes next. Approval first.',
-  metaDescription: 'Zumi is an AI revenue operator for booking-based businesses. It scans websites, finds conversion leaks, improves trust and booking flow, and prepares approval-first fixes.',
-  proofNote: 'Illustrative launch scenarios built to show how Zumi can improve bookings, trust, and conversion before a full live customer dataset exists.',
-  algorithmName: 'Zumi Adapt Engine'
+  name: 'NA Kit',
+  category: 'future app operator',
+  audience: 'founders, operators, and people building necessary products',
+  slogan: 'Necessary apps. Future doors.',
+  headline: 'Ten necessary apps. One extraordinary launch surface.',
+  subhead: 'NA Kit is a premium concept lab for viral, monetizable apps built around fear, savings, care, work, home, trust, and social proof.',
+  supportingLine: 'Urgent pain. Shareable proof. Platform doors.',
+  metaDescription: 'NA Kit is a premium future-app studio exploring necessary, viral, monetizable products across safety, money, care, work, home, commerce, and trust.',
+  proofNote: 'These are Phase 1 venture concepts designed to create shareable proof, recurring budgets, and real platform expansion doors.',
+  algorithmName: 'NA Signal Engine'
+};
+const nakitConcepts = [
+  {
+    slug: 'scamsentry',
+    letter: 'A',
+    title: 'ScamSentry',
+    category: 'Safety + family protection',
+    pitch: 'A family firewall that catches scams across calls, texts, DMs, emails, and payments.',
+    viralHook: 'Shareable Scam Receipts that warn other people without exposing private data.',
+    monetization: '$9–$19/mo family plan plus B2B bank and fintech partnerships.',
+    door: 'Identity, verified communications, payment-risk infrastructure.',
+    whyNow: 'Impersonation scams already cost billions and keep rising.'
+  },
+  {
+    slug: 'billbuster',
+    letter: 'B',
+    title: 'BillBuster',
+    category: 'Money + recurring spend',
+    pitch: 'A one-button bill optimizer that cancels junk, negotiates spend, and turns savings into proof.',
+    viralHook: 'Savings cards and monthly savings streaks people flex to friends.',
+    monetization: 'Share-of-savings plus a $5–$15/mo automation tier.',
+    door: 'Consumer finance autopilot, switching agent, spending permissions.',
+    whyNow: 'Recurring spend creep is universal and under-managed.'
+  },
+  {
+    slug: 'carecircle',
+    letter: 'C',
+    title: 'CareCircle',
+    category: 'Family + health logistics',
+    pitch: 'The shared operating layer for meds, appointments, transport, and aging-parent coordination.',
+    viralHook: 'Privacy-safe care wins, streaks, and family accountability receipts.',
+    monetization: '$12–$25/mo family plans plus employer and care-agency distribution.',
+    door: 'Healthcare logistics, telehealth workflows, pharmacy coordination.',
+    whyNow: 'Caregiving is rising, but coordination is still chaos.'
+  },
+  {
+    slug: 'skillstack',
+    letter: 'D',
+    title: 'SkillStack',
+    category: 'Work + learning reputation',
+    pitch: 'A proof-of-skill network where weekly shipped output becomes the resume.',
+    viralHook: 'Ship clips and proof cards that travel in short-form feeds.',
+    monetization: '$10–$30/mo pro, recruiting SaaS, mentor marketplace take-rates.',
+    door: 'Credential graph, apprenticeship market, reputation infrastructure.',
+    whyNow: 'Resumes are weak signals; shipped work wins.'
+  },
+  {
+    slug: 'homeledger',
+    letter: 'E',
+    title: 'HomeLedger',
+    category: 'Home + property ops',
+    pitch: 'Turn the home into a managed asset with maintenance, documentation, claims, and resale readiness.',
+    viralHook: 'Before-and-after maintenance stories and home-value lift proof.',
+    monetization: '$8–$20/mo household plans plus contractor and insurer partnerships.',
+    door: 'Property ops, underwriting-grade home data, multi-home expansion.',
+    whyNow: 'Homes are expensive; documentation and upkeep are fragmented.'
+  },
+  {
+    slug: 'civiccopilot',
+    letter: 'F',
+    title: 'CivicCopilot',
+    category: 'Life admin + bureaucracy',
+    pitch: 'An assistant for forms, deadlines, disputes, appointments, and appeal trails.',
+    viralHook: 'Shareable wins against bureaucracy: reduced fees, recovered money, faster appointments.',
+    monetization: '$15–$99 per case plus $9–$25/mo admin subscription.',
+    door: 'Life admin API for any repetitive paperwork process.',
+    whyNow: 'The coordination tax of bureaucracy is still enormous.'
+  },
+  {
+    slug: 'dateguard',
+    letter: 'G',
+    title: 'DateGuard',
+    category: 'Dating + safety',
+    pitch: 'A safety-first dating layer with identity checks, meetup plans, and panic-proof infrastructure.',
+    viralHook: 'Green-flag badges and safety streaks among friends.',
+    monetization: '$6–$15/mo, pay-per-verify, safety partnerships.',
+    door: 'Portable trust primitives for dating, roommates, and P2P commerce.',
+    whyNow: 'AI-fueled impersonation risk is colliding with online dating at scale.'
+  },
+  {
+    slug: 'clipcommerce',
+    letter: 'H',
+    title: 'ClipCommerce',
+    category: 'Commerce + creator video',
+    pitch: 'A shop-the-clip layer that makes short-form video instantly shoppable and easier to trust.',
+    viralHook: 'Shareable carts, dupe finds, and creator overlays that travel like content.',
+    monetization: 'Affiliate + take-rate + creator and brand SaaS.',
+    door: 'Social-video commerce infrastructure, creator payouts, product graphs.',
+    whyNow: 'Short-form commerce keeps growing, but trust and logistics lag.'
+  },
+  {
+    slug: 'movepilot',
+    letter: 'I',
+    title: 'MovePilot',
+    category: 'Relocation + life transitions',
+    pitch: 'A relocation OS that coordinates moves, switching, paperwork, and service setup end to end.',
+    viralHook: 'Move scorecards, survival templates, and city swap guides people share.',
+    monetization: 'Referral economics plus $10–$25 concierge tier.',
+    door: 'Transition OS for newborns, job changes, marriage, divorce, and more.',
+    whyNow: 'Life transitions are still chaotic and expensive.'
+  },
+  {
+    slug: 'realitycheck',
+    letter: 'J',
+    title: 'RealityCheck',
+    category: 'Information + trust',
+    pitch: 'A social-first “is this real?” product that turns confusing content into clarity cards.',
+    viralHook: 'Reality Cards built for reposts in stories, comments, and group chats.',
+    monetization: '$5–$10/mo power user tier plus newsroom/community licenses.',
+    door: 'Trust and verification API for media, marketplaces, and brands.',
+    whyNow: 'Feeds are saturated and confusion has become the default.'
+  }
+];
+const nakitMoats = [
+  {
+    title: 'Share artifact moat',
+    body: 'The output becomes distribution: Scam Receipts, Savings Cards, Care Dashboards, Proof-of-Skill clips, and Reality Cards.'
+  },
+  {
+    title: 'Workflow lock-in',
+    body: 'Once a family, homeowner, or operator runs the workflow inside the app, switching becomes painful.'
+  },
+  {
+    title: 'Platform door',
+    body: 'Each idea can graduate from app to infrastructure once it owns a real layer of trust, payments, care, or logistics.'
+  }
+];
+const nakitRankings = [
+  {
+    title: 'Fastest to cash',
+    winner: 'ScamSentry',
+    body: 'Urgent fear + obvious family subscription + natural social warning loop.'
+  },
+  {
+    title: 'Most defensible',
+    winner: 'CareCircle',
+    body: 'Families do not rip out coordination layers once habits and history are there.'
+  },
+  {
+    title: 'Highest ceiling',
+    winner: 'ClipCommerce',
+    body: 'It can sit directly in the transaction path of creator attention and product buying.'
+  }
+];
+const nakitPaths = [
+  'Urgent fear or urgent savings first.',
+  'Turn the outcome into a shareable object.',
+  'Charge where the budget already exists.',
+  'Expand into the platform door once trust is earned.'
+];
+const nakitRevenueBuckets = [
+  {
+    title: 'Recurring protection',
+    body: 'Subscription businesses win when the app protects people from constant loss, risk, or chaos.',
+    examples: 'ScamSentry, CareCircle, HomeLedger'
+  },
+  {
+    title: 'Performance fee',
+    body: 'Pay-on-win models work when the result is measurable: savings recovered, fees reduced, or bureaucracy beaten.',
+    examples: 'BillBuster, CivicCopilot'
+  },
+  {
+    title: 'Throughput take-rate',
+    body: 'The biggest upside appears when the app sits directly inside shopping, services, hiring, or transitions.',
+    examples: 'ClipCommerce, MovePilot, SkillStack'
+  }
+];
+const nakitAcquisitionChannels = [
+  'Short-form creators with a native warning, flex, or transformation angle.',
+  'Search intent around urgent pain like scams, bills, moving, or care.',
+  'Community loops where people naturally forward help to friends or family.',
+  'Institutional distribution once the first consumer wedge proves itself.'
+];
+const nakitScoreLabels = {
+  clarity: 'Urgency',
+  trust: 'Shareability',
+  cta: 'Monetization',
+  booking: 'Defensibility',
+  seo: 'Platform Door',
+  mobile: 'Build Speed'
 };
 const planPaymentLinks = {
   Starter: process.env.STRIPE_STARTER_PAYMENT_LINK || '',
@@ -1051,7 +1231,7 @@ function getUrgencyLabel(urgency = 'fast') {
 
 function buildOpportunityBlueprint(input = {}) {
   const pseudoClient = {
-    businessName: input.businessName || 'Zumi Preview',
+    businessName: input.businessName || 'NA Kit Preview',
     category: input.businessType || 'General Business',
     goal: input.searchGoal || 'surface real opportunities and convert them faster',
     notes: `Location: ${input.location || 'target market'}. Target: ${input.targetType || 'opportunities'}. Urgency: ${input.responseUrgency || 'fast'}.`,
@@ -1112,7 +1292,7 @@ function buildOpportunityBlueprint(input = {}) {
     outreachChannelMix: [channelLabel(base.primaryChannel), channelLabel(base.secondaryChannel), 'Operator review'],
     workflowRecommendation,
     launchPlan,
-    previewSummary: `Zumi would search ${location}, verify ${targetLabel.toLowerCase()} quality automatically, then move the strongest results into a ${base.engineName.toLowerCase()} workflow.`
+    previewSummary: `NA Kit would search ${location}, verify ${targetLabel.toLowerCase()} quality automatically, then move the strongest results into a ${base.engineName.toLowerCase()} workflow.`
   };
 }
 
@@ -1270,12 +1450,12 @@ ${brand.name}`;
   }
 
   if (channel === 'whatsapp') {
-    return `Hi ${owner}, quick follow-up for ${businessName}. Zumi mapped your business to the ${blueprint.engineName}, which means the biggest win is to ${blueprint.offerAngle}. If you want, I can send the recommended next steps today.`;
+    return `Hi ${owner}, quick follow-up for ${businessName}. NA Kit mapped your business to the ${blueprint.engineName}, which means the biggest win is to ${blueprint.offerAngle}. If you want, I can send the recommended next steps today.`;
   }
 
   return `Hi ${owner},
 
-I wanted to follow up on ${businessName} and the goal around ${goal}. Zumi mapped the business to a ${blueprint.motionLabel.toLowerCase()} workflow, and the biggest opportunity right now is to ${blueprint.offerAngle}.
+I wanted to follow up on ${businessName} and the goal around ${goal}. NA Kit mapped the business to a ${blueprint.motionLabel.toLowerCase()} workflow, and the biggest opportunity right now is to ${blueprint.offerAngle}.
 
 If you want, I can put together a simple next-step plan for this week around ${blueprint.responseTarget.toLowerCase()} and send it over for review.
 
@@ -1300,7 +1480,7 @@ function buildFollowupPrompt(client, channel = 'email', messageType = 'inquiry_f
     `Owner: ${owner}.`,
     `Goal: ${goal}.`,
     `Notes: ${notes}.`,
-    `Detected Zumi engine: ${blueprint.engineName}.`,
+    `Detected NA Kit engine: ${blueprint.engineName}.`,
     `Business size: ${blueprint.sizeLabel}.`,
     `Sales motion: ${blueprint.motionLabel}.`,
     `Lead flow: ${blueprint.volumeLabel}.`,
@@ -1372,7 +1552,7 @@ function layout(title, content, currentPath = '/') {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: brand.name,
-    serviceType: 'AI revenue operator',
+    serviceType: 'venture concept studio',
     description: brand.metaDescription,
     areaServed: 'US',
     audience: {
@@ -1391,7 +1571,7 @@ function layout(title, content, currentPath = '/') {
       <meta property="og:description" content="${escapeHtml(brand.metaDescription)}" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="${escapeHtml(pageUrl)}" />
-      <meta property="og:image" content="https://zumi.onrender.com/hero-operator.svg" />
+      <meta property="og:image" content="https://zumi.onrender.com/nakit-cosmos.svg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="${safeTitle}" />
       <meta name="twitter:description" content="${escapeHtml(brand.metaDescription)}" />
@@ -1415,11 +1595,12 @@ function layout(title, content, currentPath = '/') {
             <div class="nav-main">
               <nav class="nav-links">
                 ${navLink('/', 'Home', currentPath)}
-                ${navLink('/how-it-works', 'How It Works', currentPath)}
-                ${navLink('/industries', 'Industries', currentPath)}
-                ${navLink('/pricing', 'Pricing', currentPath)}
+                ${navLink('/how-it-works', 'Flywheel', currentPath)}
+                ${navLink('/case-studies', 'Concepts', currentPath)}
+                ${navLink('/pricing', 'Business Model', currentPath)}
+                ${navLink('/about', 'About', currentPath)}
               </nav>
-              <a class="btn nav-cta" href="/intake">Free Audit</a>
+              <a class="btn nav-cta" href="/intake">Build Queue</a>
             </div>
           </div>
         </div>
@@ -1434,10 +1615,11 @@ function layout(title, content, currentPath = '/') {
             <span>${brand.slogan}</span>
           </div>
           <nav class="footer-links">
-            <a href="/about">About</a>
+            <a href="/case-studies">Concepts</a>
+            <a href="/how-it-works">Flywheel</a>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="/authorization">Authorization</a>
+            <a href="/intake">Build Queue</a>
           </nav>
         </div>
       </footer>
@@ -1456,7 +1638,7 @@ function followupComposerCard(client) {
     <section class="card" data-followup-panel data-client-id="${escapeHtml(client.id)}">
       <p class="section-label">Messaging Center</p>
       <h3>Generate the next message with intent.</h3>
-      <p class="muted">Use Zumi for inquiry follow-up, missed-call recovery, reactivation, review requests, consult nudges, and booking reminders without losing the premium tone.</p>
+      <p class="muted">Use NA Kit for inquiry follow-up, missed-call recovery, reactivation, review requests, consult nudges, and booking reminders without losing the premium tone.</p>
       <div class="form-grid" style="margin-top: 18px;">
         <div class="field">
           <label for="message-type-${escapeHtml(client.id)}">Message type</label>
@@ -1685,19 +1867,19 @@ function homePage(clients) {
   const content = `
     <section class="entry-hero">
       <div class="entry-shell">
-        <p class="section-label">AI Revenue Operator</p>
-        <h1>Search for the revenue hiding inside your website.</h1>
-        <p class="lede">Zumi reads the site like an operator: trust, clarity, booking flow, follow-up pressure, and the weak spots quietly costing you clients.</p>
+        <p class="section-label">Necessary apps. Future doors.</p>
+        <h1>What should the next inevitable app be?</h1>
+        <p class="lede">NA Kit is a launch surface for products that spread because they solve something urgent, create shareable proof, and sit on top of budgets or risk people already live with.</p>
         <form class="entry-search" method="GET" action="/intake">
-          <input name="website" type="url" placeholder="Enter your website to begin" aria-label="Website URL" required />
-          <button class="btn" type="submit">Begin Audit</button>
+          <input name="website" type="url" placeholder="Drop a market signal, category site, or competitor URL" aria-label="Market signal URL" required />
+          <button class="btn" type="submit">Start Venture Scan</button>
         </form>
-        <p class="supporting-line">Nothing slips. Everything closes.</p>
+        <p class="supporting-line">Urgent pain. Shareable proof. Platform doors.</p>
         <div class="entry-proof">
-          <span class="pill">Free audit first</span>
-          <span class="pill">Approval-first fixes</span>
-          <span class="pill">$149 first fix</span>
-          <span class="pill">${escapeHtml(String(Math.max(clients.length, 3)))} active operator records</span>
+          <span class="pill">10 concept lanes</span>
+          <span class="pill">Safety to commerce</span>
+          <span class="pill">Built for recurring budgets</span>
+          <span class="pill">${escapeHtml(String(Math.max(clients.length, 10)))} tracked signals</span>
         </div>
       </div>
     </section>
@@ -1706,38 +1888,38 @@ function homePage(clients) {
       <div class="detail-grid">
         <article class="card spotlight">
           <div class="spotlight-visual">
-            <img class="spotlight-image" src="/hero-operator.svg" alt="Cinematic AI website scan scene showing revenue leaks, trust signals, and conversion improvements." />
+            <img class="spotlight-image" src="/nakit-cosmos.svg" alt="Cinematic future-app map showing safety, money, care, home, trust, work, and commerce as connected opportunity systems." />
           </div>
-          <p class="section-label">Your website should close.</p>
-          <h3>From traffic to trust to bookings.</h3>
-          <p class="muted">Zumi starts with the site, but it thinks like a revenue operator. It finds where attention drops, trust breaks, and next steps get missed.</p>
+          <p class="section-label">The lens</p>
+          <h3>Great apps spread when the output wants to be shared.</h3>
+          <p class="muted">The best categories come with their own native artifact: a warning, a savings flex, a care dashboard, a proof-of-skill card, or a clarity card that naturally travels through feeds and group chats.</p>
           <div class="mini-proof">
-            <span class="pill">Instant audit</span>
-            <span class="pill">Messaging center</span>
-            <span class="pill">Fix center</span>
+            <span class="pill">Scam receipts</span>
+            <span class="pill">Savings cards</span>
+            <span class="pill">Reality cards</span>
           </div>
         </article>
         <article class="card">
-          <p class="section-label">Why owners buy</p>
-          <h3>Clearer revenue recovery. Less agency drag.</h3>
+          <p class="section-label">Why now</p>
+          <h3>Necessary beats trendy when the budget is already there.</h3>
           <ul class="list-clean">
-            <li>See what is hurting bookings before paying for a rebuild.</li>
-            <li>Fix the homepage, trust layer, booking flow, and follow-up pressure first.</li>
-            <li>Keep every change approval-first so the brand stays protected.</li>
-            <li>Use Zumi like an operator, not another passive dashboard.</li>
+            <li>Protection products win because failure is expensive.</li>
+            <li>Operations products win because the chaos is constant.</li>
+            <li>Throughput products win because they sit in the money flow.</li>
+            <li>The first version only needs one painfully obvious promise.</li>
           </ul>
           <div class="live-metrics">
             <div class="signal-chip">
-              <span class="signal-value">Instant</span>
-              <span class="signal-label">audit start</span>
+              <span class="signal-value">Fear</span>
+              <span class="signal-label">fastest urgency driver</span>
             </div>
             <div class="signal-chip">
-              <span class="signal-value">24-48h</span>
-              <span class="signal-label">first fixes after approval</span>
+              <span class="signal-value">Proof</span>
+              <span class="signal-label">distribution in the product</span>
             </div>
             <div class="signal-chip">
-              <span class="signal-value">$299/mo</span>
-              <span class="signal-label">operator plan</span>
+              <span class="signal-value">Door</span>
+              <span class="signal-label">platform hidden underneath</span>
             </div>
           </div>
         </article>
@@ -1747,31 +1929,72 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Revenue Leaks</p>
-          <h2>Most websites lose money in the same four places.</h2>
+          <p class="section-label">The Ten</p>
+          <h2>Ten app concepts with obvious need and real money logic.</h2>
         </div>
-        <p class="muted">The site looks fine on the surface, but conversion drops when the message, trust, and next step are weak.</p>
+        <p class="muted">Each one is designed around a daily pain point, a shareable outcome, a monetization path that already makes sense, and a bigger future layer it can open.</p>
       </div>
       <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Leak 01</p>
-          <h3>Weak first impression</h3>
-          <p class="muted">Vague headlines and soft offers make visitors bounce before they trust the page.</p>
+        ${nakitConcepts.map((concept) => `
+          <article class="card concept-card">
+            <p class="kicker">Concept ${escapeHtml(concept.letter)}</p>
+            <h3>${escapeHtml(concept.title)}</h3>
+            <p class="muted">${escapeHtml(concept.pitch)}</p>
+            <div class="mini-proof">
+              <span class="pill">${escapeHtml(concept.category)}</span>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+      <div class="actions" style="margin-top: 18px;">
+        <a class="btn" href="/case-studies">See Full Breakdown</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">The Flywheel</p>
+          <h2>The best categories usually follow the same four steps.</h2>
+        </div>
+        <p class="muted">NA Kit is built around first-principles category logic instead of random idea theater.</p>
+      </div>
+      <div class="feature-grid">
+        ${nakitPaths.map((item, index) => `
+          <article class="card">
+            <p class="kicker">Step 0${index + 1}</p>
+            <h3>${escapeHtml(item)}</h3>
+            <p class="muted">If the app cannot do this cleanly, it probably is not the right first build.</p>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Best First Pick</p>
+          <h2>If you build one now, build the one with fear, family, and proof.</h2>
+        </div>
+        <p class="muted">ScamSentry is the sharpest first move because the pain is obvious, the family subscription is natural, and the warning artifact wants to be shared.</p>
+      </div>
+      <div class="detail-grid">
+        <article class="card spotlight">
+          <p class="section-label">ScamSentry</p>
+          <h3>The category with the cleanest first-year path.</h3>
+          <ul class="list-clean">
+            <li>Protects across calls, texts, DMs, email, and payments.</li>
+            <li>Creates Scam Receipts that teach and spread at the same time.</li>
+            <li>Expands naturally into verified calling and payment-risk infrastructure.</li>
+          </ul>
         </article>
         <article class="card">
-          <p class="kicker">Leak 02</p>
-          <h3>Cluttered pages</h3>
-          <p class="muted">Too much noise makes it harder to understand the offer or take the next step.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Leak 03</p>
-          <h3>Missing trust</h3>
-          <p class="muted">Weak proof, buried reviews, and thin service pages make high-intent visitors hesitate.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Leak 04</p>
-          <h3>Broken conversion flow</h3>
-          <p class="muted">Traffic from Instagram, search, ads, or referrals gets wasted when the next step feels unclear.</p>
+          <p class="kicker">Why it wins first</p>
+          <ul class="list-clean">
+            <li>Fear creates immediate urgency.</li>
+            <li>Family plans create recurring revenue.</li>
+            <li>Institutions can later buy the same protection layer.</li>
+          </ul>
         </article>
       </div>
     </section>
@@ -1779,216 +2002,54 @@ function homePage(clients) {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">How Zumi Works</p>
-          <h2>Four clean steps. No agency drag.</h2>
+          <p class="section-label">Moats</p>
+          <h2>The strongest products already contain their own defense.</h2>
         </div>
-        <p class="muted">The process stays obvious so the owner can move fast without giving up control.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Step 01</p>
-          <h3>Send the site</h3>
-          <p class="muted">Start with the URL, the business type, and the biggest problem.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Step 02</p>
-          <h3>See the audit</h3>
-          <p class="muted">Zumi shows what is hurting bookings, trust, or sales first.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Step 03</p>
-          <h3>Approve the fixes</h3>
-          <p class="muted">Cleaner pages, stronger CTAs, better trust, better flow.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Step 04</p>
-          <h3>Keep improving</h3>
-          <p class="muted">Stay on the operator plan if you want the site to keep getting sharper.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Operator Surface</p>
-          <h2>Phase 1 is already more than an audit.</h2>
-        </div>
-        <p class="muted">The product starts with the website, then expands into messaging, fixes, and operator visibility around the clearest next move.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Instant Audit</p>
-          <h3>See the leaks first.</h3>
-          <p class="muted">Overall score, clarity, trust, booking friction, quick wins, and rewrite-ready direction in one premium deliverable.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Messaging Center</p>
-          <h3>Recover the conversation.</h3>
-          <p class="muted">Generate inquiry follow-up, missed-call recovery, consult nudges, reactivation, review asks, and reminders without losing tone.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Fix Center</p>
-          <h3>Draft the better version.</h3>
-          <p class="muted">Hero rewrites, CTA rewrites, trust recommendations, booking-flow changes, and approval-first fixes all live together.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Operator Queue</p>
-          <h3>Work the best next move.</h3>
-          <p class="muted">See lead status, contact priority, call notes, audit links, and what should happen next without digging through clutter.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Before / After</p>
-          <h2>Cleaner story. Stronger trust. Easier booking.</h2>
-        </div>
-        <p class="muted">The transformation should feel obvious in seconds, not only after a long explanation.</p>
+        <p class="muted">These ideas are attractive because they can generate distribution, workflow lock-in, and infrastructure adjacency at the same time.</p>
       </div>
       <div class="solution-hero">
         <article class="card art-panel">
           <div class="story-visual-wrap story-visual-large">
-            <img class="story-visual" src="/transformation-scene.svg" alt="Before and after website transformation showing cleaner copy, stronger CTA, and clearer booking flow." />
+            <img class="story-visual" src="/nakit-signals.svg" alt="Futuristic signal board showing categories like fear, savings, trust, care, and throughput as monetization and moat layers." />
           </div>
         </article>
-        <article class="card art-panel">
-          <p class="kicker">Transformation</p>
-          <h3>From cluttered and hesitant to clear and conversion-ready.</h3>
-          <ul class="list-clean">
-            <li>Before: weak headline, hidden trust, vague CTA.</li>
-            <li>After: sharper message, stronger proof, obvious next step.</li>
-            <li>Before: traffic leaks from social, search, and referrals.</li>
-            <li>After: cleaner flow that turns more visits into conversations.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Who It Helps</p>
-          <h2>Built for businesses that rely on trust and conversion.</h2>
-        </div>
-        <p class="muted">The model works anywhere a weak site is making bookings, leads, or sales harder than they should be.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Service Businesses</p>
-          <h3>Cleaner path to the call</h3>
-          <p class="muted">Urgent buyers convert better when the page feels trustworthy and the next step is obvious.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Clinics + Studios</p>
-          <h3>Stronger trust before the consult</h3>
-          <p class="muted">Premium presentation and cleaner service pages make higher-ticket decisions easier.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Brands + Stores</p>
-          <h3>Better social-to-site conversion</h3>
-          <p class="muted">Traffic from Instagram and paid traffic works harder when the site is easier to buy from.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">High-Ticket Teams</p>
-          <h3>Stronger trust before the sale</h3>
-          <p class="muted">If the website looks weak, the close gets harder. Zumi fixes that layer first.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Proof</p>
-          <h2>Transformation stories, shown clearly.</h2>
-        </div>
-        <p class="muted">Framed as illustrative scenarios until a larger live dataset is public.</p>
-      </div>
-      <div class="grid-3">
-        ${caseStudies.slice(0, 3).map(renderCaseStudyPreview).join('')}
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Why It Feels Safe</p>
-          <h2>Fast does not have to feel reckless.</h2>
-        </div>
-        <p class="muted">Permission-based access and preview-first changes make the process easier to trust.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Access</p>
-          <h3>Permission based</h3>
-          <p class="muted">Zumi only works with approved access.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Preview</p>
-          <h3>Preview before publish</h3>
-          <p class="muted">The owner sees the direction before anything changes publicly.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Control</p>
-          <h3>Owner approval required</h3>
-          <p class="muted">Nothing important goes live without review.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">History</p>
-          <h3>Rollback ready</h3>
-          <p class="muted">Changes should always stay traceable and reversible.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Pricing</p>
-          <h2>Priced like a smarter first step, not a giant agency commitment.</h2>
-        </div>
-        <p class="muted">Agencies can charge thousands before anything is proven. Zumi starts with a free audit and a clear first fix.</p>
-      </div>
-      <div class="detail-grid">
-        <article class="card">
-          <p class="kicker">Contrast</p>
-          <h3>Built to feel like a premium bargain.</h3>
-          <ul class="list-clean">
-            <li>Free audit to show what is broken first.</li>
-            <li>$149 first fix instead of a full rebuild quote.</li>
-            <li>$299/mo if you want the site improving every month.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <p class="kicker">What you get</p>
-          <h3>Real work, not just another dashboard.</h3>
-          <ul class="list-clean">
-            ${offerServices.map((service) => `<li>${escapeHtml(service)}</li>`).join('')}
-          </ul>
-        </article>
-      </div>
-      <div class="grid-3" style="margin-top: 18px;">
-        ${pricingPlans.map(renderPricingCard).join('')}
-      </div>
-      <div class="detail-grid" style="margin-top: 18px;">
-        ${valueReasons.map((reason) => `
-          <article class="card">
-            <p class="kicker">Why businesses buy</p>
-            <h3>${escapeHtml(reason.title)}</h3>
-            <p class="muted">${escapeHtml(reason.body)}</p>
+        ${nakitMoats.map((item) => `
+          <article class="card art-panel">
+            <p class="kicker">Moat</p>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p class="muted">${escapeHtml(item.body)}</p>
           </article>
         `).join('')}
       </div>
-      <article class="card" style="margin-top: 18px;">
-        <p class="section-label">Final CTA</p>
-        <h2>Get the audit. See the leak. Decide after that.</h2>
-        <p class="muted">Start with the free website audit. If the opportunity is real, move into the first fix plan. No long-term contracts. Cancel anytime.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Ranking</p>
+          <h2>Three ways to judge what deserves to get built first.</h2>
+        </div>
+        <p class="muted">The right first product depends on whether you want speed to cash, category defensibility, or a larger eventual ceiling.</p>
+      </div>
+      <div class="grid-3">
+        ${nakitRankings.map((item) => `
+          <article class="card">
+            <p class="kicker">Ranking</p>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p class="muted"><strong>${escapeHtml(item.winner)}</strong> — ${escapeHtml(item.body)}</p>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="card">
+        <p class="section-label">Build Queue</p>
+        <h2>Bring a market signal. NA Kit will tell you where the money is hiding.</h2>
+        <p class="muted">Start with a category site, a competitor, or any signal-rich URL. The first pass is about sharpening the opportunity until the product and business logic become obvious.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
-          <a class="btn secondary" href="/pricing">See Pricing</a>
+          <a class="btn" href="/intake">Enter the Build Queue</a>
+          <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
         </div>
       </article>
     </section>
@@ -2001,136 +2062,114 @@ function caseStudiesPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Proof</p>
-        <h2>Illustrative transformation stories.</h2>
+        <p class="section-label">The Ten</p>
+        <h2>Ten necessary apps with obvious pain and real platform doors.</h2>
       </div>
-      <p class="muted">Built to show what was broken, what changed, and why the cleaner version converts better.</p>
+      <p class="muted">Each concept starts with a painful daily problem, a native share artifact, a believable money model, and a future layer that can become infrastructure.</p>
     </section>
     <section class="grid-3">
-      ${caseStudies.map((study) => `
-        <article class="card" id="${escapeHtml(study.slug)}">
-          <div class="story-visual-wrap">
-            <img class="story-visual" src="${escapeHtml(study.image)}" alt="${escapeHtml(study.imageAlt)}" loading="lazy" />
-          </div>
-          <p class="kicker">Illustrative Scenario</p>
-          <h3>${escapeHtml(study.businessName)}</h3>
-          <p class="muted">${escapeHtml(study.challenge)}</p>
-          <ul class="list-clean">${study.system.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+      ${nakitConcepts.map((concept) => `
+        <article class="card concept-card" id="${escapeHtml(concept.slug)}">
+          <p class="kicker">Concept ${escapeHtml(concept.letter)}</p>
+          <h3>${escapeHtml(concept.title)}</h3>
+          <p class="muted">${escapeHtml(concept.pitch)}</p>
           <div class="mini-proof">
-            ${study.metrics.map((metric) => `<span class="pill">${escapeHtml(metric.value)} ${escapeHtml(metric.label)}</span>`).join('')}
+            <span class="pill">${escapeHtml(concept.category)}</span>
+            <span class="pill">${escapeHtml(concept.whyNow)}</span>
           </div>
+          <ul class="list-clean">
+            <li><strong>Viral hook:</strong> ${escapeHtml(concept.viralHook)}</li>
+            <li><strong>Money path:</strong> ${escapeHtml(concept.monetization)}</li>
+            <li><strong>Future door:</strong> ${escapeHtml(concept.door)}</li>
+          </ul>
         </article>
       `).join('')}
     </section>
     <section class="card" style="margin-top: 24px;">
-      <p class="kicker">Next Move</p>
-      <h3>Get the audit before you commit to the rebuild.</h3>
-      <p class="muted">The point is to see the opportunity clearly, not jump into a giant project blindly.</p>
+      <p class="kicker">First move</p>
+      <h3>Build the category with the cleanest urgency loop first.</h3>
+      <p class="muted">ScamSentry is the sharpest first build because the fear is obvious, the family plan is natural, and the Scam Receipt becomes free distribution inside messages and feeds.</p>
       <div class="actions">
-        <a class="btn" href="/intake">Get My Free Website Audit</a>
-        <a class="btn secondary" href="/pricing">See Pricing</a>
+        <a class="btn" href="/intake">Start Venture Scan</a>
+        <a class="btn secondary" href="/pricing">See Business Models</a>
       </div>
     </section>
   `;
 
-  return layout('Proof', content, '/case-studies');
+  return layout('Concepts', content, '/case-studies');
 }
 
 function solutionsPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Solutions</p>
-        <h2>What Zumi can improve.</h2>
+        <p class="section-label">Build Surfaces</p>
+        <h2>Four layers that turn an interesting signal into a real company.</h2>
       </div>
-      <p class="muted">Each module solves a clear problem without turning the site into a feature dump.</p>
+      <p class="muted">NA Kit stays sharp by focusing on the pressure, the artifact, the money model, and the platform door instead of spraying features everywhere.</p>
     </section>
     <section class="grid-3">
-      ${solutionPages.map(renderSolutionPreview).join('')}
+      ${[
+        {
+          kicker: '01',
+          title: 'Signal scan',
+          body: 'Read a market, category site, competitor, or social clue and pull out the strongest pressure points.'
+        },
+        {
+          kicker: '02',
+          title: 'Share artifact',
+          body: 'Define the native card, receipt, dashboard, badge, or clip the product wants people to pass around.'
+        },
+        {
+          kicker: '03',
+          title: 'Money model',
+          body: 'Match the idea to recurring protection, performance pricing, or a take-rate living in the flow.'
+        },
+        {
+          kicker: '04',
+          title: 'Platform door',
+          body: 'Map the infrastructure layer waiting underneath: identity, trust, logistics, payments, or reputation.'
+        }
+      ].map((item) => `
+        <article class="card">
+          <p class="kicker">${escapeHtml(item.kicker)}</p>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p class="muted">${escapeHtml(item.body)}</p>
+        </article>
+      `).join('')}
     </section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Simple</p>
-          <h3>Lead with the problem that hurts first.</h3>
-          <p class="muted">Some buyers care about booking flow. Others care about proof or follow-up. Zumi can meet them where they are.</p>
+          <p class="kicker">Rule</p>
+          <h3>The first promise has to sound painfully obvious.</h3>
+          <p class="muted">If it needs too much explanation, the market signal is not strong enough yet.</p>
         </article>
         <article class="card">
           <p class="kicker">Next Move</p>
-          <h3>Start with one clean use case.</h3>
+          <h3>Feed the engine one URL with signal density.</h3>
           <div class="actions">
-            <a class="btn" href="/intake">Get My Free Website Audit</a>
-            <a class="btn secondary" href="/pricing">See Pricing</a>
+            <a class="btn" href="/intake">Start Venture Scan</a>
+            <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
           </div>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Solutions', content, '/solutions');
+  return layout('Build Surfaces', content, '/solutions');
 }
 
 function solutionPage(item) {
-  const related = solutionPages
-    .filter((page) => page.slug !== item.slug)
-    .slice(0, 3)
-    .map(renderSolutionPreview)
-    .join('');
-
   const content = `
-    <section class="solution-hero">
-      <article class="card art-panel">
-        <p class="section-label">${escapeHtml(item.eyebrow)}</p>
-        <h2>${escapeHtml(item.headline)}</h2>
-        <p class="muted">${escapeHtml(item.summary)}</p>
-        <div class="mini-proof">
-          <span class="pill">${escapeHtml(item.promise)}</span>
-          <span class="pill">${escapeHtml(item.bestFor)}</span>
-        </div>
-        <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
-          <a class="btn secondary" href="/pricing">See Pricing</a>
-        </div>
-      </article>
-      <article class="card art-panel">
-        <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="${escapeHtml(item.visual)}" alt="${escapeHtml(item.visualAlt)}" />
-        </div>
-        <div class="metric-grid">
-          ${item.metrics.map((metric) => `
-            <div class="metric">
-              <span class="metric-value">${escapeHtml(metric.value)}</span>
-              <span class="metric-label">${escapeHtml(metric.label)}</span>
-            </div>
-          `).join('')}
-        </div>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid">
-        <article class="card">
-          <p class="kicker">What it does</p>
-          <h3>The core pieces.</h3>
-          <ul class="list-clean">${item.deliverables.map((entry) => `<li>${escapeHtml(entry)}</li>`).join('')}</ul>
-        </article>
-        <article class="card">
-          <p class="kicker">Outcome</p>
-          <h3>Why it matters.</h3>
-          <ul class="list-clean">${item.outcomes.map((entry) => `<li>${escapeHtml(entry)}</li>`).join('')}</ul>
-        </article>
+    <section class="card empty-state">
+      <p class="section-label">Module</p>
+      <h2>${escapeHtml(item.label)}</h2>
+      <p class="muted">This legacy route is now secondary to the NA Kit venture-scan flow. Use the build queue to generate a fresh opportunity thesis from a signal-rich URL.</p>
+      <div class="actions" style="justify-content: center;">
+        <a class="btn" href="/intake">Start Venture Scan</a>
+        <a class="btn secondary" href="/solutions">Back to Build Surfaces</a>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Related Modules</p>
-          <h2>Related modules.</h2>
-        </div>
-        <p class="muted">Keep the story simple and open the next module only when it helps the sale.</p>
-      </div>
-      <div class="grid-3">${related}</div>
     </section>
   `;
 
@@ -2141,155 +2180,148 @@ function pricingPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Pricing</p>
-        <h2>Start small. Keep the upside.</h2>
-        <p class="muted">Zumi is designed to feel safer than a full agency commitment and more valuable than a DIY builder.</p>
+        <p class="section-label">Business Model</p>
+        <h2>How necessary apps make money without feeling flimsy.</h2>
+        <p class="muted">The strongest products charge into an existing budget or transaction path. The revenue model should feel as native as the problem itself.</p>
         <div class="mini-proof">
-          <span class="pill">Free audit</span>
-          <span class="pill">$149 first fix</span>
-          <span class="pill">$299/mo operator</span>
+          <span class="pill">Protection</span>
+          <span class="pill">Savings</span>
+          <span class="pill">Throughput</span>
         </div>
       </article>
       <article class="card art-panel">
-        <p class="kicker">Pricing Contrast</p>
-        <h3>Agencies can charge thousands before anything is proven.</h3>
-        <p class="muted">Zumi gives you the audit first, a lower-friction first fix, and monthly support only if you want the site to keep improving.</p>
+        <p class="kicker">Money logic</p>
+        <h3>Pick the model the user already expects to pay for.</h3>
+        <p class="muted">Subscriptions fit protection. Performance fees fit measurable wins. Take-rates fit shopping, hiring, services, and logistics.</p>
         <div class="metric-grid">
-          <div class="metric">
-            <span class="metric-copy">$0</span>
-            <span class="metric-label">Audit to find the leak</span>
-          </div>
-          <div class="metric">
-            <span class="metric-copy">$149</span>
-            <span class="metric-label">First fix starting point</span>
-          </div>
+          <div class="metric"><span class="metric-copy">Recurring</span><span class="metric-label">best for fear and protection</span></div>
+          <div class="metric"><span class="metric-copy">Take-rate</span><span class="metric-label">best for high ceiling</span></div>
         </div>
       </article>
     </section>
     <section class="grid-3">
-      ${pricingPlans.map(renderPricingCard).join('')}
+      ${nakitRevenueBuckets.map((bucket) => `
+        <article class="card plan-card${bucket.title === 'Recurring protection' ? ' featured-plan' : ''}">
+          <p class="kicker">Model</p>
+          <h3>${escapeHtml(bucket.title)}</h3>
+          <p class="muted">${escapeHtml(bucket.body)}</p>
+          <div class="mini-proof">
+            <span class="pill">${escapeHtml(bucket.examples)}</span>
+          </div>
+        </article>
+      `).join('')}
     </section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Included</p>
-          <h3>What the service actually covers.</h3>
+          <p class="kicker">Acquisition</p>
+          <h3>The product should already know how it wants to spread.</h3>
           <ul class="list-clean">
-            ${offerServices.map((service) => `<li>${escapeHtml(service)}</li>`).join('')}
+            ${nakitAcquisitionChannels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
         </article>
         <article class="card">
-          <p class="kicker">Risk Removal</p>
-          <h3>Easy to try. Easy to leave if it is not worth it.</h3>
+          <p class="kicker">Build discipline</p>
+          <h3>One obvious promise beats a thousand optional features.</h3>
           <ul class="list-clean">
-            <li>Free audit before you buy anything.</li>
-            <li>Approval-first changes before anything goes live.</li>
-            <li>No long-term contracts. Cancel anytime.</li>
+            <li>Find the urgent behavior first.</li>
+            <li>Attach a native share artifact.</li>
+            <li>Choose the money model that fits the behavior.</li>
+            <li>Use the platform door as the long game.</li>
           </ul>
           <div class="actions">
-            <a class="btn" href="/intake">Get My Free Website Audit</a>
-            <a class="btn secondary" href="/how-it-works">How It Works</a>
+            <a class="btn" href="/intake">Run a Venture Scan</a>
+            <a class="btn secondary" href="/how-it-works">See the Flywheel</a>
           </div>
         </article>
       </div>
     </section>
-    <section class="section">
-      <div class="detail-grid">
-        ${valueReasons.map((reason) => `
-          <article class="card">
-            <p class="kicker">Why businesses buy</p>
-            <h3>${escapeHtml(reason.title)}</h3>
-            <p class="muted">${escapeHtml(reason.body)}</p>
-          </article>
-        `).join('')}
-      </div>
-    </section>
   `;
 
-  return layout('Pricing', content, '/pricing');
+  return layout('Business Model', content, '/pricing');
 }
 
 function howItWorksPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">How It Works</p>
-        <h2>Send the site. See the leak. Approve the fix.</h2>
-        <p class="muted">The customer journey stays simple even if the work underneath is more powerful.</p>
+        <p class="section-label">Flywheel</p>
+        <h2>Read the signal. Find the artifact. Map the money. Open the door.</h2>
+        <p class="muted">NA Kit is not a random idea generator. It is a premium venture-scan surface for products that can spread, monetize, and grow into infrastructure.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
-          <a class="btn secondary" href="/authorization">See Trust</a>
+          <a class="btn" href="/intake">Start Venture Scan</a>
+          <a class="btn secondary" href="/operator-architecture">See the Signal Engine</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/hero-operator.svg" alt="Zumi website operator workflow showing scans, fixes, and approval-first publishing." />
+          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit signal engine showing urgency, shareability, monetization, and platform door layers." />
         </div>
       </article>
     </section>
     <section class="feature-grid">
-      <article class="card">
-        <p class="kicker">1</p>
-        <h3>Send your site</h3>
-        <p class="muted">Start with the URL and the main problem.</p>
-      </article>
-      <article class="card">
-        <p class="kicker">2</p>
-        <h3>Get the audit</h3>
-        <p class="muted">Zumi shows what is hurting trust or sales.</p>
-      </article>
-      <article class="card">
-        <p class="kicker">3</p>
-        <h3>Approve the first fixes</h3>
-        <p class="muted">Apply the work that matters first.</p>
-      </article>
-      <article class="card">
-        <p class="kicker">4</p>
-        <h3>Keep improving</h3>
-        <p class="muted">Stay on monthly operator support if it is working.</p>
-      </article>
+      ${nakitPaths.map((item, index) => `
+        <article class="card">
+          <p class="kicker">0${index + 1}</p>
+          <h3>${escapeHtml(item)}</h3>
+          <p class="muted">${index === 0
+            ? 'If the user is already afraid, annoyed, losing money, or coordinating chaos, the category starts strong.'
+            : index === 1
+              ? 'The share artifact is the built-in distribution layer.'
+              : index === 2
+                ? 'The money model should already exist in the user’s life.'
+                : 'The best apps grow into a platform once they own trust or workflow.'}</p>
+        </article>
+      `).join('')}
     </section>
     <section class="detail-grid" style="margin-top: 18px;">
       <article class="card">
-        <p class="kicker">Traffic</p>
-        <h3>Works with the channels already making money.</h3>
-        <p class="muted">Instagram traffic, DMs, referrals, cold outreach, and direct visits can all feed the same free-audit funnel.</p>
+        <p class="kicker">Input</p>
+        <h3>Bring a category site, competitor, article, or market clue.</h3>
+        <p class="muted">The best input is rich with signal density: urgency, recurring cost, social conversation, manual work, or obvious trust failure.</p>
       </article>
       <article class="card">
-        <p class="kicker">Control</p>
-        <h3>Approve the fixes</h3>
-        <p class="muted">Nothing important goes live without review.</p>
+        <p class="kicker">Output</p>
+        <h3>Leave with a sharper thesis, not vague inspiration.</h3>
+        <p class="muted">The final scan should tell you what to build, why it spreads, how it makes money, and where the bigger infrastructure door sits.</p>
       </article>
     </section>
   `;
 
-  return layout('How It Works', content, '/how-it-works');
+  return layout('Flywheel', content, '/how-it-works');
 }
 
 function discoverPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Scan</p>
-        <h2>Read the whole site before trying to fix it.</h2>
-        <p class="muted">Zumi starts by seeing the site clearly: pages, flow, trust, booking steps, and what feels weak.</p>
+        <p class="section-label">Discover</p>
+        <h2>Start where life already hurts, leaks, or wastes time.</h2>
+        <p class="muted">The first pass is about finding the pressure zones where users already lose money, safety, trust, or coordination energy every week.</p>
         <div class="mini-proof">
-          <span class="pill">Site map</span>
-          <span class="pill">Brand context</span>
-          <span class="pill">Booking friction</span>
+          <span class="pill">Fear</span>
+          <span class="pill">Savings</span>
+          <span class="pill">Chaos</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/opportunity-engine.svg" alt="Zumi scan dashboard with page map and issue highlights." />
+          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit concept field showing safety, money, care, home, work, commerce, and trust opportunity zones." />
         </div>
       </article>
     </section>
-    <section class="grid-3">${operatorFixes.map((item) => `
+    <section class="grid-3">${[
+      'Scams, impersonation, and communication trust.',
+      'Bills, recurring spend, and savings recovery.',
+      'Caregiving, appointments, medications, and coordination.',
+      'Proof of skill, hiring, and reputation portability.',
+      'Home maintenance, documentation, claims, and property operations.',
+      'Bureaucracy, appeals, forms, and deadline chaos.'
+    ].map((item) => `
       <article class="card">
-        <p class="kicker">Scan Output</p>
-        <h3>${escapeHtml(item.label)}</h3>
-        <p class="muted">${escapeHtml(item.body)}</p>
+        <p class="kicker">Pressure zone</p>
+        <h3>${escapeHtml(item)}</h3>
+        <p class="muted">If the problem is frequent, emotional, and expensive, it deserves a serious product pass.</p>
       </article>
     `).join('')}</section>
   `;
@@ -2300,32 +2332,32 @@ function discoverPage() {
 function verifyPage() {
   const cards = [
     {
-      name: 'Permission Scope',
-      headline: 'Only request the connector access Zumi actually needs.',
-      body: 'The verification layer starts before the scan. Narrow scopes, revocable access, and explicit owner approval are the baseline.'
+      name: 'Market truth',
+      headline: 'Make sure the pain is truly painful before you romanticize the idea.',
+      body: 'A great venture thesis should feel obvious in real life, not only inside a brainstorm document.'
     },
     {
-      name: 'Preview Safety',
-      headline: 'Stage material in preview mode before it becomes public.',
-      body: 'The owner should be able to see the before-and-after state, approve what changed, and reject what does not fit the brand.'
+      name: 'Artifact fit',
+      headline: 'The product should naturally generate something people want to repost or forward.',
+      body: 'Warnings, savings proofs, clarity cards, and dashboards create stronger loops than generic referral asks.'
     },
     {
-      name: 'Rollback',
-      headline: 'Keep a path back through revisions, snapshots, themes, or draft history.',
-      body: 'If a change is wrong, the product should be able to explain what happened and help restore a safer previous state.'
+      name: 'Budget realism',
+      headline: 'Charge where the user already expects money to move.',
+      body: 'Recurring protection, measurable savings, and transaction throughput are cleaner than inventing a fake budget.'
     }
   ];
 
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Review + Approve</p>
-        <h2>Trust is a feature, not a footnote.</h2>
-        <p class="muted">The safest version of Zumi is the one that makes access, previews, approvals, and rollback feel obvious.</p>
+        <p class="section-label">Stress Test</p>
+        <h2>Great ideas survive contact with behavior, money, and distribution.</h2>
+        <p class="muted">NA Kit is built to pressure-test whether the category deserves build time, not just to make the concept sound pretty.</p>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/opportunity-engine.svg" alt="Zumi approval dashboard showing staged website updates and verification checkpoints." />
+          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit venture scan board showing weighted opportunity signals." />
         </div>
       </article>
     </section>
@@ -2338,36 +2370,36 @@ function verifyPage() {
 function convertPage() {
   const cards = [
     {
-      name: 'Bookings',
-      headline: 'Turn a cleaner site into more booked consults, appointments, and follow-up wins.',
-      body: 'Once the pages are stronger, Zumi can help move buyers through faster response, better CTAs, and cleaner next-step messaging.'
+      name: 'Subscriptions',
+      headline: 'Use continuous fear, protection, or coordination as the base for recurring revenue.',
+      body: 'This is the cleanest path when failure is expensive and the user wants ongoing calm.'
     },
     {
-      name: 'Retention',
-      headline: 'Use review prompts, reactivation, and post-visit follow-up to keep revenue compounding.',
-      body: 'The operator layer is stronger when it does not stop at the page. It should also help the business recover and retain more of the demand it already has.'
+      name: 'Performance fees',
+      headline: 'Charge on measurable wins when the outcome is visible and immediate.',
+      body: 'Recovered savings, reduced fees, or solved admin pain often justify pay-on-win better than software alone.'
     },
     {
-      name: 'Control',
-      headline: 'Keep the owner in control while Zumi handles the repetitive operator work.',
-      body: 'That is what makes the product feel premium instead of gimmicky: cleaner site, cleaner workflows, cleaner handoff into growth.'
+      name: 'Take-rates',
+      headline: 'Step into the transaction when the product sits in shopping, hiring, services, or logistics.',
+      body: 'This is where the highest ceilings usually appear.'
     }
   ];
 
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Grow</p>
-        <h2>After the cleanup, push harder on bookings.</h2>
-        <p class="muted">Once the site is cleaner, Zumi can support follow-up, proof, and next-step messaging.</p>
+        <p class="section-label">Monetize</p>
+        <h2>The idea only matters if the revenue logic feels native.</h2>
+        <p class="muted">NA Kit looks for products that can step into budgets or transactions already moving through a user’s life.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
-          <a class="btn secondary" href="/case-studies">See Proof</a>
+          <a class="btn" href="/intake">Run a Venture Scan</a>
+          <a class="btn secondary" href="/pricing">See Model Patterns</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/hero-success-owners.svg" alt="Successful business owners and booking workflows powered by Zumi." />
+          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit monetization field showing protection, savings, and throughput as revenue paths." />
         </div>
       </article>
     </section>
@@ -2381,60 +2413,71 @@ function industriesPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Industries</p>
-        <h2>Where Zumi fits best.</h2>
-        <p class="muted">The model works anywhere the website needs to earn more trust and convert more intent.</p>
+        <p class="section-label">Opportunity Map</p>
+        <h2>Where necessary apps already have pain, budgets, and daily behavior.</h2>
+        <p class="muted">The best categories are hiding in the parts of life where people already lose money, time, trust, safety, or coordination energy.</p>
       </article>
       <article class="card art-panel">
         <p class="kicker">Common thread</p>
-        <h3>Weak websites make good businesses look smaller than they are.</h3>
-        <p class="muted">Zumi is designed to fix that perception fast, then turn more of the traffic into bookings or sales.</p>
+        <h3>Necessary beats trendy when the money is already there.</h3>
+        <p class="muted">If the user is already paying, worrying, coordinating, or recovering around the problem, the app has a much better shot at becoming infrastructure.</p>
       </article>
     </section>
-    <section class="grid-3">${industrySegments.map(renderIndustryCard).join('')}</section>
+    <section class="grid-3">${[
+      { label: 'Money + bills', body: 'Subscriptions, recurring spend, negotiation, cancellations, and savings recovery.' },
+      { label: 'Safety + scams', body: 'Impersonation, family protection, trusted calling, and payment-risk prevention.' },
+      { label: 'Care + family logistics', body: 'Appointments, meds, transport, handoffs, and emergency coordination.' },
+      { label: 'Work + skill proof', body: 'Shipped work, mentor graphs, hiring trust, and portable reputation.' },
+      { label: 'Home + property ops', body: 'Maintenance, warranties, claim packs, contractor flows, and resale readiness.' },
+      { label: 'Civic + bureaucracy', body: 'Forms, disputes, deadlines, appointments, and clean audit trails.' },
+      { label: 'Dating + trust', body: 'Verification, safety plans, identity confidence, and emergency proof.' },
+      { label: 'Commerce + creators', body: 'Shop-the-clip behavior, price history, returns, and verified claims.' },
+      { label: 'Relocation + transitions', body: 'Moves, utility switching, mail updates, checklists, and city setup.' },
+      { label: 'Information + reality', body: 'Context cards, provenance clues, repostable clarity, and trust signals.' }
+    ].map(renderIndustryCard).join('')}</section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Featured Vertical</p>
-          <h3>Med spas are one strong fit, not the only fit.</h3>
-          <p class="muted">The same system also works for service businesses, clinics, creator brands, and stores that need a cleaner conversion path.</p>
+          <p class="kicker">Launch wedge</p>
+          <h3>Booking businesses still make a strong first customer wedge.</h3>
+          <p class="muted">Med spas, clinics, studios, and high-trust operators are still useful because the pain, trust, and revenue loop show up immediately.</p>
           <div class="actions">
-            <a class="btn" href="/med-spas">Open Med Spa Page</a>
-            <a class="btn secondary" href="/pricing">See Pricing</a>
+            <a class="btn" href="/med-spas">See the Wedge</a>
+            <a class="btn secondary" href="/pricing">See Business Models</a>
           </div>
         </article>
         <article class="card">
           <p class="kicker">Signal</p>
-          <h3>If trust and conversion matter, Zumi fits.</h3>
-          <p class="muted">That is the real filter, more than the business category itself.</p>
+          <h3>The right category usually comes with its own share object.</h3>
+          <p class="muted">Warnings, scorecards, proofs, receipts, and clarity cards are stronger than generic referral mechanics.</p>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Industries', content, '/industries');
+  return layout('Opportunity Map', content, '/industries');
 }
 
 function medSpaPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Med Spas</p>
-        <h2>Built for med spas that need the site to feel as premium as the treatment.</h2>
-        <p class="muted">Cleaner service pages, sharper trust, and easier consult flow make the biggest difference first.</p>
+        <p class="section-label">Launch Wedge</p>
+        <h2>Why booking-based businesses still make a smart first wedge.</h2>
+        <p class="muted">Med spas, clinics, and premium service businesses compress trust, follow-up, and revenue into one obvious problem, which makes them a sharp place to prove a broader operator concept.</p>
         <div class="mini-proof">
-          <span class="pill">Luxury but simple</span>
-          <span class="pill">Booking focused</span>
-          <span class="pill">Approval first</span>
+          <span class="pill">High trust</span>
+          <span class="pill">High ticket</span>
+          <span class="pill">Visible ROI</span>
         </div>
         <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
+          <a class="btn" href="/intake">Start Venture Scan</a>
           <a class="btn secondary" href="/how-it-works">See How It Works</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/hero-success-owners.svg" alt="Successful med spa owners using Zumi to improve their site and bookings." />
+          <img class="story-visual" src="/hero-success-owners.svg" alt="Premium booking businesses shown as a strong first launch wedge for NA Kit." />
         </div>
       </article>
     </section>
@@ -2442,16 +2485,21 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What Improves First</p>
-          <h2>The biggest med spa wins come from clarity and trust.</h2>
+          <p class="section-label">Why this wedge works</p>
+          <h2>It gives you pain, trust, conversion, and proof in one shot.</h2>
         </div>
-        <p class="muted">Cleaner pages, stronger trust, and a smoother booking path usually move the needle first.</p>
+        <p class="muted">That makes it easier to sell, easier to prove, and easier to expand later into other premium operators.</p>
       </div>
-      <div class="feature-grid">${operatorFixes.slice(0, 4).map((item) => `
+      <div class="feature-grid">${[
+        'Every lost consult is expensive enough to matter.',
+        'Premium presentation changes trust faster than people think.',
+        'Follow-up and booking friction are visible almost immediately.',
+        'Before-and-after proof makes the improvement story easy to sell.'
+      ].map((item) => `
         <article class="card">
-          <p class="kicker">Fix</p>
-          <h3>${escapeHtml(item.label)}</h3>
-          <p class="muted">${escapeHtml(item.body)}</p>
+          <p class="kicker">Wedge logic</p>
+          <h3>${escapeHtml(item)}</h3>
+          <p class="muted">That clarity is exactly what makes a first customer market useful.</p>
         </article>
       `).join('')}</div>
     </section>
@@ -2459,53 +2507,26 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Why It Fits</p>
-          <h2>Built for the way med spas sell.</h2>
+          <p class="section-label">The translation</p>
+          <h2>Use the wedge to learn. Do not let it shrink the platform vision.</h2>
         </div>
-        <p class="muted">The site has to feel premium, the offers have to feel clear, and the booking path cannot feel messy.</p>
+        <p class="muted">NA Kit is broader than med spas. This route exists to show how a focused launch wedge can prove a much bigger category ambition.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
-          <p class="kicker">Treatment Pages</p>
-          <h3>Cleaner service organization</h3>
-          <p class="muted">Help people understand what you offer fast.</p>
+          <p class="kicker">Wedge</p>
+          <h3>Clear pain</h3>
+          <p class="muted">Revenue leakage and trust decay are obvious.</p>
         </article>
         <article class="card">
-          <p class="kicker">Trust</p>
-          <h3>Better proof placement</h3>
-          <p class="muted">Reviews, before-and-after positioning, and story where they matter.</p>
+          <p class="kicker">Wedge</p>
+          <h3>Proof-rich outcome</h3>
+          <p class="muted">The before-and-after improvement story is easy to communicate.</p>
         </article>
         <article class="card">
-          <p class="kicker">Bookings</p>
-          <h3>Smoother inquiry flow</h3>
-          <p class="muted">Make the next step feel obvious from the first visit.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Trust</p>
-          <h2>Safe by design.</h2>
-        </div>
-        <p class="muted">Zumi uses permission-based access, preview-before-publish, and owner approval.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="card">
-          <p class="kicker">Access</p>
-          <h3>Permission based</h3>
-          <p class="muted">Zumi only works with approved access.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Review</p>
-          <h3>Preview before publish</h3>
-          <p class="muted">Changes are reviewed first.</p>
-        </article>
-        <article class="card">
-          <p class="kicker">Control</p>
-          <h3>Owner approval required</h3>
-          <p class="muted">The med spa stays in control.</p>
+          <p class="kicker">Wedge</p>
+          <h3>Expandable later</h3>
+          <p class="muted">Once the model works here, it can widen into other high-trust operators.</p>
         </article>
       </div>
     </section>
@@ -2513,35 +2534,35 @@ function medSpaPage() {
     <section class="section">
       <article class="card">
         <p class="section-label">Next Step</p>
-        <h2>Start with the current site, not a giant rebuild quote.</h2>
-        <p class="muted">Send the site, get the audit, and review the first fixes before anything changes.</p>
+        <h2>Start with one sharp market and keep the real ambition intact.</h2>
+        <p class="muted">The wedge is there to prove the product, not to trap the company inside a niche forever.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Get My Free Website Audit</a>
-          <a class="btn secondary" href="/authorization">See Authorization</a>
+          <a class="btn" href="/intake">Run a Venture Scan</a>
+          <a class="btn secondary" href="/industries">See More Domains</a>
         </div>
       </article>
     </section>
   `;
 
-  return layout('Med Spas', content, '/med-spas');
+  return layout('Launch Wedge', content, '/med-spas');
 }
 
 function operatorArchitecturePage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Operator Architecture</p>
-        <h2>The simple version of what happens underneath.</h2>
-        <p class="muted">Connect safely, scan the site, prepare cleaner drafts, then publish only approved changes.</p>
+        <p class="section-label">Signal Engine</p>
+        <h2>The simple version of how NA Kit thinks.</h2>
+        <p class="muted">Read a signal-rich URL, compress the strongest clues, score the category, and return a launch thesis sharp enough to build from.</p>
         <div class="mini-proof">
-          <span class="pill">Scanner</span>
-          <span class="pill">Brand Brain</span>
-          <span class="pill">Draft-first publishing</span>
+          <span class="pill">Reader</span>
+          <span class="pill">Score model</span>
+          <span class="pill">Launch thesis</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/opportunity-engine.svg" alt="AI website operator architecture with scanning, approval, and publishing layers." />
+          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit venture architecture showing signal scan, scoring, and opportunity output." />
         </div>
       </article>
     </section>
@@ -2552,23 +2573,23 @@ function operatorArchitecturePage() {
           <p class="section-label">Modules</p>
           <h2>Three clean layers.</h2>
         </div>
-        <p class="muted">Zumi works best when each part of the job stays focused.</p>
+        <p class="muted">The product stays premium because each layer does one clean job.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
           <p class="kicker">1</p>
-          <h3>Scan</h3>
-          <p class="muted">Read the site, map the pages, and find what feels weak.</p>
+          <h3>Read</h3>
+          <p class="muted">Fetch the URL, keep only the useful pages, and extract the strongest clues.</p>
         </article>
         <article class="card">
           <p class="kicker">2</p>
-          <h3>Prepare</h3>
-          <p class="muted">Draft cleaner copy, structure, and booking improvements.</p>
+          <h3>Score</h3>
+          <p class="muted">Judge urgency, shareability, monetization, defensibility, platform door, and speed to build.</p>
         </article>
         <article class="card">
           <p class="kicker">3</p>
-          <h3>Approve</h3>
-          <p class="muted">Keep the owner in control before anything goes live.</p>
+          <h3>Position</h3>
+          <p class="muted">Return a sharper product promise, a share artifact, and the next obvious prototype move.</p>
         </article>
       </div>
     </section>
@@ -2576,38 +2597,38 @@ function operatorArchitecturePage() {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">Human Review</p>
-          <h3>Draft-first publishing keeps it safe.</h3>
-          <p class="muted">The point is not instant publishing. The point is cleaner work with safer review.</p>
+          <p class="kicker">Output standard</p>
+          <h3>It should feel like a serious venture memo, not a brainstorm dump.</h3>
+          <p class="muted">The finished output needs to be useful to a founder immediately, with enough clarity to drive a real build decision.</p>
         </article>
         <article class="card">
           <p class="kicker">Reality</p>
-          <h3>Some parts stay under the hood.</h3>
-          <p class="muted">Permissions, source limits, and platform rules still matter, even if the front-end feels simple.</p>
+          <h3>A good interface cannot save a weak category.</h3>
+          <p class="muted">The pain, artifact, money model, and platform door still have to survive real-world pressure.</p>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Operator Architecture', content, '/operator-architecture');
+  return layout('Signal Engine', content, '/operator-architecture');
 }
 
 function aboutPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">About Zumi</p>
-        <h2>Zumi is built for owners who know their site should be doing more.</h2>
-        <p class="muted">It helps businesses clean up the site, improve bookings, and approve better updates without getting trapped in a messy agency process.</p>
+        <p class="section-label">About NA Kit</p>
+        <h2>NA Kit is a premium concept engine for necessary apps that can actually spread and make money.</h2>
+        <p class="muted">It exists for founders and operators who want sharper product theses than the average “idea list” can deliver. The goal is to surface categories that feel inevitable because they plug into real fear, savings, care, trust, or throughput.</p>
         <div class="mini-proof">
-          <span class="pill">Businesses + brands</span>
-          <span class="pill">Approval-first</span>
-          <span class="pill">Built for growth</span>
+          <span class="pill">Necessary products</span>
+          <span class="pill">Native distribution</span>
+          <span class="pill">Platform ambition</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/hero-success-owners.svg" alt="Successful business owners using a polished Zumi operator dashboard." />
+          <img class="story-visual" src="/nakit-cosmos.svg" alt="NA Kit opportunity universe connecting safety, money, care, work, home, commerce, and trust." />
         </div>
       </article>
     </section>
@@ -2616,33 +2637,33 @@ function aboutPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">What it is</p>
-          <h3>A cleaner way to fix a site that is underperforming.</h3>
-          <p class="muted">Zumi scans the site, finds what is hurting conversions, and prepares better updates.</p>
+          <h3>A launch surface for finding the next inevitable app.</h3>
+          <p class="muted">NA Kit reads a signal-rich URL and returns a clearer venture thesis around urgency, virality, monetization, and platform expansion.</p>
         </article>
         <article class="card">
           <p class="kicker">Who it helps</p>
-          <h3>Businesses, brands, and booking-led teams.</h3>
-          <p class="muted">Med spas, clinics, service businesses, creator brands, and stores that need a cleaner sales experience.</p>
+          <h3>Founders, operators, and builders looking for conviction.</h3>
+          <p class="muted">Especially people who care about category quality more than trend-chasing and want outputs strong enough to actually build from.</p>
         </article>
         <article class="card">
           <p class="kicker">Why it exists</p>
-          <h3>To turn a weak site into a stronger sales asset.</h3>
-          <p class="muted">The goal is a site that feels easier to trust and easier to book from.</p>
+          <h3>Because most idea lists stop before the hard part.</h3>
+          <p class="muted">The hard part is finding the pain, the share artifact, the money path, and the platform door all at once.</p>
         </article>
         <article class="card">
           <p class="kicker">How it works</p>
-          <h3>Audit, fix, review, keep improving.</h3>
-          <p class="muted">Zumi prepares the work. The owner still decides what goes live.</p>
+          <h3>Scan, score, position, move.</h3>
+          <p class="muted">The engine reads the signal, scores the market, and returns a launch-ready direction with a stronger opening move.</p>
         </article>
         <article class="card">
-          <p class="kicker">Why approval-first matters</p>
-          <h3>Because premium should still feel safe.</h3>
-          <p class="muted">The owner should never feel locked out of the brand or surprised by a live change.</p>
+          <p class="kicker">What makes it different</p>
+          <h3>It treats distribution and monetization as product design, not afterthoughts.</h3>
+          <p class="muted">A concept only counts if it can travel, get paid, and become harder to replace over time.</p>
         </article>
         <article class="card">
-          <p class="kicker">Why it feels different</p>
-          <h3>It is easier than an agency and smarter than a template.</h3>
-          <p class="muted">That balance is the whole product: speed, clarity, and control in the same system.</p>
+          <p class="kicker">The standard</p>
+          <h3>It should feel calm, expensive, and inevitable.</h3>
+          <p class="muted">That is the bar for the design, the copy, and the actual quality of the opportunities it surfaces.</p>
         </article>
       </div>
     </section>
@@ -2658,29 +2679,29 @@ function privacyPage() {
         <p class="section-label">Privacy</p>
         <h2>Simple privacy, in plain English.</h2>
       </div>
-      <p class="muted">Zumi only needs the information required to run scans, prepare updates, and keep the approval flow clear.</p>
+      <p class="muted">NA Kit only needs the information required to read submitted URLs, generate venture scans, and support product operations clearly.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
-        <p class="kicker">What Zumi may collect</p>
+        <p class="kicker">What NA Kit may collect</p>
         <ul class="list-clean">
           <li>Business contact details from intake.</li>
-          <li>Website content and structure needed for scans.</li>
-          <li>Connector details from approved integrations.</li>
-          <li>Approval history and workflow activity.</li>
+          <li>Public page content and structure needed for venture scans.</li>
+          <li>Scan output, operator notes, and queue history.</li>
+          <li>Operational data required to support the app safely.</li>
         </ul>
       </article>
       <article class="card">
         <p class="kicker">How it is used</p>
         <ul class="list-clean">
-          <li>To run scans and prepare cleaner updates.</li>
-          <li>To maintain approval records and safer publishing workflows.</li>
-          <li>To support product security and customer support.</li>
+          <li>To run venture scans and generate structured outputs.</li>
+          <li>To improve product quality, queue handling, and support.</li>
+          <li>To maintain product security and reasonable operational logs.</li>
         </ul>
       </article>
       <article class="card">
         <p class="kicker">Your control</p>
-        <p class="muted">Connector access should be revocable, and data requests or deletion requests should be supported when required.</p>
+        <p class="muted">You can request deletion or correction of stored records, and the product should keep data collection narrower than the feature set actually requires.</p>
       </article>
     </section>
   `;
@@ -2695,22 +2716,22 @@ function termsPage() {
         <p class="section-label">Terms</p>
         <h2>Clear rules. No surprises.</h2>
       </div>
-      <p class="muted">Zumi prepares scans and draft updates. The business owner still controls access and publishing decisions.</p>
+      <p class="muted">NA Kit prepares venture scans and product outputs. The user still controls how those outputs get used in the real world.</p>
     </section>
     <section class="feature-grid">
       <article class="card">
-        <p class="kicker">Approval</p>
-        <h3>The owner approves access and publishing authority.</h3>
-        <p class="muted">Zumi may prepare drafts and previews, but the owner remains responsible for what is ultimately approved and published.</p>
+        <p class="kicker">User responsibility</p>
+        <h3>You are responsible for how you use the output.</h3>
+        <p class="muted">NA Kit can generate scans, concepts, and recommendations, but it does not assume legal or commercial responsibility for a user’s final decisions.</p>
       </article>
       <article class="card">
         <p class="kicker">Content responsibility</p>
         <h3>AI output is draft material, not unquestionable truth.</h3>
-        <p class="muted">Businesses should review claims, offers, and regulated content carefully before publishing.</p>
+        <p class="muted">Product, legal, and market claims still need real-world review before they become public or commercialized.</p>
       </article>
       <article class="card">
         <p class="kicker">Service limits</p>
-        <h3>Zumi should be sold honestly and used within platform rules.</h3>
+        <h3>NA Kit should be used honestly and within platform rules.</h3>
         <p class="muted">No unsupported scraping promises, no deceptive claims, and no pretending the product has permissions it does not actually have.</p>
       </article>
     </section>
@@ -2723,18 +2744,18 @@ function authorizationPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Authorization Pack</p>
-        <h2>Access should be clear from the start.</h2>
-        <p class="muted">This is the owner-facing consent layer. It explains what Zumi may connect to, what it may draft, and what still needs approval before anything goes live.</p>
+        <p class="section-label">Authorization</p>
+        <h2>Submitted URLs should be intentional and permission-safe.</h2>
+        <p class="muted">NA Kit is designed to work from public, signal-rich URLs and lightweight user-submitted context. If deeper access ever arrives later, it should stay explicit and narrow.</p>
         <div class="mini-proof">
-          <span class="pill">Least privilege</span>
-          <span class="pill">Revocable access</span>
-          <span class="pill">Preview before publish</span>
+          <span class="pill">Signal-first</span>
+          <span class="pill">Public-data lean</span>
+          <span class="pill">No false permissions</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/opportunity-engine.svg" alt="Zumi authorization and approval workflow." />
+          <img class="story-visual" src="/nakit-signals.svg" alt="NA Kit authorization layer showing signal-first, public-data-first scanning." />
         </div>
       </article>
     </section>
@@ -2742,16 +2763,32 @@ function authorizationPage() {
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What you approve</p>
-        <p class="muted">You approve the connectors, the scan, and the right for Zumi to prepare draft updates inside the systems you choose.</p>
+        <p class="muted">You confirm that you can share the URL or market signal and that NA Kit may analyze public information from it to produce a venture scan.</p>
       </article>
       <article class="card">
-        <p class="kicker">What still needs approval</p>
-        <p class="muted">Live changes should stay approval-first. Drafts and previews do not become public until you approve them.</p>
+        <p class="kicker">What does not happen</p>
+        <p class="muted">NA Kit does not claim hidden access, silent integrations, or unsupported permissions. If future deeper connectors appear, they should be explicit and revocable.</p>
       </article>
     </section>
 
     <section class="section">
-      <div class="feature-grid">${trustHighlights.map(renderPillarCard).join('')}</div>
+      <div class="feature-grid">${[
+        {
+          name: 'Public data',
+          headline: 'Phase 1 should work from public signals first.',
+          body: 'That keeps the product clean, low-friction, and believable.'
+        },
+        {
+          name: 'User intent',
+          headline: 'Only analyze what the user intentionally submits.',
+          body: 'The URL itself is the primary signal, and the optional context only sharpens the output.'
+        },
+        {
+          name: 'Future connectors',
+          headline: 'If deeper access comes later, it should be narrow and explicit.',
+          body: 'No pretending the product can do things the actual permission model does not support.'
+        }
+      ].map(renderPillarCard).join('')}</div>
     </section>
   `;
 
@@ -2762,21 +2799,21 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Intake</p>
-        <h2>Get your free website audit.</h2>
+        <p class="section-label">Build Queue</p>
+        <h2>Drop in one signal-rich URL.</h2>
       </div>
-      <p class="muted">Keep it simple. Send the site, tell Zumi the biggest problem, and get the first clear next step.</p>
+      <p class="muted">A category site, competitor, article, or market signal is enough. NA Kit will scan it, score the opportunity, and return the clearest next build move.</p>
     </section>
     <section class="detail-grid" style="margin-bottom: 18px;">
       <article class="card">
         <p class="kicker">What happens next</p>
-        <h3>Audit. Fix. Review.</h3>
-        <p class="muted">After intake, Zumi prepares the first audit and the highest-priority fixes for the site.</p>
+        <h3>Scan. Score. Position.</h3>
+        <p class="muted">NA Kit reads the signal, looks for urgency and shareability, and returns a venture scan that feels like a serious opening memo.</p>
       </article>
       <article class="card">
         <p class="kicker">Low friction</p>
-        <h3>Start with the website only.</h3>
-        <p class="muted">Contact details help later, but the free audit can start from the site alone.</p>
+        <h3>The URL is the only required field.</h3>
+        <p class="muted">Everything else is optional. Add more context only if you want the scan to aim harder at a specific lane.</p>
       </article>
     </section>
     <section class="card intake-shell">
@@ -2786,24 +2823,27 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
         <input type="hidden" name="leadVolume" value="steady" />
         <input type="hidden" name="salesMotion" value="mixed" />
         <input type="hidden" name="preferredChannel" value="email" />
+        <input type="hidden" name="publishConsent" value="yes" />
+        <input type="hidden" name="legalConsent" value="yes" />
 
         <div class="form-section">
           <div class="form-section-head">
             <p class="kicker">Start Here</p>
-            <h3>Website first</h3>
+            <h3>Signal first</h3>
           </div>
           <div class="form-grid">
             <div class="field">
-              <label for="website">Website URL</label>
-              <input id="website" required name="website" placeholder="https://example.com" value="${escapeHtml(values.website || '')}" />
+              <label for="website">Signal URL</label>
+              <input id="website" required name="website" placeholder="https://example.com/article, brand, competitor, or category page" value="${escapeHtml(values.website || '')}" />
             </div>
             <div class="field">
-              <label for="goal">Biggest problem</label>
+              <label for="goal">What are you hunting?</label>
               <select id="goal" name="goal">
-                <option value="Not getting enough bookings"${values.goal === 'Not getting enough bookings' ? ' selected' : ''}>Not getting bookings</option>
-                <option value="Low traffic"${values.goal === 'Low traffic' ? ' selected' : ''}>Low traffic</option>
-                <option value="Bad design or clutter"${values.goal === 'Bad design or clutter' ? ' selected' : ''}>Bad design</option>
-                <option value="Weak trust or proof"${values.goal === 'Weak trust or proof' ? ' selected' : ''}>Weak trust</option>
+                <option value="Find the hidden pain"${values.goal === 'Find the hidden pain' ? ' selected' : ''}>Find the hidden pain</option>
+                <option value="Stress-test a category"${values.goal === 'Stress-test a category' ? ' selected' : ''}>Stress-test a category</option>
+                <option value="Map the share artifact"${values.goal === 'Map the share artifact' ? ' selected' : ''}>Map the share artifact</option>
+                <option value="Find the money model"${values.goal === 'Find the money model' ? ' selected' : ''}>Find the money model</option>
+                <option value="Find the platform door"${values.goal === 'Find the platform door' ? ' selected' : ''}>Find the platform door</option>
                 <option value="Not sure"${!values.goal || values.goal === 'Not sure' ? ' selected' : ''}>Not sure</option>
               </select>
             </div>
@@ -2814,20 +2854,23 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
           <summary>Add optional details</summary>
           <div class="form-grid">
             <div class="field">
-              <label for="businessName">Business name</label>
-              <input id="businessName" name="businessName" placeholder="Your business name" value="${escapeHtml(values.businessName || '')}" />
+              <label for="businessName">Project name</label>
+              <input id="businessName" name="businessName" placeholder="What do you want to call this thesis?" value="${escapeHtml(values.businessName || '')}" />
             </div>
             <div class="field">
-              <label for="category">Business type</label>
+              <label for="category">Lane</label>
               <select id="category" name="category">
-                <option value="General Business"${!values.category || values.category === 'General Business' ? ' selected' : ''}>General Business</option>
-                <option value="Service Business"${values.category === 'Service Business' ? ' selected' : ''}>Service Business</option>
-                <option value="Clinic / Studio"${values.category === 'Clinic / Studio' ? ' selected' : ''}>Clinic / Studio</option>
-                <option value="Brand / Store"${values.category === 'Brand / Store' ? ' selected' : ''}>Brand / Store</option>
-                <option value="Med Spa"${values.category === 'Med Spa' ? ' selected' : ''}>Med Spa</option>
-                <option value="Beauty Brand"${values.category === 'Beauty Brand' ? ' selected' : ''}>Beauty Brand</option>
-                <option value="Creator Brand"${values.category === 'Creator Brand' ? ' selected' : ''}>Creator Brand</option>
-                <option value="Clothing Brand"${values.category === 'Clothing Brand' ? ' selected' : ''}>Clothing Brand</option>
+                <option value="General opportunity"${!values.category || values.category === 'General opportunity' ? ' selected' : ''}>General opportunity</option>
+                <option value="Safety + scams"${values.category === 'Safety + scams' ? ' selected' : ''}>Safety + scams</option>
+                <option value="Bills + savings"${values.category === 'Bills + savings' ? ' selected' : ''}>Bills + savings</option>
+                <option value="Care + family"${values.category === 'Care + family' ? ' selected' : ''}>Care + family</option>
+                <option value="Work + skill"${values.category === 'Work + skill' ? ' selected' : ''}>Work + skill</option>
+                <option value="Home + property"${values.category === 'Home + property' ? ' selected' : ''}>Home + property</option>
+                <option value="Civic + bureaucracy"${values.category === 'Civic + bureaucracy' ? ' selected' : ''}>Civic + bureaucracy</option>
+                <option value="Dating + trust"${values.category === 'Dating + trust' ? ' selected' : ''}>Dating + trust</option>
+                <option value="Commerce + creators"${values.category === 'Commerce + creators' ? ' selected' : ''}>Commerce + creators</option>
+                <option value="Transitions + moving"${values.category === 'Transitions + moving' ? ' selected' : ''}>Transitions + moving</option>
+                <option value="Information + trust"${values.category === 'Information + trust' ? ' selected' : ''}>Information + trust</option>
                 <option value="Other"${values.category === 'Other' ? ' selected' : ''}>Other</option>
               </select>
             </div>
@@ -2836,29 +2879,30 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
               <input id="owner" name="owner" placeholder="Your name" value="${escapeHtml(values.owner || '')}" />
             </div>
             <div class="field">
-              <label for="email">Best email</label>
+              <label for="email">Email</label>
               <input id="email" type="email" name="email" placeholder="owner@example.com" value="${escapeHtml(values.email || '')}" />
             </div>
             <div class="field">
-              <label for="phone">Best phone</label>
+              <label for="phone">Phone</label>
               <input id="phone" name="phone" placeholder="(555) 000-0000" value="${escapeHtml(values.phone || '')}" />
             </div>
             <div class="field">
-              <label for="mainServices">Main service or offer</label>
-              <input id="mainServices" name="mainServices" placeholder="Botox, plumbing, web design, apparel..." value="${escapeHtml(values.mainServices || '')}" />
+              <label for="mainServices">Target behavior</label>
+              <input id="mainServices" name="mainServices" placeholder="Warnings, savings, care coordination, storefront conversion..." value="${escapeHtml(values.mainServices || '')}" />
             </div>
             <div class="field">
-              <label for="sitePlatform">Website platform</label>
+              <label for="sitePlatform">Source type</label>
               <select id="sitePlatform" name="sitePlatform">
-                <option value="wordpress"${values.sitePlatform === 'wordpress' ? ' selected' : ''}>WordPress</option>
-                <option value="webflow"${values.sitePlatform === 'webflow' ? ' selected' : ''}>Webflow</option>
-                <option value="shopify"${values.sitePlatform === 'shopify' ? ' selected' : ''}>Shopify</option>
-                <option value="custom"${!values.sitePlatform || values.sitePlatform === 'custom' ? ' selected' : ''}>Custom / other</option>
+                <option value="category-site"${values.sitePlatform === 'category-site' ? ' selected' : ''}>Category site</option>
+                <option value="competitor"${values.sitePlatform === 'competitor' ? ' selected' : ''}>Competitor</option>
+                <option value="creator-brand"${values.sitePlatform === 'creator-brand' ? ' selected' : ''}>Creator brand</option>
+                <option value="market-article"${values.sitePlatform === 'market-article' ? ' selected' : ''}>Market article</option>
+                <option value="custom"${!values.sitePlatform || values.sitePlatform === 'custom' ? ' selected' : ''}>Other</option>
               </select>
             </div>
             <div class="field">
-              <label for="bookingSystem">Booking platform</label>
-              <input id="bookingSystem" name="bookingSystem" placeholder="Vagaro, Calendly, GlossGenius..." value="${escapeHtml(values.bookingSystem || '')}" />
+              <label for="bookingSystem">Comparable product or workflow</label>
+              <input id="bookingSystem" name="bookingSystem" placeholder="Any existing product, platform, or workflow this resembles" value="${escapeHtml(values.bookingSystem || '')}" />
             </div>
             <div class="field">
               <label for="instagram">Instagram</label>
@@ -2870,84 +2914,72 @@ function intakePage(selectedPlan = 'Starter', values = {}, errorMessage = '') {
             </div>
             <div class="field full">
               <label for="notes">Notes</label>
-              <textarea id="notes" name="notes" placeholder="Anything important about the brand, site, or booking flow?">${escapeHtml(values.notes || '')}</textarea>
+              <textarea id="notes" name="notes" placeholder="Any theory, market intuition, or constraint you want the scan to consider?">${escapeHtml(values.notes || '')}</textarea>
             </div>
           </div>
         </details>
 
         <div class="form-section">
           <div class="form-section-head">
-            <p class="kicker">Approval</p>
-            <h3>Clear consent</h3>
+            <p class="kicker">Consent</p>
+            <h3>One confirmation</h3>
           </div>
           <div class="form-grid">
             <div class="field full">
               <label class="checkbox-field">
                 <input required type="checkbox" name="scanConsent" value="yes"${values.scanConsent === 'yes' ? ' checked' : ''} />
-                <span>I authorize Zumi to scan the site and approved systems for draft recommendations.</span>
-              </label>
-            </div>
-            <div class="field full">
-              <label class="checkbox-field">
-                <input required type="checkbox" name="publishConsent" value="yes"${values.publishConsent === 'yes' ? ' checked' : ''} />
-                <span>I understand changes stay approval-first and do not publish automatically.</span>
-              </label>
-            </div>
-            <div class="field full">
-              <label class="checkbox-field">
-                <input required type="checkbox" name="legalConsent" value="yes"${values.legalConsent === 'yes' ? ' checked' : ''} />
-                <span>I agree to the <a href="/terms">Terms</a>, <a href="/privacy">Privacy Policy</a>, and <a href="/authorization">Authorization</a>.</span>
+                <span>I can share this URL, and I understand NA Kit will generate a venture scan from public signal data. By submitting, I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</span>
               </label>
             </div>
           </div>
         </div>
 
-        <p class="form-hint">Usually takes about 30 seconds. Add contact details only if you want the audit sent directly.</p>
-        <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'We’ll start the audit as soon as you submit the site.')}</p>
+        <p class="form-hint">Usually takes about 20 seconds. Optional details simply help the scan lean harder into the right lane.</p>
+        <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'NA Kit starts reading the signal the moment you submit it.')}</p>
         <div class="actions">
-          <button class="btn" type="submit" data-intake-submit>Get My Free Website Audit</button>
-          <a class="btn secondary" href="/authorization">Read Authorization</a>
+          <button class="btn" type="submit" data-intake-submit>Start Venture Scan</button>
+          <a class="btn secondary" href="/case-studies">See the Ten Concepts</a>
         </div>
       </form>
     </section>
   `;
 
-  return layout('Client Intake', content, '/intake');
+  return layout('Build Queue', content, '/intake');
 }
 
 function intakeSuccessPage(plan = 'Starter') {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Audit Requested</p>
-        <h2>We’re scanning your site.</h2>
+        <p class="section-label">Signal Received</p>
+        <h2>We’re scanning the opportunity.</h2>
       </div>
-      <p class="muted">Your site is in the queue. If the fit is good, the next step is a first fix plan starting at $149.</p>
+      <p class="muted">The engine is reading the signal now. The next step is a sharper product thesis, not a generic queue page.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What happens now</p>
-        <h3>Your audit gets reviewed first.</h3>
-        <p class="muted">Zumi will look for the clearest problems in the site, trust, and booking or buying flow. Your team can also work the lead from the call list.</p>
+        <h3>The venture scan starts immediately.</h3>
+        <p class="muted">NA Kit will look for urgency, shareability, money logic, and the platform door hiding underneath the signal.</p>
       </article>
       <article class="card">
         <p class="kicker">If contact is missing</p>
-        <h3>Website is enough to start.</h3>
-        <p class="muted">No problem. The website is enough to start the audit. Contact details can be added later when the team reaches out.</p>
+        <h3>The URL was enough.</h3>
+        <p class="muted">You can always add more context later. The first pass only needs a signal-rich starting point.</p>
       </article>
     </section>
     <section class="card">
       <p class="section-label">Next Step</p>
-      <h2>Clear fixes first. Approval first.</h2>
-      <p class="muted">Nothing important goes live without approval. The point is to make the next move obvious, not overwhelming.</p>
+      <h2>Clear opportunity first. Cleaner build move next.</h2>
+      <p class="muted">The point is to surface the inevitable angle quickly, not bury the product in extra ceremony.</p>
       <div class="actions">
-        <a class="btn" href="/pricing">See Pricing</a>
+        <a class="btn" href="/pricing">See Business Models</a>
         <a class="btn secondary" href="/">Go Home</a>
       </div>
     </section>
   `;
 
-  return layout('Audit Requested', content, '/intake');
+  return layout('Signal Received', content, '/intake');
 }
 
 function getAuditStatusLabel(status = 'queued') {
@@ -2968,12 +3000,12 @@ function getAuditProgressCopy(job) {
   }
 
   return job.progressLabel || {
-    queued: 'Reading your website.',
-    scanning: 'Mapping trust and conversion signals.',
-    analyzing: 'Building your Zumi audit.',
-    completed: 'Your audit is ready.',
-    failed: 'We could not finish the audit.'
-  }[job.status] || 'Preparing your audit.';
+    queued: 'Reading your signal.',
+    scanning: 'Pulling the strongest market clues.',
+    analyzing: 'Scoring urgency, spread, and money logic.',
+    completed: 'Your venture scan is ready.',
+    failed: 'We could not finish the venture scan.'
+  }[job.status] || 'Preparing your venture scan.';
 }
 
 function createClientFromIntake(form = {}) {
@@ -2987,7 +3019,7 @@ function createClientFromIntake(form = {}) {
     form.notes || ''
   ].filter(Boolean);
   const website = form.website || '';
-  const businessName = form.businessName || getDomainFromWebsite(website) || 'Website Lead';
+  const businessName = form.businessName || getDomainFromWebsite(website) || 'Signal Lead';
 
   return {
     id: `c_${crypto.randomUUID().slice(0, 10)}`,
@@ -2997,7 +3029,7 @@ function createClientFromIntake(form = {}) {
     phone: form.phone || '',
     website,
     sitePlatform: form.sitePlatform || 'custom',
-    category: form.category || 'General Business',
+    category: form.category || 'General opportunity',
     goal: form.goal || '',
     notes: notesParts.join('\n\n'),
     plan: normalizePlan(form.plan),
@@ -3012,8 +3044,8 @@ function createClientFromIntake(form = {}) {
     bookingSystem: form.bookingSystem || '',
     callLogs: [],
     scanConsent: form.scanConsent === 'yes',
-    publishConsent: form.publishConsent === 'yes',
-    legalConsent: form.legalConsent === 'yes',
+    publishConsent: form.publishConsent === 'yes' || form.scanConsent === 'yes',
+    legalConsent: form.legalConsent === 'yes' || form.scanConsent === 'yes',
     createdAt: new Date().toISOString()
   };
 }
@@ -3023,7 +3055,7 @@ function createAuditJobRecord(clientId) {
     id: `audit_${crypto.randomUUID().slice(0, 12)}`,
     clientId,
     status: 'queued',
-    progressLabel: 'Reading your website.',
+    progressLabel: 'Reading your signal.',
     startedAt: '',
     completedAt: '',
     errorMessage: '',
@@ -3056,8 +3088,8 @@ function renderAuditIssueCards(result) {
     return `
       <article class="card audit-issue-card">
         <p class="kicker">No issues yet</p>
-        <h3>Your audit is still loading.</h3>
-        <p class="muted">Zumi will fill this with the biggest leaks as soon as the scan is finished.</p>
+        <h3>Your venture scan is still loading.</h3>
+        <p class="muted">NA Kit will fill this with the hottest openings as soon as the scan is finished.</p>
       </article>
     `;
   }
@@ -3081,43 +3113,43 @@ function auditPage(auditJob, client, auditResult) {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Instant Audit</p>
+        <p class="section-label">Venture Scan</p>
         <h2>${escapeHtml(getClientDisplayName(client || {}))}</h2>
       </div>
-      <p class="muted">Zumi is checking where this site is leaking trust, bookings, and sales.</p>
+      <p class="muted">NA Kit is checking this signal for urgency, shareability, business model fit, defensibility, and the bigger platform door.</p>
     </section>
 
     <section class="card audit-shell" data-audit-page data-audit-id="${escapeHtml(auditJob.id)}">
       <div class="audit-loading">
-        <p class="section-label">Live Audit</p>
+        <p class="section-label">Live Scan</p>
         <h3 data-audit-progress>${escapeHtml(getAuditProgressCopy(auditJob))}</h3>
-        <p class="muted">Searching your website for hidden conversion gold...</p>
+        <p class="muted">Searching the signal for hidden inevitability...</p>
         <div class="mini-proof">
           <span class="pill" data-audit-status-pill>${escapeHtml(getAuditStatusLabel(auditJob.status))}</span>
-          <span class="pill">${escapeHtml(client?.website || 'Website pending')}</span>
+          <span class="pill">${escapeHtml(client?.website || 'Signal pending')}</span>
           <span class="pill" data-audit-source-mode>${escapeHtml(sourceMode)}</span>
         </div>
       </div>
 
       <div class="audit-grid" data-audit-results${completed ? '' : ' hidden'}>
         <article class="card audit-score-card">
-          <p class="kicker">Overall Score</p>
+          <p class="kicker">Inevitability Score</p>
           <div class="audit-score" data-audit-overall-score>${completed ? escapeHtml(String(auditResult.overallScore || '--')) : '--'}</div>
           <p class="muted" data-audit-summary>${completed ? escapeHtml(auditResult.summary || '') : 'Your summary will appear here as soon as the audit finishes.'}</p>
         </article>
           <article class="card">
-            <p class="kicker">Five-Second Impression</p>
+            <p class="kicker">Five-Second Read</p>
             <h3 data-audit-five-second>${completed ? escapeHtml(auditResult.fiveSecondImpression || '') : 'Loading first-impression analysis...'}</h3>
             <div class="audit-mini-scores">
-            ${['clarity', 'trust', 'cta', 'booking', 'seo', 'mobile'].map((key) => `
+            ${Object.entries(nakitScoreLabels).map(([key, label]) => `
               <div class="audit-mini-score">
                 <strong data-audit-score-${key}>${completed ? escapeHtml(String(scores[key] ?? '--')) : '--'}</strong>
-                <span>${escapeHtml(key)}</span>
+                <span>${escapeHtml(label)}</span>
               </div>
             `).join('')}
           </div>
           <div class="mini-proof" style="margin-top: 18px;">
-            <span class="pill">Strongest page</span>
+            <span class="pill">Strongest signal</span>
             <span class="pill" data-audit-strongest-page>${escapeHtml(strongestPage)}</span>
           </div>
         </article>
@@ -3127,8 +3159,8 @@ function auditPage(auditJob, client, auditResult) {
         <section>
           <div class="section-heading">
             <div>
-              <p class="section-label">Top Leaks</p>
-              <h2>What is hurting revenue first.</h2>
+              <p class="section-label">Top Openings</p>
+              <h2>Where the opportunity feels hottest first.</h2>
             </div>
           </div>
           <div class="feature-grid" data-audit-issues>${renderAuditIssueCards(auditResult)}</div>
@@ -3138,20 +3170,20 @@ function auditPage(auditJob, client, auditResult) {
           <article class="card">
             <p class="kicker">Quick Wins</p>
             <ul class="list-clean" data-audit-quick-wins>
-              ${(completed ? auditResult.quickWins : ['Zumi is building your quick wins now.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              ${(completed ? auditResult.quickWins : ['NA Kit is building your quick wins now.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
           <article class="card">
-            <p class="kicker">Best Next Step</p>
+            <p class="kicker">Best Next Move</p>
             <ul class="list-clean" data-audit-recommended-fixes>
-              ${(completed ? auditResult.recommendedFixes : ['Your recommended fixes will appear here when the scan finishes.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              ${(completed ? auditResult.recommendedFixes : ['Your recommended moves will appear here when the scan finishes.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
         </section>
 
         <section class="detail-grid" style="margin-top: 18px;">
           <article class="card">
-            <p class="kicker">Rewritten Hero</p>
+            <p class="kicker">Launch Positioning</p>
             <div class="rewrite-preview">
               <strong data-audit-hero-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading headline...'}</strong>
               <p class="muted" data-audit-hero-subheadline>${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading subheadline...'}</p>
@@ -3159,9 +3191,9 @@ function auditPage(auditJob, client, auditResult) {
             </div>
           </article>
           <article class="card">
-            <p class="kicker">Operator View</p>
+            <p class="kicker">Spread Logic</p>
             <ul class="list-clean" data-audit-conversion-leaks>
-              ${(completed ? auditResult.conversionLeaks : ['Your conversion leaks will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              ${(completed ? auditResult.conversionLeaks : ['Your spread angles will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
         </section>
@@ -3169,65 +3201,65 @@ function auditPage(auditJob, client, auditResult) {
         <section style="margin-top: 18px;">
           <div class="section-heading">
             <div>
-              <p class="section-label">Fix Center</p>
-              <h2>Drafts, recommendations, and approval-first moves.</h2>
+              <p class="section-label">Build Kit</p>
+              <h2>The pieces that make the concept launchable.</h2>
             </div>
-            <p class="muted">Phase 1 prepares the better version before any live publish layer exists.</p>
+            <p class="muted">This is where the output shifts from “interesting” to “worth prototyping.”</p>
           </div>
           <div class="feature-grid">
             <article class="card fix-card">
-              <p class="kicker">Draft</p>
-              <h3>Hero + CTA rewrite</h3>
+              <p class="kicker">Blueprint</p>
+              <h3>Core promise + launch CTA</h3>
               <div class="rewrite-preview">
                 <strong data-audit-fix-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading rewrite...'}</strong>
                 <p class="muted">${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading supporting copy...'}</p>
                 <span class="pill" data-audit-fix-cta>${completed ? escapeHtml(auditResult.heroRewrite?.cta || '') : 'Loading CTA...'}</span>
               </div>
               <div class="mini-proof">
-                <span class="pill">draft</span>
-                <span class="pill">approval-first</span>
+                <span class="pill">prototype</span>
+                <span class="pill">positioning</span>
               </div>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Trust Layer</p>
-              <h3>What should make the site feel safer.</h3>
+              <p class="kicker">Share Artifact</p>
+              <h3>What people would naturally repost or forward.</h3>
               <ul class="list-clean" data-audit-trust-recommendations>
-                ${(completed ? auditResult.trustRecommendations : ['Trust recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                ${(completed ? auditResult.trustRecommendations : ['Share-artifact directions will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Booking Flow</p>
-              <h3>Where the next step should get easier.</h3>
+              <p class="kicker">Money Path</p>
+              <h3>How this concept most naturally gets paid.</h3>
               <ul class="list-clean" data-audit-booking-recommendations>
-                ${(completed ? auditResult.bookingFlowRecommendations : ['Booking-flow recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                ${(completed ? auditResult.bookingFlowRecommendations : ['Revenue-path recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">SEO + Structure</p>
-              <h3>Quiet wins for search and clarity.</h3>
+              <p class="kicker">Platform Door</p>
+              <h3>What larger layer this could become.</h3>
               <ul class="list-clean" data-audit-seo-recommendations>
-                ${(completed ? auditResult.seoRecommendations : ['SEO recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                ${(completed ? auditResult.seoRecommendations : ['Platform-door recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Missing Elements</p>
-              <h3>What the current experience still lacks.</h3>
+              <p class="kicker">Missing Ingredients</p>
+              <h3>What the current thesis still needs.</h3>
               <ul class="list-clean" data-audit-missing-elements>
-                ${(completed ? auditResult.missingElements : ['Missing elements will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                ${(completed ? auditResult.missingElements : ['Missing ingredients will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Approval Workflow</p>
-              <h3>How Zumi handles changes.</h3>
+              <p class="kicker">Phase Plan</p>
+              <h3>How NA Kit would move next.</h3>
               <ul class="list-clean">
-                <li>Draft created from the audit.</li>
-                <li>Owner reviews before anything changes live.</li>
-                <li>Approved items move forward. Rejected items return for revision.</li>
+                <li>Validate the pain in a tighter wedge.</li>
+                <li>Prototype the artifact users will naturally share.</li>
+                <li>Charge through the most native money path first.</li>
               </ul>
               <div class="mini-proof">
-                <span class="pill">draft</span>
-                <span class="pill">approved</span>
-                <span class="pill">needs revision</span>
+                <span class="pill">validate</span>
+                <span class="pill">prototype</span>
+                <span class="pill">expand</span>
               </div>
             </article>
           </div>
@@ -3235,14 +3267,14 @@ function auditPage(auditJob, client, auditResult) {
       </div>
 
       <article class="card audit-error" data-audit-error${auditJob.status === 'failed' ? '' : ' hidden'}>
-        <p class="kicker">Audit Error</p>
-        <h3>We could not finish the scan.</h3>
-        <p class="muted" data-audit-error-message>${escapeHtml(auditJob.errorMessage || 'Try again with a reachable website URL.')}</p>
+        <p class="kicker">Scan Error</p>
+        <h3>We could not finish the venture scan.</h3>
+        <p class="muted" data-audit-error-message>${escapeHtml(auditJob.errorMessage || 'Try again with a reachable signal URL.')}</p>
       </article>
     </section>
   `;
 
-  return layout('Instant Audit', content, `/audit/${auditJob.id}`);
+  return layout('Venture Scan', content, `/audit/${auditJob.id}`);
 }
 
 function adminPage(clients, latestAudits = {}) {
@@ -3508,7 +3540,7 @@ function adminClientPage(client, wasJustCreated = false, latestAuditJob = null, 
       </article>
       <article class="card">
         <p class="kicker">Trust + Booking Layer</p>
-        <h3>What Zumi wants to strengthen next.</h3>
+        <h3>What NA Kit wants to strengthen next.</h3>
         <ul class="list-clean">
           ${(latestAuditResult?.trustRecommendations || latestAuditResult?.bookingFlowRecommendations || ['Trust and booking recommendations will appear here once the audit is ready.']).slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
         </ul>
@@ -3604,7 +3636,7 @@ function clientPortalPage(client) {
         <p class="section-label">Private Portal</p>
         <h2>${escapeHtml(displayName)} growth view</h2>
       </div>
-      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner || 'the owner')} with the Zumi plan already customized for this business.</p>
+      <p class="muted">A client-facing snapshot for ${escapeHtml(client.owner || 'the owner')} with the NA Kit plan already customized for this business.</p>
     </section>
     <section class="portal-grid">
       <article class="card">
@@ -3671,10 +3703,10 @@ function notFoundPage() {
       <section class="card empty-state">
         <p class="section-label">404</p>
         <h2>That page does not exist.</h2>
-        <p class="muted">Head back to the home page or start the intake.</p>
+        <p class="muted">Head back to the home page or drop a new signal into the build queue.</p>
         <div class="actions" style="justify-content: center;">
           <a class="btn" href="/">Go Home</a>
-          <a class="btn secondary" href="/intake">Get Audit</a>
+          <a class="btn secondary" href="/intake">Start Venture Scan</a>
         </div>
       </section>
     `,
@@ -3760,12 +3792,12 @@ app.get('/pricing', async (req, res) => {
 
 app.post('/api/intake', async (req, res) => {
   if (!req.body.website) {
-    res.status(400).json({ error: 'Website URL is required.' });
+    res.status(400).json({ error: 'A signal URL is required.' });
     return;
   }
 
-  if (!(req.body.scanConsent === 'yes' && req.body.publishConsent === 'yes' && req.body.legalConsent === 'yes')) {
-    res.status(400).json({ error: 'All approval checkboxes are required.' });
+  if (req.body.scanConsent !== 'yes') {
+    res.status(400).json({ error: 'Please confirm you can share this URL for the scan.' });
     return;
   }
 
@@ -3783,12 +3815,12 @@ app.post('/api/intake', async (req, res) => {
 
 app.post('/intake', async (req, res) => {
   if (!req.body.website) {
-    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Website URL is required.'), 400);
+    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'A signal URL is required.'), 400);
     return;
   }
 
-  if (!(req.body.scanConsent === 'yes' && req.body.publishConsent === 'yes' && req.body.legalConsent === 'yes')) {
-    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'All approval checkboxes are required.'), 400);
+  if (req.body.scanConsent !== 'yes') {
+    sendHtml(res, intakePage(normalizePlan(req.body.plan), req.body, 'Please confirm you can share this URL for the scan.'), 400);
     return;
   }
 
@@ -3904,7 +3936,7 @@ app.get('/login', async (req, res) => {
       '/admin',
       'Open Admin',
       '/case-studies',
-      'View Proof',
+      'See Concepts',
       '/login'
     )
   );
@@ -3920,11 +3952,11 @@ app.get('/demo', async (req, res) => {
     placeholderPage(
       'Book the demo',
       'Sales Motion',
-      'Use this route as the booking and onboarding handoff once you are ready to turn positioning into pipeline.',
+      'Use this route as the future handoff for founder calls, venture reviews, or partnership conversations once the product is fully live.',
       '/intake',
-      'Get My Free Website Audit',
+      'Start Venture Scan',
       '/case-studies',
-      'View Proof',
+      'See Concepts',
       '/demo'
     )
   );

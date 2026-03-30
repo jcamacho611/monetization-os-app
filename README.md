@@ -1,12 +1,12 @@
-# Zumi Phase 1
+# NA Kit Phase 1
 
-Zumi is now a Phase 1 **AI Revenue Operator** for booking-based businesses. It keeps the existing Express/CommonJS architecture, but adds a real website-audit job flow, a premium instant-audit experience, a storage adapter with Postgres support, and a more intentional operator surface around messaging, fixes, and lead handling.
+NA Kit is now a Phase 1 **venture-scan product** for finding necessary, viral, monetizable app ideas. It keeps the existing Express/CommonJS architecture, but now presents a premium public experience, a live signal-scan flow, a storage adapter with Postgres support, and a structured scan engine that turns URLs into sharper product theses.
 
 ## What is implemented
 
-- Premium public site with a cinematic entry experience and conversion-first positioning.
-- Instant audit flow:
-  - submit website
+- Premium public site with a darker, more cinematic NA Kit brand system.
+- Instant venture-scan flow:
+  - submit a signal-rich URL
   - create lead + audit job
   - redirect to `/audit/:id`
   - poll live progress
@@ -14,14 +14,23 @@ Zumi is now a Phase 1 **AI Revenue Operator** for booking-based businesses. It k
 - Storage adapter:
   - JSON fallback for local development
   - Postgres support when `DATABASE_URL` is configured
-- Website scanning pipeline:
+- URL scanning pipeline:
   - homepage first
   - same-origin page discovery
   - HTML parsing with Cheerio
-  - structured page summaries saved per audit
-- Structured audit generation with OpenAI Responses API plus heuristic fallback when OpenAI is unavailable.
-- Audit results include scores, quick wins, leaks, rewritten hero copy, trust recommendations, booking-flow recommendations, and approval-first fix direction.
-- Admin dashboard now surfaces audit status, audit score, call queue, and latest audit links.
+  - structured page summaries saved per scan
+- Structured venture-scan generation with OpenAI Responses API plus heuristic fallback when OpenAI is unavailable.
+- Venture scans include:
+  - inevitability score
+  - five-second read
+  - urgency / shareability / monetization / defensibility / platform door / build speed scores
+  - top openings
+  - quick wins
+  - launch positioning
+  - share-artifact directions
+  - money-path recommendations
+  - platform-door recommendations
+- Admin dashboard still surfaces scan status, score, call queue, and latest scan links.
 - Messaging center now supports multiple message types:
   - inquiry follow-up
   - missed-call recovery
@@ -29,7 +38,7 @@ Zumi is now a Phase 1 **AI Revenue Operator** for booking-based businesses. It k
   - review request
   - consult nudge
   - booking reminder
-- Fix Center is now represented in the audit and admin experience as draft recommendations prepared for approval-first execution.
+- Build Kit is now represented in the scan and admin experience as draft recommendations prepared for the next prototype move.
 - Existing routes and follow-up workflows are preserved.
 
 ## Tech stack
@@ -88,7 +97,7 @@ npm install
 cp .env.example .env
 ```
 
-3. Add your OpenAI API key to `.env` if you want live AI-generated follow-ups and audits.
+3. Add your OpenAI API key to `.env` if you want live AI-generated follow-ups and venture scans.
 
 ```bash
 OPENAI_API_KEY=...
@@ -104,7 +113,7 @@ AUDIT_FETCH_TIMEOUT_MS=10000
 DATABASE_URL=postgres://...
 ```
 
-If `DATABASE_URL` is present, Zumi uses Postgres. If not, it falls back to the local JSON files in `data/`.
+If `DATABASE_URL` is present, NA Kit uses Postgres. If not, it falls back to the local JSON files in `data/`.
 
 5. Optional: initialize Postgres tables:
 
@@ -156,12 +165,12 @@ npm start
 - `GET /api/blueprint/:id`
 - `GET /health`
 
-## Audit behavior
+## Venture scan behavior
 
-- If `OPENAI_API_KEY` is present, Zumi uses the OpenAI Responses API to generate a structured website audit.
-- If the OpenAI request fails, or no key is configured, Zumi falls back to a heuristic audit so the customer still gets a useful result.
-- Audit jobs store:
-  - audit status
+- If `OPENAI_API_KEY` is present, NA Kit uses the OpenAI Responses API to generate a structured venture scan.
+- If the OpenAI request fails, or no key is configured, the app falls back to a heuristic scan so the customer still gets a useful result.
+- Scan jobs store:
+  - scan status
   - parsed page summaries
   - structured result output
   - source mode (`openai` or heuristic fallback)
@@ -173,10 +182,10 @@ npm start
 
 ## Current limitations
 
-Phase 1 is now significantly stronger than the original MVP, but a few future layers are still open:
+Phase 1 is now much stronger than the original MVP, but a few future layers are still open:
 
 - No authentication or user accounts yet
-- No external site-builder publishing integrations yet
+- No deeper external data connectors yet beyond URL scanning
 - No Stripe server-side checkout or webhooks yet
 - No Twilio, email delivery, or social API automations yet
 - Audit jobs run in-process; there is no external queue worker yet

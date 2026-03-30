@@ -172,7 +172,7 @@ if (opportunityPreviewForm) {
       const opportunities = Array.isArray(result.opportunities) ? result.opportunities : [];
 
       previewTitle.textContent = blueprint.engineName || 'Preview ready';
-      previewSummary.textContent = blueprint.previewSummary || 'Zumi generated a preview workspace from the current search inputs.';
+      previewSummary.textContent = blueprint.previewSummary || 'NA Kit generated a preview workspace from the current search inputs.';
       previewResults.innerHTML = `
         <article class="preview-result">
           <p class="result-kicker">Engine</p>
@@ -235,9 +235,9 @@ if (intakeForm) {
     }
 
     submitButton.disabled = true;
-    submitButton.textContent = 'Starting Audit...';
+    submitButton.textContent = 'Starting Scan...';
     statusNote.dataset.state = 'loading';
-    statusNote.textContent = 'Creating your audit and starting the scan now.';
+    statusNote.textContent = 'Creating your venture scan and starting the signal read now.';
 
     try {
       const formData = new FormData(intakeForm);
@@ -259,9 +259,9 @@ if (intakeForm) {
       window.location.assign(result.redirectUrl);
     } catch (error) {
       submitButton.disabled = false;
-      submitButton.textContent = 'Get My Free Website Audit';
+      submitButton.textContent = 'Start Venture Scan';
       statusNote.dataset.state = 'warning';
-      statusNote.textContent = error.message || 'Could not start the audit right now.';
+      statusNote.textContent = error.message || 'Could not start the venture scan right now.';
     }
   });
 }
@@ -272,9 +272,9 @@ function renderIssues(issues = []) {
   if (!issues.length) {
     return `
       <article class="card audit-issue-card">
-        <p class="kicker">No issues yet</p>
+        <p class="kicker">No openings yet</p>
         <h3>Still scanning</h3>
-        <p class="muted">Zumi is still checking the site.</p>
+        <p class="muted">NA Kit is still reading the signal.</p>
       </article>
     `;
   }
@@ -343,11 +343,11 @@ if (auditPage) {
       const payload = await response.json();
 
       if (!response.ok) {
-        throw new Error(payload.error || `Audit request failed with status ${response.status}`);
+        throw new Error(payload.error || `Venture scan request failed with status ${response.status}`);
       }
 
       if (progress) {
-        progress.textContent = payload.progress || 'Preparing your audit...';
+        progress.textContent = payload.progress || 'Preparing your venture scan...';
       }
 
       if (statusPill) {
