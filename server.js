@@ -1715,6 +1715,9 @@ function layout(title, content, currentPath = '/') {
   const pageTitle = title === brand.name ? `${brand.name} · ${brand.headline}` : `${title} · ${brand.name}`;
   const safeTitle = escapeHtml(pageTitle);
   const pageUrl = `https://zumi.onrender.com${currentPath === '/' ? '' : currentPath}`;
+  const pageClass = currentPath === '/'
+    ? 'page-home'
+    : `page-${currentPath.replaceAll('/', ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/gi, '').toLowerCase() || 'default'}`;
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -1748,10 +1751,10 @@ function layout(title, content, currentPath = '/') {
       <script type="application/ld+json">${JSON.stringify(schema)}</script>
       <script src="/app.js" defer></script>
     </head>
-    <body>
+    <body class="app-body ${pageClass}">
       <header class="site-header">
         <div class="container">
-          <div class="nav-shell">
+          <div class="nav-shell app-topbar">
             <a class="brand" href="/">
               <img class="brand-logo" src="/logo-mark.svg" alt="${brand.name} logo" />
               <span class="brand-copy">
@@ -1761,13 +1764,13 @@ function layout(title, content, currentPath = '/') {
             </a>
             <div class="nav-main">
               <nav class="nav-links">
-                ${navLink('/', 'Home', currentPath)}
+                ${navLink('/', 'Feed', currentPath)}
+                ${navLink('/intake', 'Check', currentPath)}
                 ${navLink('/case-studies', 'Modules', currentPath)}
-                ${navLink('/how-it-works', 'Trust Stack', currentPath)}
-                ${navLink('/convert', 'Ad Model', currentPath)}
-                ${navLink('/shield', 'Shield', currentPath)}
+                ${navLink('/how-it-works', 'Stack', currentPath)}
+                ${navLink('/pricing', 'Free', currentPath)}
               </nav>
-              <a class="btn nav-cta" href="/intake">Start Trust Scan</a>
+              <a class="btn nav-cta" href="/intake">Check Something</a>
             </div>
           </div>
         </div>
@@ -1775,21 +1778,34 @@ function layout(title, content, currentPath = '/') {
       <main>
         <div class="container">${content}</div>
       </main>
+      <nav class="bottom-dock" aria-label="Primary">
+        <a class="dock-link${currentPath === '/' ? ' active' : ''}" href="/">
+          <span>Feed</span>
+        </a>
+        <a class="dock-link${currentPath === '/intake' ? ' active' : ''}" href="/intake">
+          <span>Check</span>
+        </a>
+        <a class="dock-link${currentPath === '/case-studies' ? ' active' : ''}" href="/case-studies">
+          <span>Modules</span>
+        </a>
+        <a class="dock-link${currentPath === '/pricing' ? ' active' : ''}" href="/pricing">
+          <span>Free</span>
+        </a>
+      </nav>
       <footer>
         <div class="container footer-shell">
           <div>
             <strong>${brand.name}</strong>
-            <span>${brand.slogan}</span>
+            <span>Free trust checks, clean proof, ads after the answer.</span>
           </div>
           <nav class="footer-links">
+            <a href="/intake">Check Something</a>
             <a href="/case-studies">Modules</a>
-            <a href="/how-it-works">Trust Stack</a>
-            <a href="/convert">Ad Model</a>
-            <a href="/shield">Shield</a>
+            <a href="/how-it-works">Stack</a>
+            <a href="/pricing">Free</a>
             <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="/intake">Trust Scan</a>
           </nav>
         </div>
       </footer>
@@ -2040,8 +2056,12 @@ function homePage(clients) {
         <p class="section-label">Jeni // Free Trust Checker</p>
         <h1>Paste anything. Jeni tells you what feels real, risky, or scammy.</h1>
         <p class="lede">A weird text. A payment link. A brand site. A profile. A clip. Jeni explains what feels off in regular-people talk and keeps the proof neat if things go left.</p>
-        <form class="entry-search" method="GET" action="/intake">
+        <form class="entry-search live-composer" method="GET" action="/intake" data-live-check-form>
           <input name="q" type="text" placeholder="Paste a message, link, profile, offer, or just ask a question" aria-label="Trust prompt" autocomplete="off" />
+          <input type="hidden" name="scanConsent" value="yes" />
+          <input type="hidden" name="goal" value="Understand the trust risk" />
+          <input type="hidden" name="category" value="General trust signal" />
+          <input type="hidden" name="plan" value="Starter" />
           <button class="btn" type="submit">Check It</button>
         </form>
         <div class="entry-suggestions entry-usage">
@@ -2053,6 +2073,49 @@ function homePage(clients) {
         </div>
         <p class="entry-microcopy">Free to use. Ads show after the answer, never inside the answer.</p>
       </div>
+    </section>
+
+    <section class="section live-check-section" data-live-check-section hidden>
+      <article class="card live-check-shell">
+        <div class="live-check-top">
+          <div>
+            <p class="section-label">Live Check</p>
+            <h2>Jeni stays on this page and works it out live.</h2>
+          </div>
+          <div class="mini-proof">
+            <span class="pill" data-live-status-pill>Queued</span>
+            <span class="pill" data-live-source-pill>Waiting for signal</span>
+          </div>
+        </div>
+
+        <div class="live-chat">
+          <article class="live-bubble live-bubble-user" data-live-user hidden>
+            <p class="kicker">You</p>
+            <p class="live-bubble-text" data-live-user-text></p>
+          </article>
+
+          <article class="live-bubble live-bubble-ai">
+            <p class="kicker">Jeni</p>
+            <div class="live-thinking" data-live-thinking>
+              <div class="thinking-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p class="live-progress-copy" data-live-progress>Paste something and Jeni will start thinking here.</p>
+              <ul class="live-step-list" data-live-step-list>
+                <li class="live-step" data-step="queued">Read what you pasted</li>
+                <li class="live-step" data-step="scanning">Check trust and risk signals</li>
+                <li class="live-step" data-step="analyzing">Build the cleanest next move</li>
+                <li class="live-step" data-step="completed">Return the result and proof trail</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="live-results-render" data-live-results hidden></div>
+        <p class="inline-note" data-live-error hidden></p>
+      </article>
     </section>
 
     <section class="section compact-section">
@@ -2929,8 +2992,8 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
       </article>
       <article class="card">
         <p class="kicker">Low friction</p>
-        <h3>The source is the only required field.</h3>
-        <p class="muted">Domain-only works. <code>brand.com</code> is enough. Everything else is optional unless you want the scan to lean harder into a specific lane.</p>
+        <h3>A link helps, but a plain-language prompt can work too.</h3>
+        <p class="muted">Domain-only works. <code>brand.com</code> is enough. If you do not have a link yet, tell Jeni what feels off and it can still start from the signal.</p>
       </article>
     </section>
     <section class="card intake-shell">
@@ -2955,7 +3018,7 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
             </div>
             <div class="field">
               <label for="website">Link or domain</label>
-              <input id="website" required name="website" data-url-normalize placeholder="example.com, article, product page, scam link, or brand site" value="${escapeHtml(values.website || '')}" />
+              <input id="website" name="website" data-url-normalize placeholder="example.com, article, product page, scam link, or brand site" value="${escapeHtml(values.website || '')}" />
             </div>
             <div class="field">
               <label for="goal">What are you looking for?</label>
@@ -3920,8 +3983,8 @@ app.get('/pricing', async (req, res) => {
 app.post('/api/intake', async (req, res) => {
   const preparedBody = prepareIntakeSubmission(req.body);
 
-  if (!preparedBody.website) {
-    res.status(400).json({ error: 'Add a link or domain so Jeni has a source to read.' });
+  if (!preparedBody.website && !preparedBody.query) {
+    res.status(400).json({ error: 'Paste a link, a domain, or tell Jeni what feels off.' });
     return;
   }
 
@@ -3945,8 +4008,8 @@ app.post('/api/intake', async (req, res) => {
 app.post('/intake', async (req, res) => {
   const preparedBody = prepareIntakeSubmission(req.body);
 
-  if (!preparedBody.website) {
-    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Add a link or domain so Jeni has a source to read.'), 400);
+  if (!preparedBody.website && !preparedBody.query) {
+    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Paste a link, a domain, or tell Jeni what feels off.'), 400);
     return;
   }
 

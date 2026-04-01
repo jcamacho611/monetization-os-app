@@ -30,6 +30,389 @@ function normalizeUrlLikeValue(value = '') {
   }
 }
 
+function buildInlineList(items = [], emptyCopy = 'Nothing here yet.') {
+  const cleanItems = Array.isArray(items) ? items.filter(Boolean).slice(0, 4) : [];
+
+  if (!cleanItems.length) {
+    return `<p class="muted">${escapeHtml(emptyCopy)}</p>`;
+  }
+
+  return `
+    <ul class="live-inline-list">
+      ${cleanItems.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+    </ul>
+  `;
+}
+
+function buildInlineFindings(issues = []) {
+  const cleanIssues = Array.isArray(issues) ? issues.slice(0, 4) : [];
+
+  if (!cleanIssues.length) {
+    return `
+      <article class="live-finding">
+        <p class="kicker">No sharp red flag yet</p>
+        <h3>Jeni did not find a single obvious break on the first pass.</h3>
+        <p class="muted">That usually means the signal is subtle, mixed, or needs a little more context.</p>
+      </article>
+    `;
+  }
+
+  return cleanIssues.map((issue) => `
+    <article class="live-finding">
+      <p class="kicker">${escapeHtml(issue.category || 'Signal')}</p>
+      <h3>${escapeHtml(issue.issue || 'Needs attention')}</h3>
+      <p class="muted">${escapeHtml(issue.whyItHurts || '')}</p>
+      <span class="pill">${escapeHtml(issue.severity || 'medium')}</span>
+    </article>
+  `).join('');
+}
+
+const liveCheckForm = document.querySelector('[data-live-check-form]');
+
+if (liveCheckForm) {
+  const promptInput = liveCheckForm.querySelector('input[name="q"]');
+  const submitButton = liveCheckForm.querySelector('button[type="submit"]');
+  const liveSection = document.querySelector('[data-live-check-section]');
+  const userCard = document.querySelector('[data-live-user]');
+  const userText = document.querySelector('[data-live-user-text]');
+  const thinkingWrap = document.querySelector('[data-live-thinking]');
+  const resultsWrap = document.querySelector('[data-live-results]');
+  const statusPill = document.querySelector('[data-live-status-pill]');
+  const sourcePill = document.querySelector('[data-live-source-pill]');
+  const errorNote = document.querySelector('[data-live-error]');
+
+  let activePollTimer = null;
+  let thinkingTimer = null;
+  let currentAuditId = '';
+  let frameIndex = 0;
+
+  const defaultThinkingMarkup = thinkingWrap ? thinkingWrap.innerHTML : '';
+  const thinkingFrames = [
+    'Reading what you pasted.',
+    'Checking trust, risk, and context.',
+    'Finding the cleanest next move.',
+    'Preparing the proof trail.'
+  ];
+  const statusLabels = {
+    queued: 'Queued',
+    scanning: 'Reading',
+    analyzing: 'Thinking',
+    completed: 'Ready',
+    failed: 'Failed'
+  };
+
+  function getProgressNode() {
+    return liveSection?.querySelector('[data-live-progress]') || null;
+  }
+
+  function getStepNodes() {
+    return Array.from(liveSection?.querySelectorAll('[data-live-step]') || []);
+  }
+
+  function stopThinkingLoop() {
+    if (thinkingTimer) {
+      window.clearInterval(thinkingTimer);
+      thinkingTimer = null;
+    }
+  }
+
+  function stopPollingLoop() {
+    if (activePollTimer) {
+      window.clearInterval(activePollTimer);
+      activePollTimer = null;
+    }
+  }
+
+  function resetThinkingState() {
+    if (!thinkingWrap) {
+      return;
+    }
+
+    thinkingWrap.innerHTML = defaultThinkingMarkup;
+    frameIndex = 0;
+  }
+
+  function startThinkingLoop() {
+    stopThinkingLoop();
+    const progressNode = getProgressNode();
+
+    if (progressNode) {
+      progressNode.textContent = thinkingFrames[0];
+    }
+
+    thinkingTimer = window.setInterval(() => {
+      frameIndex = (frameIndex + 1) % thinkingFrames.length;
+      const nextProgressNode = getProgressNode();
+
+      if (nextProgressNode) {
+        nextProgressNode.textContent = thinkingFrames[frameIndex];
+      }
+    }, 1600);
+  }
+
+  function setStepState(status = 'queued') {
+    const order = ['queued', 'scanning', 'analyzing', 'completed'];
+    const statusIndex = order.indexOf(status);
+
+    for (const node of getStepNodes()) {
+      const nodeIndex = order.indexOf(node.getAttribute('data-step') || '');
+      node.classList.remove('is-active', 'is-done');
+
+      if (status === 'failed') {
+        continue;
+      }
+
+      if (nodeIndex < statusIndex) {
+        node.classList.add('is-done');
+      } else if (nodeIndex === statusIndex) {
+        node.classList.add('is-active');
+      }
+    }
+  }
+
+  function showFailure(message) {
+    stopThinkingLoop();
+    stopPollingLoop();
+
+    if (statusPill) {
+      statusPill.textContent = 'Failed';
+    }
+
+    if (thinkingWrap) {
+      thinkingWrap.innerHTML = `
+        <p class="live-response-intro">Jeni hit a wall on this pass.</p>
+        <p class="muted">${escapeHtml(message || 'The live check could not finish right now.')}</p>
+      `;
+    }
+
+    if (resultsWrap) {
+      resultsWrap.hidden = true;
+      resultsWrap.innerHTML = '';
+    }
+
+    if (errorNote) {
+      errorNote.hidden = false;
+      errorNote.dataset.state = 'warning';
+      errorNote.textContent = message || 'The live check could not finish right now.';
+    }
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Check It';
+    }
+  }
+
+  function renderLiveResult(payload) {
+    const result = payload.result || {};
+    const strongestAnchor = result.strongestPageFound || payload.website || 'Direct input';
+    const firstRead = result.fiveSecondImpression || result.summary || 'Jeni finished the first read.';
+    const mainSummary = result.summary || 'The signal has been mapped into a cleaner trust read.';
+
+    stopThinkingLoop();
+    stopPollingLoop();
+
+    if (statusPill) {
+      statusPill.textContent = 'Ready';
+    }
+
+    if (thinkingWrap) {
+      thinkingWrap.innerHTML = `
+        <p class="live-response-intro">${escapeHtml(firstRead)}</p>
+        <p class="muted">${escapeHtml(mainSummary)}</p>
+        <div class="mini-proof">
+          <span class="pill">Score ${escapeHtml(String(result.overallScore ?? '--'))}</span>
+          <span class="pill">${escapeHtml(strongestAnchor)}</span>
+          <span class="pill">${escapeHtml(result.sourceMode || payload.source || 'analysis')}</span>
+        </div>
+      `;
+    }
+
+    if (resultsWrap) {
+      resultsWrap.hidden = false;
+      resultsWrap.innerHTML = `
+        <div class="live-results-grid">
+          <article class="live-panel live-panel-primary">
+            <p class="kicker">What Jeni sees first</p>
+            <h3>${escapeHtml(mainSummary)}</h3>
+            <p class="muted">${escapeHtml(firstRead)}</p>
+            <div class="mini-proof">
+              <span class="pill">Best anchor: ${escapeHtml(strongestAnchor)}</span>
+              <span class="pill">${escapeHtml(result.heroRewrite?.cta || 'Keep the proof')}</span>
+            </div>
+          </article>
+          <article class="live-panel">
+            <p class="kicker">Best first move</p>
+            <h3>${escapeHtml(result.heroRewrite?.headline || 'Make the next move cleaner and calmer.')}</h3>
+            <p class="muted">${escapeHtml(result.heroRewrite?.subheadline || 'Jeni turned the messy signal into a cleaner read with a clearer next step.')}</p>
+          </article>
+        </div>
+
+        <div class="live-findings-grid">
+          ${buildInlineFindings(result.topIssues)}
+        </div>
+
+        <div class="live-results-grid">
+          <article class="live-panel">
+            <p class="kicker">What to do next</p>
+            ${buildInlineList(result.quickWins, 'Jeni is still tightening the next steps.')}
+          </article>
+          <article class="live-panel">
+            <p class="kicker">Proof to keep</p>
+            ${buildInlineList(result.trustRecommendations, 'The proof trail will appear here when it is ready.')}
+          </article>
+          <article class="live-panel">
+            <p class="kicker">How the free version works</p>
+            ${buildInlineList(result.bookingFlowRecommendations, 'Helpful ads only appear after the useful part, never inside the answer.')}
+          </article>
+          <article class="live-panel">
+            <p class="kicker">Where this can go next</p>
+            ${buildInlineList(result.seoRecommendations?.length ? result.seoRecommendations : result.recommendedFixes, 'Jeni will map the bigger module path here.')}
+          </article>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="/intake">Open the full scan</a>
+          <a class="btn secondary" href="/case-studies">See all modules</a>
+        </div>
+      `;
+    }
+
+    if (errorNote) {
+      errorNote.hidden = true;
+      errorNote.textContent = '';
+    }
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Check It';
+    }
+  }
+
+  async function pollLiveAudit() {
+    if (!currentAuditId) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/audit/${encodeURIComponent(currentAuditId)}`);
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload.error || `Trust scan request failed with status ${response.status}`);
+      }
+
+      if (statusPill) {
+        statusPill.textContent = statusLabels[payload.status] || 'Thinking';
+      }
+
+      const progressNode = getProgressNode();
+      if (progressNode && payload.status !== 'completed') {
+        progressNode.textContent = payload.progress || thinkingFrames[frameIndex];
+      }
+
+      setStepState(payload.status);
+
+      if (payload.status === 'failed') {
+        showFailure(payload.errorMessage || 'The live check could not finish right now.');
+        return;
+      }
+
+      if (payload.status === 'completed' && payload.result) {
+        renderLiveResult(payload);
+      }
+    } catch (error) {
+      showFailure(error.message);
+    }
+  }
+
+  liveCheckForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!promptInput || !submitButton || !liveSection) {
+      liveCheckForm.submit();
+      return;
+    }
+
+    const prompt = String(promptInput.value || '').trim();
+
+    if (!prompt) {
+      promptInput.focus();
+      return;
+    }
+
+    resetThinkingState();
+    stopPollingLoop();
+    stopThinkingLoop();
+    currentAuditId = '';
+
+    liveSection.hidden = false;
+    liveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (userCard) {
+      userCard.hidden = false;
+    }
+
+    if (userText) {
+      userText.textContent = prompt;
+    }
+
+    if (resultsWrap) {
+      resultsWrap.hidden = true;
+      resultsWrap.innerHTML = '';
+    }
+
+    if (statusPill) {
+      statusPill.textContent = 'Queued';
+    }
+
+    if (sourcePill) {
+      sourcePill.textContent = looksLikeUrlCandidate(prompt)
+        ? normalizeUrlLikeValue(prompt)
+        : 'Direct input';
+    }
+
+    if (errorNote) {
+      errorNote.hidden = true;
+      errorNote.textContent = '';
+      errorNote.dataset.state = '';
+    }
+
+    setStepState('queued');
+    startThinkingLoop();
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Thinking...';
+
+    try {
+      const formData = new FormData(liveCheckForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      const response = await fetch('/api/intake', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || `Request failed with status ${response.status}`);
+      }
+
+      currentAuditId = result.auditId;
+      await pollLiveAudit();
+
+      if (!resultsWrap || resultsWrap.hidden) {
+        activePollTimer = window.setInterval(pollLiveAudit, 2200);
+      }
+    } catch (error) {
+      showFailure(error.message || 'Could not start the live check right now.');
+    }
+  });
+}
+
 const panels = document.querySelectorAll('[data-followup-panel]');
 
 for (const panel of panels) {
