@@ -89,9 +89,9 @@ if (liveCheckForm) {
   const defaultThinkingMarkup = thinkingWrap ? thinkingWrap.innerHTML : '';
   const thinkingFrames = [
     'Reading what you pasted.',
-    'Checking trust, risk, and context.',
-    'Finding the cleanest next move.',
-    'Preparing the proof trail.'
+    'Sorting the signal, pattern, and context.',
+    'Finding the best surface and next move.',
+    'Preparing the card, action, and memory trail.'
   ];
   const statusLabels = {
     queued: 'Queued',
@@ -206,7 +206,7 @@ if (liveCheckForm) {
     const result = payload.result || {};
     const strongestAnchor = result.strongestPageFound || payload.website || 'Direct input';
     const firstRead = result.fiveSecondImpression || result.summary || 'Jeni finished the first read.';
-    const mainSummary = result.summary || 'The signal has been mapped into a cleaner trust read.';
+    const mainSummary = result.summary || 'The signal has been mapped into a cleaner read.';
 
     stopThinkingLoop();
     stopPollingLoop();
@@ -237,7 +237,7 @@ if (liveCheckForm) {
             <p class="muted">${escapeHtml(firstRead)}</p>
             <div class="mini-proof">
               <span class="pill">Best anchor: ${escapeHtml(strongestAnchor)}</span>
-              <span class="pill">${escapeHtml(result.heroRewrite?.cta || 'Keep the proof')}</span>
+              <span class="pill">${escapeHtml(result.heroRewrite?.cta || 'Save the move')}</span>
             </div>
           </article>
           <article class="live-panel">
@@ -253,26 +253,26 @@ if (liveCheckForm) {
 
         <div class="live-results-grid">
           <article class="live-panel">
-            <p class="kicker">What to do next</p>
+            <p class="kicker">Next move</p>
             ${buildInlineList(result.quickWins, 'Jeni is still tightening the next steps.')}
           </article>
           <article class="live-panel">
-            <p class="kicker">Proof to keep</p>
-            ${buildInlineList(result.trustRecommendations, 'The proof trail will appear here when it is ready.')}
+            <p class="kicker">What to keep</p>
+            ${buildInlineList(result.trustRecommendations, 'The memory trail will appear here when it is ready.')}
           </article>
           <article class="live-panel">
-            <p class="kicker">How the free version works</p>
+            <p class="kicker">Money lane</p>
             ${buildInlineList(result.bookingFlowRecommendations, 'Helpful ads only appear after the useful part, never inside the answer.')}
           </article>
           <article class="live-panel">
-            <p class="kicker">Where this can go next</p>
+            <p class="kicker">Where it expands</p>
             ${buildInlineList(result.seoRecommendations?.length ? result.seoRecommendations : result.recommendedFixes, 'Jeni will map the bigger module path here.')}
           </article>
         </div>
 
         <div class="actions">
-          <a class="btn" href="/intake">Open the full scan</a>
-          <a class="btn secondary" href="/case-studies">See all modules</a>
+          <a class="btn" href="/intake">Open the full drop</a>
+          <a class="btn secondary" href="/case-studies">See all surfaces</a>
         </div>
       `;
     }
@@ -284,7 +284,7 @@ if (liveCheckForm) {
 
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.textContent = 'Check It';
+      submitButton.textContent = 'Drop It';
     }
   }
 
@@ -298,7 +298,7 @@ if (liveCheckForm) {
       const payload = await response.json();
 
       if (!response.ok) {
-        throw new Error(payload.error || `Trust scan request failed with status ${response.status}`);
+        throw new Error(payload.error || `Live read request failed with status ${response.status}`);
       }
 
       if (statusPill) {
@@ -582,7 +582,7 @@ if (opportunityPreviewForm) {
       previewResults.innerHTML = `
         <article class="preview-result">
           <p class="result-kicker">Engine</p>
-          <strong>${escapeHtml(blueprint.engineName || 'Adaptive Trust Engine')}</strong>
+          <strong>${escapeHtml(blueprint.engineName || 'Adaptive Signal Engine')}</strong>
           <p class="muted">${escapeHtml(blueprint.workflowRecommendation || '')}</p>
           <div class="preview-tags">
             ${(blueprint.sourceMix || []).map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join('')}
@@ -654,7 +654,7 @@ if (intakeForm) {
     submitButton.disabled = true;
     submitButton.textContent = 'Starting Scan...';
     statusNote.dataset.state = 'loading';
-    statusNote.textContent = 'Creating your trust scan and starting the signal read now.';
+    statusNote.textContent = 'Creating your live read and starting the signal engine now.';
 
     try {
       const formData = new FormData(intakeForm);
@@ -676,9 +676,9 @@ if (intakeForm) {
       window.location.assign(result.redirectUrl);
     } catch (error) {
       submitButton.disabled = false;
-      submitButton.textContent = 'Start Trust Scan';
+      submitButton.textContent = 'Start Live Read';
       statusNote.dataset.state = 'warning';
-      statusNote.textContent = error.message || 'Could not start the trust scan right now.';
+      statusNote.textContent = error.message || 'Could not start the live read right now.';
     }
   });
 }
@@ -760,11 +760,11 @@ if (auditPage) {
       const payload = await response.json();
 
       if (!response.ok) {
-        throw new Error(payload.error || `Trust scan request failed with status ${response.status}`);
+        throw new Error(payload.error || `Live read request failed with status ${response.status}`);
       }
 
       if (progress) {
-        progress.textContent = payload.progress || 'Preparing your trust scan...';
+        progress.textContent = payload.progress || 'Preparing your live read...';
       }
 
       if (statusPill) {
@@ -779,7 +779,7 @@ if (auditPage) {
           errorWrap.hidden = false;
         }
         if (errorMessage) {
-          errorMessage.textContent = payload.errorMessage || 'The audit could not be completed.';
+          errorMessage.textContent = payload.errorMessage || 'The live read could not be completed.';
         }
         if (pollTimer) {
           window.clearInterval(pollTimer);

@@ -30,228 +30,228 @@ const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
 });
 const brand = {
   name: 'Jeni',
-  category: 'Free AI trust super-app',
-  audience: 'families, creators, operators, and teams navigating the AI trust era',
-  slogan: 'Check it before you trust it.',
-  headline: 'Paste anything. Find out if it feels real, risky, or scammy.',
-  subhead: 'Jeni checks suspicious links, messages, profiles, clips, and offers, explains what feels off in regular-people language, and keeps the proof neat if things go left.',
-  supportingLine: 'Shield. Truth. Passport. Then money, care, home, civic, commerce, work, and moves.',
-  metaDescription: 'Jeni is a free, ad-funded AI trust super-app that turns media, identity, actions, and outcomes into verifiable receipts across scams, truth, care, money, home, work, commerce, and civic life.',
-  proofNote: 'Shield, Truth, and Passport form the front door, then the rest of the life modules compound on top of shared receipts, provenance, and identity.',
-  algorithmName: 'Jeni Super-App Engine'
+  category: 'Free AI social signal app',
+  audience: 'creators, sellers, friend groups, shoppers, and people who live online',
+  slogan: 'Drop it. Jeni turns it into a move.',
+  headline: 'One social app for everything happening online.',
+  subhead: 'Paste a DM, clip, screenshot, offer, rumor, product, or idea. Jeni reads it live and turns it into the right post, action, shop card, circle update, or next move.',
+  supportingLine: 'Feed. Drops. Circles. Shops. Studio. Background engines.',
+  metaDescription: 'Jeni is a free, ad-funded AI social app that turns messy internet signals into posts, actions, circles, shop cards, and a live personal feed.',
+  proofNote: 'Safety, identity, memory, and money still run underneath everything, but the product should feel like social media on the front, not paperwork.',
+  algorithmName: 'Jeni Signal Engine'
 };
 const jeniFeatures = [
   {
     slug: 'shield',
     letter: '01',
-    title: 'Jeni Shield',
-    category: 'Safety + scams',
-    role: 'Front door',
-    pitch: 'A family firewall for impersonation scams across calls, texts, DMs, email, and payments.',
-    viralHook: 'Scam Receipts that explain the tell, redact the risk, and are built to share.',
-    monetization: 'Free core, then contextual fraud-recovery cards and trusted partner placements after the proof is delivered.',
-    adFit: 'High, but only after the receipt. No ads inside the proof or panic flow.',
-    trustPrimitive: 'Scam Receipts, trusted circles, and verifier-ready warning pages.',
-    door: 'Verified calling, identity trust, and payments-risk infrastructure.',
+    title: 'Warning Feed',
+    category: 'DMs + warnings',
+    role: 'Feed starter',
+    pitch: 'Weird message in, clean warning post out. Jeni formats the red flags so you can keep it, share it, or drop it into a circle fast.',
+    viralHook: 'Warning cards built for reposts, stories, and friend-group chats.',
+    monetization: 'Safety checklists, recovery offers, and support links after the card lands.',
+    adFit: 'High once the result is useful. Nothing paid inside the live read itself.',
+    trustPrimitive: 'Shield scoring, redaction, identity checks, and background receipts.',
+    door: 'Private circles, creator safety tools, and business risk feeds.',
     whyNow: 'Fraud losses are huge, the pain is emotional, and the warning wants to travel.'
   },
   {
     slug: 'wallet',
     letter: '02',
-    title: 'Jeni Wallet',
-    category: 'Money + recurring spend',
-    role: 'Retention engine',
-    pitch: 'Find recurring bills, cancel junk, negotiate spend, and turn the win into signed savings proof.',
-    viralHook: 'Savings Receipts and streak cards that make financial cleanup social.',
-    monetization: 'Contextual budgeting, banking, and switching offers shown around the savings feed, not inside the proof.',
-    adFit: 'Strong contextual finance inventory with heavy category restrictions.',
-    trustPrimitive: 'Savings Receipts, merchant trust labels, and audit-friendly before-and-after proof.',
-    door: 'Consumer finance autopilot, switching, and permissioned spending agents.',
+    title: 'Money Moves',
+    category: 'Deals + savings',
+    role: 'Retention surface',
+    pitch: 'Turn subscriptions, weird charges, price drops, and money chatter into save-worthy moves instead of buried cleanup.',
+    viralHook: 'Savings cards, deal drops, and “cut this now” posts.',
+    monetization: 'Budgeting, switching, and finance offers between cards and search results.',
+    adFit: 'Strong with hard category rules and zero paid influence on the actual read.',
+    trustPrimitive: 'Recurring spend detection, merchant matching, and background memory.',
+    door: 'Autopilot savings, switching, and permissioned money agents.',
     whyNow: 'Recurring spend keeps leaking because almost nobody manages it cleanly.'
   },
   {
     slug: 'truth',
     letter: '03',
-    title: 'Jeni Truth',
-    category: 'Media + reality',
-    role: 'Front door',
-    pitch: 'Upload a clip or screenshot and get a Reality Card with provenance, manipulation signals, and plain-English verification steps.',
-    viralHook: 'Comment-ready clarity cards built for stories, threads, and group chats.',
-    monetization: 'Contextual literacy, security, and neutral media sponsorships outside verifier surfaces.',
-    adFit: 'Medium. Brand-safe only, no political microtargeting, and nothing inside authenticity verdicts.',
-    trustPrimitive: 'Reality Cards, provenance states, and public verifier links.',
-    door: 'Trust APIs for media, marketplaces, brands, and enterprise comms.',
+    title: 'Reality Remix',
+    category: 'Clips + rumors',
+    role: 'Feed starter',
+    pitch: 'Drop a clip, screenshot, or rumor and get a clean reality remix people can understand fast.',
+    viralHook: 'Comment-ready cards for stories, threads, and group chats.',
+    monetization: 'Contextual media, literacy, and creator-safe sponsorships around the remix.',
+    adFit: 'Medium. Brand-safe only and never inside the final remix card.',
+    trustPrimitive: 'Media analysis, provenance checks, and public verifier states.',
+    door: 'Media APIs, brand defense, and community moderation tooling.',
     whyNow: 'Synthetic media is cheap, social feeds are crowded, and people need usable certainty.'
   },
   {
     slug: 'clipshop',
     letter: '04',
-    title: 'Jeni ClipShop',
-    category: 'Commerce + creators',
-    role: 'Commerce rail',
-    pitch: 'Turn short-form video into trusted commerce with verified claims, price history, and cleaner returns.',
-    viralHook: 'Verified dupe cards, claim badges, and creator storefront overlays.',
-    monetization: 'Sponsored listings, verified partner placements, and commerce media inside search and browse surfaces.',
-    adFit: 'Very high because the ad unit can be native commerce without touching the proof layer.',
-    trustPrimitive: 'Claim Credentials, seller identity tiers, and verifier-backed product cards.',
+    title: 'Clip Market',
+    category: 'Clips + shopping',
+    role: 'Commerce surface',
+    pitch: 'See a product in a post, get the match, the price history, and the cleanest way to buy or share it.',
+    viralHook: 'Dupe drops, price alerts, and creator shop cards.',
+    monetization: 'Sponsored listings and partner placements inside explicit browse moments.',
+    adFit: 'Very high because the ad unit can be native commerce without touching the live answer.',
+    trustPrimitive: 'Product matching, seller identity, and claim checks.',
     door: 'Commerce infrastructure for creator video and verified product graphs.',
     whyNow: 'Clip-led buying is growing fast while trust still lags behind the conversion.'
   },
   {
     slug: 'skilldrop',
     letter: '05',
-    title: 'Jeni SkillDrop',
-    category: 'Work + proof',
-    role: 'Career graph',
-    pitch: 'Weekly shipped work becomes a signed proof-of-skill graph instead of another forgettable resume.',
-    viralHook: 'Ship clips and Skill Credentials designed for short-form feeds.',
-    monetization: 'Sponsored challenges, recruiting placements, and contextual learning tools around the feed.',
-    adFit: 'Strong if sponsors fund exploration, not scoring.',
-    trustPrimitive: 'Skill Credentials, mentor signatures, and public verifier pages for shipped work.',
-    door: 'Portable reputation graphs and hiring trust infrastructure.',
+    title: 'Ship Drops',
+    category: 'Work + creator identity',
+    role: 'Career surface',
+    pitch: 'Turn projects, shipped work, and skill clips into social proof people actually want to follow.',
+    viralHook: 'Ship drops, streak posts, and reputation cards.',
+    monetization: 'Sponsored challenges, recruiting placements, and learning tools around the feed.',
+    adFit: 'Strong if sponsors fund discovery, not scoring.',
+    trustPrimitive: 'Shipped-work records, mentor signatures, and public credentials.',
+    door: 'Portable reputation graphs and hiring infrastructure.',
     whyNow: 'Resumes are weak signals and AI makes fake portfolios easier than ever.'
   },
   {
     slug: 'careops',
     letter: '06',
-    title: 'Jeni CareOps',
-    category: 'Care + family',
-    role: 'Retention engine',
-    pitch: 'Coordinate medications, appointments, transport, and caregiving handoffs with verified logs and secure records.',
-    viralHook: 'Care receipts, protected family dashboards, and calm handoff proof.',
-    monetization: 'Ad-light and contextual only, mostly on home surfaces for caregiver services and supplies.',
-    adFit: 'Low to medium. Sensitive by default, never inside medical logs or emergency states.',
-    trustPrimitive: 'Care Receipts, role-aware access, and family-safe audit trails.',
-    door: 'Health-adjacent logistics, remote coordination, and secure care workflows.',
+    title: 'Care Circle',
+    category: 'Family + care',
+    role: 'Private circle',
+    pitch: 'Turn care tasks, meds, visits, and family updates into one calm private layer instead of group-chat chaos.',
+    viralHook: 'Private care updates, handoff cards, and check-in timelines.',
+    monetization: 'Ad-light caregiver services and supplies on home surfaces only.',
+    adFit: 'Low to medium because this surface should stay calm and private first.',
+    trustPrimitive: 'Role permissions, handoff logs, and secure records in the background.',
+    door: 'Remote family coordination and care logistics.',
     whyNow: 'Caregiving is exploding and the coordination burden is brutal.'
   },
   {
     slug: 'homeledger',
     letter: '07',
-    title: 'Jeni HomeLedger',
-    category: 'Home + property ops',
-    role: 'Asset history',
-    pitch: 'Turn home maintenance, receipts, warranties, and claims into a verified asset history.',
-    viralHook: 'Repair receipts, claim packs, and “value saved” home stories.',
-    monetization: 'Contextual contractor, warranty, and home-services inventory beside timelines and search results.',
-    adFit: 'High in marketplaces and explore feeds, off inside claim packs.',
-    trustPrimitive: 'Repair Receipts, contractor identity checks, and claim-ready export bundles.',
+    title: 'Home Stream',
+    category: 'Home + claims',
+    role: 'Asset feed',
+    pitch: 'Every repair, warranty, delivery, and claim becomes one living home stream you can search or share when needed.',
+    viralHook: 'Repair timelines, claim cards, and value-saved posts.',
+    monetization: 'Contractor, warranty, and home-services inventory beside timelines and search results.',
+    adFit: 'High in marketplaces and explore feeds, off inside claim bundles.',
+    trustPrimitive: 'Repair memory, contractor identity, and claim-ready export bundles.',
     door: 'Property ops, underwriting-grade condition data, and multi-home expansion.',
     whyNow: 'Homes are expensive and documentation is still scattered everywhere.'
   },
   {
     slug: 'civiccopilot',
     letter: '08',
-    title: 'Jeni CivicCopilot',
-    category: 'Civic + bureaucracy',
-    role: 'Life admin',
-    pitch: 'Automate filings, deadlines, appointments, and disputes with clean receipts and audit trails.',
-    viralHook: 'Shareable “I beat the system” wins with proof of what changed.',
-    monetization: 'Contextual document, shipping, notary, and admin-service placements outside filing receipts.',
-    adFit: 'Medium with hard rules around legal sensitivity and accuracy.',
-    trustPrimitive: 'Submission Receipts, audit exports, and filing timelines.',
-    door: 'Life-admin APIs for every repetitive paperwork workflow.',
+    title: 'Paper Trail',
+    category: 'Forms + life admin',
+    role: 'Utility surface',
+    pitch: 'Deadlines, filings, appointments, and disputes stop living in tabs and start living in one usable stream.',
+    viralHook: 'Deadline cards, filed-it posts, and clean status updates.',
+    monetization: 'Document, shipping, notary, and admin-service placements outside filing status cards.',
+    adFit: 'Medium with hard rules around sensitivity and accuracy.',
+    trustPrimitive: 'Submission memory, audit exports, and filing timelines.',
+    door: 'Life-admin APIs for repetitive paperwork workflows.',
     whyNow: 'Bureaucracy still burns time, money, and attention at scale.'
   },
   {
     slug: 'passport',
     letter: '09',
-    title: 'Jeni Passport',
-    category: 'Identity + consent',
-    role: 'Trust spine',
-    pitch: 'A privacy-first identity and consent wallet that proves who acted, what was authorized, and which device signed it.',
-    viralHook: 'Verified badges, consent receipts, and trust marks that travel across the rest of Jeni.',
-    monetization: 'Mostly ad-light, with minimal security education surfaces and value driven by the modules it powers.',
-    adFit: 'Low by design. Passport is the spine, so monetization stays minimal and carefully separated.',
-    trustPrimitive: 'Passkeys, consent receipts, device binding, and verifier-ready identity states.',
-    door: 'Cross-module identity infrastructure for media, commerce, family safety, and every proof workflow.',
+    title: 'ID Layer',
+    category: 'Identity + access',
+    role: 'Background spine',
+    pitch: 'Passkeys, consent, and device identity stay under the hood so the front of the app feels instant and social, not bureaucratic.',
+    viralHook: 'Verified badges and lightweight ID marks that travel quietly across the app.',
+    monetization: 'Minimal by design. The value comes from every other surface working better.',
+    adFit: 'Low on purpose. This should stay almost invisible.',
+    trustPrimitive: 'Passkeys, consent logs, device states, and quiet identity marks.',
+    door: 'Cross-surface identity infrastructure for media, commerce, circles, and transactions.',
     whyNow: 'Synthetic identity, impersonation, and consent disputes make strong trust primitives more necessary than ever.'
   },
   {
     slug: 'movepilot',
     letter: '10',
-    title: 'Jeni MovePilot',
-    category: 'Relocation + transitions',
-    role: 'Transition OS',
-    pitch: 'An operating system for moving, switching services, verifying providers, and keeping every life-transition receipt.',
-    viralHook: 'Move scorecards, city guides, and proof-rich relocation templates.',
-    monetization: 'Contextual movers, utilities, and transition offers inside comparison surfaces and checklists.',
+    title: 'Move Mode',
+    category: 'Relocation + life shifts',
+    role: 'Transition surface',
+    pitch: 'Moving, switching services, and changing life setups becomes one live transition stream instead of forty tabs and text threads.',
+    viralHook: 'Move scorecards, checklist posts, and clean transition bundles.',
+    monetization: 'Movers, utilities, and transition offers inside comparison surfaces and checklists.',
     adFit: 'Strong when ads are service comparisons instead of interruption units.',
-    trustPrimitive: 'Move Receipts, verified provider cards, and condition-proof bundles.',
+    trustPrimitive: 'Provider verification, move memory, and condition bundles.',
     door: 'A larger transition OS for moves, newborns, job changes, and marriage shifts.',
     whyNow: 'Life transitions are still chaotic, expensive, and scam-prone.'
   }
 ];
 const jeniPrimitives = [
   {
-    title: 'Jeni Receipts',
-    body: 'Every important action should become a signed receipt: scam flags, savings wins, claim packs, care handoffs, and public proof.'
+    title: 'Signal engine',
+    body: 'Everything starts with one messy internet signal: a DM, clip, rumor, product, screenshot, link, or idea.'
   },
   {
-    title: 'Media credentials',
-    body: 'When media is involved, Jeni treats provenance as a product surface with manifests, hashes, and verification states.'
+    title: 'Memory layer',
+    body: 'Jeni quietly keeps the timeline, receipts, and context in the background so every surface gets smarter over time.'
   },
   {
-    title: 'Identity and device trust',
-    body: 'Passkeys, step-up verification, and device confidence sit underneath the highest-risk flows.'
+    title: 'Identity layer',
+    body: 'Passkeys, consent, and device confidence stay under the hood so the front of the app can stay fast and social.'
   },
   {
-    title: 'Forensics + uncertainty',
-    body: 'Jeni explains signals, confidence, and limits clearly instead of pretending detectors are magic truth machines.'
+    title: 'Action layer',
+    body: 'Every read should end in a move: post it, send it, save it, shop it, share it, or keep it inside a circle.'
   }
 ];
 const jeniRankings = [
   {
-    title: 'Best front door',
-    winner: 'Jeni Shield',
-    body: 'The pain is urgent, the warning travels naturally, and the product works even before the rest of the super-app fills in.'
+    title: 'Best feed starter',
+    winner: 'Warning Feed',
+    body: 'The signal is emotional, immediate, and social, which makes the first post naturally worth sharing.'
   },
   {
     title: 'Best share object',
-    winner: 'Jeni Truth',
-    body: 'Reality Cards belong in comments, stories, and group chats, which makes the output itself a distribution unit.'
+    winner: 'Reality Remix',
+    body: 'Remix cards belong in comments, stories, and group chats, which makes the output itself a distribution unit.'
   },
   {
-    title: 'Strongest long-term spine',
-    winner: 'Jeni Passport',
-    body: 'Identity, consent, keys, and verifier infrastructure eventually strengthen every surface on the stack.'
+    title: 'Strongest background layer',
+    winner: 'ID Layer',
+    body: 'Identity, consent, and device state quietly strengthen every surface without taking over the front-end story.'
   }
 ];
 const jeniLaunchPath = [
-  'Launch with Shield, Truth, and Passport as the front door.',
-  'Turn the first useful outcome into a signed, shareable receipt.',
-  'Keep the app free and place contextual ads only outside the proof zone.',
-  'Expand into the rest of life once the trust primitives compound.'
+  'Launch with Warning Feed, Reality Remix, and ID Layer.',
+  'Turn the first useful read into a card people want to repost or keep.',
+  'Keep the app free and place contextual ads only between actions, never inside the answer.',
+  'Expand into the rest of life once the background engines compound.'
 ];
 const jeniRevenueModels = [
   {
-    title: 'Protected proof zones',
-    body: 'Verification outputs, emergency states, and signed receipts never contain ads or sponsored ranking.',
-    examples: 'Shield panic flows, Truth verifier pages, Passport identity decisions'
+    title: 'Clean answer zones',
+    body: 'Live reads, identity decisions, and sensitive surfaces never contain ads or sponsored ranking.',
+    examples: 'Warning Feed results, Reality Remix cards, ID Layer decisions'
   },
   {
-    title: 'Contextual-first monetization',
+    title: 'Contextual social monetization',
     body: 'Use screen context and immediate intent before any coarse topic or partner logic enters the stack.',
-    examples: 'Shield next steps, Wallet savings feed, HomeLedger contractor search'
+    examples: 'After-result cards, Money Moves feed, Clip Market search'
   },
   {
     title: 'Direct sold and PMP later',
-    body: 'Once the surfaces prove themselves, sell clean life-intent inventory to trusted partners instead of overfitting to ad-tech noise.',
-    examples: 'ClipShop search, SkillDrop sponsored challenges, MovePilot service comparisons'
+    body: 'Once the surfaces prove themselves, sell clean life-intent inventory to trusted partners instead of letting ad-tech define the vibe.',
+    examples: 'Clip Market search, Ship Drops challenges, Move Mode comparisons'
   }
 ];
 const jeniChannels = [
-  'Short-form social built around warning cards, reality cards, and story-sized proof.',
-  'Comments, DMs, and group chats where people already ask, "is this real?"',
-  'App-store intent around scams, verification, identity, safety, and truth.',
-  'Institutions, creators, and trusted partners once the receipt format proves itself.'
+  'Short-form social built around warning cards, remix posts, drops, and circles.',
+  'Comments, DMs, and group chats where people already ask what this thing is and what to do with it.',
+  'App-store intent around social tools, creators, shopping, safety, clips, and identity.',
+  'Creators, sellers, and partner brands once the output formats prove they spread.'
 ];
 const jeniScoreLabels = {
-  clarity: 'Need',
-  trust: 'Trust Layer',
-  cta: 'Ad Fit',
-  booking: 'Receipt Depth',
-  seo: 'Platform Potential',
+  clarity: 'Clarity',
+  trust: 'Signal Depth',
+  cta: 'Money Lane',
+  booking: 'Output Strength',
+  seo: 'Spread Potential',
   mobile: 'Launch Speed'
 };
 const planPaymentLinks = {
@@ -1722,7 +1722,7 @@ function layout(title, content, currentPath = '/') {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: brand.name,
-    serviceType: 'AI trust platform',
+    serviceType: 'AI social operating system',
     description: brand.metaDescription,
     areaServed: 'US',
     audience: {
@@ -1765,12 +1765,12 @@ function layout(title, content, currentPath = '/') {
             <div class="nav-main">
               <nav class="nav-links">
                 ${navLink('/', 'Feed', currentPath)}
-                ${navLink('/intake', 'Check', currentPath)}
-                ${navLink('/case-studies', 'Modules', currentPath)}
-                ${navLink('/how-it-works', 'Stack', currentPath)}
+                ${navLink('/intake', 'Drop', currentPath)}
+                ${navLink('/case-studies', 'Surfaces', currentPath)}
+                ${navLink('/how-it-works', 'Engine', currentPath)}
                 ${navLink('/pricing', 'Free', currentPath)}
               </nav>
-              <a class="btn nav-cta" href="/intake">Check Something</a>
+              <a class="btn nav-cta" href="/intake">Start a Drop</a>
             </div>
           </div>
         </div>
@@ -1783,10 +1783,10 @@ function layout(title, content, currentPath = '/') {
           <span>Feed</span>
         </a>
         <a class="dock-link${currentPath === '/intake' ? ' active' : ''}" href="/intake">
-          <span>Check</span>
+          <span>Drop</span>
         </a>
         <a class="dock-link${currentPath === '/case-studies' ? ' active' : ''}" href="/case-studies">
-          <span>Modules</span>
+          <span>Surfaces</span>
         </a>
         <a class="dock-link${currentPath === '/pricing' ? ' active' : ''}" href="/pricing">
           <span>Free</span>
@@ -1796,12 +1796,12 @@ function layout(title, content, currentPath = '/') {
         <div class="container footer-shell">
           <div>
             <strong>${brand.name}</strong>
-            <span>Free trust checks, clean proof, ads after the answer.</span>
+            <span>Free social signal reads, clean answers, ads after the useful move.</span>
           </div>
           <nav class="footer-links">
-            <a href="/intake">Check Something</a>
-            <a href="/case-studies">Modules</a>
-            <a href="/how-it-works">Stack</a>
+            <a href="/intake">Start a Drop</a>
+            <a href="/case-studies">Surfaces</a>
+            <a href="/how-it-works">Engine</a>
             <a href="/pricing">Free</a>
             <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
@@ -2053,25 +2053,25 @@ function homePage(clients) {
   const content = `
     <section class="entry-hero entry-hero-minimal">
       <div class="entry-shell entry-shell-minimal entry-shell-plain">
-        <p class="section-label">Jeni // Free Trust Checker</p>
-        <h1>Paste anything. Jeni tells you what feels real, risky, or scammy.</h1>
-        <p class="lede">A weird text. A payment link. A brand site. A profile. A clip. Jeni explains what feels off in regular-people talk and keeps the proof neat if things go left.</p>
+        <p class="section-label">Jeni // Social Signal App</p>
+        <h1>Drop anything. Jeni turns it into the right post, move, or money lane.</h1>
+        <p class="lede">A DM. A clip. A screenshot. A product. A rumor. An idea. Jeni reads the signal live, decides what surface it belongs in, and builds the card, action, circle update, or next move for you.</p>
         <form class="entry-search live-composer" method="GET" action="/intake" data-live-check-form>
-          <input name="q" type="text" placeholder="Paste a message, link, profile, offer, or just ask a question" aria-label="Trust prompt" autocomplete="off" />
+          <input name="q" type="text" placeholder="Paste a message, link, profile, offer, rumor, clip, or idea" aria-label="Signal prompt" autocomplete="off" />
           <input type="hidden" name="scanConsent" value="yes" />
-          <input type="hidden" name="goal" value="Understand the trust risk" />
-          <input type="hidden" name="category" value="General trust signal" />
-          <input type="hidden" name="plan" value="Starter" />
-          <button class="btn" type="submit">Check It</button>
+          <input type="hidden" name="goal" value="Figure out the best move" />
+          <input type="hidden" name="category" value="General internet signal" />
+          <input type="hidden" name="plan" value="Free" />
+          <button class="btn" type="submit">Drop It</button>
         </form>
         <div class="entry-suggestions entry-usage">
-          <span class="pill">is this a scam?</span>
-          <span class="pill">is this website legit?</span>
-          <span class="pill">is this person real?</span>
-          <span class="pill">check this offer</span>
-          <span class="pill">verify this clip</span>
+          <span class="pill">turn this into a post</span>
+          <span class="pill">what do I do with this?</span>
+          <span class="pill">is this worth sharing?</span>
+          <span class="pill">shop this clip</span>
+          <span class="pill">break this down</span>
         </div>
-        <p class="entry-microcopy">Free to use. Ads show after the answer, never inside the answer.</p>
+        <p class="entry-microcopy">Free to use. Ads show between useful moves, never inside the answer. The heavy engines stay in the background.</p>
       </div>
     </section>
 
@@ -2105,9 +2105,9 @@ function homePage(clients) {
               <p class="live-progress-copy" data-live-progress>Paste something and Jeni will start thinking here.</p>
               <ul class="live-step-list" data-live-step-list>
                 <li class="live-step" data-step="queued">Read what you pasted</li>
-                <li class="live-step" data-step="scanning">Check trust and risk signals</li>
-                <li class="live-step" data-step="analyzing">Build the cleanest next move</li>
-                <li class="live-step" data-step="completed">Return the result and proof trail</li>
+                <li class="live-step" data-step="scanning">Sort the signal and patterns</li>
+                <li class="live-step" data-step="analyzing">Build the best surface and next move</li>
+                <li class="live-step" data-step="completed">Return the card, action, and memory trail</li>
               </ul>
             </div>
           </article>
@@ -2121,19 +2121,19 @@ function homePage(clients) {
     <section class="section compact-section">
       <div class="feature-grid feature-grid-tight home-plain-grid">
         <article class="card concept-card">
-          <p class="kicker">1. Paste it</p>
-          <h3>Drop in the thing that feels off.</h3>
-          <p class="muted">A message, link, profile, product page, brand site, or random question. Raw domains work. You do not need to clean it up first.</p>
+          <p class="kicker">1. Drop the signal</p>
+          <h3>Bring in the thing the internet threw at you.</h3>
+          <p class="muted">A message, clip, link, profile, product page, screenshot, or random thought. Raw domains work. You do not need to clean it up first.</p>
         </article>
         <article class="card concept-card">
-          <p class="kicker">2. Get the answer</p>
-          <h3>Jeni tells you what looks safe, risky, or scammy.</h3>
-          <p class="muted">Not just yes or no. It explains the red flags in normal language so you know what is actually wrong and what to do next.</p>
+          <p class="kicker">2. Watch Jeni sort it</p>
+          <h3>It figures out the right surface live.</h3>
+          <p class="muted">Not just an answer. Jeni decides whether this should become a warning, a remix, a shop card, a circle update, a save, or a next move.</p>
         </article>
         <article class="card concept-card">
-          <p class="kicker">3. Keep the proof</p>
-          <h3>When things go left, the timeline is already organized.</h3>
-          <p class="muted">Jeni turns the messy situation into a clean receipt, explanation, and proof trail you can keep, share, or use in a dispute later.</p>
+          <p class="kicker">3. Get the output</p>
+          <h3>A post, card, action, or memory trail shows up fast.</h3>
+          <p class="muted">That is what makes it feel like social media on the front. The receipts, identity, and memory layer are still there, just not screaming in your face.</p>
         </article>
       </div>
     </section>
@@ -2142,25 +2142,25 @@ function homePage(clients) {
       <div class="page-head">
         <div>
           <p class="section-label">Who This Is For</p>
-          <h2>People who are about to trust something online.</h2>
+          <h2>People who want one app for the whole messy internet.</h2>
         </div>
-        <p class="muted">Jeni is for the exact moment you are about to click, pay, reply, trust, or share something and you do not want to get played.</p>
+        <p class="muted">Jeni is for the exact moment you need to decide what something is, what to do with it, who to send it to, and whether it can turn into a post, purchase, save, or move.</p>
       </div>
       <div class="grid-3">
         <article class="card concept-card">
-          <p class="kicker">Scam checks</p>
-          <h3>People who think they might be getting scammed.</h3>
-          <p class="muted">Marketplace buyers, shoppers, random DMs, fake payment requests, spoofed messages, and offers that feel too good to be true.</p>
+          <p class="kicker">Creators + culture hunters</p>
+          <h3>People living in clips, screenshots, and fast-moving posts.</h3>
+          <p class="muted">The app should help them break things down, remix them, shop them, and turn them into cleaner social objects fast.</p>
         </article>
         <article class="card concept-card">
-          <p class="kicker">Small business</p>
-          <h3>Owners who need cleaner trust around leads and payments.</h3>
-          <p class="muted">Use Jeni to check weird leads, suspicious links, fake clients, proof of conversations, and situations that could turn into chargebacks or drama.</p>
+          <p class="kicker">Sellers + operators</p>
+          <h3>People turning internet attention into money.</h3>
+          <p class="muted">Use Jeni to sort leads, spot weird behavior, find the angle, turn posts into shop moments, and keep the business side moving.</p>
         </article>
         <article class="card concept-card">
-          <p class="kicker">Social + dating</p>
-          <h3>People trying to figure out if someone or something is real.</h3>
-          <p class="muted">Profiles, clips, rumors, fake brands, catfish-style behavior, and online situations where “something feels off” is the whole problem.</p>
+          <p class="kicker">Friend groups + circles</p>
+          <h3>People who already use chat as their operating system.</h3>
+          <p class="muted">Warnings, care updates, rumors, shopping finds, move plans, and “what is this?” moments should all be able to land in one shared flow.</p>
         </article>
       </div>
     </section>
@@ -2169,16 +2169,16 @@ function homePage(clients) {
       <div class="detail-grid">
         <article class="card home-plain-callout">
           <p class="kicker">What The Bigger App Becomes</p>
-          <h3>Shield first. Truth next. Passport underneath it all.</h3>
-          <p class="muted">The first simple version is a scam and trust checker. Underneath that, Jeni grows into media verification, identity proof, savings, care, home history, and the rest of the life modules.</p>
+          <h3>Social on the front. Engines in the back.</h3>
+          <p class="muted">The visible product is a feed, a drop flow, a shop layer, private circles, and creator-style surfaces. In the background Jeni is still running safety, identity, memory, and action logic.</p>
         </article>
         <article class="card home-plain-callout">
           <p class="kicker">Money Model</p>
           <h3>You wanted ads so you do not have to charge.</h3>
-          <p class="muted">That is the model now: helpful ads and trusted offers after the result, never mixed into the result. The answer stays clean. The app stays free.</p>
+          <p class="muted">That is still the model, but now it belongs to a social app. Ads sit between moves, inside browse moments, and around explicit shopping or search surfaces. Never inside the live answer.</p>
           <div class="actions">
-            <a class="btn" href="/intake">Start Checking Something</a>
-            <a class="btn secondary" href="/pricing">See How Ads Work</a>
+            <a class="btn" href="/intake">Start a Drop</a>
+            <a class="btn secondary" href="/pricing">See the Free Model</a>
           </div>
         </article>
       </div>
@@ -2188,22 +2188,22 @@ function homePage(clients) {
       <div class="feature-grid feature-grid-tight">
         <article class="card concept-card">
           <p class="kicker">Front door</p>
-          <h3>Shield, Truth, and Passport open the system.</h3>
-          <p class="muted">Start with scams, reality checks, and identity trust, then let the rest of the life modules stack on top.</p>
+          <h3>Warning Feed, Reality Remix, and ID Layer open the system.</h3>
+          <p class="muted">Start with the surfaces that naturally spread, then let the rest of the app stack on top once the feed formats click.</p>
         </article>
         <article class="card concept-card">
           <p class="kicker">Live system</p>
-          <h3>${escapeHtml(String(Math.max(clients.length, 10)))} trust scans run</h3>
-          <p class="muted">Every scan looks for the best module, the right receipt, the ad-safe monetization path, and the larger verifier layer underneath it.</p>
+          <h3>${escapeHtml(String(Math.max(clients.length, 10)))} live drops run</h3>
+          <p class="muted">Every drop looks for the best surface, the cleanest output, the right money lane, and the background engine it should wake up.</p>
         </article>
         <article class="card concept-card">
           <p class="kicker">Build the bigger picture</p>
-          <h3>Once the answer is useful, the rest of Jeni makes sense.</h3>
-          <p class="muted">That is how this becomes more than a checker. It becomes a trust layer people actually use across the rest of life.</p>
+          <h3>Once the outputs spread, the whole app starts to make sense.</h3>
+          <p class="muted">That is how this becomes more than an AI tool. It becomes a real social product with money, circles, shopping, memory, and identity running under the hood.</p>
         </article>
       </div>
       <div class="actions" style="justify-content: center; margin-top: 18px;">
-        <a class="btn secondary" href="/case-studies">See the Ten Modules</a>
+        <a class="btn secondary" href="/case-studies">See the Surfaces</a>
       </div>
     </section>
   `;
@@ -2215,15 +2215,15 @@ function caseStudiesPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Modules</p>
-        <h2>Ten life modules, one trust fabric.</h2>
+        <p class="section-label">Surfaces</p>
+        <h2>Ten social surfaces, one background engine.</h2>
       </div>
-      <p class="muted">Jeni is one free super-app, not ten disconnected products. Every module creates a signed receipt, a share object, and a clean place where monetization can happen without contaminating proof.</p>
+      <p class="muted">Jeni should feel like one social app on the front. In the back it is still running safety, identity, memory, money, and action logic to decide what each signal should become.</p>
     </section>
     <section class="grid-3">
       ${jeniFeatures.map((concept) => `
         <article class="card concept-card" id="${escapeHtml(concept.slug)}">
-          <p class="kicker">Module ${escapeHtml(concept.letter)}</p>
+          <p class="kicker">Surface ${escapeHtml(concept.letter)}</p>
           <h3>${escapeHtml(concept.title)}</h3>
           <p class="muted">${escapeHtml(concept.pitch)}</p>
           <div class="mini-proof">
@@ -2231,59 +2231,59 @@ function caseStudiesPage() {
             <span class="pill">${escapeHtml(concept.role)}</span>
           </div>
           <ul class="list-clean">
-            <li><strong>Share artifact:</strong> ${escapeHtml(concept.viralHook)}</li>
-            <li><strong>Trust primitive:</strong> ${escapeHtml(concept.trustPrimitive)}</li>
-            <li><strong>Ad fit:</strong> ${escapeHtml(concept.adFit)}</li>
-            <li><strong>Money layer:</strong> ${escapeHtml(concept.monetization)}</li>
-            <li><strong>Future door:</strong> ${escapeHtml(concept.door)}</li>
+            <li><strong>Share format:</strong> ${escapeHtml(concept.viralHook)}</li>
+            <li><strong>Background engine:</strong> ${escapeHtml(concept.trustPrimitive)}</li>
+            <li><strong>Ad lane:</strong> ${escapeHtml(concept.adFit)}</li>
+            <li><strong>Money model:</strong> ${escapeHtml(concept.monetization)}</li>
+            <li><strong>Expansion path:</strong> ${escapeHtml(concept.door)}</li>
           </ul>
         </article>
       `).join('')}
     </section>
     <section class="card" style="margin-top: 24px;">
-      <p class="kicker">Front-door stack</p>
-      <h3>Shield, Truth, and Passport make the whole super-app believable.</h3>
-      <p class="muted">Shield gives Jeni urgency. Truth gives it public share objects. Passport gives it identity, consent, and verifier strength underneath every other module.</p>
+      <p class="kicker">Opening stack</p>
+      <h3>Warning Feed, Reality Remix, and ID Layer make the whole app feel social first.</h3>
+      <p class="muted">The front of the product should spread through cards, remixes, drops, and circles. The heavy safety, identity, and memory logic can stay mostly invisible underneath.</p>
       <div class="actions">
-        <a class="btn" href="/shield">Open Jeni Shield</a>
-        <a class="btn secondary" href="/how-it-works">See the Trust Stack</a>
+        <a class="btn" href="/shield">See the First Surface</a>
+        <a class="btn secondary" href="/how-it-works">See the Engine</a>
       </div>
     </section>
   `;
 
-  return layout('Modules', content, '/case-studies');
+  return layout('Surfaces', content, '/case-studies');
 }
 
 function solutionsPage() {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Trust Primitives</p>
-        <h2>Four primitives every Jeni module needs before the platform feels real.</h2>
+        <p class="section-label">Background Layers</p>
+        <h2>Four layers making the social app feel magical without turning the front-end into enterprise sludge.</h2>
       </div>
-      <p class="muted">The modules can change shape, but the underlying trust system has to stay consistent: identity, receipts, provenance, and policy boundaries around monetization.</p>
+      <p class="muted">The surfaces can change fast, but the background system still needs memory, identity, safety, and monetization rules so the product feels fast on the front and solid underneath.</p>
     </section>
     <section class="grid-3">
       ${[
         {
           kicker: '01',
-          title: 'Passport',
-          body: 'Passkeys, consent receipts, and device trust give the rest of the stack a stable identity spine.'
+          title: 'ID layer',
+          body: 'Passkeys, consent, and device state stay mostly invisible so every surface can feel instant and safe.'
         },
         {
           kicker: '02',
-          title: 'JRX receipts',
-          body: 'Actions, claims, and outcomes become signed objects the app can store, share, and verify later.'
+          title: 'Memory layer',
+          body: 'Every drop leaves behind usable memory so the app can remember context, save outputs, and build better next moves.'
         },
         {
           kicker: '03',
-          title: 'C2PA + provenance',
-          body: 'When media is involved, provenance, hashes, and credential checks help Jeni explain what is known and what is still uncertain.'
+          title: 'Signal engine',
+          body: 'Clips, rumors, products, DMs, and links all pass through one engine that decides what the signal should become.'
         },
         {
           kicker: '04',
-          title: 'Verifier + policy engine',
-          body: 'Every meaningful output needs a verifier trail, and every monetized surface needs rules that keep ads out of the proof zone.'
+          title: 'Money boundary',
+          body: 'Ads, partner cards, and shopping units live around actions and browse moments, never inside the live answer itself.'
         }
       ].map((item) => `
         <article class="card">
@@ -2297,34 +2297,34 @@ function solutionsPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Rule</p>
-          <h3>The proof object has to feel more useful than the raw evidence.</h3>
-          <p class="muted">If the signed output is not calmer, clearer, and easier to share, Jeni is still behaving like a demo instead of a real product.</p>
+          <h3>The output has to feel better than the raw mess people started with.</h3>
+          <p class="muted">If Jeni does not turn chaos into something cleaner, faster, and more social, then it is still acting like a tool demo instead of a product.</p>
         </article>
         <article class="card">
-          <p class="kicker">Monetization boundary</p>
-          <h3>Ads can live around the workflow, never inside the proof.</h3>
-          <p class="muted">That one rule keeps the super-app free without making the trust layer feel bought, manipulated, or corrupted.</p>
+          <p class="kicker">Money boundary</p>
+          <h3>Ads can live around the workflow, never inside the answer.</h3>
+          <p class="muted">That one rule keeps the app free without making the live read feel bought, manipulated, or gross.</p>
           <div class="actions">
-            <a class="btn" href="/intake">Start Trust Scan</a>
-            <a class="btn secondary" href="/convert">See the Ad Model</a>
+            <a class="btn" href="/intake">Start a Drop</a>
+            <a class="btn secondary" href="/convert">See the Money Model</a>
           </div>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Trust Primitives', content, '/solutions');
+  return layout('Background Layers', content, '/solutions');
 }
 
 function solutionPage(item) {
   const content = `
     <section class="card empty-state">
-      <p class="section-label">Module</p>
+      <p class="section-label">Surface</p>
       <h2>${escapeHtml(item.label)}</h2>
-      <p class="muted">This legacy route is now secondary to the Jeni trust-scan flow. Use the intake to generate a fresh trust blueprint from a signal-rich source.</p>
+      <p class="muted">This older route is now secondary to the social-first Jeni product. Start with a live drop, then use Surfaces to see how the front-end system expands.</p>
       <div class="actions" style="justify-content: center;">
-        <a class="btn" href="/intake">Start Trust Scan</a>
-        <a class="btn secondary" href="/solutions">Back to Trust Primitives</a>
+        <a class="btn" href="/intake">Start a Drop</a>
+        <a class="btn secondary" href="/solutions">See Background Layers</a>
       </div>
     </section>
   `;
@@ -2336,27 +2336,27 @@ function pricingPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Free Forever</p>
-        <h2>Jeni stays free. The proof stays clean.</h2>
-        <p class="muted">The business model is simple: contextual ads and trusted partner placements can appear after useful work is done, but never inside a receipt, verifier page, identity decision, or emergency flow.</p>
+        <p class="section-label">Free Feed</p>
+        <h2>The app stays free because the ads live around the action, not inside the answer.</h2>
+        <p class="muted">Jeni should feel like a beautiful social product first. The business model only works if the live read stays clean and the monetization sits in browse moments, next steps, and feed-style surfaces.</p>
         <div class="mini-proof">
           <span class="pill">Contextual first</span>
-          <span class="pill">Proof-zone safe</span>
-          <span class="pill">Privacy-first</span>
+          <span class="pill">Answer-zone clean</span>
+          <span class="pill">Feed-native</span>
         </div>
       </article>
       <article class="card art-panel">
         <p class="kicker">Hard rules</p>
-        <h3>No sponsored verification. No ads in panic mode. No pay-to-look-safe.</h3>
-        <p class="muted">Jeni only wins if users feel the trust layer is cleaner than the ad market sitting around it.</p>
+        <h3>No sponsored answers. No paid boosts inside live reads. No pay-to-look-safe gimmicks.</h3>
+        <p class="muted">Jeni only wins if the useful part feels untouched by the ad market sitting around it.</p>
       </article>
     </section>
     <section class="grid-3">
       ${[
-        { title: 'Sponsored next steps', body: 'The cleanest inventory lives after a receipt is generated, when the user needs a safe next move and the proof is already locked.' },
-        { title: 'Feed units', body: 'Wallet, HomeLedger, and SkillDrop can support native feed ads between cards, never inside the card doing the trust work.' },
-        { title: 'Search placements', body: 'ClipShop and HomeLedger can run clearly labeled sponsored results where the user is already shopping or comparing.' },
-        { title: 'Direct-sold later', body: 'As the modules prove themselves, Jeni can sell trusted life-intent inventory directly instead of letting the ad stack define the UX.' }
+        { title: 'After-result cards', body: 'The cleanest inventory appears after a good read, when the user wants the next move and the answer already landed.' },
+        { title: 'Feed placements', body: 'Money Moves, Home Stream, and Ship Drops can support native feed ads between cards, never inside the live answer.' },
+        { title: 'Search placements', body: 'Clip Market and Home Stream can run clearly labeled sponsored results when the user is already browsing or comparing.' },
+        { title: 'Direct-sold later', body: 'As the surfaces prove themselves, Jeni can sell clean social intent inventory directly instead of letting the ad stack define the whole vibe.' }
       ].map((plan, index) => `
         <article class="card plan-card${index === 0 ? ' featured-plan' : ''}">
           <p class="kicker">Layer</p>
@@ -2368,21 +2368,21 @@ function pricingPage() {
     <section class="section">
       <div class="detail-grid">
         <article class="card">
-          <p class="kicker">How the platform makes money</p>
-          <h3>The ad system follows the product, not the other way around.</h3>
+          <p class="kicker">How the app makes money</p>
+          <h3>The money model follows the surface, not the other way around.</h3>
           <ul class="list-clean">
             ${jeniRevenueModels.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.body)}</li>`).join('')}
           </ul>
         </article>
         <article class="card">
           <p class="kicker">Distribution</p>
-          <h3>Receipts are the growth loop, not an afterthought.</h3>
+          <h3>The output itself has to spread.</h3>
           <ul class="list-clean">
             ${jeniChannels.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
           <div class="actions">
             <a class="btn" href="/convert">See the Ad Model</a>
-            <a class="btn secondary" href="/intake">Start Trust Scan</a>
+            <a class="btn secondary" href="/intake">Start a Drop</a>
           </div>
         </article>
       </div>
@@ -2396,37 +2396,37 @@ function howItWorksPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Trust Stack</p>
-        <h2>Ingest. Analyze. Sign. Verify. Protect the proof zone.</h2>
-        <p class="muted">Jeni is built around one quiet promise: every important interaction should leave a useful, verifiable trail, and monetization should never muddy the result.</p>
+        <p class="section-label">Engine</p>
+        <h2>Drop the signal. Sort the surface. Wake the right engine.</h2>
+        <p class="muted">Jeni should feel like a social app on the front, but underneath it still needs a serious engine deciding what the signal is, where it belongs, and what action should come next.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Start Trust Scan</a>
-          <a class="btn secondary" href="/operator-architecture">See the Trust Engine</a>
+          <a class="btn" href="/intake">Start a Drop</a>
+          <a class="btn secondary" href="/operator-architecture">See the Engine Map</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni trust pipeline showing ingestion, scoring, receipts, and verifier surfaces." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni signal engine showing drops, surfaces, cards, and background layers." />
         </div>
       </article>
     </section>
     <section class="feature-grid">
       ${[
         {
-          title: 'Ingest the signal',
-          body: 'A link, screenshot, clip, document, or forwarded message enters the system with hashes and traceability.'
+          title: 'Read the signal',
+          body: 'A link, screenshot, clip, document, message, or plain text prompt enters the system and gets compressed into the useful parts.'
         },
         {
-          title: 'Reason about trust',
-          body: 'Jeni reads risk, provenance, metadata, identity, and uncertainty without pretending detectors are magic truth machines.'
+          title: 'Pick the surface',
+          body: 'Jeni decides whether this belongs in a warning feed, remix card, shop lane, private circle, money move, or life-admin stream.'
         },
         {
-          title: 'Generate the receipt',
-          body: 'The output becomes a signed object: a warning, proof card, claim pack, care log, or verifier-ready export.'
+          title: 'Build the output',
+          body: 'The result becomes a card, post, action, save, share object, or memory trail the user can actually use.'
         },
         {
-          title: 'Separate the money layer',
-          body: 'Only after the proof is delivered can Jeni place contextual inventory around the workflow, never inside the proof itself.'
+          title: 'Keep the money lane separate',
+          body: 'Only after the useful part lands can Jeni place contextual inventory around the workflow, never inside the live answer itself.'
         }
       ].map((item, index) => `
         <article class="card">
@@ -2439,27 +2439,27 @@ function howItWorksPage() {
     <section class="detail-grid" style="margin-top: 18px;">
       <article class="card">
         <p class="kicker">What enters</p>
-        <h3>Media, identity, actions, claims, workflow events, and social context.</h3>
-        <p class="muted">Jeni is not limited to one category because the trust primitive stays the same even when the module changes shape.</p>
+        <h3>DMs, clips, products, rumors, documents, and social context.</h3>
+        <p class="muted">Jeni is not limited to one category because the input is always the same basic thing: a messy signal from the internet or real life.</p>
       </article>
       <article class="card">
         <p class="kicker">Output</p>
-        <h3>Receipts, verifier links, and the next safe move.</h3>
-        <p class="muted">The goal is not just detection. It is calmer action, cleaner evidence, and a trust object worth keeping or forwarding.</p>
+        <h3>Posts, cards, actions, and background memory.</h3>
+        <p class="muted">The goal is not just a read. It is a cleaner social object, a next move, and a background trail that makes the app smarter over time.</p>
       </article>
     </section>
   `;
 
-  return layout('Trust Stack', content, '/how-it-works');
+  return layout('Engine', content, '/how-it-works');
 }
 
 function discoverPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Distribution</p>
-        <h2>Jeni spreads through receipts people already want to forward.</h2>
-        <p class="muted">The best modules attach to social behavior that already exists: warning family, replying in comments, sharing a win, proving a handoff, or settling a dispute with cleaner evidence.</p>
+        <p class="section-label">Spread</p>
+        <h2>Jeni grows when the output looks like something people already want to send.</h2>
+        <p class="muted">Warning cards, remix posts, shop finds, private-circle updates, and saved moves should all feel native to the way people already communicate online.</p>
         <div class="mini-proof">
           <span class="pill">Comments</span>
           <span class="pill">Group chats</span>
@@ -2468,70 +2468,70 @@ function discoverPage() {
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni opportunity field showing scams, media, money, family care, home, work, civic, and identity trust zones." />
+          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni surface map connecting warnings, remixes, shopping, circles, money, care, and identity." />
         </div>
       </article>
     </section>
     <section class="grid-3">${[
-      'Scam Receipts people forward to family circles the moment danger spikes.',
-      'Reality Cards built to sit inside comments under confusing or manipulated posts.',
-      'Savings Receipts that turn cleanup into a flex instead of a chore.',
-      'Care handoff proof that prevents family conflict and reduces missed details.',
-      'Claim packs and repair receipts that travel between homeowners, contractors, and insurers.',
-      'Skill Credentials and dupe cards that creators can repost as proof-rich social objects.'
+      'Warning cards people send to friends the second a DM looks weird.',
+      'Reality remix posts that belong directly inside comments and stories.',
+      'Money Moves that turn cleanup, savings, and price wins into shareable flexes.',
+      'Care Circle updates that replace frantic family group-chat catch-up.',
+      'Home Stream timelines that make fixes, claims, and purchases easy to resend.',
+      'Ship Drops and dupe cards that creators repost because they actually look cool.'
     ].map((item) => `
       <article class="card">
-        <p class="kicker">Share loop</p>
+        <p class="kicker">Spread loop</p>
         <h3>${escapeHtml(item)}</h3>
-        <p class="muted">If the receipt already fits how people communicate, growth can ride the product instead of needing awkward referral mechanics.</p>
+        <p class="muted">If the output already fits how people communicate, growth can ride the product instead of depending on awkward referral mechanics.</p>
       </article>
     `).join('')}</section>
   `;
 
-  return layout('Distribution', content, '/discover');
+  return layout('Spread', content, '/discover');
 }
 
 function verifyPage() {
   const cards = [
     {
-      name: 'C2PA',
-      headline: 'Read what media credentials can actually prove, not what you wish they proved.',
-      body: 'A manifest, signature, or metadata trail can raise confidence without magically confirming every claim inside the content.'
+      name: 'Signal checks',
+      headline: 'Jeni should explain what feels off without pretending every read is absolute.',
+      body: 'Good products show what they noticed, how strong the signal is, and what the user should do next.'
     },
     {
-      name: 'JRX receipts',
-      headline: 'When credentials are missing, Jeni still binds analysis to hashes, signed receipts, and verifier states.',
-      body: 'That keeps the output portable, inspectable, and useful even when the source arrives with no provenance help.'
+      name: 'Memory trail',
+      headline: 'When details matter later, Jeni still keeps the useful trail in the background.',
+      body: 'That lets the front-end stay fun while the system keeps enough context to support sharing, saving, or following up.'
     },
     {
-      name: 'Uncertainty',
-      headline: 'Risk indicators should explain signal, confidence, and limits with unusual care.',
-      body: 'Jeni should explain why something feels risky without collapsing into fake-versus-real theater.'
+      name: 'Clarity',
+      headline: 'The result should feel like a smart friend translated the internet for you.',
+      body: 'Short, plain-English reads beat jargon and fake certainty every time.'
     },
     {
-      name: 'Verifier pages',
-      headline: 'The public proof surface should stay clean, calm, and unsponsored.',
-      body: 'Verifier pages are where trust compounds, so they need to feel separate from the ad system and durable enough to cite.'
+      name: 'Clean answer zones',
+      headline: 'The live answer stays unsponsored even when the app is free.',
+      body: 'That line is what lets a social product stay useful instead of feeling like one long ad unit.'
     }
   ];
 
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Verification</p>
-        <h2>Trust products fail when they overclaim.</h2>
-        <p class="muted">Jeni is strongest when it shows evidence, confidence, limits, and the next best move without sounding evasive, absolute, or bought.</p>
+        <p class="section-label">Answer Quality</p>
+        <h2>Social AI products fail when the answer feels fake, vague, or bought.</h2>
+        <p class="muted">Jeni works when the read feels sharp, calm, and useful enough to act on fast without pretending it knows everything.</p>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni verification board showing provenance, risk scoring, and signed receipt states." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni answer system showing signal checks, surface selection, and clean output states." />
         </div>
       </article>
     </section>
     <section class="feature-grid">${cards.map(renderPillarCard).join('')}</section>
   `;
 
-  return layout('Verification', content, '/verify');
+  return layout('Answer Quality', content, '/verify');
 }
 
 function convertPage() {
@@ -2562,16 +2562,16 @@ function convertPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">Ad Model</p>
-        <h2>Free product. Premium trust. Privacy-first monetization.</h2>
-        <p class="muted">Jeni makes money with contextual placements, protected proof zones, and direct relationships that respect the trust layer instead of corrupting it.</p>
+        <h2>Free product. Strong taste. Clean monetization.</h2>
+        <p class="muted">Jeni makes money with contextual placements, browse surfaces, and direct relationships that do not corrupt the live answer.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Start Trust Scan</a>
+          <a class="btn" href="/intake">Start a Drop</a>
           <a class="btn secondary" href="/pricing">See How Jeni Stays Free</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni revenue field showing protection, savings, and transaction layers." />
+          <img class="story-visual" src="/jeni-aurora.svg" alt="Jeni revenue map showing surfaces, browse moments, and contextual monetization lanes." />
         </div>
       </article>
     </section>
@@ -2585,43 +2585,43 @@ function industriesPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Front Door</p>
-        <h2>Shield, Truth, and Passport are the opening move.</h2>
-        <p class="muted">Those three modules give Jeni urgency, public shareability, and a believable identity spine. The rest of the modules expand once the first proof loops are working.</p>
+        <p class="section-label">Opening Surfaces</p>
+        <h2>Warning Feed, Reality Remix, and ID Layer are the opening move.</h2>
+        <p class="muted">Those three surfaces give Jeni urgency, shareability, and a believable background spine. The rest open up once the first formats start spreading.</p>
       </article>
       <article class="card art-panel">
         <p class="kicker">Common thread</p>
-        <h3>Every module is a different face of the same trust system.</h3>
-        <p class="muted">Identity, receipts, provenance, and verifier flows stay constant even when the product shifts from scams to home history or care coordination.</p>
+        <h3>Every surface is a different face of the same background engine.</h3>
+        <p class="muted">Identity, memory, safety checks, and monetization rules stay steady even when the front-end shifts from warnings to shopping, care, or life admin.</p>
       </article>
     </section>
     <section class="grid-3">${[
-      { label: 'Safety + scams', body: 'Impersonation, spoofing, family protection, and payment-risk prevention.' },
-      { label: 'Money + bills', body: 'Subscriptions, recurring spend, savings recovery, and signed financial wins.' },
-      { label: 'Truth + media', body: 'Clips, screenshots, provenance, manipulation signals, and comment-ready clarity.' },
-      { label: 'Care + family logistics', body: 'Appointments, meds, check-ins, emergency plans, and handoff receipts.' },
-      { label: 'Home + property', body: 'Repairs, claims, contractor proof, and verified home history.' },
-      { label: 'Civic + paperwork', body: 'Forms, deadlines, appointment proof, disputes, and audit trails.' },
-      { label: 'Identity + consent', body: 'Passkeys, verified identity states, device trust, consent receipts, and safe authorization flows.' },
-      { label: 'Commerce + creators', body: 'Verified claims, product receipts, price history, and creator storefront trust.' },
-      { label: 'Work + skill proof', body: 'Shipped work, mentor endorsements, and signed reputation artifacts.' },
-      { label: 'Moving + transitions', body: 'Provider verification, quote receipts, and cleaner life-event workflows.' }
+      { label: 'Warnings + safety', body: 'Weird DMs, spoofing, suspicious links, and friend-group alerts.' },
+      { label: 'Money + cleanup', body: 'Subscriptions, price drops, recurring charges, and savings moves.' },
+      { label: 'Media + remixes', body: 'Clips, screenshots, rumors, reactions, and comment-ready breakdowns.' },
+      { label: 'Care + circles', body: 'Appointments, meds, check-ins, private updates, and handoff trails.' },
+      { label: 'Home + ownership', body: 'Repairs, claims, warranties, contractors, and living home streams.' },
+      { label: 'Paper + life admin', body: 'Forms, deadlines, filings, appointments, and personal paper trails.' },
+      { label: 'Identity + access', body: 'Passkeys, verified states, consent, and quiet background identity.' },
+      { label: 'Commerce + creators', body: 'Product matches, dupe cards, creator shop lanes, and buying context.' },
+      { label: 'Work + ship mode', body: 'Projects, shipped work, reputation cards, and follow-worthy progress.' },
+      { label: 'Moves + transitions', body: 'Service switching, checklists, relocation, and life-change flows.' }
     ].map(renderIndustryCard).join('')}</section>
     <section class="section">
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Flagship wedge</p>
-          <h3>Shield gives Jeni the cleanest first motion.</h3>
-          <p class="muted">Scams are social, emotional, measurable, and expensive. That makes the value obvious without shrinking the super-app ambition.</p>
+          <h3>Warning Feed gives Jeni the cleanest first motion.</h3>
+          <p class="muted">Weird DMs and suspicious links are immediate, emotional, and social, which makes the first useful format easy to understand and easy to share.</p>
           <div class="actions">
-            <a class="btn" href="/shield">See Jeni Shield</a>
+            <a class="btn" href="/shield">See Warning Feed</a>
             <a class="btn secondary" href="/pricing">See How It Stays Free</a>
           </div>
         </article>
         <article class="card">
           <p class="kicker">Share loop</p>
-          <h3>The strongest use cases come with their own receipt format.</h3>
-          <p class="muted">Warnings, savings cards, care logs, reality cards, claim packs, and credentials travel better than generic referral asks.</p>
+          <h3>The strongest use cases come with their own native format.</h3>
+          <p class="muted">Warnings, remixes, shop cards, care updates, and shipped-work drops travel better than generic referral asks.</p>
         </article>
       </div>
     </section>
@@ -2634,22 +2634,22 @@ function medSpaPage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Jeni Shield</p>
-        <h2>The first Jeni module: a family firewall for the AI scam era.</h2>
-        <p class="muted">Shield reads texts, links, screenshots, emails, and scam-like voice moments, then turns them into signed Scam Receipts that calm the user and warn the circle without putting ads inside the proof.</p>
+        <p class="section-label">Warning Feed</p>
+        <h2>The first Jeni surface: turn weird internet moments into warning posts people actually send.</h2>
+        <p class="muted">Warning Feed reads texts, links, screenshots, emails, and suspicious voice moments, then turns them into clean cards you can save, send, or drop into a circle without making the experience feel heavy.</p>
         <div class="mini-proof">
           <span class="pill">Urgent pain</span>
           <span class="pill">Free front door</span>
           <span class="pill">Native viral loop</span>
         </div>
         <div class="actions">
-          <a class="btn" href="/intake">Run a Shield Scan</a>
-          <a class="btn secondary" href="/how-it-works">See the Trust Stack</a>
+          <a class="btn" href="/intake">Run a Warning Read</a>
+          <a class="btn secondary" href="/how-it-works">See the Engine</a>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni Shield interface with high-risk scam detection, family circles, and a verifier-ready receipt." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni Warning Feed showing suspicious message analysis, clean warning cards, and circle-ready output." />
         </div>
       </article>
     </section>
@@ -2657,19 +2657,19 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">Why Shield first</p>
-          <h2>The first product should solve a trust failure people are already scared of.</h2>
+          <p class="section-label">Why this first</p>
+          <h2>The first surface should solve a social problem people already feel in their stomach.</h2>
         </div>
-        <p class="muted">Shield is strong because it is useful in the exact moment fear spikes, and the output is naturally worth sharing with family and friends.</p>
+        <p class="muted">Warning Feed is strong because it helps in the exact moment something feels off, and the output is naturally worth sharing with friends, family, or a group chat.</p>
       </div>
       <div class="feature-grid">${[
-        'Impersonation fear is immediate and measurable.',
-        'Scam Receipts create the product loop and the growth loop at the same time.',
-        'Contextual safety next steps can monetize the surface without touching the receipt.',
-        'Banks and support teams can later plug into the same trust layer.'
+        'Suspicious messages create instant emotional urgency.',
+        'Warning cards create the product loop and the growth loop at the same time.',
+        'Safety next steps can monetize the surface without touching the live answer.',
+        'The same engine can later support circles, business safety, and creator tools.'
       ].map((item) => `
         <article class="card">
-          <p class="kicker">Shield logic</p>
+          <p class="kicker">Why it works</p>
           <h3>${escapeHtml(item)}</h3>
           <p class="muted">That makes the first product emotionally legible and commercially clean.</p>
         </article>
@@ -2679,30 +2679,30 @@ function medSpaPage() {
     <section class="section">
       <div class="section-heading">
         <div>
-          <p class="section-label">What Shield includes</p>
-          <h2>A Phase 1 feature set that already feels useful and defensible.</h2>
+          <p class="section-label">What it includes</p>
+          <h2>A Phase 1 surface set that already feels useful and social.</h2>
         </div>
-        <p class="muted">Even as a first module, Shield should already feel like a category-defining consumer trust product.</p>
+        <p class="muted">Even as the first surface, Warning Feed should already feel like a category-defining social utility product.</p>
       </div>
       <div class="feature-grid">
         <article class="card">
           <p class="kicker">Capture</p>
-          <h3>Forward anything suspicious</h3>
-          <p class="muted">Links, screenshots, emails, messages, and clips should all flow into the same trust system.</p>
+          <h3>Drop anything suspicious</h3>
+          <p class="muted">Links, screenshots, emails, messages, and clips should all flow into the same engine.</p>
         </article>
         <article class="card">
           <p class="kicker">Explain</p>
-          <h3>Show the signals in plain English</h3>
+          <h3>Show the signals in regular people language</h3>
           <p class="muted">Users should understand why the risk feels high without reading technical nonsense.</p>
         </article>
         <article class="card">
           <p class="kicker">Share</p>
-          <h3>Generate a Scam Receipt</h3>
-          <p class="muted">The receipt is redacted, signed, and ready for a family circle, story, or support workflow.</p>
+          <h3>Generate a warning card</h3>
+          <p class="muted">The card is clean, safe to send, and ready for a story, circle, or support workflow.</p>
         </article>
         <article class="card">
           <p class="kicker">Protect</p>
-          <h3>Run family circles and allowlists</h3>
+          <h3>Run circles and allowlists</h3>
           <p class="muted">Protection gets stronger when the people around the user are part of the loop too.</p>
         </article>
       </div>
@@ -2711,36 +2711,36 @@ function medSpaPage() {
     <section class="section">
       <article class="card">
         <p class="section-label">Expansion door</p>
-        <h2>Shield is not the whole company. It is the first proof that the trust layer works.</h2>
-        <p class="muted">Once people trust Jeni with scams and warnings, the same primitives can expand into Truth, Wallet, CareOps, HomeLedger, and Passport-level identity flows.</p>
+        <h2>Warning Feed is not the whole company. It is the first surface proving the social engine works.</h2>
+        <p class="muted">Once people use Jeni for weird messages and warnings, the same system can expand into Reality Remix, Money Moves, Care Circle, Home Stream, and ID Layer flows.</p>
         <div class="actions">
-          <a class="btn" href="/intake">Start Trust Scan</a>
-          <a class="btn secondary" href="/case-studies">See All Modules</a>
+          <a class="btn" href="/intake">Start a Drop</a>
+          <a class="btn secondary" href="/case-studies">See All Surfaces</a>
         </div>
       </article>
     </section>
   `;
 
-  return layout('Jeni Shield', content, '/shield');
+  return layout('Warning Feed', content, '/shield');
 }
 
 function operatorArchitecturePage() {
   const content = `
     <section class="solution-hero">
       <article class="card art-panel">
-        <p class="section-label">Trust Engine</p>
+        <p class="section-label">Signal Engine</p>
         <h2>The simple version of how Jeni thinks.</h2>
-        <p class="muted">Read a signal-rich source, compress the strongest clues, score the risk and proof layer, choose the best module, then return a trust blueprint sharp enough to act on.</p>
+        <p class="muted">Read a messy source, compress the useful clues, decide the best surface, then return an output sharp enough to act on or share.</p>
         <div class="mini-proof">
           <span class="pill">Reader</span>
-          <span class="pill">Score model</span>
-          <span class="pill">Receipt logic</span>
+          <span class="pill">Surface picker</span>
+          <span class="pill">Output logic</span>
           <span class="pill">Policy layer</span>
         </div>
       </article>
       <article class="card art-panel">
         <div class="story-visual-wrap story-visual-large">
-          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni trust architecture showing signal intake, scoring, receipts, and verifier output." />
+          <img class="story-visual" src="/jeni-shield-grid.svg" alt="Jeni architecture showing signal intake, surface selection, cards, and background layers." />
         </div>
       </article>
     </section>
@@ -2757,17 +2757,17 @@ function operatorArchitecturePage() {
         <article class="card">
           <p class="kicker">1</p>
           <h3>Read</h3>
-          <p class="muted">Fetch the source, keep only the useful pages, and extract the strongest trust clues.</p>
+          <p class="muted">Fetch the source, keep only the useful parts, and extract the strongest clues.</p>
         </article>
         <article class="card">
           <p class="kicker">2</p>
-          <h3>Score</h3>
-          <p class="muted">Judge need, trust depth, ad fit, receipt depth, platform potential, and speed to launch.</p>
+          <h3>Sort</h3>
+          <p class="muted">Judge urgency, spread potential, money lane, output strength, and which surface should wake up first.</p>
         </article>
         <article class="card">
           <p class="kicker">3</p>
           <h3>Return</h3>
-          <p class="muted">Return a sharper promise, a receipt design, a safe monetization layer, and the next obvious product move.</p>
+          <p class="muted">Return a sharper read, a usable output, a safe monetization lane, and the next obvious move.</p>
         </article>
       </div>
     </section>
@@ -2776,19 +2776,19 @@ function operatorArchitecturePage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">Output standard</p>
-          <h3>It should feel like a serious trust brief, not a brainstorm dump.</h3>
-          <p class="muted">The finished output needs to be useful immediately, with enough clarity to guide a real module or risk decision.</p>
+          <h3>It should feel like a polished social product, not a brainstorm dump.</h3>
+          <p class="muted">The finished output needs to be useful immediately, with enough clarity to guide a real move or share decision.</p>
         </article>
         <article class="card">
           <p class="kicker">Reality</p>
-          <h3>A beautiful interface cannot save a weak trust story.</h3>
-          <p class="muted">The pain, receipt, ad boundary, and verifier layer still have to survive real-world pressure.</p>
+          <h3>A beautiful interface cannot save a weak product idea.</h3>
+          <p class="muted">The pain, output format, money boundary, and background engine still have to survive real-world pressure.</p>
         </article>
       </div>
     </section>
   `;
 
-  return layout('Trust Engine', content, '/operator-architecture');
+  return layout('Signal Engine', content, '/operator-architecture');
 }
 
 function aboutPage() {
@@ -2796,12 +2796,12 @@ function aboutPage() {
     <section class="solution-hero">
       <article class="card art-panel">
         <p class="section-label">About Jeni</p>
-        <h2>Jeni is a free trust super-app for the AI era.</h2>
-        <p class="muted">It exists for people who need calmer proof in a world full of synthetic media, cheap manipulation, and rising doubt. The product turns trust into receipts people can actually use and keeps the app free without selling the proof layer itself.</p>
+        <h2>Jeni is a free social signal app for the AI era.</h2>
+        <p class="muted">It exists for people whose whole life is already happening through clips, DMs, screenshots, search, shopping, and group chats. The point is to turn that chaos into cleaner social objects and better moves without charging upfront.</p>
         <div class="mini-proof">
-          <span class="pill">Receipts</span>
-          <span class="pill">Verification</span>
-          <span class="pill">Identity</span>
+          <span class="pill">Feed</span>
+          <span class="pill">Circles</span>
+          <span class="pill">Shops</span>
           <span class="pill">Free</span>
         </div>
       </article>
@@ -2816,33 +2816,33 @@ function aboutPage() {
       <div class="detail-grid">
         <article class="card">
           <p class="kicker">What it is</p>
-          <h3>A life OS built on a trust layer.</h3>
-          <p class="muted">Jeni reads a signal-rich source and returns a sharper view of the risk, proof object, ad-safe money path, and verifier layer underneath it.</p>
+          <h3>A social operating system for internet signals.</h3>
+          <p class="muted">Jeni reads one messy thing and turns it into the right post, card, action, memory trail, or money lane.</p>
         </article>
         <article class="card">
           <p class="kicker">Who it helps</p>
-          <h3>Families, creators, founders, and operators looking for confidence.</h3>
-          <p class="muted">Especially people who need to know whether to trust, ignore, share, buy, or act.</p>
+          <h3>Creators, shoppers, sellers, friend groups, founders, and families.</h3>
+          <p class="muted">Especially people who need one place to figure out what something is and what to do with it next.</p>
         </article>
         <article class="card">
           <p class="kicker">Why it exists</p>
-          <h3>Because proof is becoming more valuable than polish.</h3>
-          <p class="muted">The hard part is not generating content. The hard part is trusting what is real, what is safe, and what deserves to move forward.</p>
+          <h3>Because people already use chat and social as their operating system.</h3>
+          <p class="muted">The hard part is not posting more. The hard part is sorting signals, deciding what matters, and moving fast without chaos.</p>
         </article>
         <article class="card">
           <p class="kicker">How it works</p>
-          <h3>Read, score, sign, verify, then separate the money layer.</h3>
-          <p class="muted">The engine reads the source, scores the trust layer, and returns a receipt-ready direction with a stronger opening move and a cleaner monetization boundary.</p>
+          <h3>Read, sort, render, remember, then place the money layer around it.</h3>
+          <p class="muted">The engine reads the source, picks the best surface, returns a stronger move, and keeps the monetization lane separate from the useful part.</p>
         </article>
         <article class="card">
           <p class="kicker">What makes it different</p>
-          <h3>It treats proof as a product primitive, not a legal afterthought.</h3>
-          <p class="muted">A Jeni surface only counts if it can calm doubt, create a shareable proof object, and grow into a deeper trust layer over time.</p>
+          <h3>It combines social behavior, AI sorting, and background engines in one product.</h3>
+          <p class="muted">A Jeni surface only counts if it feels fun and native on the front while still getting smarter, safer, and more useful in the background.</p>
         </article>
         <article class="card">
           <p class="kicker">The standard</p>
-          <h3>It should feel calm, important, and unusually trustworthy.</h3>
-          <p class="muted">That is the bar for the design, the copy, the proof it produces, and the way monetization stays out of the wrong places.</p>
+          <h3>It should feel fast, addictive, useful, and surprisingly smart.</h3>
+          <p class="muted">That is the bar for the design, the feed formats, the live results, and the way monetization stays out of the wrong places.</p>
         </article>
       </div>
     </section>
@@ -2858,25 +2858,25 @@ function privacyPage() {
         <p class="section-label">Privacy</p>
         <h2>Simple privacy, in plain English.</h2>
       </div>
-      <p class="muted">Jeni only needs the information required to read submitted sources, generate trust scans, and support the product safely. Ads stay contextual by default and outside the proof zone.</p>
+      <p class="muted">Jeni only needs the information required to read submitted sources, generate live reads, and support the product safely. Ads stay contextual by default and outside the answer zone.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What Jeni may collect</p>
         <ul class="list-clean">
           <li>Business contact details from intake.</li>
-          <li>Public page content and structure needed for trust scans.</li>
-          <li>Scan output, operator notes, and queue history.</li>
+          <li>Public page content and structure needed for live reads.</li>
+          <li>Output history, saved notes, and queue history.</li>
           <li>Operational data required to support the app safely.</li>
         </ul>
       </article>
       <article class="card">
         <p class="kicker">How it is used</p>
         <ul class="list-clean">
-          <li>To run trust scans and generate structured outputs.</li>
+          <li>To run live reads and generate structured outputs.</li>
           <li>To improve product quality, queue handling, and support.</li>
           <li>To maintain product security and reasonable operational logs.</li>
-          <li>To support contextual monetization that does not use the proof output itself as ad targeting input.</li>
+          <li>To support contextual monetization that does not use the answer itself as ad targeting input.</li>
         </ul>
       </article>
       <article class="card">
@@ -2896,13 +2896,13 @@ function termsPage() {
         <p class="section-label">Terms</p>
         <h2>Clear rules. No surprises.</h2>
       </div>
-      <p class="muted">Jeni prepares trust scans and product outputs. The user still controls how those outputs get used in the real world, and ads never buy a safer result.</p>
+      <p class="muted">Jeni prepares live reads and product outputs. The user still controls how those outputs get used in the real world, and ads never buy a better result.</p>
     </section>
     <section class="feature-grid">
       <article class="card">
         <p class="kicker">User responsibility</p>
         <h3>You are responsible for how you use the output.</h3>
-        <p class="muted">Jeni can generate scans, trust receipts, and recommendations, but it does not assume legal or commercial responsibility for a user’s final decisions.</p>
+        <p class="muted">Jeni can generate reads, cards, and recommendations, but it does not assume legal or commercial responsibility for a user’s final decisions.</p>
       </article>
       <article class="card">
         <p class="kicker">Content responsibility</p>
@@ -2943,7 +2943,7 @@ function authorizationPage() {
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What you approve</p>
-        <p class="muted">You confirm that you can share the source or market signal and that Jeni may analyze public information from it to produce a trust scan.</p>
+        <p class="muted">You confirm that you can share the source or market signal and that Jeni may analyze public information from it to produce a live read.</p>
       </article>
       <article class="card">
         <p class="kicker">What does not happen</p>
@@ -2979,16 +2979,16 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Trust Scan</p>
-        <h2>Give Jeni one clean source.</h2>
+        <p class="section-label">Signal Drop</p>
+        <h2>Give Jeni one clean signal.</h2>
       </div>
-      <p class="muted">You can arrive with a thought, a link, or a loose domain. Jeni will normalize the source, read the signal, and return the clearest trust, proof, module fit, and ad-safe money direction.</p>
+      <p class="muted">You can arrive with a thought, a link, or a loose domain. Jeni will normalize the source, read the signal, and return the clearest surface, output, and money lane.</p>
     </section>
     <section class="detail-grid" style="margin-bottom: 18px;">
       <article class="card">
         <p class="kicker">What happens next</p>
-        <h3>Read. Score. Return the trust blueprint.</h3>
-        <p class="muted">Jeni reads the source, maps the risk and proof signals, then shows the clearest next move, best front-door module, and safest monetization boundary without making the flow feel heavy.</p>
+        <h3>Read. Sort. Return the best surface.</h3>
+        <p class="muted">Jeni reads the source, maps the signal, then shows the clearest next move, best front-door surface, and safest monetization boundary without making the flow feel heavy.</p>
       </article>
       <article class="card">
         <p class="kicker">Low friction</p>
@@ -3014,7 +3014,7 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
           <div class="form-grid">
             <div class="field">
               <label for="query">What do you want Jeni to figure out?</label>
-              <input id="query" name="query" placeholder="Write anything. Example: is this a scam, what trust is missing, or where does the money live?" value="${escapeHtml(values.query || '')}" />
+              <input id="query" name="query" placeholder="Write anything. Example: what do I do with this, break this down, or where does the money live?" value="${escapeHtml(values.query || '')}" />
             </div>
             <div class="field">
               <label for="website">Link or domain</label>
@@ -3023,10 +3023,11 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
             <div class="field">
               <label for="goal">What are you looking for?</label>
               <select id="goal" name="goal">
-                <option value="Understand the trust risk"${values.goal === 'Understand the trust risk' ? ' selected' : ''}>Understand the trust risk</option>
-                <option value="Read the product opportunity"${values.goal === 'Read the product opportunity' ? ' selected' : ''}>Read the product opportunity</option>
-                <option value="Find the receipt or share artifact"${values.goal === 'Find the receipt or share artifact' ? ' selected' : ''}>Find the receipt or share artifact</option>
-                <option value="Find the money path"${values.goal === 'Find the money path' ? ' selected' : ''}>Find the money path</option>
+                <option value="Figure out the best move"${values.goal === 'Figure out the best move' ? ' selected' : ''}>Figure out the best move</option>
+                <option value="Turn this into a post"${values.goal === 'Turn this into a post' ? ' selected' : ''}>Turn this into a post</option>
+                <option value="Turn this into a shopping move"${values.goal === 'Turn this into a shopping move' ? ' selected' : ''}>Turn this into a shopping move</option>
+                <option value="Break this down clearly"${values.goal === 'Break this down clearly' ? ' selected' : ''}>Break this down clearly</option>
+                <option value="Find the money lane"${values.goal === 'Find the money lane' ? ' selected' : ''}>Find the money lane</option>
                 <option value="See what feels weak"${values.goal === 'See what feels weak' ? ' selected' : ''}>See what feels weak</option>
                 <option value="Not sure"${!values.goal || values.goal === 'Not sure' ? ' selected' : ''}>Not sure</option>
               </select>
@@ -3044,17 +3045,17 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
             <div class="field">
               <label for="category">Lane</label>
               <select id="category" name="category">
-                <option value="General trust signal"${!values.category || values.category === 'General trust signal' ? ' selected' : ''}>General trust signal</option>
-                <option value="Safety + scams"${values.category === 'Safety + scams' ? ' selected' : ''}>Safety + scams</option>
-                <option value="Media + truth"${values.category === 'Media + truth' ? ' selected' : ''}>Media + truth</option>
-                <option value="Bills + savings"${values.category === 'Bills + savings' ? ' selected' : ''}>Bills + savings</option>
-                <option value="Care + family"${values.category === 'Care + family' ? ' selected' : ''}>Care + family</option>
-                <option value="Work + skill"${values.category === 'Work + skill' ? ' selected' : ''}>Work + skill</option>
-                <option value="Home + property"${values.category === 'Home + property' ? ' selected' : ''}>Home + property</option>
-                <option value="Civic + bureaucracy"${values.category === 'Civic + bureaucracy' ? ' selected' : ''}>Civic + bureaucracy</option>
-                <option value="Identity + consent"${values.category === 'Identity + consent' ? ' selected' : ''}>Identity + consent</option>
+                <option value="General internet signal"${!values.category || values.category === 'General internet signal' ? ' selected' : ''}>General internet signal</option>
+                <option value="Warnings + weird messages"${values.category === 'Warnings + weird messages' ? ' selected' : ''}>Warnings + weird messages</option>
+                <option value="Media + remixes"${values.category === 'Media + remixes' ? ' selected' : ''}>Media + remixes</option>
+                <option value="Money + shopping"${values.category === 'Money + shopping' ? ' selected' : ''}>Money + shopping</option>
+                <option value="Care + circles"${values.category === 'Care + circles' ? ' selected' : ''}>Care + circles</option>
+                <option value="Work + creator identity"${values.category === 'Work + creator identity' ? ' selected' : ''}>Work + creator identity</option>
+                <option value="Home + ownership"${values.category === 'Home + ownership' ? ' selected' : ''}>Home + ownership</option>
+                <option value="Paper + life admin"${values.category === 'Paper + life admin' ? ' selected' : ''}>Paper + life admin</option>
+                <option value="Identity + access"${values.category === 'Identity + access' ? ' selected' : ''}>Identity + access</option>
                 <option value="Commerce + creators"${values.category === 'Commerce + creators' ? ' selected' : ''}>Commerce + creators</option>
-                <option value="Transitions + moving"${values.category === 'Transitions + moving' ? ' selected' : ''}>Transitions + moving</option>
+                <option value="Moves + transitions"${values.category === 'Moves + transitions' ? ' selected' : ''}>Moves + transitions</option>
                 <option value="Other"${values.category === 'Other' ? ' selected' : ''}>Other</option>
               </select>
             </div>
@@ -3112,7 +3113,7 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
             <div class="field full">
               <label class="checkbox-field">
                 <input required type="checkbox" name="scanConsent" value="yes"${values.scanConsent === 'yes' ? ' checked' : ''} />
-                <span>I can share this source, and I understand Jeni will read public signal data to generate a trust scan. By submitting, I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>, including contextual monetization rules that keep ads outside verifier and proof surfaces.</span>
+                <span>I can share this source, and I understand Jeni will read public signal data to generate a live read. By submitting, I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>, including contextual monetization rules that keep ads outside the answer itself.</span>
               </label>
             </div>
           </div>
@@ -3121,14 +3122,14 @@ function intakePage(selectedPlan = 'Free', values = {}, errorMessage = '') {
         <p class="form-hint">Usually takes about 20 seconds. Optional details just help the scan lean harder into the right lane.</p>
         <p class="inline-note" data-intake-status${errorMessage ? ' data-state="warning"' : ''}>${escapeHtml(errorMessage || 'Jeni starts reading the signal the moment you submit it.')}</p>
         <div class="actions">
-          <button class="btn" type="submit" data-intake-submit>Start Trust Scan</button>
-          <a class="btn secondary" href="/case-studies">See the Ten Modules</a>
+          <button class="btn" type="submit" data-intake-submit>Start Live Read</button>
+          <a class="btn secondary" href="/case-studies">See the Surfaces</a>
         </div>
       </form>
     </section>
   `;
 
-  return layout('Trust Scan', content, '/intake');
+  return layout('Signal Drop', content, '/intake');
 }
 
 function intakeSuccessPage(plan = 'Free') {
@@ -3136,15 +3137,15 @@ function intakeSuccessPage(plan = 'Free') {
     <section class="page-head">
       <div>
         <p class="section-label">Signal Received</p>
-        <h2>We’re scanning the trust signal.</h2>
+        <h2>We’re reading the signal.</h2>
       </div>
-      <p class="muted">The engine is reading the source now. The next step is a cleaner trust blueprint, not a dead queue page.</p>
+      <p class="muted">The engine is reading the source now. The next step is a sharper live read, not a dead queue page.</p>
     </section>
     <section class="detail-grid">
       <article class="card">
         <p class="kicker">What happens now</p>
-        <h3>The trust scan starts immediately.</h3>
-        <p class="muted">Jeni is looking for risk, proof, module fit, ad-safe monetization logic, and the strongest receipt hiding inside the source.</p>
+        <h3>The live read starts immediately.</h3>
+        <p class="muted">Jeni is looking for the signal, the best surface, the right output, and the safest money lane hiding inside the source.</p>
       </article>
       <article class="card">
         <p class="kicker">If contact is missing</p>
@@ -3154,8 +3155,8 @@ function intakeSuccessPage(plan = 'Free') {
     </section>
     <section class="card">
       <p class="section-label">Next Step</p>
-      <h2>Find the trust break first. Move from proof after.</h2>
-      <p class="muted">The point is to surface the clearest trust read quickly, not bury the product in extra ceremony.</p>
+      <h2>Find the signal first. Move from the best output after.</h2>
+      <p class="muted">The point is to surface the clearest read quickly, not bury the product in extra ceremony.</p>
       <div class="actions">
         <a class="btn" href="/pricing">See How Jeni Stays Free</a>
         <a class="btn secondary" href="/">Go Home</a>
@@ -3180,16 +3181,16 @@ function getAuditStatusLabel(status = 'queued') {
 
 function getAuditProgressCopy(job) {
   if (!job) {
-    return 'Preparing your trust scan.';
+    return 'Preparing your live read.';
   }
 
   return job.progressLabel || {
     queued: 'Reading your source.',
-    scanning: 'Mapping trust and provenance signals.',
-    analyzing: 'Scoring risk, proof, module fit, and ad safety.',
-    completed: 'Your trust blueprint is ready.',
-    failed: 'We could not finish the trust blueprint.'
-  }[job.status] || 'Preparing your trust scan.';
+    scanning: 'Sorting signal, context, and patterns.',
+    analyzing: 'Picking the best surface, output, and money lane.',
+    completed: 'Your live read is ready.',
+    failed: 'We could not finish the live read.'
+  }[job.status] || 'Preparing your live read.';
 }
 
 function createClientFromIntake(form = {}) {
@@ -3215,7 +3216,7 @@ function createClientFromIntake(form = {}) {
     phone: prepared.phone || '',
     website,
     sitePlatform: prepared.sitePlatform || 'custom',
-    category: prepared.category || 'General trust signal',
+    category: prepared.category || 'General internet signal',
     goal: prepared.goal || '',
     notes: notesParts.join('\n\n'),
     plan: normalizePlan(prepared.plan),
@@ -3274,8 +3275,8 @@ function renderAuditIssueCards(result) {
     return `
       <article class="card audit-issue-card">
         <p class="kicker">No findings yet</p>
-        <h3>Your trust scan is still loading.</h3>
-        <p class="muted">Jeni will fill this with the strongest breaks and fastest wins as soon as the scan is finished.</p>
+        <h3>Your live read is still loading.</h3>
+        <p class="muted">Jeni will fill this with the strongest patterns and fastest wins as soon as the read is finished.</p>
       </article>
     `;
   }
@@ -3284,7 +3285,7 @@ function renderAuditIssueCards(result) {
     <article class="card audit-issue-card">
       <p class="kicker">${escapeHtml(issue.category || 'Issue')}</p>
       <h3>${escapeHtml(issue.issue || 'Needs attention')}</h3>
-      <p class="muted">${escapeHtml(issue.whyItHurts || 'This issue is making the site harder to trust or act on.')}</p>
+      <p class="muted">${escapeHtml(issue.whyItHurts || 'This issue is making the signal harder to act on or spread.')}</p>
       <span class="pill">${escapeHtml(issue.severity || 'medium')}</span>
     </article>
   `).join('');
@@ -3299,17 +3300,17 @@ function auditPage(auditJob, client, auditResult) {
   const content = `
     <section class="page-head">
       <div>
-        <p class="section-label">Trust Scan</p>
+        <p class="section-label">Live Read</p>
         <h2>${escapeHtml(getClientDisplayName(client || {}))}</h2>
       </div>
-      <p class="muted">Jeni is reading this source for trust breaks, best-module fit, receipt potential, ad-safe money logic, and the larger verification layer underneath it.</p>
+      <p class="muted">Jeni is reading this source for the clearest signal, best surface fit, strongest output, safest money lane, and the background engine underneath it.</p>
     </section>
 
     <section class="card audit-shell" data-audit-page data-audit-id="${escapeHtml(auditJob.id)}">
       <div class="audit-loading">
-        <p class="section-label">Live Scan</p>
+        <p class="section-label">Live Read</p>
         <h3 data-audit-progress>${escapeHtml(getAuditProgressCopy(auditJob))}</h3>
-        <p class="muted">Searching the source for risk, proof, and the clearest next move...</p>
+        <p class="muted">Searching the source for signal, surface fit, and the clearest next move...</p>
         <div class="mini-proof">
           <span class="pill" data-audit-status-pill>${escapeHtml(getAuditStatusLabel(auditJob.status))}</span>
           <span class="pill">${escapeHtml(client?.website || 'Signal pending')}</span>
@@ -3319,7 +3320,7 @@ function auditPage(auditJob, client, auditResult) {
 
       <div class="audit-grid" data-audit-results${completed ? '' : ' hidden'}>
         <article class="card audit-score-card">
-          <p class="kicker">Trust Blueprint Score</p>
+          <p class="kicker">Signal Read Score</p>
           <div class="audit-score" data-audit-overall-score>${completed ? escapeHtml(String(auditResult.overallScore || '--')) : '--'}</div>
           <p class="muted" data-audit-summary>${completed ? escapeHtml(auditResult.summary || '') : 'Your summary will appear here as soon as the audit finishes.'}</p>
         </article>
@@ -3346,7 +3347,7 @@ function auditPage(auditJob, client, auditResult) {
           <div class="section-heading">
             <div>
               <p class="section-label">Top Findings</p>
-              <h2>Where trust breaks or compounds first.</h2>
+              <h2>Where the signal breaks, spreads, or gets expensive.</h2>
             </div>
           </div>
           <div class="feature-grid" data-audit-issues>${renderAuditIssueCards(auditResult)}</div>
@@ -3376,9 +3377,9 @@ function auditPage(auditJob, client, auditResult) {
               <span class="pill" data-audit-hero-cta>${completed ? escapeHtml(auditResult.heroRewrite?.cta || '') : 'Loading CTA...'}</span>
             </div>
           </article>
-          <article class="card">
-            <p class="kicker">Spread Logic</p>
-            <ul class="list-clean" data-audit-conversion-leaks>
+            <article class="card">
+              <p class="kicker">Spread Logic</p>
+              <ul class="list-clean" data-audit-conversion-leaks>
               ${(completed ? auditResult.conversionLeaks : ['Your share and spread angles will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
             </ul>
           </article>
@@ -3387,15 +3388,15 @@ function auditPage(auditJob, client, auditResult) {
         <section style="margin-top: 18px;">
           <div class="section-heading">
             <div>
-              <p class="section-label">Module Stack</p>
-              <h2>The pieces that make the free trust surface real.</h2>
+              <p class="section-label">Surface Stack</p>
+              <h2>The pieces that make the free social app feel real.</h2>
             </div>
-            <p class="muted">This is where the output shifts from “interesting” to “worth using and safe to monetize.”</p>
+            <p class="muted">This is where the output shifts from “interesting” to “worth using, sharing, and monetizing cleanly.”</p>
           </div>
           <div class="feature-grid">
             <article class="card fix-card">
               <p class="kicker">Core promise</p>
-              <h3>Headline, subheadline, and first CTA</h3>
+              <h3>Headline, subheadline, and first move</h3>
               <div class="rewrite-preview">
                 <strong data-audit-fix-headline>${completed ? escapeHtml(auditResult.heroRewrite?.headline || '') : 'Loading rewrite...'}</strong>
                 <p class="muted">${completed ? escapeHtml(auditResult.heroRewrite?.subheadline || '') : 'Loading supporting copy...'}</p>
@@ -3407,8 +3408,8 @@ function auditPage(auditJob, client, auditResult) {
               </div>
             </article>
             <article class="card fix-card">
-              <p class="kicker">Receipt design</p>
-              <h3>What people would naturally repost or forward.</h3>
+              <p class="kicker">Output design</p>
+              <h3>What people would naturally repost, forward, or save.</h3>
               <ul class="list-clean" data-audit-trust-recommendations>
                 ${(completed ? auditResult.trustRecommendations : ['Share-artifact directions will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
@@ -3422,7 +3423,7 @@ function auditPage(auditJob, client, auditResult) {
             </article>
             <article class="card fix-card">
               <p class="kicker">Platform door</p>
-              <h3>What larger trust layer this could become.</h3>
+              <h3>What larger product layer this could become.</h3>
               <ul class="list-clean" data-audit-seo-recommendations>
               ${(completed ? auditResult.seoRecommendations : ['Platform-door recommendations will appear here.']).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
               </ul>
@@ -3438,9 +3439,9 @@ function auditPage(auditJob, client, auditResult) {
               <p class="kicker">Phase Plan</p>
               <h3>How Jeni would move next.</h3>
               <ul class="list-clean">
-                <li>Tighten the first module until the trust break feels obvious.</li>
-                <li>Prototype the receipt people naturally keep, repost, or forward.</li>
-                <li>Keep monetization outside the proof zone while the verifier layer grows.</li>
+                <li>Tighten the first surface until the signal and move feel obvious.</li>
+                <li>Prototype the output people naturally keep, repost, or forward.</li>
+                <li>Keep monetization outside the answer while the background engine grows.</li>
               </ul>
               <div class="mini-proof">
                 <span class="pill">validate</span>
@@ -3453,14 +3454,14 @@ function auditPage(auditJob, client, auditResult) {
       </div>
 
       <article class="card audit-error" data-audit-error${auditJob.status === 'failed' ? '' : ' hidden'}>
-        <p class="kicker">Scan Error</p>
-        <h3>We could not finish the trust scan.</h3>
+        <p class="kicker">Read Error</p>
+        <h3>We could not finish the live read.</h3>
         <p class="muted" data-audit-error-message>${escapeHtml(auditJob.errorMessage || 'Try again with a reachable signal URL.')}</p>
       </article>
     </section>
   `;
 
-  return layout('Trust Scan', content, `/audit/${auditJob.id}`);
+  return layout('Live Read', content, `/audit/${auditJob.id}`);
 }
 
 function adminPage(clients, latestAudits = {}) {
@@ -3889,10 +3890,10 @@ function notFoundPage() {
       <section class="card empty-state">
         <p class="section-label">404</p>
         <h2>That page does not exist.</h2>
-        <p class="muted">Head back to the home page or start a new trust scan.</p>
+        <p class="muted">Head back to the home page or start a new drop.</p>
         <div class="actions" style="justify-content: center;">
           <a class="btn" href="/">Go Home</a>
-          <a class="btn secondary" href="/intake">Start Trust Scan</a>
+          <a class="btn secondary" href="/intake">Start a Drop</a>
         </div>
       </section>
     `,
@@ -4001,7 +4002,7 @@ app.post('/api/intake', async (req, res) => {
       redirectUrl: session.redirectUrl
     });
   } catch (error) {
-    res.status(500).json({ error: 'Could not start the audit right now.' });
+    res.status(500).json({ error: 'Could not start the live read right now.' });
   }
 });
 
@@ -4022,7 +4023,7 @@ app.post('/intake', async (req, res) => {
     const session = await createLeadAndAudit(preparedBody);
     res.redirect(session.redirectUrl);
   } catch (error) {
-    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Could not start the trust scan right now.'), 500);
+    sendHtml(res, intakePage(normalizePlan(preparedBody.plan), preparedBody, 'Could not start the live read right now.'), 500);
   }
 });
 
@@ -4130,7 +4131,7 @@ app.get('/login', async (req, res) => {
       '/admin',
       'Open Admin',
       '/case-studies',
-      'See Modules',
+      'See Surfaces',
       '/login'
     )
   );
@@ -4148,9 +4149,9 @@ app.get('/demo', async (req, res) => {
       'Sales Motion',
       'Use this route as the future handoff for founder calls, venture reviews, or partnership conversations once the product is fully live.',
       '/intake',
-      'Start Trust Scan',
+      'Start a Drop',
       '/case-studies',
-      'See Modules',
+      'See Surfaces',
       '/demo'
     )
   );
