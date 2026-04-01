@@ -3667,43 +3667,187 @@ function placeholderPage(title, eyebrow, bodyCopy, primaryHref, primaryLabel, se
 
 function naKitPage() {
   const concepts = [
-    { id: 'A', name: 'ScamSentry', domain: 'Money + Safety', hook: 'Shareable Scam Receipts', money: 'Family subscription + B2B risk licensing', door: 'Identity and trusted sender rails' },
-    { id: 'B', name: 'BillBuster', domain: 'Money', hook: 'Monthly savings flex cards', money: 'Share-of-savings + premium automation', door: 'Consumer finance autopilot' },
-    { id: 'C', name: 'CareCircle', domain: 'Family + Health', hook: 'Care wins and SOS circles', money: 'Family plan + employer channel', door: 'Care logistics infrastructure' },
-    { id: 'D', name: 'SkillStack', domain: 'Work + Education', hook: 'Weekly ship-proof clips', money: 'Pro subscription + recruiting SaaS', door: 'Reputation-based hiring graph' },
-    { id: 'E', name: 'HomeLedger', domain: 'Home', hook: 'Before/after value gains', money: 'Household plan + contractor take-rate', door: 'Property operations data layer' },
-    { id: 'F', name: 'CivicCopilot', domain: 'Bureaucracy', hook: '“I won” bureaucracy cards', money: 'Pay-per-case + subscription', door: 'Life admin API and agents' },
-    { id: 'G', name: 'DateGuard', domain: 'Dating + Safety', hook: 'Green-flag safety badges', money: 'Subscription + pay-per-verify', door: 'Portable trust for marketplaces' },
-    { id: 'H', name: 'ClipCommerce', domain: 'Commerce', hook: 'Shareable dupe carts', money: 'Affiliate + SaaS + transaction fees', door: 'Creator commerce infrastructure' },
-    { id: 'I', name: 'MovePilot', domain: 'Travel + Life Events', hook: 'Move score and survival cards', money: 'Referral rev + concierge tier', door: 'Life-transition operating system' },
-    { id: 'J', name: 'RealityCheck', domain: 'Information', hook: 'Reality Cards for reposts', money: 'Freemium + org licensing + API', door: 'Cross-platform trust API' }
+    {
+      id: 'A',
+      name: 'ScamSentry',
+      domain: 'Money + Safety',
+      hook: 'Shareable Scam Receipts',
+      money: 'Family subscription + B2B risk licensing',
+      door: 'Identity and trusted sender rails',
+      urgency: 5,
+      shareability: 5,
+      revenue: 5,
+      mvp: ['Scam classifier for calls/texts/DM links', 'Family circle shared blocklists', 'Payment-risk warnings and safe previews']
+    },
+    {
+      id: 'B',
+      name: 'BillBuster',
+      domain: 'Money',
+      hook: 'Monthly savings flex cards',
+      money: 'Share-of-savings + premium automation',
+      door: 'Consumer finance autopilot',
+      urgency: 4,
+      shareability: 4,
+      revenue: 5,
+      mvp: ['Recurring spend detection', 'Cancellation/negotiation concierge', 'Savings dashboard + streak cards']
+    },
+    {
+      id: 'C',
+      name: 'CareCircle',
+      domain: 'Family + Health',
+      hook: 'Care wins and SOS circles',
+      money: 'Family plan + employer channel',
+      door: 'Care logistics infrastructure',
+      urgency: 5,
+      shareability: 3,
+      revenue: 4,
+      mvp: ['Shared care calendar and med confirmations', 'Emergency contacts and task baton', 'Document vault + caregiver timeline']
+    },
+    {
+      id: 'D',
+      name: 'SkillStack',
+      domain: 'Work + Education',
+      hook: 'Weekly ship-proof clips',
+      money: 'Pro subscription + recruiting SaaS',
+      door: 'Reputation-based hiring graph',
+      urgency: 3,
+      shareability: 5,
+      revenue: 4,
+      mvp: ['Weekly challenge prompts', 'Proof hosting and peer review', 'Exportable credibility portfolio']
+    },
+    {
+      id: 'E',
+      name: 'HomeLedger',
+      domain: 'Home',
+      hook: 'Before/after value gains',
+      money: 'Household plan + contractor take-rate',
+      door: 'Property operations data layer',
+      urgency: 4,
+      shareability: 4,
+      revenue: 4,
+      mvp: ['Maintenance timeline and reminders', 'Receipt/warranty vault', 'Insurance claim pack generator']
+    },
+    {
+      id: 'F',
+      name: 'CivicCopilot',
+      domain: 'Bureaucracy',
+      hook: '“I won” bureaucracy cards',
+      money: 'Pay-per-case + subscription',
+      door: 'Life admin API and agents',
+      urgency: 4,
+      shareability: 4,
+      revenue: 4,
+      mvp: ['Dispute templates and filing packs', 'Deadline tracker + audit trail', 'Appointment booking assistant']
+    },
+    {
+      id: 'G',
+      name: 'DateGuard',
+      domain: 'Dating + Safety',
+      hook: 'Green-flag safety badges',
+      money: 'Subscription + pay-per-verify',
+      door: 'Portable trust for marketplaces',
+      urgency: 4,
+      shareability: 4,
+      revenue: 4,
+      mvp: ['Optional identity and consistency checks', 'Safe meetup checklists', 'Trusted-circle live safety mode']
+    },
+    {
+      id: 'H',
+      name: 'ClipCommerce',
+      domain: 'Commerce',
+      hook: 'Shareable dupe carts',
+      money: 'Affiliate + SaaS + transaction fees',
+      door: 'Creator commerce infrastructure',
+      urgency: 3,
+      shareability: 5,
+      revenue: 5,
+      mvp: ['Product detection from short clips', 'Price history and alerts', 'Returns orchestration flow']
+    },
+    {
+      id: 'I',
+      name: 'MovePilot',
+      domain: 'Travel + Life Events',
+      hook: 'Move score and survival cards',
+      money: 'Referral rev + concierge tier',
+      door: 'Life-transition operating system',
+      urgency: 4,
+      shareability: 3,
+      revenue: 4,
+      mvp: ['Relocation timeline + checklist', 'Provider switch automation', 'Move expense and doc vault']
+    },
+    {
+      id: 'J',
+      name: 'RealityCheck',
+      domain: 'Information',
+      hook: 'Reality Cards for reposts',
+      money: 'Freemium + org licensing + API',
+      door: 'Cross-platform trust API',
+      urgency: 4,
+      shareability: 5,
+      revenue: 4,
+      mvp: ['Upload clip/screenshot for context scan', 'Confidence score + citation pack', 'Dispute flow + moderation queue']
+    }
+  ];
+
+  const mascotArchetypes = [
+    { name: 'Cap', type: 'Coach', vibe: 'Action-first momentum and daily moves', color: '#2563EB', never: 'Never shame missed streaks.' },
+    { name: 'Pip', type: 'Helper', vibe: 'Onboarding clarity and safety explainers', color: '#14B8A6', never: 'Never joke in safety or policy flows.' },
+    { name: 'Bolt', type: 'Sidekick', vibe: 'Share-loop energy for creator surfaces', color: '#7C3AED', never: 'Never appear in enforcement screens.' }
   ];
 
   const content = `
     <section class="nakit-hero card">
-      <p class="section-label">NA Kit</p>
-      <h1>Ten Viral, Necessary Apps That Print Money and Open Doors to the Future</h1>
-      <p class="muted">A bold, interactive concept studio where each app is engineered for distribution, measurable value, and long-term platform expansion.</p>
+      <p class="section-label">NA Kit · Social-Action OS</p>
+      <h1>Your daily move, your proof, your people.</h1>
+      <p class="muted">A mass-market app blueprint that combines short-form feed mechanics, one-tap actions, trust-first safety defaults, and monetization primitives from day one.</p>
       <div class="nakit-pill-row">
-        <span>Viral Artifacts</span>
-        <span>Recurring Revenue</span>
-        <span>Moat Design</span>
-        <span>Operator-Ready MVPs</span>
+        <span>Scroll → Act → Prove → Share</span>
+        <span>Mascot-led onboarding</span>
+        <span>Discord-lite communities</span>
+        <span>Action-weighted ranking</span>
       </div>
       <div class="actions">
-        <a class="btn" href="#nakit-grid">Explore all 10 apps</a>
+        <a class="btn" href="#nakit-grid">Explore 10 app engines</a>
         <a class="btn secondary" href="#nakit-lab">Run opportunity lab</a>
+      </div>
+    </section>
+
+    <section class="card nakit-strategy">
+      <p class="section-label">Core thesis</p>
+      <h2>Build the feed around completed actions, not empty engagement.</h2>
+      <div class="nakit-quick-grid">
+        <article><h3>Consumption</h3><p class="muted">Infinite discovery feed with For You + Following control.</p></article>
+        <article><h3>Action</h3><p class="muted">One-tap CTAs: Do it, Save it, Book it, Earn from it.</p></article>
+        <article><h3>Proof</h3><p class="muted">Receipt cards, endorsements, and before/after evidence.</p></article>
+        <article><h3>Community</h3><p class="muted">Channels, roles, and guided onboarding for trusted groups.</p></article>
+      </div>
+    </section>
+
+    <section class="card nakit-mascots">
+      <p class="section-label">Mascot system</p>
+      <h2>Use one character framework with explicit do/don't rules.</h2>
+      <div class="nakit-mascot-grid">
+        ${mascotArchetypes.map((m) => `
+          <article class="nakit-mascot-card">
+            <p class="kicker">${escapeHtml(m.type)}</p>
+            <h3>${escapeHtml(m.name)}</h3>
+            <p><strong>Role:</strong> ${escapeHtml(m.vibe)}</p>
+            <p><strong>Primary color:</strong> <span class="swatch" style="background:${escapeHtml(m.color)}"></span> ${escapeHtml(m.color)}</p>
+            <p><strong>Never rule:</strong> ${escapeHtml(m.never)}</p>
+          </article>
+        `).join('')}
       </div>
     </section>
 
     <section id="nakit-grid" class="nakit-grid">
       ${concepts.map((concept) => `
-        <article class="nakit-card" data-app-card data-app-name="${escapeHtml(concept.name)}">
+        <article class="nakit-card" data-app-card data-app-name="${escapeHtml(concept.name)}" data-urgency="${concept.urgency}" data-shareability="${concept.shareability}" data-revenue="${concept.revenue}">
           <p class="kicker">Concept ${concept.id} · ${escapeHtml(concept.domain)}</p>
           <h3>${escapeHtml(concept.name)}</h3>
           <p><strong>Viral hook:</strong> ${escapeHtml(concept.hook)}</p>
           <p><strong>Monetization:</strong> ${escapeHtml(concept.money)}</p>
           <p><strong>Platform door:</strong> ${escapeHtml(concept.door)}</p>
+          <ul class="nakit-mvp-list">${concept.mvp.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
           <button class="btn secondary" type="button" data-spotlight>Spotlight this concept</button>
         </article>
       `).join('')}
@@ -3711,8 +3855,8 @@ function naKitPage() {
 
     <section id="nakit-lab" class="card nakit-lab">
       <p class="section-label">Opportunity Lab</p>
-      <h2>Rank what wins first: urgency × shareability × revenue</h2>
-      <p class="muted">Tune the scoring model, then instantly see which app should be built first for speed-to-cash and strategic upside.</p>
+      <h2>Interactive ranking model for what to build first.</h2>
+      <p class="muted">Adjust weighting for urgency, shareability, and revenue fit. Top opportunities update in real time.</p>
       <div class="nakit-sliders">
         <label>Urgency <input type="range" min="1" max="5" value="5" data-weight="urgency" /></label>
         <label>Shareability <input type="range" min="1" max="5" value="4" data-weight="shareability" /></label>
@@ -3721,56 +3865,118 @@ function naKitPage() {
       <div class="nakit-scoreboard" data-scoreboard></div>
     </section>
 
+    <section class="card nakit-product-system">
+      <p class="section-label">Product system</p>
+      <h2>What ships in the mass-market social-action app</h2>
+      <div class="nakit-system-grid">
+        <article>
+          <h3>Profile Builder</h3>
+          <p class="muted">Template-first customizable pages with drag/drop, move up/down accessibility controls, and per-widget privacy.</p>
+        </article>
+        <article>
+          <h3>Action Feed</h3>
+          <p class="muted">For You + Following tabs, action-centric reactions, and recommendation eligibility controls.</p>
+        </article>
+        <article>
+          <h3>Communities</h3>
+          <p class="muted">Discord-lite channels, role permissions, onboarding guide, and verified-seller gating.</p>
+        </article>
+        <article>
+          <h3>Trust & Safety</h3>
+          <p class="muted">Nudge → Friction → Restriction → Suspension ladder with account standing and appeals.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card nakit-rollout">
+      <p class="section-label">30 / 60 / 90 rollout</p>
+      <h2>Launch sequence for adoption and monetization</h2>
+      <div class="nakit-rollout-grid">
+        <article>
+          <h3>Days 0–30</h3>
+          <ul class="list-clean">
+            <li>Signup-as-page-creation + interest picker</li>
+            <li>Short video + micro-post proof loop</li>
+            <li>Report/block/rate-limit safety baseline</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Days 31–60</h3>
+          <ul class="list-clean">
+            <li>Follow vs Network graph</li>
+            <li>Message requests + endorsement modules</li>
+            <li>Communities, channels, and start-here guides</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Days 61–90</h3>
+          <ul class="list-clean">
+            <li>Bookings/transactions + community roles</li>
+            <li>Account standing, warnings, and appeals</li>
+            <li>Ranking v2 boosts completed-action proof</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="card nakit-kpis">
+      <p class="section-label">KPI Stack</p>
+      <h2>Measure value, growth, and safety together</h2>
+      <div class="nakit-kpi-grid">
+        <article><h3>Activation</h3><p class="muted">Time-to-first-win, first-session action completion.</p></article>
+        <article><h3>Retention</h3><p class="muted">D1/D7/D30 + weekly action retention cohorts.</p></article>
+        <article><h3>Referral</h3><p class="muted">Shares per user, invite conversion, remix response rate.</p></article>
+        <article><h3>Revenue</h3><p class="muted">Proof → message → transaction conversion and ARPA.</p></article>
+        <article><h3>Trust</h3><p class="muted">Reports/1k sessions, repeat offender rate, resolution SLA.</p></article>
+      </div>
+    </section>
+
     <section class="card nakit-launch">
       <p class="section-label">Recommended first build</p>
       <h2>Start with <span>ScamSentry</span></h2>
-      <p class="muted">Clear fear-driven demand, obvious family subscription motion, and natural social sharing via scam warning receipts.</p>
+      <p class="muted">High urgency + strong family willingness-to-pay + naturally shareable warning artifacts make this the fastest path to meaningful early revenue.</p>
       <ol>
-        <li><strong>Months 1-2:</strong> launch core call, text, and link protection with one-tap Scam Receipt cards.</li>
-        <li><strong>Months 3-5:</strong> add family circles, senior mode, and trusted contact routing.</li>
-        <li><strong>Months 6-9:</strong> ship partner-ready integrations for financial institutions and caregiver orgs.</li>
-        <li><strong>Months 10-12:</strong> pilot verified business calling and a lightweight B2B risk dashboard.</li>
+        <li><strong>Months 1-2:</strong> call, text, link risk detection and one-tap Scam Receipt cards.</li>
+        <li><strong>Months 3-5:</strong> family circles, senior mode, trusted-contact recovery flow.</li>
+        <li><strong>Months 6-9:</strong> partner integrations with banks, credit unions, and caregiver orgs.</li>
+        <li><strong>Months 10-12:</strong> verified business calling pilot + lightweight B2B dashboard.</li>
       </ol>
     </section>
 
     <script>
       (() => {
-        const baseScores = {
-          ScamSentry: { urgency: 5, shareability: 5, revenue: 5 },
-          BillBuster: { urgency: 4, shareability: 4, revenue: 5 },
-          CareCircle: { urgency: 5, shareability: 3, revenue: 4 },
-          SkillStack: { urgency: 3, shareability: 5, revenue: 4 },
-          HomeLedger: { urgency: 4, shareability: 4, revenue: 4 },
-          CivicCopilot: { urgency: 4, shareability: 4, revenue: 4 },
-          DateGuard: { urgency: 4, shareability: 4, revenue: 4 },
-          ClipCommerce: { urgency: 3, shareability: 5, revenue: 5 },
-          MovePilot: { urgency: 4, shareability: 3, revenue: 4 },
-          RealityCheck: { urgency: 4, shareability: 5, revenue: 4 }
-        };
+        const cards = Array.from(document.querySelectorAll('[data-app-card]'));
         const sliders = Array.from(document.querySelectorAll('[data-weight]'));
         const scoreboard = document.querySelector('[data-scoreboard]');
-        const renderScores = () => {
-          const weights = sliders.reduce((acc, slider) => ({ ...acc, [slider.dataset.weight]: Number(slider.value) }), {});
-          const sorted = Object.entries(baseScores)
-            .map(([name, score]) => ({
-              name,
-              total: score.urgency * weights.urgency + score.shareability * weights.shareability + score.revenue * weights.revenue
-            }))
+        const scoreRows = () => {
+          const w = sliders.reduce((acc, slider) => ({ ...acc, [slider.dataset.weight]: Number(slider.value) }), {});
+          const scored = cards
+            .map((card) => {
+              const urgency = Number(card.dataset.urgency);
+              const shareability = Number(card.dataset.shareability);
+              const revenue = Number(card.dataset.revenue);
+              const total = urgency * w.urgency + shareability * w.shareability + revenue * w.revenue;
+              return { name: card.dataset.appName, total };
+            })
             .sort((a, b) => b.total - a.total)
             .slice(0, 5);
-          scoreboard.innerHTML = sorted.map((row, index) => '<div class="score-row"><span>#' + (index + 1) + ' ' + row.name + '</span><strong>' + row.total + '</strong></div>').join('');
+
+          scoreboard.innerHTML = scored
+            .map((row, index) => '<div class="score-row"><span>#' + (index + 1) + ' ' + row.name + '</span><strong>' + row.total + '</strong></div>')
+            .join('');
         };
 
-        sliders.forEach((slider) => slider.addEventListener('input', renderScores));
+        sliders.forEach((slider) => slider.addEventListener('input', scoreRows));
         document.querySelectorAll('[data-spotlight]').forEach((button) => {
           button.addEventListener('click', () => {
             const card = button.closest('[data-app-card]');
             if (!card) return;
-            document.querySelectorAll('[data-app-card]').forEach((item) => item.classList.remove('is-spotlight'));
+            cards.forEach((item) => item.classList.remove('is-spotlight'));
             card.classList.add('is-spotlight');
           });
         });
-        renderScores();
+
+        scoreRows();
       })();
     </script>
   `;

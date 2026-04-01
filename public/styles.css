@@ -1089,7 +1089,7 @@ footer {
 
 .nakit-hero h1 {
   margin-bottom: 14px;
-  max-width: 22ch;
+  max-width: 18ch;
 }
 
 .nakit-pill-row {
@@ -1109,11 +1109,58 @@ footer {
   text-transform: uppercase;
 }
 
+.nakit-strategy,
+.nakit-mascots,
+.nakit-product-system,
+.nakit-rollout,
+.nakit-kpis,
+.nakit-lab,
+.nakit-launch {
+  margin-top: 24px;
+}
+
+.nakit-quick-grid,
+.nakit-system-grid,
+.nakit-kpi-grid {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.nakit-quick-grid article,
+.nakit-system-grid article,
+.nakit-kpi-grid article,
+.nakit-rollout-grid article,
+.nakit-mascot-card {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.nakit-mascot-grid,
+.nakit-rollout-grid {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
 .nakit-grid {
   margin-top: 24px;
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .nakit-card {
@@ -1135,8 +1182,10 @@ footer {
   box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.6), 0 20px 40px rgba(30, 64, 175, 0.35);
 }
 
-.nakit-lab {
-  margin-top: 24px;
+.nakit-mvp-list {
+  margin: 12px 0;
+  padding-left: 18px;
+  color: var(--muted);
 }
 
 .nakit-sliders {
@@ -1168,10 +1217,6 @@ footer {
   border-radius: 12px;
   padding: 10px 12px;
   background: rgba(15, 23, 42, 0.45);
-}
-
-.nakit-launch {
-  margin-top: 24px;
 }
 
 .nakit-launch span {
