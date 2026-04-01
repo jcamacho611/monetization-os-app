@@ -32,9 +32,9 @@ const brand = {
   name: 'Jeni',
   category: 'Free AI trust super-app',
   audience: 'families, creators, operators, and teams navigating the AI trust era',
-  slogan: 'Trust, signed. Free to use.',
-  headline: 'A free trust super-app for the AI era.',
-  subhead: 'Jeni turns identity, media, actions, and outcomes into verifiable receipts across ten life modules, then stays free with privacy-first ads outside the proof zone.',
+  slogan: 'Check it before you trust it.',
+  headline: 'Paste anything. Find out if it feels real, risky, or scammy.',
+  subhead: 'Jeni checks suspicious links, messages, profiles, clips, and offers, explains what feels off in regular-people language, and keeps the proof neat if things go left.',
   supportingLine: 'Shield. Truth. Passport. Then money, care, home, civic, commerce, work, and moves.',
   metaDescription: 'Jeni is a free, ad-funded AI trust super-app that turns media, identity, actions, and outcomes into verifiable receipts across scams, truth, care, money, home, work, commerce, and civic life.',
   proofNote: 'Shield, Truth, and Passport form the front door, then the rest of the life modules compound on top of shared receipts, provenance, and identity.',
@@ -2036,31 +2036,93 @@ function renderZumiCadenceCard(client) {
 function homePage(clients) {
   const content = `
     <section class="entry-hero entry-hero-minimal">
-      <div class="entry-shell entry-shell-minimal">
-        <p class="section-label">Jeni // Free Trust Super-App</p>
-        <h1>Write anything. Paste a link. Start with the signal.</h1>
-        <p class="lede">Ask Jeni what to verify, protect, or turn into proof. Raw domains work. The app stays free. Ads stay outside the proof zone.</p>
+      <div class="entry-shell entry-shell-minimal entry-shell-plain">
+        <p class="section-label">Jeni // Free Trust Checker</p>
+        <h1>Paste anything. Jeni tells you what feels real, risky, or scammy.</h1>
+        <p class="lede">A weird text. A payment link. A brand site. A profile. A clip. Jeni explains what feels off in regular-people talk and keeps the proof neat if things go left.</p>
         <form class="entry-search" method="GET" action="/intake">
-          <input name="q" type="text" placeholder="Write anything. Paste a link. Ask Jeni what to verify." aria-label="Trust prompt" autocomplete="off" />
-          <button class="btn" type="submit">Start Trust Scan</button>
+          <input name="q" type="text" placeholder="Paste a message, link, profile, offer, or just ask a question" aria-label="Trust prompt" autocomplete="off" />
+          <button class="btn" type="submit">Check It</button>
         </form>
-        <div class="entry-suggestions">
+        <div class="entry-suggestions entry-usage">
           <span class="pill">is this a scam?</span>
+          <span class="pill">is this website legit?</span>
+          <span class="pill">is this person real?</span>
+          <span class="pill">check this offer</span>
           <span class="pill">verify this clip</span>
-          <span class="pill">check this brand</span>
-          <span class="pill">what module should this become?</span>
         </div>
-        <p class="supporting-line">Shield. Truth. Passport. Then money, care, home, work, commerce, and civic life.</p>
+        <p class="entry-microcopy">Free to use. Ads show after the answer, never inside the answer.</p>
+      </div>
+    </section>
+
+    <section class="section compact-section">
+      <div class="feature-grid feature-grid-tight home-plain-grid">
+        <article class="card concept-card">
+          <p class="kicker">1. Paste it</p>
+          <h3>Drop in the thing that feels off.</h3>
+          <p class="muted">A message, link, profile, product page, brand site, or random question. Raw domains work. You do not need to clean it up first.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">2. Get the answer</p>
+          <h3>Jeni tells you what looks safe, risky, or scammy.</h3>
+          <p class="muted">Not just yes or no. It explains the red flags in normal language so you know what is actually wrong and what to do next.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">3. Keep the proof</p>
+          <h3>When things go left, the timeline is already organized.</h3>
+          <p class="muted">Jeni turns the messy situation into a clean receipt, explanation, and proof trail you can keep, share, or use in a dispute later.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-head">
+        <div>
+          <p class="section-label">Who This Is For</p>
+          <h2>People who are about to trust something online.</h2>
+        </div>
+        <p class="muted">Jeni is for the exact moment you are about to click, pay, reply, trust, or share something and you do not want to get played.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card concept-card">
+          <p class="kicker">Scam checks</p>
+          <h3>People who think they might be getting scammed.</h3>
+          <p class="muted">Marketplace buyers, shoppers, random DMs, fake payment requests, spoofed messages, and offers that feel too good to be true.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">Small business</p>
+          <h3>Owners who need cleaner trust around leads and payments.</h3>
+          <p class="muted">Use Jeni to check weird leads, suspicious links, fake clients, proof of conversations, and situations that could turn into chargebacks or drama.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">Social + dating</p>
+          <h3>People trying to figure out if someone or something is real.</h3>
+          <p class="muted">Profiles, clips, rumors, fake brands, catfish-style behavior, and online situations where “something feels off” is the whole problem.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="card home-plain-callout">
+          <p class="kicker">What The Bigger App Becomes</p>
+          <h3>Shield first. Truth next. Passport underneath it all.</h3>
+          <p class="muted">The first simple version is a scam and trust checker. Underneath that, Jeni grows into media verification, identity proof, savings, care, home history, and the rest of the life modules.</p>
+        </article>
+        <article class="card home-plain-callout">
+          <p class="kicker">Money Model</p>
+          <h3>You wanted ads so you do not have to charge.</h3>
+          <p class="muted">That is the model now: helpful ads and trusted offers after the result, never mixed into the result. The answer stays clean. The app stays free.</p>
+          <div class="actions">
+            <a class="btn" href="/intake">Start Checking Something</a>
+            <a class="btn secondary" href="/pricing">See How Ads Work</a>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section compact-section">
       <div class="feature-grid feature-grid-tight">
-        <article class="card concept-card">
-          <p class="kicker">Free forever</p>
-          <h3>The app stays free. The proof stays clean.</h3>
-          <p class="muted">Jeni uses privacy-first contextual ads after the useful part, never inside the receipt, verifier, or emergency flow.</p>
-        </article>
         <article class="card concept-card">
           <p class="kicker">Front door</p>
           <h3>Shield, Truth, and Passport open the system.</h3>
@@ -2070,6 +2132,11 @@ function homePage(clients) {
           <p class="kicker">Live system</p>
           <h3>${escapeHtml(String(Math.max(clients.length, 10)))} trust scans run</h3>
           <p class="muted">Every scan looks for the best module, the right receipt, the ad-safe monetization path, and the larger verifier layer underneath it.</p>
+        </article>
+        <article class="card concept-card">
+          <p class="kicker">Build the bigger picture</p>
+          <h3>Once the answer is useful, the rest of Jeni makes sense.</h3>
+          <p class="muted">That is how this becomes more than a checker. It becomes a trust layer people actually use across the rest of life.</p>
         </article>
       </div>
       <div class="actions" style="justify-content: center; margin-top: 18px;">
