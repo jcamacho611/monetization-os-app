@@ -1415,6 +1415,7 @@ function layout(title, content, currentPath = '/') {
             <div class="nav-main">
               <nav class="nav-links">
                 ${navLink('/', 'Home', currentPath)}
+                ${navLink('/na-kit', 'NA Kit', currentPath)}
                 ${navLink('/how-it-works', 'How It Works', currentPath)}
                 ${navLink('/industries', 'Industries', currentPath)}
                 ${navLink('/pricing', 'Pricing', currentPath)}
@@ -3664,6 +3665,119 @@ function placeholderPage(title, eyebrow, bodyCopy, primaryHref, primaryLabel, se
   return layout(title, content, currentPath);
 }
 
+function naKitPage() {
+  const concepts = [
+    { id: 'A', name: 'ScamSentry', domain: 'Money + Safety', hook: 'Shareable Scam Receipts', money: 'Family subscription + B2B risk licensing', door: 'Identity and trusted sender rails' },
+    { id: 'B', name: 'BillBuster', domain: 'Money', hook: 'Monthly savings flex cards', money: 'Share-of-savings + premium automation', door: 'Consumer finance autopilot' },
+    { id: 'C', name: 'CareCircle', domain: 'Family + Health', hook: 'Care wins and SOS circles', money: 'Family plan + employer channel', door: 'Care logistics infrastructure' },
+    { id: 'D', name: 'SkillStack', domain: 'Work + Education', hook: 'Weekly ship-proof clips', money: 'Pro subscription + recruiting SaaS', door: 'Reputation-based hiring graph' },
+    { id: 'E', name: 'HomeLedger', domain: 'Home', hook: 'Before/after value gains', money: 'Household plan + contractor take-rate', door: 'Property operations data layer' },
+    { id: 'F', name: 'CivicCopilot', domain: 'Bureaucracy', hook: '“I won” bureaucracy cards', money: 'Pay-per-case + subscription', door: 'Life admin API and agents' },
+    { id: 'G', name: 'DateGuard', domain: 'Dating + Safety', hook: 'Green-flag safety badges', money: 'Subscription + pay-per-verify', door: 'Portable trust for marketplaces' },
+    { id: 'H', name: 'ClipCommerce', domain: 'Commerce', hook: 'Shareable dupe carts', money: 'Affiliate + SaaS + transaction fees', door: 'Creator commerce infrastructure' },
+    { id: 'I', name: 'MovePilot', domain: 'Travel + Life Events', hook: 'Move score and survival cards', money: 'Referral rev + concierge tier', door: 'Life-transition operating system' },
+    { id: 'J', name: 'RealityCheck', domain: 'Information', hook: 'Reality Cards for reposts', money: 'Freemium + org licensing + API', door: 'Cross-platform trust API' }
+  ];
+
+  const content = `
+    <section class="nakit-hero card">
+      <p class="section-label">NA Kit</p>
+      <h1>Ten Viral, Necessary Apps That Print Money and Open Doors to the Future</h1>
+      <p class="muted">A bold, interactive concept studio where each app is engineered for distribution, measurable value, and long-term platform expansion.</p>
+      <div class="nakit-pill-row">
+        <span>Viral Artifacts</span>
+        <span>Recurring Revenue</span>
+        <span>Moat Design</span>
+        <span>Operator-Ready MVPs</span>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#nakit-grid">Explore all 10 apps</a>
+        <a class="btn secondary" href="#nakit-lab">Run opportunity lab</a>
+      </div>
+    </section>
+
+    <section id="nakit-grid" class="nakit-grid">
+      ${concepts.map((concept) => `
+        <article class="nakit-card" data-app-card data-app-name="${escapeHtml(concept.name)}">
+          <p class="kicker">Concept ${concept.id} · ${escapeHtml(concept.domain)}</p>
+          <h3>${escapeHtml(concept.name)}</h3>
+          <p><strong>Viral hook:</strong> ${escapeHtml(concept.hook)}</p>
+          <p><strong>Monetization:</strong> ${escapeHtml(concept.money)}</p>
+          <p><strong>Platform door:</strong> ${escapeHtml(concept.door)}</p>
+          <button class="btn secondary" type="button" data-spotlight>Spotlight this concept</button>
+        </article>
+      `).join('')}
+    </section>
+
+    <section id="nakit-lab" class="card nakit-lab">
+      <p class="section-label">Opportunity Lab</p>
+      <h2>Rank what wins first: urgency × shareability × revenue</h2>
+      <p class="muted">Tune the scoring model, then instantly see which app should be built first for speed-to-cash and strategic upside.</p>
+      <div class="nakit-sliders">
+        <label>Urgency <input type="range" min="1" max="5" value="5" data-weight="urgency" /></label>
+        <label>Shareability <input type="range" min="1" max="5" value="4" data-weight="shareability" /></label>
+        <label>Revenue Fit <input type="range" min="1" max="5" value="5" data-weight="revenue" /></label>
+      </div>
+      <div class="nakit-scoreboard" data-scoreboard></div>
+    </section>
+
+    <section class="card nakit-launch">
+      <p class="section-label">Recommended first build</p>
+      <h2>Start with <span>ScamSentry</span></h2>
+      <p class="muted">Clear fear-driven demand, obvious family subscription motion, and natural social sharing via scam warning receipts.</p>
+      <ol>
+        <li><strong>Months 1-2:</strong> launch core call, text, and link protection with one-tap Scam Receipt cards.</li>
+        <li><strong>Months 3-5:</strong> add family circles, senior mode, and trusted contact routing.</li>
+        <li><strong>Months 6-9:</strong> ship partner-ready integrations for financial institutions and caregiver orgs.</li>
+        <li><strong>Months 10-12:</strong> pilot verified business calling and a lightweight B2B risk dashboard.</li>
+      </ol>
+    </section>
+
+    <script>
+      (() => {
+        const baseScores = {
+          ScamSentry: { urgency: 5, shareability: 5, revenue: 5 },
+          BillBuster: { urgency: 4, shareability: 4, revenue: 5 },
+          CareCircle: { urgency: 5, shareability: 3, revenue: 4 },
+          SkillStack: { urgency: 3, shareability: 5, revenue: 4 },
+          HomeLedger: { urgency: 4, shareability: 4, revenue: 4 },
+          CivicCopilot: { urgency: 4, shareability: 4, revenue: 4 },
+          DateGuard: { urgency: 4, shareability: 4, revenue: 4 },
+          ClipCommerce: { urgency: 3, shareability: 5, revenue: 5 },
+          MovePilot: { urgency: 4, shareability: 3, revenue: 4 },
+          RealityCheck: { urgency: 4, shareability: 5, revenue: 4 }
+        };
+        const sliders = Array.from(document.querySelectorAll('[data-weight]'));
+        const scoreboard = document.querySelector('[data-scoreboard]');
+        const renderScores = () => {
+          const weights = sliders.reduce((acc, slider) => ({ ...acc, [slider.dataset.weight]: Number(slider.value) }), {});
+          const sorted = Object.entries(baseScores)
+            .map(([name, score]) => ({
+              name,
+              total: score.urgency * weights.urgency + score.shareability * weights.shareability + score.revenue * weights.revenue
+            }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 5);
+          scoreboard.innerHTML = sorted.map((row, index) => '<div class="score-row"><span>#' + (index + 1) + ' ' + row.name + '</span><strong>' + row.total + '</strong></div>').join('');
+        };
+
+        sliders.forEach((slider) => slider.addEventListener('input', renderScores));
+        document.querySelectorAll('[data-spotlight]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const card = button.closest('[data-app-card]');
+            if (!card) return;
+            document.querySelectorAll('[data-app-card]').forEach((item) => item.classList.remove('is-spotlight'));
+            card.classList.add('is-spotlight');
+          });
+        });
+        renderScores();
+      })();
+    </script>
+  `;
+
+  return layout('NA Kit', content, '/na-kit');
+}
+
 function notFoundPage() {
   return layout(
     'Not Found',
@@ -3693,6 +3807,10 @@ app.get('/intake', async (req, res) => {
 
 app.get('/intake/success', async (req, res) => {
   sendHtml(res, intakeSuccessPage(normalizePlan(req.query.plan)));
+});
+
+app.get('/na-kit', async (req, res) => {
+  sendHtml(res, naKitPage());
 });
 
 app.get('/solutions', async (req, res) => {
